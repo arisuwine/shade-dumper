@@ -1,6 +1,6 @@
 # Shade Dumper: Internal CS2 Schema Dumper
 
-An internal offset dumper for Counter-Strike 2 for Windows.
+An internal offset dumper for Counter-Strike 2 on Windows.
 
 For educational purposes only.
 
@@ -47,4 +47,4 @@ namespace offsets {
 ```
 
 ## ✏️ Contributing
-Feel free to make pull requests.
+Feel free to open issues or make pull requests to improve the dumper.
