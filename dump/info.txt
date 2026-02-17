@@ -1,0 +1,90 @@
+[General]
+    Game: Counter-Strike 2
+    Dump Date: 2026-02-17 13:03:15
+    Generator: Shade Dumper 1.0
+
+[Modules]
+    schemasystem.dll
+        - Timestamp: 2026-02-10 00:35:51
+        - Classes Dumped: 7
+        - Enumerators Dumped: 2
+
+    resourcesystem.dll
+        - Timestamp: 2026-02-10 00:35:43
+        - Classes Dumped: 58
+        - Enumerators Dumped: 2
+
+    rendersystemdx11.dll
+        - Timestamp: 2026-02-10 00:35:57
+        - Classes Dumped: 8
+        - Enumerators Dumped: 8
+
+    engine2.dll
+        - Timestamp: 2026-02-10 00:44:16
+        - Classes Dumped: 56
+        - Enumerators Dumped: 2
+
+    materialsystem2.dll
+        - Timestamp: 2026-02-10 00:36:10
+        - Classes Dumped: 14
+        - Enumerators Dumped: 5
+
+    animationsystem.dll
+        - Timestamp: 2026-02-10 00:40:02
+        - Classes Dumped: 687
+        - Enumerators Dumped: 139
+
+    vphysics2.dll
+        - Timestamp: 2026-02-10 00:36:25
+        - Classes Dumped: 93
+        - Enumerators Dumped: 3
+
+    pulse_system.dll
+        - Timestamp: 2026-02-10 00:35:56
+        - Classes Dumped: 97
+        - Enumerators Dumped: 5
+
+    soundsystem.dll
+        - Timestamp: 2026-02-10 00:36:54
+        - Classes Dumped: 127
+        - Enumerators Dumped: 19
+
+    steamaudio.dll
+        - Timestamp: 2026-02-10 00:36:24
+        - Classes Dumped: 16
+        - Enumerators Dumped: 0
+
+    scenesystem.dll
+        - Timestamp: 2026-02-10 00:37:23
+        - Classes Dumped: 9
+        - Enumerators Dumped: 4
+
+    worldrenderer.dll
+        - Timestamp: 2026-02-10 00:36:34
+        - Classes Dumped: 32
+        - Enumerators Dumped: 3
+
+    particles.dll
+        - Timestamp: 2026-02-10 00:41:37
+        - Classes Dumped: 496
+        - Enumerators Dumped: 75
+
+    server.dll
+        - Timestamp: 2026-02-10 01:04:07
+        - Classes Dumped: 890
+        - Enumerators Dumped: 165
+
+    client.dll
+        - Timestamp: 2026-02-10 01:04:11
+        - Classes Dumped: 536
+        - Enumerators Dumped: 12
+
+    host.dll
+        - Timestamp: 2026-02-10 00:39:06
+        - Classes Dumped: 2
+        - Enumerators Dumped: 0
+
+[Stats]
+    Total Classes Dumped: 3128
+    Total Enumerators Dumped: 444
+    Execution Time: 1529ms
