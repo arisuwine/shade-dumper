@@ -3,33 +3,22 @@
 
 namespace offsets {
     namespace rendersystemdx11 {
-        enum class RsCullMode_t : std::uint8_t {
-            RS_CULL_NONE  = 0x0,
-            RS_CULL_BACK  = 0x1,
-            RS_CULL_FRONT = 0x2
-        };
-
-        enum class RsFillMode_t : std::uint8_t {
-            RS_FILL_SOLID     = 0x0,
-            RS_FILL_WIREFRAME = 0x1
-        };
-
-        enum class RsComparison_t : std::uint8_t {
-            RS_CMP_NEVER         = 0x0,
-            RS_CMP_LESS          = 0x1,
-            RS_CMP_EQUAL         = 0x2,
-            RS_CMP_LESS_EQUAL    = 0x3,
-            RS_CMP_GREATER       = 0x4,
-            RS_CMP_NOT_EQUAL     = 0x5,
-            RS_CMP_GREATER_EQUAL = 0x6,
-            RS_CMP_ALWAYS        = 0x7
-        };
-
         // Global Type Scope
-        enum class RenderSlotType_t : std::uint8_t {
-            RENDER_SLOT_INVALID      = 0xFF,
-            RENDER_SLOT_PER_VERTEX   = 0x0,
-            RENDER_SLOT_PER_INSTANCE = 0x1
+        enum class RenderPrimitiveType_t : std::uint32_t {
+            RENDER_PRIM_POINTS                        = 0x0,
+            RENDER_PRIM_LINES                         = 0x1,
+            RENDER_PRIM_LINES_WITH_ADJACENCY          = 0x2,
+            RENDER_PRIM_LINE_STRIP                    = 0x3,
+            RENDER_PRIM_LINE_STRIP_WITH_ADJACENCY     = 0x4,
+            RENDER_PRIM_TRIANGLES                     = 0x5,
+            RENDER_PRIM_TRIANGLES_WITH_ADJACENCY      = 0x6,
+            RENDER_PRIM_TRIANGLE_STRIP                = 0x7,
+            RENDER_PRIM_TRIANGLE_STRIP_WITH_ADJACENCY = 0x8,
+            RENDER_PRIM_INSTANCED_QUADS               = 0x9,
+            RENDER_PRIM_HETEROGENOUS                  = 0xA,
+            RENDER_PRIM_COMPUTE_SHADER                = 0xB,
+            RENDER_PRIM_MESH_SHADER                   = 0xC,
+            RENDER_PRIM_TYPE_COUNT                    = 0xD
         };
 
         // Global Type Scope
@@ -49,29 +38,26 @@ namespace offsets {
             RENDER_BUFFER_IMMOVABLE_ALLOCATION        = 0x2000
         };
 
-        // Global Type Scope
-        enum class RenderPrimitiveType_t : std::uint32_t {
-            RENDER_PRIM_POINTS                        = 0x0,
-            RENDER_PRIM_LINES                         = 0x1,
-            RENDER_PRIM_LINES_WITH_ADJACENCY          = 0x2,
-            RENDER_PRIM_LINE_STRIP                    = 0x3,
-            RENDER_PRIM_LINE_STRIP_WITH_ADJACENCY     = 0x4,
-            RENDER_PRIM_TRIANGLES                     = 0x5,
-            RENDER_PRIM_TRIANGLES_WITH_ADJACENCY      = 0x6,
-            RENDER_PRIM_TRIANGLE_STRIP                = 0x7,
-            RENDER_PRIM_TRIANGLE_STRIP_WITH_ADJACENCY = 0x8,
-            RENDER_PRIM_INSTANCED_QUADS               = 0x9,
-            RENDER_PRIM_HETEROGENOUS                  = 0xA,
-            RENDER_PRIM_COMPUTE_SHADER                = 0xB,
-            RENDER_PRIM_MESH_SHADER                   = 0xC,
-            RENDER_PRIM_TYPE_COUNT                    = 0xD
+        enum class RsCullMode_t : std::uint8_t {
+            RS_CULL_NONE  = 0x0,
+            RS_CULL_BACK  = 0x1,
+            RS_CULL_FRONT = 0x2
         };
 
-        enum class InputLayoutVariation_t : std::uint8_t {
-            INPUT_LAYOUT_VARIATION_DEFAULT                          = 0x0,
-            INPUT_LAYOUT_VARIATION_STREAM1_INSTANCEID               = 0x1,
-            INPUT_LAYOUT_VARIATION_STREAM1_INSTANCEID_MORPH_VERT_ID = 0x2,
-            INPUT_LAYOUT_VARIATION_MAX                              = 0x3
+        enum class RsComparison_t : std::uint8_t {
+            RS_CMP_NEVER         = 0x0,
+            RS_CMP_LESS          = 0x1,
+            RS_CMP_EQUAL         = 0x2,
+            RS_CMP_LESS_EQUAL    = 0x3,
+            RS_CMP_GREATER       = 0x4,
+            RS_CMP_NOT_EQUAL     = 0x5,
+            RS_CMP_GREATER_EQUAL = 0x6,
+            RS_CMP_ALWAYS        = 0x7
+        };
+
+        enum class RsFillMode_t : std::uint8_t {
+            RS_FILL_SOLID     = 0x0,
+            RS_FILL_WIREFRAME = 0x1
         };
 
         // Global Type Scope
@@ -86,91 +72,104 @@ namespace offsets {
             RENDER_MULTISAMPLE_TYPE_COUNT = 0x6
         };
 
-        // Has Trivial Destructor
-        struct RsRasterizerStateDesc_t {
-        public:
-            static constexpr std::uintptr_t m_nFillMode              = 0x0000; // RsFillMode_t
-            static constexpr std::uintptr_t m_nCullMode              = 0x0001; // RsCullMode_t
-            static constexpr std::uintptr_t m_bDepthClipEnable       = 0x0002; // bool
-            static constexpr std::uintptr_t m_bMultisampleEnable     = 0x0003; // bool
-            static constexpr std::uintptr_t m_nDepthBias             = 0x0004; // int32
-            static constexpr std::uintptr_t m_flDepthBiasClamp       = 0x0008; // float32
-            static constexpr std::uintptr_t m_flSlopeScaledDepthBias = 0x000C; // float32
+        enum class InputLayoutVariation_t : std::uint8_t {
+            INPUT_LAYOUT_VARIATION_DEFAULT                          = 0x0,
+            INPUT_LAYOUT_VARIATION_STREAM1_INSTANCEID               = 0x1,
+            INPUT_LAYOUT_VARIATION_STREAM1_INSTANCEID_MORPH_VERT_ID = 0x2,
+            INPUT_LAYOUT_VARIATION_MAX                              = 0x3
         };
 
-        // Has Trivial Destructor
-        struct RsStencilStateDesc_t {
-        public:
-            static constexpr std::uintptr_t m_bStencilEnable          = 0x0000; // bitfield:1
-            static constexpr std::uintptr_t m_frontStencilFailOp      = 0x0000; // bitfield:3
-            static constexpr std::uintptr_t m_frontStencilDepthFailOp = 0x0000; // bitfield:3
-            static constexpr std::uintptr_t m_frontStencilPassOp      = 0x0000; // bitfield:3
-            static constexpr std::uintptr_t m_frontStencilFunc        = 0x0000; // bitfield:3
-            static constexpr std::uintptr_t m_backStencilFailOp       = 0x0000; // bitfield:3
-            static constexpr std::uintptr_t m_backStencilDepthFailOp  = 0x0000; // bitfield:3
-            static constexpr std::uintptr_t m_backStencilPassOp       = 0x0000; // bitfield:3
-            static constexpr std::uintptr_t m_backStencilFunc         = 0x0000; // bitfield:3
-            static constexpr std::uintptr_t m_nStencilReadMask        = 0x0004; // uint8
-            static constexpr std::uintptr_t m_nStencilWriteMask       = 0x0005; // uint8
+        // Global Type Scope
+        enum class RenderSlotType_t : std::uint8_t {
+            RENDER_SLOT_INVALID      = 0xFF,
+            RENDER_SLOT_PER_VERTEX   = 0x0,
+            RENDER_SLOT_PER_INSTANCE = 0x1
         };
 
         // Has Trivial Destructor
         struct RsDepthStencilStateDesc_t {
         public:
-            static constexpr std::uintptr_t m_bDepthTestEnable  = 0x0000; // bitfield:1
-            static constexpr std::uintptr_t m_bDepthWriteEnable = 0x0000; // bitfield:1
-            static constexpr std::uintptr_t m_depthFunc         = 0x0001; // RsComparison_t
-            static constexpr std::uintptr_t m_stencilState      = 0x0002; // RsStencilStateDesc_t
-        };
-
-        // Has Trivial Destructor
-        struct RsBlendStateDesc_t {
-        public:
-            static constexpr std::uintptr_t m_srcBlendBits              = 0x0000; // uint32
-            static constexpr std::uintptr_t m_destBlendBits             = 0x0004; // uint32
-            static constexpr std::uintptr_t m_srcBlendAlphaBits         = 0x0008; // uint32
-            static constexpr std::uintptr_t m_destBlendAlphaBits        = 0x000C; // uint32
-            static constexpr std::uintptr_t m_renderTargetWriteMaskBits = 0x0010; // uint32
-            static constexpr std::uintptr_t m_blendOpBits               = 0x0000; // bitfield:30
-            static constexpr std::uintptr_t m_bAlphaToCoverageEnable    = 0x0000; // bitfield:1
-            static constexpr std::uintptr_t m_bIndependentBlendEnable   = 0x0000; // bitfield:1
-            static constexpr std::uintptr_t m_blendOpAlphaBits          = 0x0018; // uint32
-            static constexpr std::uintptr_t m_blendEnableBits           = 0x001C; // uint8
-            static constexpr std::uintptr_t m_srgbWriteEnableBits       = 0x001D; // uint8
+            static constexpr std::uintptr_t m_bDepthTestEnable  = 0X0000; // bitfield:1
+            static constexpr std::uintptr_t m_bDepthWriteEnable = 0X0000; // bitfield:1
+            static constexpr std::uintptr_t m_depthFunc         = 0X0001; // RsComparison_t
+            static constexpr std::uintptr_t m_stencilState      = 0X0002; // RsStencilStateDesc_t
         };
 
         // Has Trivial Destructor
         // Global Type Scope
         struct SheetSequenceIntegerId_t {
         public:
-            static constexpr std::uintptr_t m_Value = 0x0000; // uint32
+            static constexpr std::uintptr_t m_Value = 0X0000; // uint32
         };
 
         // Has Trivial Destructor
-        struct RenderInputLayoutField_t {
+        struct RsBlendStateDesc_t {
         public:
-            static constexpr std::uintptr_t m_pSemanticName    = 0x0000; // char[32]
-            static constexpr std::uintptr_t m_nSemanticIndex   = 0x0020; // int8
-            static constexpr std::uintptr_t m_nOffset          = 0x0028; // int16
-            static constexpr std::uintptr_t m_nSlot            = 0x002A; // int8
-            static constexpr std::uintptr_t m_nSlotType        = 0x002B; // RenderSlotType_t
-            static constexpr std::uintptr_t m_szShaderSemantic = 0x002C; // char[32]
+            static constexpr std::uintptr_t m_srcBlendBits              = 0X0000; // uint32
+            static constexpr std::uintptr_t m_destBlendBits             = 0X0004; // uint32
+            static constexpr std::uintptr_t m_srcBlendAlphaBits         = 0X0008; // uint32
+            static constexpr std::uintptr_t m_destBlendAlphaBits        = 0X000C; // uint32
+            static constexpr std::uintptr_t m_renderTargetWriteMaskBits = 0X0010; // uint32
+            static constexpr std::uintptr_t m_blendOpBits               = 0X0000; // bitfield:30
+            static constexpr std::uintptr_t m_bAlphaToCoverageEnable    = 0X0000; // bitfield:1
+            static constexpr std::uintptr_t m_bIndependentBlendEnable   = 0X0000; // bitfield:1
+            static constexpr std::uintptr_t m_blendOpAlphaBits          = 0X0018; // uint32
+            static constexpr std::uintptr_t m_blendEnableBits           = 0X001C; // uint8
+            static constexpr std::uintptr_t m_srgbWriteEnableBits       = 0X001D; // uint8
         };
 
         // Has Trivial Destructor
         struct VsInputSignatureElement_t {
         public:
-            static constexpr std::uintptr_t m_pName             = 0x0000; // char[64]
-            static constexpr std::uintptr_t m_pSemantic         = 0x0040; // char[64]
-            static constexpr std::uintptr_t m_pD3DSemanticName  = 0x0080; // char[64]
-            static constexpr std::uintptr_t m_nD3DSemanticIndex = 0x00C0; // int32
+            static constexpr std::uintptr_t m_pName             = 0X0000; // char[64]
+            static constexpr std::uintptr_t m_pSemantic         = 0X0040; // char[64]
+            static constexpr std::uintptr_t m_pD3DSemanticName  = 0X0080; // char[64]
+            static constexpr std::uintptr_t m_nD3DSemanticIndex = 0X00C0; // int32
+        };
+
+        // Has Trivial Destructor
+        struct RsRasterizerStateDesc_t {
+        public:
+            static constexpr std::uintptr_t m_nFillMode              = 0X0000; // RsFillMode_t
+            static constexpr std::uintptr_t m_nCullMode              = 0X0001; // RsCullMode_t
+            static constexpr std::uintptr_t m_bDepthClipEnable       = 0X0002; // bool
+            static constexpr std::uintptr_t m_bMultisampleEnable     = 0X0003; // bool
+            static constexpr std::uintptr_t m_nDepthBias             = 0X0004; // int32
+            static constexpr std::uintptr_t m_flDepthBiasClamp       = 0X0008; // float32
+            static constexpr std::uintptr_t m_flSlopeScaledDepthBias = 0X000C; // float32
+        };
+
+        // Has Trivial Destructor
+        struct RsStencilStateDesc_t {
+        public:
+            static constexpr std::uintptr_t m_bStencilEnable          = 0X0000; // bitfield:1
+            static constexpr std::uintptr_t m_frontStencilFailOp      = 0X0000; // bitfield:3
+            static constexpr std::uintptr_t m_frontStencilDepthFailOp = 0X0000; // bitfield:3
+            static constexpr std::uintptr_t m_frontStencilPassOp      = 0X0000; // bitfield:3
+            static constexpr std::uintptr_t m_frontStencilFunc        = 0X0000; // bitfield:3
+            static constexpr std::uintptr_t m_backStencilFailOp       = 0X0000; // bitfield:3
+            static constexpr std::uintptr_t m_backStencilDepthFailOp  = 0X0000; // bitfield:3
+            static constexpr std::uintptr_t m_backStencilPassOp       = 0X0000; // bitfield:3
+            static constexpr std::uintptr_t m_backStencilFunc         = 0X0000; // bitfield:3
+            static constexpr std::uintptr_t m_nStencilReadMask        = 0X0004; // uint8
+            static constexpr std::uintptr_t m_nStencilWriteMask       = 0X0005; // uint8
         };
 
         struct VsInputSignature_t {
         public:
-            static constexpr std::uintptr_t m_elems       = 0x0000; // CUtlVector<VsInputSignatureElement_t>
-            static constexpr std::uintptr_t m_depth_elems = 0x0018; // CUtlVector<VsInputSignatureElement_t>
+            static constexpr std::uintptr_t m_elems       = 0X0000; // CUtlVector<VsInputSignatureElement_t>
+            static constexpr std::uintptr_t m_depth_elems = 0X0018; // CUtlVector<VsInputSignatureElement_t>
         };
 
+        // Has Trivial Destructor
+        struct RenderInputLayoutField_t {
+        public:
+            static constexpr std::uintptr_t m_pSemanticName    = 0X0000; // char[32]
+            static constexpr std::uintptr_t m_nSemanticIndex   = 0X0020; // int8
+            static constexpr std::uintptr_t m_nOffset          = 0X0028; // int16
+            static constexpr std::uintptr_t m_nSlot            = 0X002A; // int8
+            static constexpr std::uintptr_t m_nSlotType        = 0X002B; // RenderSlotType_t
+            static constexpr std::uintptr_t m_szShaderSemantic = 0X002C; // char[32]
+        };
     }
 }

@@ -3,13 +3,6 @@
 
 namespace offsets {
     namespace schemasystem {
-        // Global Type Scope
-        enum class ThreeState_t : std::uint32_t {
-            TRS_FALSE = 0x0,
-            TRS_TRUE  = 0x1,
-            TRS_NONE  = 0x2
-        };
-
         enum class fieldtype_t : std::uint8_t {
             FIELD_VOID                                          = 0x0,
             FIELD_FLOAT32                                       = 0x1,
@@ -95,31 +88,11 @@ namespace offsets {
             FIELD_TYPECOUNT                                     = 0x51
         };
 
-        class CSchemaSystemInternalRegistration {
-        public:
-            static constexpr std::uintptr_t m_Vector2D               = 0x0000; // Vector2D
-            static constexpr std::uintptr_t m_Vector                 = 0x0008; // Vector
-            static constexpr std::uintptr_t m_VectorWS               = 0x0014; // VectorWS
-            static constexpr std::uintptr_t m_VectorAligned          = 0x0020; // VectorAligned
-            static constexpr std::uintptr_t m_Quaternion             = 0x0030; // Quaternion
-            static constexpr std::uintptr_t m_QAngle                 = 0x0040; // QAngle
-            static constexpr std::uintptr_t m_RotationVector         = 0x004C; // RotationVector
-            static constexpr std::uintptr_t m_RadianEuler            = 0x0058; // RadianEuler
-            static constexpr std::uintptr_t m_DegreeEuler            = 0x0064; // DegreeEuler
-            static constexpr std::uintptr_t m_QuaternionStorage      = 0x0070; // QuaternionStorage
-            static constexpr std::uintptr_t m_matrix3x4_t            = 0x0080; // matrix3x4_t
-            static constexpr std::uintptr_t m_matrix3x4a_t           = 0x00B0; // matrix3x4a_t
-            static constexpr std::uintptr_t m_Color                  = 0x00E0; // Color
-            static constexpr std::uintptr_t m_Vector4D               = 0x00E4; // Vector4D
-            static constexpr std::uintptr_t m_CTransform             = 0x0100; // CTransform
-            static constexpr std::uintptr_t m_pKeyValues             = 0x0120; // KeyValues*
-            static constexpr std::uintptr_t m_CUtlBinaryBlock        = 0x0128; // CUtlBinaryBlock
-            static constexpr std::uintptr_t m_CUtlString             = 0x0138; // CUtlString
-            static constexpr std::uintptr_t m_CUtlSymbol             = 0x0140; // CUtlSymbol
-            static constexpr std::uintptr_t m_stringToken            = 0x0144; // CUtlStringToken
-            static constexpr std::uintptr_t m_stringTokenWithStorage = 0x0148; // CUtlStringTokenWithStorage
-            static constexpr std::uintptr_t m_ResourceTypes          = 0x0160; // CResourceArray<CResourcePointer<CResourceString>>
-            static constexpr std::uintptr_t m_KV3                    = 0x0168; // KeyValues3
+        // Global Type Scope
+        enum class ThreeState_t : std::uint32_t {
+            TRS_FALSE = 0x0,
+            TRS_TRUE  = 0x1,
+            TRS_NONE  = 0x2
         };
 
         // Has Trivial Constructor
@@ -129,41 +102,67 @@ namespace offsets {
         public:
         };
 
-        // Has Trivial Destructor
-        // Global Type Scope
-        struct ResourceId_t {
+        class CSchemaSystemInternalRegistration {
         public:
-            static constexpr std::uintptr_t m_Value = 0x0000; // uint64
-        };
-
-        // Has Trivial Destructor
-        // Construct Allowed
-        class CExampleSchemaVData_Monomorphic {
-        public:
-            static constexpr std::uintptr_t m_nExample1 = 0x0000; // int32
-            static constexpr std::uintptr_t m_nExample2 = 0x0004; // int32
+            static constexpr std::uintptr_t m_Vector2D               = 0X0000; // Vector2D
+            static constexpr std::uintptr_t m_Vector                 = 0X0008; // Vector
+            static constexpr std::uintptr_t m_VectorWS               = 0X0014; // VectorWS
+            static constexpr std::uintptr_t m_VectorAligned          = 0X0020; // VectorAligned
+            static constexpr std::uintptr_t m_Quaternion             = 0X0030; // Quaternion
+            static constexpr std::uintptr_t m_QAngle                 = 0X0040; // QAngle
+            static constexpr std::uintptr_t m_RotationVector         = 0X004C; // RotationVector
+            static constexpr std::uintptr_t m_RadianEuler            = 0X0058; // RadianEuler
+            static constexpr std::uintptr_t m_DegreeEuler            = 0X0064; // DegreeEuler
+            static constexpr std::uintptr_t m_QuaternionStorage      = 0X0070; // QuaternionStorage
+            static constexpr std::uintptr_t m_matrix3x4_t            = 0X0080; // matrix3x4_t
+            static constexpr std::uintptr_t m_matrix3x4a_t           = 0X00B0; // matrix3x4a_t
+            static constexpr std::uintptr_t m_Color                  = 0X00E0; // Color
+            static constexpr std::uintptr_t m_Vector4D               = 0X00E4; // Vector4D
+            static constexpr std::uintptr_t m_CTransform             = 0X0100; // CTransform
+            static constexpr std::uintptr_t m_pKeyValues             = 0X0120; // KeyValues*
+            static constexpr std::uintptr_t m_CUtlBinaryBlock        = 0X0128; // CUtlBinaryBlock
+            static constexpr std::uintptr_t m_CUtlString             = 0X0138; // CUtlString
+            static constexpr std::uintptr_t m_CUtlSymbol             = 0X0140; // CUtlSymbol
+            static constexpr std::uintptr_t m_stringToken            = 0X0144; // CUtlStringToken
+            static constexpr std::uintptr_t m_stringTokenWithStorage = 0X0148; // CUtlStringTokenWithStorage
+            static constexpr std::uintptr_t m_ResourceTypes          = 0X0160; // CResourceArray<CResourcePointer<CResourceString>>
+            static constexpr std::uintptr_t m_KV3                    = 0X0168; // KeyValues3
         };
 
         // Has VTable
         // Construct Allowed
         class CExampleSchemaVData_PolymorphicBase {
         public:
-            static constexpr std::uintptr_t m_nBase = 0x0008; // int32
+            static constexpr std::uintptr_t m_nBase = 0X0008; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class CExampleSchemaVData_PolymorphicDerivedA : public CExampleSchemaVData_PolymorphicBase {
         public:
-            static constexpr std::uintptr_t m_nDerivedA = 0x0010; // int32
+            static constexpr std::uintptr_t m_nDerivedA = 0X0010; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class CExampleSchemaVData_PolymorphicDerivedB : public CExampleSchemaVData_PolymorphicBase {
         public:
-            static constexpr std::uintptr_t m_nDerivedB = 0x0010; // int32
+            static constexpr std::uintptr_t m_nDerivedB = 0X0010; // int32
         };
 
+        // Has Trivial Destructor
+        // Global Type Scope
+        struct ResourceId_t {
+        public:
+            static constexpr std::uintptr_t m_Value = 0X0000; // uint64
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CExampleSchemaVData_Monomorphic {
+        public:
+            static constexpr std::uintptr_t m_nExample1 = 0X0000; // int32
+            static constexpr std::uintptr_t m_nExample2 = 0X0004; // int32
+        };
     }
 }

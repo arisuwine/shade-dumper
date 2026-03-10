@@ -7,14 +7,13 @@ namespace offsets {
         // Is Absract
         class CAnimScriptBase {
         public:
-            static constexpr std::uintptr_t m_bIsValid = 0x0008; // bool
+            static constexpr std::uintptr_t m_bIsValid = 0X0008; // bool
         };
 
         // Has VTable
         class EmptyTestScript : public CAnimScriptBase {
         public:
-            static constexpr std::uintptr_t m_hTest = 0x0010; // CAnimScriptParam<float32>
+            static constexpr std::uintptr_t m_hTest = 0X0010; // CAnimScriptParam<float32>
         };
-
     }
 }
