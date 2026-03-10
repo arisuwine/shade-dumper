@@ -1,14 +1,25 @@
 #pragma once
 
-#include "SchemaMetaInfoHandle_t.hpp"
-
-// forward declarations
 class CSchemaSystemTypeScope;
 class CSchemaClassInfo;
 class CSchemaEnumInfo;
 struct SchemaMetadataEntryData_t;
 
-// enums
+template <typename T>
+struct SchemaMetaInfoHandle_t
+{
+	SchemaMetaInfoHandle_t() : m_pObj(nullptr) {}
+	SchemaMetaInfoHandle_t(T* obj) : m_pObj(obj) {}
+	inline T* Get() const { return m_pObj; }
+	bool operator<(const SchemaMetaInfoHandle_t& rhs) const { return m_pObj < rhs.m_pObj; }
+	bool operator==(const SchemaMetaInfoHandle_t& rhs) const { return m_pObj == rhs.m_pObj; }
+	bool operator!=(const SchemaMetaInfoHandle_t& rhs) const { return m_pObj != rhs.m_pObj; }
+	T& operator*() const { return *m_pObj; };
+	T* operator->() const { return m_pObj; };
+
+	T* m_pObj;
+};
+
 enum SchemaCollectionManipulatorAction_t
 {
 	SCHEMA_COLLECTION_MANIPULATOR_ACTION_GET_COUNT = 0,
@@ -61,20 +72,6 @@ enum SchemaBuiltinType_t
 	SCHEMA_BUILTIN_TYPE_COUNT,
 };
 
-// typedefs
-typedef int LoggingChannelID_t;
-typedef void* (*SchemaCollectionManipulatorFn_t)(SchemaCollectionManipulatorAction_t eAction, void* pCollection, int index1, int index2);
-
-struct SchemaAtomicTypeInfo_t {
-	const char* m_pszName;
-	const char* m_pszTokenName;
-
-	int m_nAtomicID;
-
-	int m_nStaticMetadataCount;
-	SchemaMetadataEntryData_t* m_pStaticMetadata;
-};
-
 class CSchemaType {
 public:
 	void* vft;										// 0x0
@@ -82,54 +79,6 @@ public:
 	CSchemaSystemTypeScope* m_pTypeScope;			// 0x10
 	SchemaTypeCategory_t m_eTypeCategory;			// 0x18
 	SchemaAtomicCategory_t m_eAtomicCategory;		// 0x19
-};
-
-class CSchemaType_Builtin : public CSchemaType
-{
-public:
-	SchemaBuiltinType_t m_eBuiltinType;
-	uint8_t m_nSize;
-};
-
-class CSchemaType_Ptr : public CSchemaType
-{
-public:
-	CSchemaType* m_pObjectType;
-};
-
-class CSchemaType_Atomic : public CSchemaType
-{
-public:
-	SchemaAtomicTypeInfo_t* m_pAtomicInfo;
-	int m_nAtomicID;
-	uint16_t m_nSize;
-	uint8_t m_nAlignment;
-};
-
-class CSchemaType_Atomic_T : public CSchemaType_Atomic
-{
-public:
-	CSchemaType* m_pTemplateType;
-};
-
-class CSchemaType_Atomic_CollectionOfT : public CSchemaType_Atomic_T
-{
-public:
-	SchemaCollectionManipulatorFn_t m_pfnManipulator;
-	uint16_t m_nElementSize;
-	uint64_t m_nFixedBufferCount;
-};
-
-class CSchemaType_Atomic_TT : public CSchemaType_Atomic_T
-{
-public:
-	CSchemaType* m_pTemplateType2;
-};
-
-class CSchemaType_Atomic_I : public CSchemaType_Atomic
-{
-public:
-	int m_nInteger;
 };
 
 class CSchemaType_DeclaredClass : public CSchemaType
@@ -144,19 +93,4 @@ class CSchemaType_DeclaredEnum : public CSchemaType
 public:
 	CSchemaEnumInfo* m_pEnumInfo;
 	bool m_bGlobalPromotionRequired;
-};
-
-class CSchemaType_FixedArray : public CSchemaType
-{
-public:
-	int m_nElementCount;
-	uint16_t m_nElementSize;
-	uint8_t m_nElementAlignment;
-	CSchemaType* m_pElementType;
-};
-
-class CSchemaType_Bitfield : public CSchemaType
-{
-public:
-	int m_nBitfieldCount;
 };

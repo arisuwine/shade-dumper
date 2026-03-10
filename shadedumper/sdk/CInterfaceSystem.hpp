@@ -9,7 +9,7 @@ namespace CInterfaceSystem {
 	#define RESOLVE_RIP(type, addr) RESOLVE_RIP_EX(type, addr, 3, 7)
 
 	template<typename T>
-	static T* Get(const std::string_view& module_name, const std::string_view& sInterfaceName){
+	static T* Get(std::string_view module_name, std::string_view sInterfaceName){
 		HMODULE hModule = GetModuleHandleA(module_name.data());
 
 		if (!hModule)

@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="shadedumper/shadedumper.vcxproj" />
+  <Project Path="shadedumper/shadedumper.vcxproj" Id="81510643-bb2e-4cd1-97fd-ededcf421be5" />
 </Solution>

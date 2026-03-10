@@ -144,12 +144,13 @@
     <ClInclude Include="sdk\schemasystem\CSchemaSystem.hpp" />
     <ClInclude Include="sdk\schemasystem\CSchemaSystemTypeScope.hpp" />
     <ClInclude Include="sdk\schemasystem\CSchemaType.hpp" />
-    <ClInclude Include="sdk\schemasystem\SchemaClassInfoData_t.hpp" />
-    <ClInclude Include="sdk\schemasystem\SchemaMetaInfoHandle_t.hpp" />
     <ClInclude Include="sdk\valve\CUtlMemory.hpp" />
+    <ClInclude Include="sdk\valve\CUtlMemoryPoolBase.hpp" />
+    <ClInclude Include="sdk\valve\CUtlTSHash.hpp" />
     <ClInclude Include="sdk\valve\CUtlVector.hpp" />
     <ClInclude Include="utils\console.hpp" />
     <ClInclude Include="utils\debug.hpp" />
+    <ClInclude Include="utils\vmt.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

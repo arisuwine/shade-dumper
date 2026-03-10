@@ -39,16 +39,19 @@
     <ClInclude Include="dumper\schemadumper.hpp">
       <Filter>dumper</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\schemasystem\SchemaClassInfoData_t.hpp">
-      <Filter>sdk\schemasystem</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\schemasystem\SchemaMetaInfoHandle_t.hpp">
-      <Filter>sdk\schemasystem</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\valve\CUtlVector.hpp">
       <Filter>sdk\valve</Filter>
     </ClInclude>
     <ClInclude Include="sdk\valve\CUtlMemory.hpp">
+      <Filter>sdk\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\vmt.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\valve\CUtlTSHash.hpp">
+      <Filter>sdk\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\valve\CUtlMemoryPoolBase.hpp">
       <Filter>sdk\valve</Filter>
     </ClInclude>
   </ItemGroup>

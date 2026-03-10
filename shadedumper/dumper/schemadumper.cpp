@@ -1,12 +1,84 @@
 #include "schemadumper.hpp"
 
-#include <algorithm>
 #include <format>
 #include <fstream>
 #include <chrono>
+#include <psapi.h>
+#include <functional>
 
-#include "../sdk/schemasystem/CSchemaSystemTypeScope.hpp"
-#include "../sdk/schemasystem/CSchemaType.hpp"
+#include "../sdk/schemasystem/CSchemaSystem.hpp"
+
+std::vector<HMODULE> GetProcessModules() {
+	std::vector<HMODULE> modules;
+	HANDLE hProcess = GetCurrentProcess();
+	DWORD needed = 0;
+
+	EnumProcessModules(GetCurrentProcess(), nullptr, 0, &needed);
+
+	modules.resize(needed / sizeof(HMODULE));
+	if (!EnumProcessModules(hProcess, modules.data(), needed, &needed))
+		modules.clear();
+
+	modules.resize(needed / sizeof(HMODULE));
+	return modules;
+}
+
+SchemaDumper::CSchemaCacheClassVector SchemaDumper::SortByInheritance(const CSchemaCacheClassVector& input) {
+	std::unordered_map<std::string, const SchemaCacheClassInfo_t*> byName;
+	byName.reserve(input.size());
+
+	for (const auto& cls : input)
+		byName[cls.m_sClassName] = &cls;
+
+	CSchemaCacheClassVector result;
+	result.reserve(input.size());
+
+	std::unordered_set<std::string_view> visiting;
+	std::unordered_set<std::string_view> visited;
+	std::unordered_set<std::string_view> addedMissingBases;
+
+	std::function<void(const SchemaCacheClassInfo_t&)> dfs =
+		[&](const SchemaCacheClassInfo_t& cls)
+		{
+			if (visited.count(cls.m_sClassName))
+				return;
+			if (visiting.count(cls.m_sClassName))
+				return;
+
+			visiting.insert(cls.m_sClassName);
+
+			if (!cls.m_sBaseClassName.empty()) {
+				auto it = byName.find(cls.m_sBaseClassName);
+				if (it != byName.end()) {
+					dfs(*it->second);
+				}
+				else {
+					if (!addedMissingBases.count(cls.m_sBaseClassName)) {
+						lg::Warn("[DUMPER]", "%s not found, empty class added.\n", cls.m_sBaseClassName.data());
+						addedMissingBases.insert(cls.m_sBaseClassName);
+
+						std::vector<std::string> emptyFlags;
+						SchemaCacheClassInfo_t stub{
+							cls.m_sBaseClassName,
+							"",
+							emptyFlags
+						};
+
+						result.insert(result.begin(), std::move(stub));
+					}
+				}
+			}
+
+			visiting.erase(cls.m_sClassName);
+			visited.insert(cls.m_sClassName);
+			result.push_back(cls);
+		};
+
+	for (const auto& cls : input)
+		dfs(cls);
+
+	return result;
+}
 
 void SchemaDumper::Dump(fs::path path) {
 	fs::path directory = path / "dump";
@@ -14,460 +86,165 @@ void SchemaDumper::Dump(fs::path path) {
 
 	auto start = std::chrono::high_resolution_clock::now();
 
-	auto& pTypeScopes = g_pCSchemaSystem->m_TypeScopes;
-	int TypeScopesSize = pTypeScopes.m_Size;
-
-	for (int i = 0; i < TypeScopesSize; i++) {
-		CSchemaCacheClassMap unSorted;
-		CSchemaCacheClassMap sorted;
-
-		CSchemaCacheEnumVector enums;
-
-		std::vector<std::string> orderOfSelection;
-
-		CSchemaSystemTypeScope* pTypeScope = pTypeScopes.Element(i);
-
-		if (!ProccesTypeScope(pTypeScope, enums, unSorted, sorted, orderOfSelection))
+	std::vector<std::string> moduleNames;
+	auto modules = GetProcessModules();
+	for (const auto& module : modules) {
+		if (GetProcAddress(module, "InstallSchemaBindings") == nullptr)
 			continue;
 
-		bool changed = true;
-		while (!unSorted.empty() && changed)
-			changed = SchemaDumper::ResolveStep(unSorted, sorted, orderOfSelection);
+		char path[MAX_PATH];
+		if (GetModuleFileNameExA(GetCurrentProcess(), module, path, MAX_PATH))
+			moduleNames.push_back(fs::path(path).filename().string());
+	}
 
-		while (!unSorted.empty() && SchemaDumper::ResolveStep(unSorted, sorted, orderOfSelection));
-		auto missingParrents = ResolveOrphans(unSorted, sorted, orderOfSelection);
+	for (const auto& module : moduleNames) {
+		CSchemaCacheEnumVector enums;
+		CSchemaCacheClassVector classes;
 
-		for (const std::string& name : missingParrents) {
-			lg::Warn("[SCHEMA DUMPER]", "Could not resolve class %s\n", name.c_str());
+		CSchemaSystemTypeScope* pTypeScope = g_pSchemaSystem->FindTypeScopeForModule(module.data());
+		if (!pTypeScope)
+			continue;
+
+		lg::Info("[DUMPER]", "Processing %s module.\n", module.data());
+
+		auto& enumBindings = pTypeScope->m_EnumBindings;
+		for (auto handle : enumBindings.GetElements()) {
+			lg::Info("[DUMPER]", "Found enum %s\n", handle->GetName().data());
+			SchemaCacheEnumInfo_t cache(handle->GetName(), handle->GetSize(), handle->GetStringFlags());
+
+			for (const auto& field : handle->GetFields())
+				cache.AddField(field.m_pszName, field.m_nValue);
+
+			enums.push_back(std::move(cache));
 		}
 
-		std::string sScopeName = pTypeScope->m_szScopeName;
-		std::string toRemove = ".dll";
+		auto& classBindings = pTypeScope->m_ClassBindings;
+		for (auto handle : classBindings.GetElements()) {
+			lg::Info("[DUMPER]", "Found class %s\n", handle->GetName().data());
 
-		DumperData_t::ModuleDumpData_t moduleDumpData;
-		moduleDumpData.m_sModuleName	= sScopeName;
-		moduleDumpData.m_nDumpedClasses = missingParrents.size() + sorted.size();
-		moduleDumpData.m_nDumpedEnums	= enums.size();
+			SchemaCacheClassInfo_t cache(handle->GetName(), handle->GetBaseClassName(), handle->GetStringFlags());
 
-		m_DumpData.m_ModuleData.push_back(std::move(moduleDumpData));
+			for (const auto& field : handle->GetFields())
+				cache.AddField(field.m_pszName, field.m_nSingleInheritanceOffset, field.GetTypeName());
 
-		GenerateHeaderFile(directory, sScopeName, enums, sorted, missingParrents, orderOfSelection);
+			classes.push_back(std::move(cache));
+		}
+
+		classes = SortByInheritance(classes);
+
+		GenerateHeaderFile(directory, module, enums, classes);
+
+		DumperData_t::ModuleDumpData_t moduleData;
+		moduleData.m_sModuleName = module;
+		moduleData.m_nDumpedClasses = classes.size();
+		moduleData.m_nDumpedEnums = enums.size();
+		m_DumpData.m_ModuleData.push_back(std::move(moduleData));
+
+		printf("\n");
 	}
 
 	auto end = std::chrono::high_resolution_clock::now();
-
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-
 	m_DumpData.m_nExecutionTime = duration.count();
+
 	for (const auto& data : m_DumpData.m_ModuleData) {
 		m_DumpData.m_nTotalDumpedClasses += data.m_nDumpedClasses;
 		m_DumpData.m_nTotalDumpedEnums += data.m_nDumpedEnums;
 	}
 
 	printf("\n");
-	lg::Success("[SCHEMA DUMPER]", "Dump successfully generated in \"%s\"\n", fs::absolute(directory).string().data());
+	lg::Success("[DUMPER]", "Dump successfully generated in \"%s\"\n", fs::absolute(directory).string().data());
 
 	GenerateInfoFile(directory);
 }
 
-std::string SchemaDumper::GetBaseClassName(CSchemaClassInfo* pClassInfo) {
-	auto pBaseClass = SafeRead<SchemaBaseClassInfoData_t*>(pClassInfo, offsetof(CSchemaClassInfo, m_pBaseClasses));
-	if (!pBaseClass)
-		return "";
+void SchemaDumper::GenerateClass(std::ofstream& file, const CSchemaCacheClassVector& classes) {
+	constexpr std::string_view tab2 = "        ";
+	constexpr std::string_view tab3 = "            ";
 
-	auto pClass = SafeRead<CSchemaClassInfo*>((*pBaseClass), offsetof(SchemaBaseClassInfoData_t, m_pClass));
-	if (!pClass)
-		return "";
+	size_t index = 0;
+	for (const auto& obj : classes) {
+		for (const auto& flag : obj.m_Flags)
+			file << std::format("{}// {}\n", tab2, flag);
 
-	if (!SafeRead<const char*>((*pClass), offsetof(CSchemaClassInfo, m_pszName)))
-		return "";
+		std::string_view className = obj.m_sClassName;
+		std::string_view sParentName = obj.m_sBaseClassName;
 
-	auto psBaseClass = SafeReadString((*pClass)->m_pszName);
-	return psBaseClass ? std::string(*psBaseClass) : "";
-}
+		std::string_view structureType = className.ends_with("_t") ? "struct" : "class";
+		std::string classHeader = std::format("{} {}{} {{", structureType, className, sParentName.empty() ? "" : std::format(" : public {}", sParentName));
 
-// Object processing
-bool SchemaDumper::ProccesTypeScope(
-	CSchemaSystemTypeScope* pTypeScope,
-	CSchemaCacheEnumVector& enums,
-	CSchemaCacheClassMap&	cachedClasses,
-	CSchemaCacheClassMap&	toFile,
-	CSchemaStringVector&	order)
-{
-	auto ScopeName = SafeReadString(pTypeScope->m_szScopeName);
-	if (!ScopeName)
-		return false;
-
-	printf("\n");
-	lg::Info("[SCHEMA DUMPER]", "Dumping %s\n", (*ScopeName).data());
-
-	bool result;
-	result = ProcessEnums(pTypeScope, enums);
-	result = ProcessClasses(pTypeScope, cachedClasses, toFile, order);
-
-	return result;
-}
-
-bool SchemaDumper::ProcessClasses(
-	CSchemaSystemTypeScope* pTypeScope,
-	CSchemaCacheClassMap&	unSorted,
-	CSchemaCacheClassMap&	sorted,
-	CSchemaStringVector&	order)
-{
-	auto pDeclaredClasses = SafeRead<SchemaDeclaredTypeEntry_t<CSchemaType_DeclaredClass>*>(pTypeScope, offsetof(CSchemaSystemTypeScope, m_pDeclaredClasses));
-	if (!pDeclaredClasses || !*pDeclaredClasses)
-		return false;
-
-	uint16_t nNumDeclaredClasses = pTypeScope->m_nNumDeclaredClasses;
-	SchemaDeclaredTypeEntry_t<CSchemaType_DeclaredClass>* pArray = *pDeclaredClasses;
-
-	ProcessObjectGeneric<SchemaDeclaredTypeEntry_t<CSchemaType_DeclaredClass>, CSchemaClassInfo>(
-		pArray,
-		nNumDeclaredClasses,
-		offsetof(CSchemaType_DeclaredClass, m_pClassInfo),
-		ProcessSingleClass,
-		unSorted,
-		sorted,
-		order
-	);
-
-	return true;
-}
-
-bool SchemaDumper::ProcessEnums(
-	CSchemaSystemTypeScope* pTypeScope,
-	CSchemaCacheEnumVector& enums)
-{
-	auto pDeclaredEnums = SafeRead<SchemaDeclaredTypeEntry_t<CSchemaType_DeclaredEnum>*>(pTypeScope, offsetof(CSchemaSystemTypeScope, m_pDeclaredEnums));
-	if (!pDeclaredEnums || !*pDeclaredEnums)
-		return false;
-
-	uint16_t nNumDeclaredEnums = pTypeScope->m_nNumDeclaredEnums;
-
-	SchemaDeclaredTypeEntry_t<CSchemaType_DeclaredEnum>* pArray = *pDeclaredEnums;
-
-	ProcessObjectGeneric<SchemaDeclaredTypeEntry_t<CSchemaType_DeclaredEnum>, CSchemaEnumInfo>(
-		pArray,
-		nNumDeclaredEnums,
-		offsetof(CSchemaType_DeclaredEnum, m_pEnumInfo),
-		ProcessSingleEnum,
-		enums
-	);
-
-	return true;
-}
-
-bool SchemaDumper::ProcessSingleClass(
-	CSchemaClassInfo*		pClassInfo,
-	CSchemaCacheClassMap&	unsorted,
-	CSchemaCacheClassMap&	sorted,
-	CSchemaStringVector&	order)
-{
-	auto pName = SafeReadString(pClassInfo->m_pszName);
-	if (!pName)
-		return false;
-
-	std::string sBaseClass = GetBaseClassName(pClassInfo);
-
-	lg::Info("[SCHEMA DUMPER]", "Dumping class %s\n", (*pName).data());
-
-	SchemaCacheClassInfo_t SchemaInfo	= {};
-	SchemaInfo.m_sClassName			= std::string(*pName);
-	SchemaInfo.m_Fields				= CollectClassFields(pClassInfo);
-	SchemaInfo.m_sParentName		= sBaseClass;
-	SchemaInfo.m_nFlags			= pClassInfo->m_nFlags1;
-
-	if (sBaseClass.empty()) {
-		sorted[std::string(*pName)] = std::move(SchemaInfo);
-		order.push_back(std::string(*pName));
-	}
-	else
-		unsorted[std::string(*pName)] = SchemaInfo;
-
-	return true;
-}
-
-bool SchemaDumper::ProcessSingleEnum(
-	CSchemaEnumInfo*		pEnumInfo,
-	CSchemaCacheEnumVector& enums)
-{
-	auto pName = SafeReadString(pEnumInfo->m_pszName);
-	if (!pName)
-		return false;
-
-	lg::Info("[SCHEMA DUMPER]", "Dumping enum %s\n", (*pName).data());
-
-	std::string sType = std::format("std::uint{}_t", pEnumInfo->m_nSize * 8);
-
-	SchemaCacheEnumInfo_t SchemaInfo	= {};
-	SchemaInfo.m_sEnumName				= std::string(*pName);
-	SchemaInfo.m_Fields					= CollectEnumFields(pEnumInfo);
-	SchemaInfo.m_nFlags					= pEnumInfo->m_nFlags;
-	SchemaInfo.m_sType					= sType;
-
-	enums.push_back(SchemaInfo);
-
-	return true;
-}
-
-// Collecting fields
-SchemaDumper::CSchemaCacheClassFieldVector SchemaDumper::CollectClassFields(CSchemaClassInfo* pClassInfo) {
-	CSchemaCacheClassFieldVector fields;
-	
-	auto pFields = SafeRead<SchemaClassFieldData_t*>(pClassInfo, offsetof(CSchemaClassInfo, m_pFields));
-	if (!pFields)
-		return fields;
-
-	SchemaClassFieldData_t* pFieldsArray = *pFields;
-	uint16_t nFieldCount = pClassInfo->m_nFieldCount;
-
-	auto extractor = [](CSchemaCacheClassFieldVector& vec, const SchemaClassFieldData_t& field) {
-
-		std::string sTypeInfo = "";
-		if (field.m_pType) {
-			auto pTypeInfo = SafeReadString(field.m_pType->m_sTypeName);
-			sTypeInfo = pTypeInfo ? (*pTypeInfo) : "";
-			std::erase(sTypeInfo, ' ');
-		}
-
-		vec.push_back({ field.m_pszName, std::format("0x{:04X}", field.m_nSingleInheritanceOffset), sTypeInfo });
-	};
-
-	CollectFieldsGeneric<CSchemaCacheClassFieldVector, SchemaClassFieldData_t>(fields, pFieldsArray, nFieldCount, extractor);
-
-	return fields;
-}
-
-SchemaDumper::CSchemaCacheEnumFieldVector SchemaDumper::CollectEnumFields(CSchemaEnumInfo* pEnumInfo) {
-	CSchemaCacheEnumFieldVector fields;
-
-	auto pEnumerators = SafeRead<SchemaEnumeratorInfoData_t*>(pEnumInfo, offsetof(SchemaEnumInfoData_t, m_pEnumerators));
-	if (!pEnumerators)
-		return fields;
-
-	SchemaEnumeratorInfoData_t* pEnumsArray = *pEnumerators;
-	uint16_t nEnumeratorCount = pEnumInfo->m_nEnumeratorCount;
-
-	auto extractor = [](CSchemaCacheEnumFieldVector& vec, const SchemaEnumeratorInfoData_t& field) {
-		vec.push_back({ field.m_pszName, field.m_nValue });
-	};
-
-	CollectFieldsGeneric<CSchemaCacheEnumFieldVector, SchemaEnumeratorInfoData_t>(fields, pEnumsArray, nEnumeratorCount, extractor);
-
-	return fields;
-}
-
-// Sorting
-bool SchemaDumper::ResolveStep(CSchemaCacheClassMap& unSorted, CSchemaCacheClassMap& sorted, CSchemaStringVector& order) {
-	auto ResolveElement = [&](auto it) {
-		order.push_back(it->first);
-		sorted[it->first] = std::move(it->second);
-		return unSorted.erase(it);
-	};
-
-	bool changed = false;
-	for (auto it = unSorted.begin(); it != unSorted.end(); ) {
-		if (sorted.find(it->second.m_sParentName) != sorted.end()) {
-			it = ResolveElement(it);
-			changed = true;
-		}
-		else {
-			++it;
-		}
-	}
-
-	return changed;
-}
-
-SchemaDumper::CSchemaUnorderedSetString SchemaDumper::ResolveOrphans(
-	CSchemaCacheClassMap&	unSorted,
-	CSchemaCacheClassMap&	sorted,
-	CSchemaStringVector&	order)
-{
-	auto ResolveElement = [&](auto it) {
-		order.push_back(it->first);
-		sorted[it->first] = std::move(it->second);
-		return unSorted.erase(it);
-	};
-	
-	while (!unSorted.empty()) {
-		if (!ResolveStep(unSorted, sorted, order))
-			if (!unSorted.empty())
-				ResolveElement(unSorted.begin());
-	}
-
-	CSchemaUnorderedSetString missingParents;
-
-	for (const std::string& className : order) {
-		const auto& info = sorted[className];
-		std::string parentName = info.m_sParentName;
-		std::replace(parentName.begin(), parentName.end(), ':', '_');
-
-		if (!parentName.empty() && sorted.find(parentName) == sorted.end())
-			missingParents.insert(parentName);
-	}
-
-	return missingParents;
-}
-
-// Generating files
-void SchemaDumper::GenerateClass(std::ofstream& file, CSchemaCacheClassMap& classes, CSchemaStringVector& order) {
-	std::string tab = "    ";
-	
-	for (const std::string& originalName : order) {
-		const auto& info = classes[originalName];
-
-		std::string className = info.m_sClassName;
-		std::string sParentName = info.m_sParentName;
-
-		std::replace(sParentName.begin(), sParentName.end(), ':', '_');
-		std::replace(className.begin(), className.end(), ':', '_');
-
-		auto WriteClassFlag = [&](SchemaClassFlags1_t flag, std::string onTrue) {
-			if (info.m_nFlags & flag) {
-				file << tab << tab << "// ";
-				file << onTrue;
-				file << "\n";
-			}
-		};
-
-		WriteClassFlag(SCHEMA_CF1_HAS_VIRTUAL_MEMBERS,		"Has VTable"				);
-		WriteClassFlag(SCHEMA_CF1_IS_ABSTRACT,				"Is Absract"				);
-		WriteClassFlag(SCHEMA_CF1_HAS_TRIVIAL_CONSTRUCTOR,	"Has Trivial Constructor"	);
-		WriteClassFlag(SCHEMA_CF1_HAS_TRIVIAL_DESTRUCTOR,	"Has Trivial Destructor"	);
-		WriteClassFlag(SCHEMA_CF1_CONSTRUCT_ALLOWED,		"Construct Allowed"			);
-		WriteClassFlag(SCHEMA_CF1_MODULE_LOCAL_TYPE_SCOPE,	"Local Type Scope"			);
-		WriteClassFlag(SCHEMA_CF1_GLOBAL_TYPE_SCOPE,		"Global Type Scope"			);
-
-		std::string structureType = className.ends_with("_t") ? "struct" : "class";
-		std::string classHeader = sParentName == "" ? std::format("{} {} {{", structureType, className) : std::format("class {} : public {} {{", className, sParentName);
-
-		file << tab << tab;
-		file << classHeader << "\n";
-
-		file << tab << tab;
-		file << "public:\n";
+		file << std::format("{}{}\n", tab2, classHeader);
+		file << std::format("{}public:\n", tab2);
 
 		size_t maxNameLen = 0;
-		for (const auto& field : info.m_Fields) {
-			if (field.m_sName.length() > maxNameLen)
-				maxNameLen = field.m_sName.length();
-		}
+		for (const auto& field : obj.m_Fields)
+			maxNameLen = std::max(maxNameLen, field.m_sName.length());
 
-		for (const auto& [name, offset, typeInfo] : info.m_Fields) {
-			std::string padding(maxNameLen - name.length(), ' ');
-			file << tab << tab << tab;
-			file << std::format("static constexpr std::uintptr_t {}{} = {}; // {}\n", name, padding, offset, typeInfo);
-		}
+		for (const auto& [name, offset, typeInfo] : obj.m_Fields)
+			file << std::format("{}static constexpr std::uintptr_t {:<{}} = {:#06X}; // {}\n", tab3, name, maxNameLen, offset, typeInfo);
 
-		file << tab << tab << "};\n\n";
+		file << std::format("{}}};\n", tab2);
+		file << std::format("{}", ++index == classes.size() ? "" : "\n");
 	}
 }
 
-void SchemaDumper::GenerateEnum(std::ofstream& file, CSchemaCacheEnumVector& enums) {
-	std::string tab = "    ";
+void SchemaDumper::GenerateEnum(std::ofstream& file, const CSchemaCacheEnumVector& enums) {
+	constexpr std::string_view tab2 = "        ";
+	constexpr std::string_view tab3 = "            ";
 
-	for (const auto& info : enums) {
-		auto formatValue = [&](int64_t value) -> std::string {
-			if (value >= 0) return std::format("0x{:X}", value);
+	for (const auto& obj : enums) {
+		for (const auto& flag : obj.m_Flags)
+			file << std::format("{}// {}\n", tab2, flag);
 
-			if (info.m_sType == "std::uint8_t")		return std::format("0x{:02X}",	static_cast<uint8_t>(value));
-			if (info.m_sType == "std::uint16_t")	return std::format("0x{:04X}",	static_cast<uint16_t>(value));
-			if (info.m_sType == "std::uint32_t")	return std::format("0x{:08X}",	static_cast<uint32_t>(value));
-			if (info.m_sType == "std::uint64_t")	return std::format("0x{:016X}", static_cast<uint64_t>(value));
-
-			return std::format("0x{:X}", value);
-		};
-
-		std::string sEnumName = info.m_sEnumName;
-		std::replace(sEnumName.begin(), sEnumName.end(), ':', '_');
-
-		auto WriteClassFlag = [&](SchemaEnumFlags_t flag, std::string onTrue) {
-			if (info.m_nFlags & flag) {
-				file << tab << tab << "// ";
-				file << onTrue;
-				file << "\n";
-			}
-		};
-
-		WriteClassFlag(SCHEMA_EF_MODULE_LOCAL_TYPE_SCOPE,	"Local Type Scope"	);
-		WriteClassFlag(SCHEMA_EF_GLOBAL_TYPE_SCOPE,			"Global Type Scope"	);
-
-		std::string enumHeader = std::format("enum class {} : {} {{", sEnumName, info.m_sType);
-
-		file << tab << tab;
-		file << enumHeader << "\n";
+		std::string enumHeader = std::format("enum class {} : {} {{", obj.m_sEnumName, std::format("std::uint{}_t", obj.m_nSize * 8));
+		file << std::format("{}{}\n", tab2, enumHeader);
 
 		size_t maxNameLen = 0;
-		for (const auto& field : info.m_Fields) {
-			if (field.m_sName.length() > maxNameLen)
-				maxNameLen = field.m_sName.length();
-		}
+		for (const auto& field : obj.m_Fields)
+			maxNameLen = std::max(maxNameLen, field.m_sName.length());
 
 		size_t index = 0;
-		for (const auto& [name, value] : info.m_Fields) {
-			std::string padding(maxNameLen - name.length(), ' ');
-			file << tab << tab << tab;
+		for (const auto& [name, value] : obj.m_Fields) {
+			bool isLast = (++index == obj.m_Fields.size());
 
-			bool isLast = (++index == info.m_Fields.size());
-			
-			std::string fixedValue = formatValue(value);
+			uint64_t maskedValue = static_cast<uint64_t>(value);
+			if (value < 0) {
+				switch (obj.m_nSize) {
+				case 1: maskedValue = static_cast<uint8_t>(value); break;
+				case 2: maskedValue = static_cast<uint16_t>(value); break;
+				case 4: maskedValue = static_cast<uint32_t>(value); break;
+				}
+			}
 
-			file << std::format("{}{} = {}{}\n", name, padding, fixedValue, isLast ? "" : ",");
+			file << std::format("{}{:<{}} = 0x{:X}{}\n", tab3, name, maxNameLen, maskedValue, isLast ? "" : ",");
 		}
 
-		file << tab << tab << "};\n\n";
+		file << std::format("{}}};\n\n", tab2);
 	}
 }
 
-void SchemaDumper::GenerateHeaderFile(
-	const fs::path&				directory,
-	std::string_view			sScopeName,
-	CSchemaCacheEnumVector&		enums,
-	CSchemaCacheClassMap&		classes,
-	CSchemaUnorderedSetString&	missingParents,
-	CSchemaStringVector&		order)
-{
-	std::string sCleanedScopeName = std::string(sScopeName);
-	std::string toRemove = ".dll";
-	size_t pos = sCleanedScopeName.find(toRemove);
-	if (pos != std::string::npos) {
-		sCleanedScopeName.erase(pos, toRemove.length());
-	}
+void SchemaDumper::GenerateHeaderFile(const fs::path& directory, std::string_view sScopeName, const CSchemaCacheEnumVector& enums, const CSchemaCacheClassVector& classes) {
+	sScopeName.remove_suffix(4);
 
-	fs::path filePath = directory / std::format("{}.hpp", sCleanedScopeName);
+	fs::path filePath = directory / std::format("{}.hpp", sScopeName);
 	std::ofstream file(filePath);
 
 	if (!file.is_open()) {
-		lg::Error("[SCHEMA DUMPER]", "Failed to create file: %s", filePath.string().data());
+		lg::Error("[DUMPER]", "Failed to create file: %s", filePath.string().data());
 		return;
 	}
 
-	std::string tab = "    ";
+	constexpr std::string_view tab = "    ";
 
 	file << "#pragma once\n#include <cstdint>\n\n";
 	file << "namespace offsets {\n";
-	file << tab;
-	file << std::format("namespace {} {{\n", sCleanedScopeName);
-
-	if (!missingParents.empty()) {
-		file << tab << tab;
-		file << "/* --- UNRESOLVED CLASSES --- */\n";
-		for (const std::string& parent : missingParents) {
-			file << tab << tab;
-			file << "class " << parent << " {}; \n";
-		}
-		file << tab << tab;
-		file << "/* --- END --- */\n\n";
-	}
+	file << std::format("{}namespace {} {{\n", tab, sScopeName);
 
 	GenerateEnum(file, enums);
-	GenerateClass(file, classes, order);
+	GenerateClass(file, classes);
 
-	file << tab << "}\n";
+	file << std::format("{}}}\n", tab);
 	file << "}\n";
-
-	file.close();
 }
 
 void SchemaDumper::GenerateInfoFile(const fs::path& directory) {
@@ -475,65 +252,67 @@ void SchemaDumper::GenerateInfoFile(const fs::path& directory) {
 		HMODULE hModule = GetModuleHandleA(moduleName);
 		if (!hModule) return 0;
 
-		auto pDosHeader = (PIMAGE_DOS_HEADER)hModule;
+		auto pDosHeader = reinterpret_cast<PIMAGE_DOS_HEADER>(hModule);
 		if (pDosHeader->e_magic != IMAGE_DOS_SIGNATURE) return 0;
 
-		auto pNtHeaders = (PIMAGE_NT_HEADERS)((BYTE*)hModule + pDosHeader->e_lfanew);
+		auto pNtHeaders = reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<BYTE*>(hModule) + pDosHeader->e_lfanew);
 		if (pNtHeaders->Signature != IMAGE_NT_SIGNATURE) return 0;
 
 		return pNtHeaders->FileHeader.TimeDateStamp;
-	};
+		};
 
 	auto TimeStampToString = [](DWORD timestamp) -> std::string {
-		std::time_t rawTime = (std::time_t)timestamp;
-		std::tm timeInfo;
-		if (localtime_s(&timeInfo, &rawTime) != 0) {
+		if (timestamp == 0)
 			return "Invalid Time";
-		}
 
-		std::stringstream ss;
-		ss << std::put_time(&timeInfo, "%Y-%m-%d %H:%M:%S");
-		return ss.str();
-	};
+		std::time_t rawTime = static_cast<std::time_t>(timestamp);
+		std::tm timeInfo{};
+		if (localtime_s(&timeInfo, &rawTime) != 0)
+			return "Invalid Time";
+
+		char buffer[32];
+		std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &timeInfo);
+		return buffer;
+		};
 
 	for (auto& data : m_DumpData.m_ModuleData)
 		data.m_sTimestamp = TimeStampToString(GetModuleTimeStamp(data.m_sModuleName.data()));
 
 	auto now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+	std::tm now_tm{};
+	localtime_s(&now_tm, &now_c);
 
-	std::stringstream ss;
-	ss << std::put_time(std::localtime(&now_c), "%Y-%m-%d %H:%M:%S");
-	m_DumpData.m_Date = ss.str();
+	char dateBuffer[32];
+	std::strftime(dateBuffer, sizeof(dateBuffer), "%Y-%m-%d %H:%M:%S", &now_tm);
+	m_DumpData.m_Date = dateBuffer;
 
 	fs::path filePath = directory / "info.txt";
 	std::ofstream file(filePath);
 
 	if (!file.is_open()) {
-		lg::Error("[SCHEMA DUMPER]", "Failed to create file: %s", filePath.string().data());
+		lg::Error("[DUMPER]", "Failed to create file: %s", filePath.string().data());
 		return;
 	}
 
-	std::string tab = "    ";
+	constexpr std::string_view tab = "    ";
+	constexpr std::string_view tab2 = "        ";
 
 	file << "[General]\n";
-	file << tab << "Game: Counter-Strike 2\n";
-	file << tab << std::format("Dump Date: {}\n", m_DumpData.m_Date);
-	file << tab << "Generator: Shade Dumper 1.0\n\n";
+	file << std::format("{}Game: Counter-Strike 2\n", tab);
+	file << std::format("{}Dump Date: {}\n", tab, m_DumpData.m_Date);
+	file << std::format("{}Generator: Shade Dumper 1.1\n\n", tab);
 
 	file << "[Modules]\n";
 	for (const auto& data : m_DumpData.m_ModuleData) {
-		file << tab << data.m_sModuleName << "\n";
-		file << tab << tab << std::format("- Timestamp: {}\n", data.m_sTimestamp);
-		file << tab << tab << std::format("- Classes Dumped: {}\n", data.m_nDumpedClasses);
-		file << tab << tab << std::format("- Enumerators Dumped: {}\n", data.m_nDumpedEnums);
-		file << "\n";
+		file << std::format("{}{}\n", tab, data.m_sModuleName);
+		file << std::format("{}- Timestamp: {}\n", tab2, data.m_sTimestamp);
+		file << std::format("{}- Classes Dumped: {}\n", tab2, data.m_nDumpedClasses);
+		file << std::format("{}- Enumerators Dumped: {}\n\n", tab2, data.m_nDumpedEnums);
 	}
 
 	file << "[Stats]\n";
-	file << tab << std::format("Total Classes Dumped: {}\n", m_DumpData.m_nTotalDumpedClasses);
-	file << tab << std::format("Total Enumerators Dumped: {}\n", m_DumpData.m_nTotalDumpedEnums);
-	file << tab << std::format("Execution Time: {}ms\n", m_DumpData.m_nExecutionTime);
-
-	file.close();
+	file << std::format("{}Total Classes Dumped: {}\n", tab, m_DumpData.m_nTotalDumpedClasses);
+	file << std::format("{}Total Enumerators Dumped: {}\n", tab, m_DumpData.m_nTotalDumpedEnums);
+	file << std::format("{}Execution Time: {}ms\n", tab, m_DumpData.m_nExecutionTime);
 }
