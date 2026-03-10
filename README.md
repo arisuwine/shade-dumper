@@ -5,7 +5,7 @@ An internal offset dumper for Counter-Strike 2 on Windows.
 For educational purposes only.
 
 ## 🛠️Dump Format
-All classes and enums are organized into separate files named after their respective modules. Classes that could not be resolved but are referenced for inheritance are listed at the top of each file under the "Unresolved" section.
+All classes and enums are organized into separate files named after their respective modules. Classes that could not be resolved but are referenced for inheritance are listed at the top of each file.
 
 Flags (when present) are displayed as comments, indicating:
 - Whether the class has a virtual table
@@ -19,9 +19,7 @@ Classes inherit from their parent classes when applicable.
 ```cpp
 namespace offsets {
     namespace client {
-        /* --- UNRESOLVED CLASSES --- */
         class CEntitySubclassVDataBase {}; 
-        /* --- END --- */
 
         // Local Type Scope
         enum class PulseCursorCancelPriority_t : std::uint32_t {
