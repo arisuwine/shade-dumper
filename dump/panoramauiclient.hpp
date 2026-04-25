@@ -95,6 +95,13 @@ namespace offsets {
             LIGHT_STYLE_NEW = 0x1
         };
 
+        enum class ParticleMultiSegmentSpecialCharacter_t : std::uint32_t {
+            PARTICLE_MULTISEGMENT_SPECIAL_NONE    = 0xFFFFFFFF,
+            PARTICLE_MULTISEGMENT_SPECIAL_DECIMAL = 0x0,
+            PARTICLE_MULTISEGMENT_SPECIAL_COLON   = 0x1,
+            PARTICLE_MULTISEGMENT_SPECIAL_DEGREES = 0x2
+        };
+
         enum class HorizJustification_e : std::uint32_t {
             HORIZ_JUSTIFICATION_LEFT   = 0x0,
             HORIZ_JUSTIFICATION_CENTER = 0x1,
@@ -215,6 +222,17 @@ namespace offsets {
             SNDLVL_180dB   = 0xB4
         };
 
+        enum class PhysInterfaceId_t : std::uint32_t {
+            PIID_UNKNOWN                  = 0x0,
+            PIID_IPHYSICSBODY             = 0x1,
+            PIID_IPHYSAGGREGATE           = 0x2,
+            PIID_IPHYSICSJOINT            = 0x3,
+            PIID_IPHYSICSMOTIONCONTROLLER = 0x4,
+            PIID_IPHYSICSPARTICLEROPE     = 0x5,
+            PIID_IPHYSICSRAGDOLLCONTROL   = 0x6,
+            PIID_NUM_TYPES                = 0x7
+        };
+
         enum class NmGraphValueType_t : std::uint8_t {
             Unknown  = 0x0,
             Bool     = 0x1,
@@ -262,26 +280,6 @@ namespace offsets {
             CONTAINER_SOURCE_TYPE_LOOSE_VARIABLES           = 0x3,
             CONTAINER_SOURCE_TYPE_VARIABLE_FROM_TARGET_ATTR = 0x4,
             CONTAINER_SOURCE_TYPE_TARGET_INSTANCE_MATERIAL  = 0x5
-        };
-
-        enum class BaseExplosionTypes_t : std::uint32_t {
-            EXPLOSION_TYPE_DEFAULT         = 0x0,
-            EXPLOSION_TYPE_GRENADE         = 0x1,
-            EXPLOSION_TYPE_MOLOTOV         = 0x2,
-            EXPLOSION_TYPE_FIREWORKS       = 0x3,
-            EXPLOSION_TYPE_GASCAN          = 0x4,
-            EXPLOSION_TYPE_GASCYLINDER     = 0x5,
-            EXPLOSION_TYPE_EXPLOSIVEBARREL = 0x6,
-            EXPLOSION_TYPE_ELECTRICAL      = 0x7,
-            EXPLOSION_TYPE_EMP             = 0x8,
-            EXPLOSION_TYPE_SHRAPNEL        = 0x9,
-            EXPLOSION_TYPE_SMOKEGRENADE    = 0xA,
-            EXPLOSION_TYPE_FLASHBANG       = 0xB,
-            EXPLOSION_TYPE_TRIPMINE        = 0xC,
-            EXPLOSION_TYPE_ICE             = 0xD,
-            EXPLOSION_TYPE_NONE            = 0xE,
-            EXPLOSION_TYPE_CUSTOM          = 0xF,
-            EXPLOSION_TYPE_COUNT           = 0x10
         };
 
         enum class BrushSolidities_e : std::uint32_t {
@@ -340,13 +338,6 @@ namespace offsets {
             ReachDestinationOnWarpTagEnd    = 0x1
         };
 
-        enum class OutOfPVSUpdates_t : std::uint32_t {
-            OOPVSUpdates_OptOut  = 0x0,
-            OOPVSUpdates_OptIn   = 0x1,
-            OOPVSUpdates_Default = 0x2,
-            OOPVSUpdates_Count   = 0x3
-        };
-
         enum class eSplinePushType : std::uint32_t {
             k_eSplinePushAlong   = 0x0,
             k_eSplinePushAway    = 0x1,
@@ -363,6 +354,16 @@ namespace offsets {
             TRAIN_SAFE      = 0x0,
             TRAIN_BLOCKING  = 0x1,
             TRAIN_FOLLOWING = 0x2
+        };
+
+        enum class ENPCBehaviorOverride_t : std::uint32_t {
+            eKeepExisting = 0x0,
+            eTakeOver     = 0x1
+        };
+
+        enum class ParticleMultiSegmentInputSelection_t : std::uint32_t {
+            PARTICLE_MULTISEGMENT_SELECTION_FLOAT  = 0x0,
+            PARTICLE_MULTISEGMENT_SELECTION_STRING = 0x1
         };
 
         enum class ObserverInterpState_t : std::uint32_t {
@@ -446,7 +447,9 @@ namespace offsets {
 
         enum class ESceneRequestState_t : std::uint32_t {
             INACTIVE = 0x0,
-            ACTIVE   = 0x1
+            ACTIVE   = 0x1,
+            FINISHED = 0x2,
+            FAILED   = 0x3
         };
 
         enum class gear_slot_t : std::uint32_t {
@@ -488,6 +491,16 @@ namespace offsets {
             eInvalid       = 0x0,
             eAngle         = 0x1,
             eWorldPosition = 0x2
+        };
+
+        enum class CCSPlayerAnimationState__GroundMoveState_t : std::uint8_t {
+            None           = 0x0,
+            Idle           = 0x1,
+            Start          = 0x2,
+            Move           = 0x3,
+            TurnOnSpot     = 0x4,
+            TurnOnSpotLoop = 0x5,
+            PlantAndTurn   = 0x6
         };
 
         enum class HitboxLerpType_t : std::uint32_t {
@@ -533,12 +546,6 @@ namespace offsets {
             NUM_OBSERVER_MODES = 0x5
         };
 
-        enum class AnimationType_t : std::uint32_t {
-            ANIMATION_TYPE_FIXED_RATE    = 0x0,
-            ANIMATION_TYPE_FIT_LIFETIME  = 0x1,
-            ANIMATION_TYPE_MANUAL_FRAMES = 0x2
-        };
-
         enum class EPulseGraphExecutionHistoryFlag : std::uint32_t {
             NO_FLAGS          = 0x0,
             CURSOR_ADD_TAG    = 0x1,
@@ -546,6 +553,12 @@ namespace offsets {
             CURSOR_RETIRED    = 0x4,
             REQUIREMENT_PASS  = 0x8,
             REQUIREMENT_FAIL  = 0x10
+        };
+
+        enum class AnimationType_t : std::uint32_t {
+            ANIMATION_TYPE_FIXED_RATE    = 0x0,
+            ANIMATION_TYPE_FIT_LIFETIME  = 0x1,
+            ANIMATION_TYPE_MANUAL_FRAMES = 0x2
         };
 
         enum class EntityDormancyType_t : std::uint32_t {
@@ -609,6 +622,11 @@ namespace offsets {
             DETAIL_COMBO_MOD2X          = 0x3
         };
 
+        enum class NmGraphDebugMode_t : std::uint32_t {
+            Off = 0x0,
+            On  = 0x1
+        };
+
         enum class AmmoPosition_t : std::uint32_t {
             AMMO_POSITION_INVALID   = 0xFFFFFFFF,
             AMMO_POSITION_PRIMARY   = 0x0,
@@ -623,6 +641,13 @@ namespace offsets {
             IKSOLVER_DogLeg3Bone = 0x3,
             IKSOLVER_CCD         = 0x4,
             IKSOLVER_COUNT       = 0x5
+        };
+
+        enum class CNmTargetWarpNode__TargetUpdateRule_t : std::uint8_t {
+            None                = 0x0,
+            Recalculate         = 0x1,
+            Offset              = 0x2,
+            RecalculateOrOffset = 0x3
         };
 
         enum class PulseDomainValueType_t : std::uint32_t {
@@ -701,6 +726,12 @@ namespace offsets {
             COLLISION_MODE_PER_FRAME_PLANESET = 0x1,
             COLLISION_MODE_INITIAL_TRACE_DOWN = 0x0,
             COLLISION_MODE_DISABLED           = 0xFFFFFFFF
+        };
+
+        enum class GPUParticleCollisionMode_t : std::uint32_t {
+            PARTICLE_GPU_COLLISION_MODE_RT     = 0x0,
+            PARTICLE_GPU_COLLISION_MODE_DEPTH  = 0x1,
+            PARTICLE_GPU_COLLISION_MODE_HYBRID = 0x2
         };
 
         enum class ShatterGlassStressType : std::uint8_t {
@@ -823,6 +854,13 @@ namespace offsets {
             ANIMPARAM_VECTOR_TYPE_DIRECTION_LS = 0x4
         };
 
+        enum class CNmEventTargetEntity_t : std::uint32_t {
+            Self     = 0x0,
+            Weapon   = 0x1,
+            HeldItem = 0x2,
+            Custom   = 0x3
+        };
+
         enum class BinaryNodeChildOption : std::uint32_t {
             Child1 = 0x0,
             Child2 = 0x1
@@ -836,6 +874,11 @@ namespace offsets {
             STATE_PLAY_SCRIPT                = 0x4,
             STATE_PLAY_SCRIPT_POST_IDLE      = 0x5,
             STATE_PLAY_SCRIPT_POST_IDLE_DONE = 0x6
+        };
+
+        enum class ParticleVolumetricSmokeCreationType_t : std::uint32_t {
+            PARTICLE_VOLUMETRIC_SMOKE_TYPE_CONTINUOUS = 0x0,
+            PARTICLE_VOLUMETRIC_SMOKE_TYPE_IMPULSE    = 0x1
         };
 
         enum class InputBitMask_t : std::uint64_t {
@@ -891,6 +934,16 @@ namespace offsets {
             POINT_WORLD_TEXT_JUSTIFY_VERTICAL_BOTTOM = 0x0,
             POINT_WORLD_TEXT_JUSTIFY_VERTICAL_CENTER = 0x1,
             POINT_WORLD_TEXT_JUSTIFY_VERTICAL_TOP    = 0x2
+        };
+
+        enum class SndSeqMidiStatusType_t : std::uint32_t {
+            SndSeqMidiStatusNoteOff         = 0x8,
+            SndSeqMidiStatusNoteOn          = 0x9,
+            SndSeqMidiStatusKeyPressure     = 0xA,
+            SndSeqMidiStatusCtrlChange      = 0xB,
+            SndSeqMidiStatusProgramChange   = 0xC,
+            SndSeqMidiStatusChannelPressure = 0xD,
+            SndSeqMidiStatusPitchBend       = 0xE
         };
 
         enum class PulseValueType_t : std::uint32_t {
@@ -1028,6 +1081,14 @@ namespace offsets {
             eAngles   = 0x2
         };
 
+        enum class InteractionPriority_t : std::uint32_t {
+            INTERACT_PRIORITY_NONE    = 0x0,
+            INTERACT_PRIORITY_PASSIVE = 0x1,
+            INTERACT_PRIORITY_LOW     = 0x2,
+            INTERACT_PRIORITY_MED     = 0x3,
+            INTERACT_PRIORITY_HIGH    = 0x4
+        };
+
         enum class PermModelInfo_t__FlagEnum : std::uint32_t {
             FLAG_TRANSLUCENT                 = 0x1,
             FLAG_TRANSLUCENT_TWO_PASS        = 0x2,
@@ -1151,6 +1212,15 @@ namespace offsets {
             SET_EXPRESSION_MAX                = 0x6
         };
 
+        enum class ChoreoExternalAnimgraphControlState_t : std::uint32_t {
+            eNone    = 0x0,
+            eBegin   = 0x1,
+            eLooping = 0x2,
+            eExit    = 0x3,
+            eAbort   = 0x4,
+            eCount   = 0x5
+        };
+
         enum class VMixFilterType_t : std::uint16_t {
             FILTER_UNKNOWN     = 0xFFFF,
             FILTER_LOWPASS     = 0x0,
@@ -1258,6 +1328,12 @@ namespace offsets {
             PARTICLE_OUTPUT_BLEND_MODE_NEG_HALF_BLEND_ADD = 0x4,
             PARTICLE_OUTPUT_BLEND_MODE_MOD2X              = 0x5,
             PARTICLE_OUTPUT_BLEND_MODE_LIGHTEN            = 0x6
+        };
+
+        enum class SndSeqRegionType_t : std::uint32_t {
+            eSndSeqRegionTypeNull    = 0x0,
+            eSndSeqRegionTypeSndEvt  = 0x1,
+            eSndSeqRegionTypeMidiSeq = 0x2
         };
 
         enum class BlurFilterType_t : std::uint32_t {
@@ -1454,12 +1530,6 @@ namespace offsets {
             RTPROXY_INSTANCE_UNIQUE_MESH = 0x1
         };
 
-        enum class ParticleDirectionNoiseType_t : std::uint32_t {
-            PARTICLE_DIR_NOISE_PERLIN       = 0x0,
-            PARTICLE_DIR_NOISE_CURL         = 0x1,
-            PARTICLE_DIR_NOISE_WORLEY_BASIC = 0x2
-        };
-
         enum class DecalRtEncoding_t : std::uint8_t {
             kDecalInvalid = 0xFF,
             kDecalMin     = 0x0,
@@ -1467,6 +1537,12 @@ namespace offsets {
             kDecalCloak   = 0x1,
             kDecalMax     = 0x2,
             kDecalDefault = 0x0
+        };
+
+        enum class ParticleDirectionNoiseType_t : std::uint32_t {
+            PARTICLE_DIR_NOISE_PERLIN       = 0x0,
+            PARTICLE_DIR_NOISE_CURL         = 0x1,
+            PARTICLE_DIR_NOISE_WORLEY_BASIC = 0x2
         };
 
         enum class FootstepJumpPhase_t : std::uint8_t {
@@ -1723,7 +1799,8 @@ namespace offsets {
             SHAKE_AMPLITUDE        = 0x2,
             SHAKE_FREQUENCY        = 0x3,
             SHAKE_START_RUMBLEONLY = 0x4,
-            SHAKE_START_NORUMBLE   = 0x5
+            SHAKE_START_NORUMBLE   = 0x5,
+            SHAKE_DURATION         = 0x6
         };
 
         enum class PreviewWeaponState : std::uint32_t {
@@ -1890,14 +1967,16 @@ namespace offsets {
         };
 
         enum class MovementCapability_t : std::uint32_t {
-            eStrafe      = 0x0,
-            eIdleTurn    = 0x1,
-            eStart       = 0x2,
-            eStop        = 0x3,
-            eInstantStop = 0x4,
-            eShuffle     = 0x5,
-            ePlantedTurn = 0x6,
-            eCount       = 0x7
+            eStrafe                = 0x0,
+            eIdleTurn              = 0x1,
+            eStart                 = 0x2,
+            eStop                  = 0x3,
+            eInstantStop           = 0x4,
+            eShuffle               = 0x5,
+            ePlantedTurn           = 0x6,
+            eUseStartAsPlantedTurn = 0x7,
+            eLean                  = 0x8,
+            eCount                 = 0x9
         };
 
         enum class MissingParentInheritBehavior_t : std::uint32_t {
@@ -1943,6 +2022,12 @@ namespace offsets {
         enum class PerformanceMode_t : std::uint32_t {
             PM_NORMAL  = 0x0,
             PM_NO_GIBS = 0x1
+        };
+
+        enum class InteractionPassive_t : std::uint32_t {
+            INTERACT_PASSIVE_NONE   = 0x0,
+            INTERACT_PASSIVE_LOOKAT = 0x1,
+            INTERACT_PASSIVE_SPEAK  = 0x2
         };
 
         enum class CNmTargetInfoNode__Info_t : std::uint32_t {
@@ -1993,6 +2078,12 @@ namespace offsets {
             ZERO = 0x0,
             ONE  = 0x1,
             TWO  = 0x2
+        };
+
+        enum class ParticleVolumetricSmokeType_t : std::uint32_t {
+            PARTICLE_VOLUMETRIC_SMOKE_TYPE_EMISSION = 0x0,
+            PARTICLE_VOLUMETRIC_SMOKE_TYPE_SINK     = 0x1,
+            PARTICLE_VOLUMETRIC_SMOKE_TYPE_REPEL    = 0x2
         };
 
         enum class SnapshotIndexType_t : std::uint32_t {
@@ -2087,8 +2178,7 @@ namespace offsets {
             WPN_ANIMSTATE_INSPECT_OUTRO               = 0x3E9,
             WPN_ANIMSTATE_INVENTORY_UI_TUMBLE         = 0x5DC,
             WPN_ANIMSTATE_INVENTORY_UI_KEYCHAIN_APPLY = 0x5DD,
-            WPN_ANIMSTATE_END_VALID                   = 0x7D0,
-            WEAPON_LEGACY_STATE_CLEAR_FIRING          = 0x7D1
+            WPN_ANIMSTATE_END_VALID                   = 0x7D0
         };
 
         enum class ModelMeshBufferUsage_t : std::uint8_t {
@@ -2099,6 +2189,15 @@ namespace offsets {
             MESH_BUFFER_USAGE_MESHLET_TRIS  = 0x8,
             MESH_BUFFER_USAGE_RT_PROXY      = 0x10,
             MESH_BUFFER_USAGE_VERTEX_ALBEDO = 0x20
+        };
+
+        enum class FuncMoverMovementSummaryFlags_t : std::uint32_t {
+            eNone             = 0x0,
+            eMovementBegin    = 0x1,
+            eStopBegin        = 0x2,
+            eStopComplete     = 0x4,
+            eReversing        = 0x8,
+            eEventsDispatched = 0x10
         };
 
         enum class WorldTextPanelVerticalAlign_t : std::uint32_t {
@@ -2197,6 +2296,12 @@ namespace offsets {
             KILLTYPE_COUNT = 0x7
         };
 
+        enum class SndSeqSyncType_t : std::uint32_t {
+            eSndSeqSyncTypeNone = 0x0,
+            eSndSeqSyncTypeWait = 0x1,
+            eSndSeqSyncTypeSeek = 0x2
+        };
+
         enum class OnFrame : std::uint8_t {
             ONFRAME_UNKNOWN = 0x0,
             ONFRAME_TRUE    = 0x1,
@@ -2228,6 +2333,14 @@ namespace offsets {
             VERT_JUSTIFICATION_CENTER = 0x1,
             VERT_JUSTIFICATION_BOTTOM = 0x2,
             VERT_JUSTIFICATION_NONE   = 0x3
+        };
+
+        enum class soundcommands_t : std::uint32_t {
+            SOUNDCTRL_CHANGE_VOLUME = 0x0,
+            SOUNDCTRL_CHANGE_PITCH  = 0x1,
+            SOUNDCTRL_STOP          = 0x2,
+            SOUNDCTRL_DESTROY       = 0x3,
+            SOUNDCTRL_FADEOUT       = 0x4
         };
 
         enum class CDebugOverlayCombinedTypes_t : std::uint32_t {
@@ -2284,6 +2397,14 @@ namespace offsets {
             RS_CULL_NONE  = 0x0,
             RS_CULL_BACK  = 0x1,
             RS_CULL_FRONT = 0x2
+        };
+
+        enum class INavObstacle__NavObstacleType_t : std::uint32_t {
+            NAV_OBSTACLE_TYPE_INVALID = 0xFFFFFFFF,
+            NAV_OBSTACLE_TYPE_NONE    = 0x0,
+            NAV_OBSTACLE_TYPE_AVOID   = 0x1,
+            NAV_OBSTACLE_TYPE_CONN    = 0x2,
+            NAV_OBSTACLE_TYPE_BLOCK   = 0x3
         };
 
         enum class ParticleOmni2LightTypeChoiceList_t : std::uint32_t {
@@ -2353,10 +2474,11 @@ namespace offsets {
         };
 
         enum class DisableShadows_t : std::uint8_t {
-            kDisableShadows_None     = 0x0,
-            kDisableShadows_All      = 0x1,
-            kDisableShadows_Baked    = 0x2,
-            kDisableShadows_Realtime = 0x3
+            kDisableShadows_None       = 0x0,
+            kDisableShadows_All        = 0x1,
+            kDisableShadows_Baked      = 0x2,
+            kDisableShadows_Realtime   = 0x3,
+            kDisableShadows_ReallyNone = 0x4
         };
 
         enum class ResetCycleOption : std::uint32_t {
@@ -2443,10 +2565,29 @@ namespace offsets {
             BoneAndChildren = 0x1
         };
 
+        enum class CCSPlayerAnimationState__AirAction_t : std::uint8_t {
+            None      = 0x0,
+            Jump      = 0x1,
+            StartFall = 0x2,
+            Land      = 0x3
+        };
+
         enum class ParticleFanType_t : std::uint32_t {
             PARTICLE_FAN_TYPE_FAN        = 0x0,
             PARTICLE_FAN_TYPE_ROTOR_WASH = 0x1,
             PARTICLE_FAN_TYPE_RADIAL     = 0x2
+        };
+
+        enum class ParticleToolsState_t : std::uint32_t {
+            PARTICLE_TOOLS_STATE_ALWAYS_ON  = 0xFFFFFFFF,
+            PARTICLE_TOOLS_STATE_TOOLS_ONLY = 0x0,
+            PARTICLE_TOOLS_STATE_GAME_ONLY  = 0x1
+        };
+
+        enum class SndSeqInstrumentType_t : std::uint32_t {
+            eSndSeqInstNull        = 0x0,
+            eSndSeqInstSndEvt      = 0x1,
+            eSndSeqInstMidiSampler = 0x2
         };
 
         enum class EDestructiblePartDamagePassThroughType : std::uint32_t {
@@ -2592,13 +2733,13 @@ namespace offsets {
         };
 
         enum class PlayerConnectedState : std::uint32_t {
-            PlayerNeverConnected = 0xFFFFFFFF,
-            PlayerConnected      = 0x0,
-            PlayerConnecting     = 0x1,
-            PlayerReconnecting   = 0x2,
-            PlayerDisconnecting  = 0x3,
-            PlayerDisconnected   = 0x4,
-            PlayerReserved       = 0x5
+            NeverConnected = 0xFFFFFFFF,
+            Connected      = 0x0,
+            Connecting     = 0x1,
+            Reconnecting   = 0x2,
+            Disconnecting  = 0x3,
+            Disconnected   = 0x4,
+            Reserved       = 0x5
         };
 
         enum class ObjectTypeFlags_t : std::uint32_t {
@@ -2608,7 +2749,6 @@ namespace offsets {
             OBJECT_TYPE_NO_SHADOWS              = 0x20,
             OBJECT_TYPE_WORLDSPACE_TEXURE_BLEND = 0x40,
             OBJECT_TYPE_DISABLED_IN_LOW_QUALITY = 0x80,
-            OBJECT_TYPE_NO_SUN_SHADOWS          = 0x100,
             OBJECT_TYPE_RENDER_WITH_DYNAMIC     = 0x200,
             OBJECT_TYPE_RENDER_TO_CUBEMAPS      = 0x400,
             OBJECT_TYPE_MODEL_HAS_LODS          = 0x800,
@@ -2616,7 +2756,9 @@ namespace offsets {
             OBJECT_TYPE_PRECOMPUTED_VISMEMBERS  = 0x4000,
             OBJECT_TYPE_STATIC_CUBE_MAP         = 0x8000,
             OBJECT_TYPE_DISABLE_VIS_CULLING     = 0x10000,
-            OBJECT_TYPE_BAKED_GEOMETRY          = 0x20000
+            OBJECT_TYPE_BAKED_GEOMETRY          = 0x20000,
+            OBJECT_TYPE_NEEDS_DYNAMIC_SHADOWS   = 0x40000,
+            OBJECT_TYPE_HAS_AGGREGATE_RTPROXY   = 0x80000
         };
 
         enum class VMixSubgraphSwitchInterpolationType_t : std::uint32_t {
@@ -2628,6 +2770,11 @@ namespace offsets {
         enum class ChoiceBlendMethod : std::uint32_t {
             SingleBlendTime     = 0x0,
             PerChoiceBlendTimes = 0x1
+        };
+
+        enum class SndSeqTrackPlaybackType_t : std::uint32_t {
+            eSndSeqTrackPlaybackTypeStep = 0x0,
+            eSndSeqTrackPlaybackTypeFwd  = 0x1
         };
 
         enum class AimMatrixBlendMode : std::uint32_t {
@@ -2656,6 +2803,12 @@ namespace offsets {
             GRENADE_TYPE_DECOY     = 0x3,
             GRENADE_TYPE_SMOKE     = 0x4,
             GRENADE_TYPE_TOTAL     = 0x5
+        };
+
+        enum class ParticleMultiSegmentCountSelection_t : std::uint32_t {
+            PARTICLE_MULTISEGMENT_SEG_COUNT_7  = 0x7,
+            PARTICLE_MULTISEGMENT_SEG_COUNT_14 = 0xE,
+            PARTICLE_MULTISEGMENT_SEG_COUNT_16 = 0x10
         };
 
         enum class ParticleColorBlendMode_t : std::uint32_t {
@@ -2807,19 +2960,20 @@ namespace offsets {
             PVEC_TYPE_PARTICLE_VECTOR         = 0x3,
             PVEC_TYPE_PARTICLE_INITIAL_VECTOR = 0x4,
             PVEC_TYPE_PARTICLE_VELOCITY       = 0x5,
-            PVEC_TYPE_CP_VALUE                = 0x6,
-            PVEC_TYPE_CP_RELATIVE_POSITION    = 0x7,
-            PVEC_TYPE_CP_RELATIVE_DIR         = 0x8,
-            PVEC_TYPE_CP_RELATIVE_RANDOM_DIR  = 0x9,
-            PVEC_TYPE_FLOAT_COMPONENTS        = 0xA,
-            PVEC_TYPE_FLOAT_INTERP_CLAMPED    = 0xB,
-            PVEC_TYPE_FLOAT_INTERP_OPEN       = 0xC,
-            PVEC_TYPE_FLOAT_INTERP_GRADIENT   = 0xD,
-            PVEC_TYPE_RANDOM_UNIFORM          = 0xE,
-            PVEC_TYPE_RANDOM_UNIFORM_OFFSET   = 0xF,
-            PVEC_TYPE_CP_DELTA                = 0x10,
-            PVEC_TYPE_CLOSEST_CAMERA_POSITION = 0x11,
-            PVEC_TYPE_COUNT                   = 0x12
+            PVEC_TYPE_PARTICLE_GRAVITY        = 0x6,
+            PVEC_TYPE_CP_VALUE                = 0x7,
+            PVEC_TYPE_CP_RELATIVE_POSITION    = 0x8,
+            PVEC_TYPE_CP_RELATIVE_DIR         = 0x9,
+            PVEC_TYPE_CP_RELATIVE_RANDOM_DIR  = 0xA,
+            PVEC_TYPE_FLOAT_COMPONENTS        = 0xB,
+            PVEC_TYPE_FLOAT_INTERP_CLAMPED    = 0xC,
+            PVEC_TYPE_FLOAT_INTERP_OPEN       = 0xD,
+            PVEC_TYPE_FLOAT_INTERP_GRADIENT   = 0xE,
+            PVEC_TYPE_RANDOM_UNIFORM          = 0xF,
+            PVEC_TYPE_RANDOM_UNIFORM_OFFSET   = 0x10,
+            PVEC_TYPE_CP_DELTA                = 0x11,
+            PVEC_TYPE_CLOSEST_CAMERA_POSITION = 0x12,
+            PVEC_TYPE_COUNT                   = 0x13
         };
 
         enum class ParticleTransformType_t : std::uint32_t {
@@ -2866,6 +3020,16 @@ namespace offsets {
             VECTOR_EXPRESSION_MAX           = 0x6,
             VECTOR_EXPRESSION_CROSSPRODUCT  = 0x7,
             VECTOR_EXPRESSION_LERP          = 0x8
+        };
+
+        enum class ESceneViewDebugOverlaysListenerDataType_t : std::uint32_t {
+            k_ESceneViewDebugOverlaysListenerDataType_Unknown        = 0x0,
+            k_ESceneViewDebugOverlaysListenerDataType_Sphere         = 0x1,
+            k_ESceneViewDebugOverlaysListenerDataType_Capsule        = 0x2,
+            k_ESceneViewDebugOverlaysListenerDataType_BoxAngles      = 0x3,
+            k_ESceneViewDebugOverlaysListenerDataType_Line           = 0x4,
+            k_ESceneViewDebugOverlaysListenerDataType_SolidBoxAngles = 0x5,
+            k_ESceneViewDebugOverlaysListenerDataType_Text3D         = 0x6
         };
 
         enum class RumbleEffect_t : std::uint32_t {
@@ -2977,6 +3141,31 @@ namespace offsets {
             NUM_STANCES      = 0x3
         };
 
+        enum class SaveRestoreTableFlags_t : std::uint32_t {
+            FENTTABLE_NONE        = 0x0,
+            FENTTABLE_PLAYER      = 0x80000000,
+            FENTTABLE_REMOVED     = 0x40000000,
+            FENTTABLE_MOVEABLE    = 0x20000000,
+            FENTTABLE_GLOBAL      = 0x10000000,
+            FENTTABLE_PLAYERCHILD = 0x8000000,
+            LEVELMASK_BIT_0       = 0x1,
+            LEVELMASK_BIT_1       = 0x2,
+            LEVELMASK_BIT_2       = 0x4,
+            LEVELMASK_BIT_3       = 0x8,
+            LEVELMASK_BIT_4       = 0x10,
+            LEVELMASK_BIT_5       = 0x20,
+            LEVELMASK_BIT_6       = 0x40,
+            LEVELMASK_BIT_7       = 0x80,
+            LEVELMASK_BIT_8       = 0x100,
+            LEVELMASK_BIT_9       = 0x200,
+            LEVELMASK_BIT_10      = 0x400,
+            LEVELMASK_BIT_11      = 0x800,
+            LEVELMASK_BIT_12      = 0x1000,
+            LEVELMASK_BIT_13      = 0x2000,
+            LEVELMASK_BIT_14      = 0x4000,
+            LEVELMASK_BIT_15      = 0x8000
+        };
+
         enum class VPhysXJoint_t__Flags_t : std::uint32_t {
             JOINT_FLAGS_NONE             = 0x0,
             JOINT_FLAGS_BODY1_FIXED      = 0x1,
@@ -3012,6 +3201,13 @@ namespace offsets {
             AGGREGATE_INSTANCE_STREAM_VERTEXBLEND_UNORM8 = 0x4
         };
 
+        enum class CCSPlayerAnimationState__MoveType_t : std::uint8_t {
+            None   = 0x0,
+            Ground = 0x1,
+            Air    = 0x2,
+            Ladder = 0x3
+        };
+
         enum class ValueRemapperRatchetType_t : std::uint32_t {
             RatchetType_Absolute   = 0x0,
             RatchetType_EachEngage = 0x1
@@ -3025,6 +3221,12 @@ namespace offsets {
             ANIMATION_SNAPSHOT_CLIENT_RENDER        = 0x4,
             ANIMATION_SNAPSHOT_FINAL_COMPOSITE      = 0x5,
             ANIMATION_SNAPSHOT_MAX                  = 0x6
+        };
+
+        enum class GLOBALESTATE : std::uint8_t {
+            GLOBAL_OFF  = 0x0,
+            GLOBAL_ON   = 0x1,
+            GLOBAL_DEAD = 0x2
         };
 
         enum class Materials : std::uint32_t {
@@ -3163,8 +3365,7 @@ namespace offsets {
             eSequence            = 0x1,
             eAnimGraph2          = 0x2,
             eAnimGraph2Secondary = 0x3,
-            eAnimGraph1          = 0x4,
-            eCount               = 0x5
+            eCount               = 0x4
         };
 
         enum class BeamType_t : std::uint32_t {
@@ -3270,23 +3471,24 @@ namespace offsets {
             PF_TYPE_CONCURRENT_DEF_COUNT                    = 0xA,
             PF_TYPE_CLOSEST_CAMERA_DISTANCE                 = 0xB,
             PF_TYPE_SNAPSHOT_COUNT                          = 0xC,
-            PF_TYPE_RENDERER_CAMERA_DISTANCE                = 0xD,
-            PF_TYPE_RENDERER_CAMERA_DOT_PRODUCT             = 0xE,
-            PF_TYPE_PARTICLE_NOISE                          = 0xF,
-            PF_TYPE_PARTICLE_AGE                            = 0x10,
-            PF_TYPE_PARTICLE_AGE_NORMALIZED                 = 0x11,
-            PF_TYPE_PARTICLE_FLOAT                          = 0x12,
-            PF_TYPE_PARTICLE_INITIAL_FLOAT                  = 0x13,
-            PF_TYPE_PARTICLE_VECTOR_COMPONENT               = 0x14,
-            PF_TYPE_PARTICLE_INITIAL_VECTOR_COMPONENT       = 0x15,
-            PF_TYPE_PARTICLE_SPEED                          = 0x16,
-            PF_TYPE_PARTICLE_NUMBER                         = 0x17,
-            PF_TYPE_PARTICLE_NUMBER_NORMALIZED              = 0x18,
-            PF_TYPE_PARTICLE_ROPE_SEGMENT                   = 0x19,
-            PF_TYPE_PARTICLE_ROPE_SEGMENT_NORMALIZED        = 0x1A,
-            PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DISTANCE    = 0x1B,
-            PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DOT_PRODUCT = 0x1C,
-            PF_TYPE_COUNT                                   = 0x1D
+            PF_TYPE_SNAPSHOT_CHANGED                        = 0xD,
+            PF_TYPE_RENDERER_CAMERA_DISTANCE                = 0xE,
+            PF_TYPE_RENDERER_CAMERA_DOT_PRODUCT             = 0xF,
+            PF_TYPE_PARTICLE_NOISE                          = 0x10,
+            PF_TYPE_PARTICLE_AGE                            = 0x11,
+            PF_TYPE_PARTICLE_AGE_NORMALIZED                 = 0x12,
+            PF_TYPE_PARTICLE_FLOAT                          = 0x13,
+            PF_TYPE_PARTICLE_INITIAL_FLOAT                  = 0x14,
+            PF_TYPE_PARTICLE_VECTOR_COMPONENT               = 0x15,
+            PF_TYPE_PARTICLE_INITIAL_VECTOR_COMPONENT       = 0x16,
+            PF_TYPE_PARTICLE_SPEED                          = 0x17,
+            PF_TYPE_PARTICLE_NUMBER                         = 0x18,
+            PF_TYPE_PARTICLE_NUMBER_NORMALIZED              = 0x19,
+            PF_TYPE_PARTICLE_ROPE_SEGMENT                   = 0x1A,
+            PF_TYPE_PARTICLE_ROPE_SEGMENT_NORMALIZED        = 0x1B,
+            PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DISTANCE    = 0x1C,
+            PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DOT_PRODUCT = 0x1D,
+            PF_TYPE_COUNT                                   = 0x1E
         };
 
         enum class StepPhase : std::uint32_t {
@@ -3294,10 +3496,23 @@ namespace offsets {
             StepPhase_InAir    = 0x1
         };
 
+        enum class CInfoChoreoLocatorShapeType_t : std::uint32_t {
+            POINT = 0x0,
+            LINE  = 0x1,
+            COUNT = 0x2,
+            NONE  = 0x3
+        };
+
         enum class ParticleEntityPos_t : std::uint32_t {
             PARTICLE_ABS_ORIGIN        = 0x0,
             PARTICLE_WORLDSPACE_CENTER = 0x1,
             PARTICLE_EYES              = 0x2
+        };
+
+        enum class SndSeqPlayerType_t : std::uint32_t {
+            eSndSeqPlayerNull    = 0x0,
+            eSndSeqPlayerSndEvt  = 0x1,
+            eSndSeqPlayerMidiSeq = 0x2
         };
 
         enum class CNmIDComparisonNode__Comparison_t : std::uint8_t {
@@ -3625,6 +3840,18 @@ namespace offsets {
             REFERENCE_PASSTHROUGH = 0xC
         };
 
+        enum class CCSPlayerAnimationState__Direction_t : std::uint8_t {
+            None = 0x0,
+            N    = 0x1,
+            NE   = 0x2,
+            E    = 0x3,
+            SE   = 0x4,
+            S    = 0x5,
+            SW   = 0x6,
+            W    = 0x7,
+            NW   = 0x8
+        };
+
         enum class EMode_t : std::uint32_t {
             Peak = 0x0,
             RMS  = 0x1
@@ -3692,6 +3919,16 @@ namespace offsets {
             SPRITECARD_TEXTURE_PP_SCALE_NEG_RANDOM         = 0xB,
             SPRITECARD_TEXTURE_PP_SCALE_RANDOM_TIME        = 0xC,
             SPRITECARD_TEXTURE_PP_SCALE_NEG_RANDOM_TIME    = 0xD
+        };
+
+        enum class SndSeqQuantizeType_t : std::uint32_t {
+            eSndSeqQuantizeInvalid  = 0xFFFFFFFF,
+            eSndSeqQuantizeNone     = 0x0,
+            eSndSeqQuantizeBeat     = 0x1,
+            eSndSeqQuantizeBar      = 0x2,
+            eSndSeqQuantizeSequence = 0x3,
+            eSndSeqQuantizeSeek     = 0x4,
+            eSndSeqQuantizeReset    = 0x5
         };
 
         enum class FixAngleSet_t : std::uint8_t {
@@ -4107,6 +4344,38 @@ namespace offsets {
             TrainVelocity_EaseInEaseOut = 0x2
         };
 
+        enum class PreviewCharacterBannerAnimation : std::uint32_t {
+            INVALID                        = 0xFFFFFFFF,
+            IDLE_OFFSCREEN                 = 0x0,
+            BANNER_AWP_ACE_GUN             = 0x1,
+            BANNER_AWP_ACE_A               = 0x2,
+            BANNER_AWP_ACE_B               = 0x3,
+            BANNER_AWP_ACE_C               = 0x4,
+            BANNER_AWP_ACE_D               = 0x5,
+            BANNER_AWP_ACE_E               = 0x6,
+            BANNER_PISTOL3SHOT             = 0x7,
+            BANNER_3SHOT_A                 = 0x8,
+            BANNER_3SHOT_B                 = 0x9,
+            BANNER_3SHOT_C                 = 0xA,
+            BANNER_PISTOL4SHOT             = 0xB,
+            BANNER_4SHOT_A                 = 0xC,
+            BANNER_4SHOT_B                 = 0xD,
+            BANNER_4SHOT_C                 = 0xE,
+            BANNER_4SHOT_D                 = 0xF,
+            CELEBRATE_STRETCH_NOWEAP_IDLE0 = 0x10,
+            BANNER_BOMB_PLANT              = 0x11,
+            BANNER_BOMB_DEFUSAL_VER        = 0x12,
+            BANNER_FIRE                    = 0x13,
+            BANNER_BOMB_BLAST_TOSS         = 0x14,
+            BANNER_BOMB_BLAST01            = 0x15,
+            BANNER_BOMB_BLAST02            = 0x16,
+            BANNER_BOMB_BLAST03            = 0x17,
+            BANNER_CELEBRATE_01            = 0x18,
+            BANNER_CELEBRATE_02            = 0x19,
+            BANNER_CELEBRATE_03            = 0x1A,
+            BANNER_CELEBRATE_04            = 0x1B
+        };
+
         enum class ParticleOrientationSetMode_t : std::uint32_t {
             PARTICLE_ORIENTATION_SET_NONE           = 0xFFFFFFFF,
             PARTICLE_ORIENTATION_SET_FROM_VELOCITY  = 0x0,
@@ -4185,6 +4454,14 @@ namespace offsets {
             ROTATOR_TARGET_LOCALSPACE = 0x1
         };
 
+        enum class PhysGenericShapeType_t : std::uint8_t {
+            GENERIC_SHAPE_POINT   = 0x0,
+            GENERIC_SHAPE_SPHERE  = 0x1,
+            GENERIC_SHAPE_AABB    = 0x2,
+            GENERIC_SHAPE_CAPSULE = 0x3,
+            GENERIC_SHAPE_HULL    = 0x4
+        };
+
         struct CWorldCompositionChunkReferenceElement_t {
         public:
             static constexpr std::uintptr_t m_strMapToLoad    = 0X0000; // CUtlString
@@ -4198,20 +4475,21 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_flOpStrength            = 0X0008; // CParticleCollectionFloatInput
             static constexpr std::uintptr_t m_nOpEndCapState          = 0X0178; // ParticleEndcapMode_t
-            static constexpr std::uintptr_t m_flOpStartFadeInTime     = 0X017C; // float32
-            static constexpr std::uintptr_t m_flOpEndFadeInTime       = 0X0180; // float32
-            static constexpr std::uintptr_t m_flOpStartFadeOutTime    = 0X0184; // float32
-            static constexpr std::uintptr_t m_flOpEndFadeOutTime      = 0X0188; // float32
-            static constexpr std::uintptr_t m_flOpFadeOscillatePeriod = 0X018C; // float32
-            static constexpr std::uintptr_t m_bNormalizeToStopTime    = 0X0190; // bool
-            static constexpr std::uintptr_t m_flOpTimeOffsetMin       = 0X0194; // float32
-            static constexpr std::uintptr_t m_flOpTimeOffsetMax       = 0X0198; // float32
-            static constexpr std::uintptr_t m_nOpTimeOffsetSeed       = 0X019C; // int32
-            static constexpr std::uintptr_t m_nOpTimeScaleSeed        = 0X01A0; // int32
-            static constexpr std::uintptr_t m_flOpTimeScaleMin        = 0X01A4; // float32
-            static constexpr std::uintptr_t m_flOpTimeScaleMax        = 0X01A8; // float32
-            static constexpr std::uintptr_t m_bDisableOperator        = 0X01AE; // bool
-            static constexpr std::uintptr_t m_Notes                   = 0X01B0; // CUtlString
+            static constexpr std::uintptr_t m_nToolsState             = 0X017C; // ParticleToolsState_t
+            static constexpr std::uintptr_t m_flOpStartFadeInTime     = 0X0180; // float32
+            static constexpr std::uintptr_t m_flOpEndFadeInTime       = 0X0184; // float32
+            static constexpr std::uintptr_t m_flOpStartFadeOutTime    = 0X0188; // float32
+            static constexpr std::uintptr_t m_flOpEndFadeOutTime      = 0X018C; // float32
+            static constexpr std::uintptr_t m_flOpFadeOscillatePeriod = 0X0190; // float32
+            static constexpr std::uintptr_t m_bNormalizeToStopTime    = 0X0194; // bool
+            static constexpr std::uintptr_t m_flOpTimeOffsetMin       = 0X0198; // float32
+            static constexpr std::uintptr_t m_flOpTimeOffsetMax       = 0X019C; // float32
+            static constexpr std::uintptr_t m_nOpTimeOffsetSeed       = 0X01A0; // int32
+            static constexpr std::uintptr_t m_nOpTimeScaleSeed        = 0X01A4; // int32
+            static constexpr std::uintptr_t m_flOpTimeScaleMin        = 0X01A8; // float32
+            static constexpr std::uintptr_t m_flOpTimeScaleMax        = 0X01AC; // float32
+            static constexpr std::uintptr_t m_bDisableOperator        = 0X01B2; // bool
+            static constexpr std::uintptr_t m_Notes                   = 0X01B8; // CUtlString
         };
 
         // Has VTable
@@ -4219,19 +4497,19 @@ namespace offsets {
         // Construct Allowed
         class CParticleFunctionInitializer : public CParticleFunction {
         public:
-            static constexpr std::uintptr_t m_nAssociatedEmitterIndex = 0X01D0; // int32
+            static constexpr std::uintptr_t m_nAssociatedEmitterIndex = 0X01D8; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_PositionWarpScalar : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecWarpMin               = 0X01D8; // Vector
-            static constexpr std::uintptr_t m_vecWarpMax               = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_InputValue               = 0X01F0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flPrevPosScale           = 0X0360; // float32
-            static constexpr std::uintptr_t m_nScaleControlPointNumber = 0X0364; // int32
-            static constexpr std::uintptr_t m_nControlPointNumber      = 0X0368; // int32
+            static constexpr std::uintptr_t m_vecWarpMin               = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_vecWarpMax               = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_InputValue               = 0X01F8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flPrevPosScale           = 0X0368; // float32
+            static constexpr std::uintptr_t m_nScaleControlPointNumber = 0X036C; // int32
+            static constexpr std::uintptr_t m_nControlPointNumber      = 0X0370; // int32
         };
 
         // Has VTable
@@ -4246,14 +4524,14 @@ namespace offsets {
         // Construct Allowed
         class CParticleFunctionPreEmission : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_bRunOnce = 0X01D0; // bool
+            static constexpr std::uintptr_t m_bRunOnce = 0X01D8; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ForceControlPointStub : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_ControlPoint = 0X01D8; // int32
+            static constexpr std::uintptr_t m_ControlPoint = 0X01E0; // int32
         };
 
         // Construct Allowed
@@ -4291,22 +4569,36 @@ namespace offsets {
         // Has Trivial Destructor
         struct WrappedPhysicsJoint_t {
         public:
+            static constexpr std::uintptr_t m_pJoint = 0X0000; // IPhysicsJoint*
         };
 
         // Has Trivial Destructor
+        // Construct Allowed
+        struct SoundCommand_t {
+        public:
+            static constexpr std::uintptr_t m_time      = 0X0008; // float32
+            static constexpr std::uintptr_t m_deltaTime = 0X000C; // float32
+            static constexpr std::uintptr_t m_command   = 0X0010; // soundcommands_t
+            static constexpr std::uintptr_t m_value     = 0X0014; // float32
+        };
+
+        // Construct Allowed
         class CTakeDamageResult {
         public:
-            static constexpr std::uintptr_t m_pOriginatingInfo            = 0X0000; // CTakeDamageInfo*
-            static constexpr std::uintptr_t m_nHealthLost                 = 0X0008; // int32
-            static constexpr std::uintptr_t m_nHealthBefore               = 0X000C; // int32
-            static constexpr std::uintptr_t m_nDamageDealt                = 0X0010; // int32
-            static constexpr std::uintptr_t m_flPreModifiedDamage         = 0X0014; // float32
-            static constexpr std::uintptr_t m_nTotalledHealthLost         = 0X0018; // int32
-            static constexpr std::uintptr_t m_nTotalledDamageDealt        = 0X001C; // int32
-            static constexpr std::uintptr_t m_flTotalledPreModifiedDamage = 0X0020; // float32
-            static constexpr std::uintptr_t m_bWasDamageSuppressed        = 0X0024; // bool
-            static constexpr std::uintptr_t m_bSuppressFlinch             = 0X0025; // bool
-            static constexpr std::uintptr_t m_nOverrideFlinchHitGroup     = 0X0028; // HitGroup_t
+            static constexpr std::uintptr_t m_pOriginatingInfo             = 0X0000; // CTakeDamageInfo*
+            static constexpr std::uintptr_t m_DestructibleHitGroupRequests = 0X0008; // CUtlLeanVector<DestructiblePartDamageRequest_t>
+            static constexpr std::uintptr_t m_nHealthLost                  = 0X0018; // int32
+            static constexpr std::uintptr_t m_nHealthBefore                = 0X001C; // int32
+            static constexpr std::uintptr_t m_flDamageDealt                = 0X0020; // float32
+            static constexpr std::uintptr_t m_flPreModifiedDamage          = 0X0024; // float32
+            static constexpr std::uintptr_t m_nTotalledHealthLost          = 0X0028; // int32
+            static constexpr std::uintptr_t m_flTotalledDamageDealt        = 0X002C; // float32
+            static constexpr std::uintptr_t m_flTotalledPreModifiedDamage  = 0X0030; // float32
+            static constexpr std::uintptr_t m_flNewDamageAccumulatorValue  = 0X0034; // float32
+            static constexpr std::uintptr_t m_nDamageFlags                 = 0X0038; // TakeDamageFlags_t
+            static constexpr std::uintptr_t m_bWasDamageSuppressed         = 0X0040; // bool
+            static constexpr std::uintptr_t m_bSuppressFlinch              = 0X0041; // bool
+            static constexpr std::uintptr_t m_nOverrideFlinchHitGroup      = 0X0044; // HitGroup_t
         };
 
         // Has VTable
@@ -4314,23 +4606,23 @@ namespace offsets {
         // Construct Allowed
         class CParticleFunctionRenderer : public CParticleFunction {
         public:
-            static constexpr std::uintptr_t VisibilityInputs         = 0X01D0; // CParticleVisibilityInputs
-            static constexpr std::uintptr_t m_bCannotBeRefracted     = 0X0218; // bool
-            static constexpr std::uintptr_t m_bSkipRenderingOnMobile = 0X0219; // bool
+            static constexpr std::uintptr_t VisibilityInputs         = 0X01D8; // CParticleVisibilityInputs
+            static constexpr std::uintptr_t m_bCannotBeRefracted     = 0X0220; // bool
+            static constexpr std::uintptr_t m_bSkipRenderingOnMobile = 0X0221; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderMaterialProxy : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_nMaterialControlPoint     = 0X0220; // int32
-            static constexpr std::uintptr_t m_nProxyType                = 0X0224; // MaterialProxyType_t
-            static constexpr std::uintptr_t m_MaterialVars              = 0X0228; // CUtlVector<MaterialVariable_t>
-            static constexpr std::uintptr_t m_hOverrideMaterial         = 0X0240; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_flMaterialOverrideEnabled = 0X0248; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_vecColorScale             = 0X03B8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_flAlpha                   = 0X0A70; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nColorBlendType           = 0X0BE0; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_nMaterialControlPoint     = 0X0228; // int32
+            static constexpr std::uintptr_t m_nProxyType                = 0X022C; // MaterialProxyType_t
+            static constexpr std::uintptr_t m_MaterialVars              = 0X0230; // CUtlVector<MaterialVariable_t>
+            static constexpr std::uintptr_t m_hOverrideMaterial         = 0X0248; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_flMaterialOverrideEnabled = 0X0250; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_vecColorScale             = 0X03C0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_flAlpha                   = 0X0A78; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nColorBlendType           = 0X0BE8; // ParticleColorBlendType_t
         };
 
         // Has VTable
@@ -4457,14 +4749,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_flStartTime = 0X0008; // NmPercent_t
             static constexpr std::uintptr_t m_flDuration  = 0X000C; // NmPercent_t
             static constexpr std::uintptr_t m_syncID      = 0X0010; // CGlobalSymbol
-            static constexpr std::uintptr_t m_bClientOnly = 0X0018; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class CNmRootMotionEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_flBlendTimeSeconds = 0X0020; // float32
+            static constexpr std::uintptr_t m_flBlendTimeSeconds = 0X0018; // float32
         };
 
         // Has VTable
@@ -4539,6 +4830,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_parameterValueRange = 0X0004; // Range_t
         };
 
+        // Construct Allowed
         class CDecalInstance {
         public:
             static constexpr std::uintptr_t m_sDecalGroup            = 0X0000; // CGlobalSymbol
@@ -4548,26 +4840,25 @@ namespace offsets {
             static constexpr std::uintptr_t m_nBoneIndex             = 0X0018; // int32
             static constexpr std::uintptr_t m_nTriangleIndex         = 0X001C; // int32
             static constexpr std::uintptr_t m_vPositionLS            = 0X0020; // Vector
-            static constexpr std::uintptr_t m_vNormalLS              = 0X002C; // Vector
-            static constexpr std::uintptr_t m_vSAxisLS               = 0X0038; // Vector
-            static constexpr std::uintptr_t m_nFlags                 = 0X0044; // DecalFlags_t
-            static constexpr std::uintptr_t m_Color                  = 0X0048; // Color
-            static constexpr std::uintptr_t m_flWidth                = 0X004C; // float32
-            static constexpr std::uintptr_t m_flHeight               = 0X0050; // float32
-            static constexpr std::uintptr_t m_flDepth                = 0X0054; // float32
-            static constexpr std::uintptr_t m_transform              = 0X0060; // CTransformWS
-            static constexpr std::uintptr_t m_flAnimationScale       = 0X0080; // float32
-            static constexpr std::uintptr_t m_flAnimationStartTime   = 0X0084; // float32
-            static constexpr std::uintptr_t m_flPlaceTime            = 0X0088; // GameTime_t
-            static constexpr std::uintptr_t m_flFadeStartTime        = 0X008C; // float32
-            static constexpr std::uintptr_t m_flFadeDuration         = 0X0090; // float32
-            static constexpr std::uintptr_t m_flLightingOriginOffset = 0X0094; // float32
-            static constexpr std::uintptr_t m_flBoundingRadiusSqr    = 0X00A0; // float32
-            static constexpr std::uintptr_t m_nSequenceIndex         = 0X00A4; // int16
-            static constexpr std::uintptr_t m_bIsAdjacent            = 0X00A6; // bool
-            static constexpr std::uintptr_t m_bDoDecalLightmapping   = 0X00A7; // bool
-            static constexpr std::uintptr_t m_nDecalRtEncoding       = 0X00A8; // DecalRtEncoding_t
-            static constexpr std::uintptr_t m_bProjectToBackfaces    = 0X00A9; // bool
+            static constexpr std::uintptr_t m_vPositionOS            = 0X002C; // Vector
+            static constexpr std::uintptr_t m_vNormalLS              = 0X0038; // Vector
+            static constexpr std::uintptr_t m_vSAxisLS               = 0X0044; // Vector
+            static constexpr std::uintptr_t m_nFlags                 = 0X0050; // DecalFlags_t
+            static constexpr std::uintptr_t m_Color                  = 0X0054; // Color
+            static constexpr std::uintptr_t m_flWidth                = 0X0058; // float32
+            static constexpr std::uintptr_t m_flHeight               = 0X005C; // float32
+            static constexpr std::uintptr_t m_flDepth                = 0X0060; // float32
+            static constexpr std::uintptr_t m_transform              = 0X0070; // CTransformWS
+            static constexpr std::uintptr_t m_flAnimationScale       = 0X0090; // float32
+            static constexpr std::uintptr_t m_flAnimationStartTime   = 0X0094; // float32
+            static constexpr std::uintptr_t m_flPlaceTime            = 0X0098; // GameTime_t
+            static constexpr std::uintptr_t m_flFadeStartTime        = 0X009C; // float32
+            static constexpr std::uintptr_t m_flFadeDuration         = 0X00A0; // float32
+            static constexpr std::uintptr_t m_flLightingOriginOffset = 0X00A4; // float32
+            static constexpr std::uintptr_t m_flBoundingRadiusSqr    = 0X00B0; // float32
+            static constexpr std::uintptr_t m_nSequenceIndex         = 0X00B4; // int16
+            static constexpr std::uintptr_t m_bIsAdjacent            = 0X00B6; // bool
+            static constexpr std::uintptr_t m_bDoDecalLightmapping   = 0X00B7; // bool
         };
 
         // Has VTable
@@ -4575,7 +4866,7 @@ namespace offsets {
         // Construct Allowed
         class CAnimGraphControllerBase {
         public:
-            static constexpr std::uintptr_t m_hExternalGraph = 0X0018; // ExternalAnimGraphHandle_t
+            static constexpr std::uintptr_t m_hExternalGraph = 0X0010; // ExternalAnimGraphHandle_t
         };
 
         // Has VTable
@@ -4588,16 +4879,16 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RandomColor : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_ColorMin             = 0X01F4; // Color
-            static constexpr std::uintptr_t m_ColorMax             = 0X01F8; // Color
-            static constexpr std::uintptr_t m_TintMin              = 0X01FC; // Color
-            static constexpr std::uintptr_t m_TintMax              = 0X0200; // Color
-            static constexpr std::uintptr_t m_flTintPerc           = 0X0204; // float32
-            static constexpr std::uintptr_t m_flUpdateThreshold    = 0X0208; // float32
-            static constexpr std::uintptr_t m_nTintCP              = 0X020C; // int32
-            static constexpr std::uintptr_t m_nFieldOutput         = 0X0210; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nTintBlendMode       = 0X0214; // ParticleColorBlendMode_t
-            static constexpr std::uintptr_t m_flLightAmplification = 0X0218; // float32
+            static constexpr std::uintptr_t m_ColorMin             = 0X01FC; // Color
+            static constexpr std::uintptr_t m_ColorMax             = 0X0200; // Color
+            static constexpr std::uintptr_t m_TintMin              = 0X0204; // Color
+            static constexpr std::uintptr_t m_TintMax              = 0X0208; // Color
+            static constexpr std::uintptr_t m_flTintPerc           = 0X020C; // float32
+            static constexpr std::uintptr_t m_flUpdateThreshold    = 0X0210; // float32
+            static constexpr std::uintptr_t m_nTintCP              = 0X0214; // int32
+            static constexpr std::uintptr_t m_nFieldOutput         = 0X0218; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nTintBlendMode       = 0X021C; // ParticleColorBlendMode_t
+            static constexpr std::uintptr_t m_flLightAmplification = 0X0220; // float32
         };
 
         // Has Trivial Constructor
@@ -4638,21 +4929,21 @@ namespace offsets {
         // Construct Allowed
         class C_OP_PositionLock : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_TransformInput   = 0X01D0; // CParticleTransformInput
-            static constexpr std::uintptr_t m_flStartTime_min  = 0X0238; // float32
-            static constexpr std::uintptr_t m_flStartTime_max  = 0X023C; // float32
-            static constexpr std::uintptr_t m_flStartTime_exp  = 0X0240; // float32
-            static constexpr std::uintptr_t m_flEndTime_min    = 0X0244; // float32
-            static constexpr std::uintptr_t m_flEndTime_max    = 0X0248; // float32
-            static constexpr std::uintptr_t m_flEndTime_exp    = 0X024C; // float32
-            static constexpr std::uintptr_t m_flRange          = 0X0250; // float32
-            static constexpr std::uintptr_t m_flRangeBias      = 0X0258; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flJumpThreshold  = 0X03C8; // float32
-            static constexpr std::uintptr_t m_flPrevPosScale   = 0X03CC; // float32
-            static constexpr std::uintptr_t m_bLockRot         = 0X03D0; // bool
-            static constexpr std::uintptr_t m_vecScale         = 0X03D8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nFieldOutput     = 0X0A90; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutputPrev = 0X0A94; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_TransformInput   = 0X01D8; // CParticleTransformInput
+            static constexpr std::uintptr_t m_flStartTime_min  = 0X0240; // float32
+            static constexpr std::uintptr_t m_flStartTime_max  = 0X0244; // float32
+            static constexpr std::uintptr_t m_flStartTime_exp  = 0X0248; // float32
+            static constexpr std::uintptr_t m_flEndTime_min    = 0X024C; // float32
+            static constexpr std::uintptr_t m_flEndTime_max    = 0X0250; // float32
+            static constexpr std::uintptr_t m_flEndTime_exp    = 0X0254; // float32
+            static constexpr std::uintptr_t m_flRange          = 0X0258; // float32
+            static constexpr std::uintptr_t m_flRangeBias      = 0X0260; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flJumpThreshold  = 0X03D0; // float32
+            static constexpr std::uintptr_t m_flPrevPosScale   = 0X03D4; // float32
+            static constexpr std::uintptr_t m_bLockRot         = 0X03D8; // bool
+            static constexpr std::uintptr_t m_vecScale         = 0X03E0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nFieldOutput     = 0X0A98; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutputPrev = 0X0A9C; // ParticleAttributeIndex_t
         };
 
         // Has VTable
@@ -4690,8 +4981,16 @@ namespace offsets {
             static constexpr std::uintptr_t m_flMinTimeRemaining     = 0X005C; // float32
         };
 
-        // Has Trivial Destructor
         // Construct Allowed
+        class GAME_HEADER {
+        public:
+            static constexpr std::uintptr_t m_sComment         = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_nSpawnGroupCount = 0X0008; // int32
+            static constexpr std::uintptr_t m_sLandmark        = 0X0010; // CUtlString
+            static constexpr std::uintptr_t m_sRequiredAddons  = 0X0018; // CUtlString
+        };
+
+        // Has Trivial Destructor
         struct CGameScriptedMoveDef_t {
         public:
             static constexpr std::uintptr_t m_vDestOffset        = 0X0000; // Vector
@@ -4715,6 +5014,13 @@ namespace offsets {
         // Is Absract
         class CBtNodeDecorator : public CBtNode {
         public:
+        };
+
+        // Has Trivial Destructor
+        // Global Type Scope
+        struct SceneOpportunityHandle_t {
+        public:
+            static constexpr std::uintptr_t m_Value = 0X0000; // int32
         };
 
         // Has Trivial Constructor
@@ -4758,16 +5064,16 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_PositionWarp : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecWarpMin               = 0X01D8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_vecWarpMax               = 0X0890; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nScaleControlPointNumber = 0X0F48; // int32
-            static constexpr std::uintptr_t m_nControlPointNumber      = 0X0F4C; // int32
-            static constexpr std::uintptr_t m_nRadiusComponent         = 0X0F50; // int32
-            static constexpr std::uintptr_t m_flWarpTime               = 0X0F54; // float32
-            static constexpr std::uintptr_t m_flWarpStartTime          = 0X0F58; // float32
-            static constexpr std::uintptr_t m_flPrevPosScale           = 0X0F5C; // float32
-            static constexpr std::uintptr_t m_bInvertWarp              = 0X0F60; // bool
-            static constexpr std::uintptr_t m_bUseCount                = 0X0F61; // bool
+            static constexpr std::uintptr_t m_vecWarpMin               = 0X01E0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_vecWarpMax               = 0X0898; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nScaleControlPointNumber = 0X0F50; // int32
+            static constexpr std::uintptr_t m_nControlPointNumber      = 0X0F54; // int32
+            static constexpr std::uintptr_t m_nRadiusComponent         = 0X0F58; // int32
+            static constexpr std::uintptr_t m_flWarpTime               = 0X0F5C; // float32
+            static constexpr std::uintptr_t m_flWarpStartTime          = 0X0F60; // float32
+            static constexpr std::uintptr_t m_flPrevPosScale           = 0X0F64; // float32
+            static constexpr std::uintptr_t m_bInvertWarp              = 0X0F68; // bool
+            static constexpr std::uintptr_t m_bUseCount                = 0X0F69; // bool
         };
 
         // Has VTable
@@ -4797,26 +5103,26 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapAverageScalarValuetoCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nExpression            = 0X01D8; // SetStatisticExpressionType_t
-            static constexpr std::uintptr_t m_flDecimalPlaces        = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X0350; // int32
-            static constexpr std::uintptr_t m_nOutVectorField        = 0X0354; // int32
-            static constexpr std::uintptr_t m_nField                 = 0X0358; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOutputRemap          = 0X0360; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nExpression            = 0X01E0; // SetStatisticExpressionType_t
+            static constexpr std::uintptr_t m_flDecimalPlaces        = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X0358; // int32
+            static constexpr std::uintptr_t m_nOutVectorField        = 0X035C; // int32
+            static constexpr std::uintptr_t m_nField                 = 0X0360; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOutputRemap          = 0X0368; // CParticleRemapFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetPerChildControlPoint : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nChildGroupID            = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFirstControlPoint       = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nNumControlPoints        = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nParticleIncrement       = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nFirstSourcePoint        = 0X0350; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bSetOrientation          = 0X04C0; // bool
-            static constexpr std::uintptr_t m_nOrientationField        = 0X04C4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bNumBasedOnParticleCount = 0X04C8; // bool
+            static constexpr std::uintptr_t m_nChildGroupID            = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFirstControlPoint       = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nNumControlPoints        = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nParticleIncrement       = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nFirstSourcePoint        = 0X0358; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bSetOrientation          = 0X04C8; // bool
+            static constexpr std::uintptr_t m_nOrientationField        = 0X04CC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bNumBasedOnParticleCount = 0X04D0; // bool
         };
 
         // Construct Allowed
@@ -4911,15 +5217,15 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderScreenShake : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flDurationScale  = 0X0220; // float32
-            static constexpr std::uintptr_t m_flRadiusScale    = 0X0224; // float32
-            static constexpr std::uintptr_t m_flFrequencyScale = 0X0228; // float32
-            static constexpr std::uintptr_t m_flAmplitudeScale = 0X022C; // float32
-            static constexpr std::uintptr_t m_nRadiusField     = 0X0230; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nDurationField   = 0X0234; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFrequencyField  = 0X0238; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nAmplitudeField  = 0X023C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFilterCP        = 0X0240; // int32
+            static constexpr std::uintptr_t m_flDurationScale  = 0X0228; // float32
+            static constexpr std::uintptr_t m_flRadiusScale    = 0X022C; // float32
+            static constexpr std::uintptr_t m_flFrequencyScale = 0X0230; // float32
+            static constexpr std::uintptr_t m_flAmplitudeScale = 0X0234; // float32
+            static constexpr std::uintptr_t m_nRadiusField     = 0X0238; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nDurationField   = 0X023C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFrequencyField  = 0X0240; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nAmplitudeField  = 0X0244; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFilterCP        = 0X0248; // int32
         };
 
         // Has Trivial Destructor
@@ -4972,25 +5278,25 @@ namespace offsets {
         // Construct Allowed
         class CParticleFunctionEmitter : public CParticleFunction {
         public:
-            static constexpr std::uintptr_t m_nEmitterIndex = 0X01D0; // int32
+            static constexpr std::uintptr_t m_nEmitterIndex = 0X01D8; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ContinuousEmitter : public CParticleFunctionEmitter {
         public:
-            static constexpr std::uintptr_t m_flEmissionDuration             = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flStartTime                    = 0X0348; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flEmitRate                     = 0X04B8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flEmissionScale                = 0X0628; // float32
-            static constexpr std::uintptr_t m_flScalePerParentParticle       = 0X062C; // float32
-            static constexpr std::uintptr_t m_bInitFromKilledParentParticles = 0X0630; // bool
-            static constexpr std::uintptr_t m_nEventType                     = 0X0634; // EventTypeSelection_t
-            static constexpr std::uintptr_t m_nSnapshotControlPoint          = 0X0638; // int32
-            static constexpr std::uintptr_t m_strSnapshotSubset              = 0X0640; // CUtlString
-            static constexpr std::uintptr_t m_nLimitPerUpdate                = 0X0648; // int32
-            static constexpr std::uintptr_t m_bForceEmitOnFirstUpdate        = 0X064C; // bool
-            static constexpr std::uintptr_t m_bForceEmitOnLastUpdate         = 0X064D; // bool
+            static constexpr std::uintptr_t m_flEmissionDuration             = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flStartTime                    = 0X0350; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flEmitRate                     = 0X04C0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flEmissionScale                = 0X0630; // float32
+            static constexpr std::uintptr_t m_flScalePerParentParticle       = 0X0634; // float32
+            static constexpr std::uintptr_t m_bInitFromKilledParentParticles = 0X0638; // bool
+            static constexpr std::uintptr_t m_nEventType                     = 0X063C; // EventTypeSelection_t
+            static constexpr std::uintptr_t m_nSnapshotControlPoint          = 0X0640; // int32
+            static constexpr std::uintptr_t m_strSnapshotSubset              = 0X0648; // CUtlString
+            static constexpr std::uintptr_t m_nLimitPerUpdate                = 0X0650; // int32
+            static constexpr std::uintptr_t m_bForceEmitOnFirstUpdate        = 0X0654; // bool
+            static constexpr std::uintptr_t m_bForceEmitOnLastUpdate         = 0X0655; // bool
         };
 
         // Has Trivial Constructor
@@ -5138,6 +5444,12 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
+        struct DebugSnapshotBaseStructuredData_t {
+        public:
+        };
+
+        // Has VTable
         // Is Absract
         class CNavVolume {
         public:
@@ -5153,56 +5465,56 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_InitialSequenceFromModel : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01DC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutputAnim    = 0X01E0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin          = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flInputMax          = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flOutputMin         = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flOutputMax         = 0X01F0; // float32
-            static constexpr std::uintptr_t m_nSetMethod          = 0X01F4; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutputAnim    = 0X01E8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin          = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flInputMax          = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flOutputMin         = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flOutputMax         = 0X01F8; // float32
+            static constexpr std::uintptr_t m_nSetMethod          = 0X01FC; // ParticleSetMethod_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_FadeInSimple : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flFadeInTime = 0X01D0; // float32
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flFadeInTime = 0X01D8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01DC; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_OffsetVectorToVector : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldInput          = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput         = 0X01DC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecOutputMin         = 0X01E0; // Vector
-            static constexpr std::uintptr_t m_vecOutputMax         = 0X01EC; // Vector
-            static constexpr std::uintptr_t m_randomnessParameters = 0X01F8; // CRandomNumberGeneratorParameters
+            static constexpr std::uintptr_t m_nFieldInput          = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput         = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecOutputMin         = 0X01E8; // Vector
+            static constexpr std::uintptr_t m_vecOutputMax         = 0X01F4; // Vector
+            static constexpr std::uintptr_t m_randomnessParameters = 0X0200; // CRandomNumberGeneratorParameters
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ModelCull : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_bBoundBox           = 0X01D4; // bool
-            static constexpr std::uintptr_t m_bCullOutside        = 0X01D5; // bool
-            static constexpr std::uintptr_t m_bUseBones           = 0X01D6; // bool
-            static constexpr std::uintptr_t m_HitboxSetName       = 0X01D7; // char[128]
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_bBoundBox           = 0X01DC; // bool
+            static constexpr std::uintptr_t m_bCullOutside        = 0X01DD; // bool
+            static constexpr std::uintptr_t m_bUseBones           = 0X01DE; // bool
+            static constexpr std::uintptr_t m_HitboxSetName       = 0X01DF; // char[128]
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_FadeAndKillForTracers : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flStartFadeInTime  = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flEndFadeInTime    = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flStartFadeOutTime = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flEndFadeOutTime   = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flStartAlpha       = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flEndAlpha         = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flStartFadeInTime  = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flEndFadeInTime    = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flStartFadeOutTime = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flEndFadeOutTime   = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flStartAlpha       = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flEndAlpha         = 0X01EC; // float32
         };
 
         // Has Trivial Constructor
@@ -5242,19 +5554,19 @@ namespace offsets {
         // Construct Allowed
         class C_OP_CollideWithParentParticles : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_flParentRadiusScale = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRadiusScale       = 0X0340; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flParentRadiusScale = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRadiusScale       = 0X0348; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LerpToInitialPosition : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_flInterpolation     = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nCacheField         = 0X0348; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flScale             = 0X0350; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_vecScale            = 0X04C0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_flInterpolation     = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nCacheField         = 0X0350; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flScale             = 0X0358; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_vecScale            = 0X04C8; // CParticleCollectionVecInput
         };
 
         // Has Trivial Destructor
@@ -5407,7 +5719,7 @@ namespace offsets {
         // Has VTable
         class CNavVolumeSphere : public CNavVolume {
         public:
-            static constexpr std::uintptr_t m_vCenter  = 0X0078; // Vector
+            static constexpr std::uintptr_t m_vCenter  = 0X0078; // VectorWS
             static constexpr std::uintptr_t m_flRadius = 0X0084; // float32
         };
 
@@ -5439,8 +5751,8 @@ namespace offsets {
         // Construct Allowed
         class C_OP_NormalizeVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flScale      = 0X01D4; // float32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flScale      = 0X01DC; // float32
         };
 
         // Has VTable
@@ -5509,20 +5821,21 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapScalarEndCap : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldInput  = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin   = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flInputMax   = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flOutputMin  = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMax  = 0X01E4; // float32
+            static constexpr std::uintptr_t m_nFieldInput  = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin   = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flInputMax   = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flOutputMin  = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMax  = 0X01EC; // float32
         };
 
         // Construct Allowed
         class CSoundContainerReference {
         public:
-            static constexpr std::uintptr_t m_bUseReference = 0X0000; // bool
-            static constexpr std::uintptr_t m_sound         = 0X0008; // CStrongHandle<InfoForResourceTypeCVoiceContainerBase>
-            static constexpr std::uintptr_t m_pSound        = 0X0010; // CVoiceContainerBase*
+            static constexpr std::uintptr_t m_namespace     = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_bUseReference = 0X0008; // bool
+            static constexpr std::uintptr_t m_sound         = 0X0010; // CStrongHandle<InfoForResourceTypeCVoiceContainerBase>
+            static constexpr std::uintptr_t m_pSound        = 0X0018; // CVoiceContainerBase*
         };
 
         // Has VTable
@@ -5573,15 +5886,25 @@ namespace offsets {
         public:
         };
 
+        // Construct Allowed
+        struct levellist_t {
+        public:
+            static constexpr std::uintptr_t m_sMapName          = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_sLandmarkName     = 0X0008; // CUtlString
+            static constexpr std::uintptr_t m_hEntLandmark      = 0X0010; // CEntityHandle
+            static constexpr std::uintptr_t m_vecLandmarkOrigin = 0X0014; // Vector
+            static constexpr std::uintptr_t m_vecLandmarkAngles = 0X0020; // QAngle
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_RepeatedTriggerChildGroup : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nChildGroupID       = 0X01D8; // int32
-            static constexpr std::uintptr_t m_flClusterRefireTime = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flClusterSize       = 0X0350; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flClusterCooldown   = 0X04C0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bLimitChildCount    = 0X0630; // bool
+            static constexpr std::uintptr_t m_nChildGroupID       = 0X01E0; // int32
+            static constexpr std::uintptr_t m_flClusterRefireTime = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flClusterSize       = 0X0358; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flClusterCooldown   = 0X04C8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bLimitChildCount    = 0X0638; // bool
         };
 
         // Has VTable
@@ -5595,14 +5918,14 @@ namespace offsets {
         // Construct Allowed
         class C_OP_TurbulenceForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_flNoiseCoordScale0 = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flNoiseCoordScale1 = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flNoiseCoordScale2 = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flNoiseCoordScale3 = 0X01EC; // float32
-            static constexpr std::uintptr_t m_vecNoiseAmount0    = 0X01F0; // Vector
-            static constexpr std::uintptr_t m_vecNoiseAmount1    = 0X01FC; // Vector
-            static constexpr std::uintptr_t m_vecNoiseAmount2    = 0X0208; // Vector
-            static constexpr std::uintptr_t m_vecNoiseAmount3    = 0X0214; // Vector
+            static constexpr std::uintptr_t m_flNoiseCoordScale0 = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flNoiseCoordScale1 = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flNoiseCoordScale2 = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flNoiseCoordScale3 = 0X01F4; // float32
+            static constexpr std::uintptr_t m_vecNoiseAmount0    = 0X01F8; // Vector
+            static constexpr std::uintptr_t m_vecNoiseAmount1    = 0X0204; // Vector
+            static constexpr std::uintptr_t m_vecNoiseAmount2    = 0X0210; // Vector
+            static constexpr std::uintptr_t m_vecNoiseAmount3    = 0X021C; // Vector
         };
 
         // Has Trivial Destructor
@@ -5617,13 +5940,13 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapParticleCountToScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nInputMin    = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nInputMax    = 0X0348; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flOutputMin  = 0X04B8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flOutputMax  = 0X0628; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bActiveRange = 0X0798; // bool
-            static constexpr std::uintptr_t m_nSetMethod   = 0X079C; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nInputMin    = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nInputMax    = 0X0350; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOutputMin  = 0X04C0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOutputMax  = 0X0630; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bActiveRange = 0X07A0; // bool
+            static constexpr std::uintptr_t m_nSetMethod   = 0X07A4; // ParticleSetMethod_t
         };
 
         // Has Trivial Constructor
@@ -5672,28 +5995,28 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RingWave : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_TransformInput      = 0X01D8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_flParticlesPerOrbit = 0X0240; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flInitialRadius     = 0X03B0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flThickness         = 0X0520; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInitialSpeedMin   = 0X0690; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInitialSpeedMax   = 0X0800; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRoll              = 0X0970; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flPitch             = 0X0AE0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flYaw               = 0X0C50; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bEvenDistribution   = 0X0DC0; // bool
-            static constexpr std::uintptr_t m_bXYVelocityOnly     = 0X0DC1; // bool
+            static constexpr std::uintptr_t m_TransformInput      = 0X01E0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_flParticlesPerOrbit = 0X0248; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInitialRadius     = 0X03B8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flThickness         = 0X0528; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInitialSpeedMin   = 0X0698; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInitialSpeedMax   = 0X0808; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRoll              = 0X0978; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flPitch             = 0X0AE8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flYaw               = 0X0C58; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bEvenDistribution   = 0X0DC8; // bool
+            static constexpr std::uintptr_t m_bXYVelocityOnly     = 0X0DC9; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_BoxConstraint : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_vecMin            = 0X01D0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_vecMax            = 0X0888; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nCP               = 0X0F40; // int32
-            static constexpr std::uintptr_t m_bLocalSpace       = 0X0F44; // bool
-            static constexpr std::uintptr_t m_bAccountForRadius = 0X0F45; // bool
+            static constexpr std::uintptr_t m_vecMin            = 0X01D8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_vecMax            = 0X0890; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nCP               = 0X0F48; // int32
+            static constexpr std::uintptr_t m_bLocalSpace       = 0X0F4C; // bool
+            static constexpr std::uintptr_t m_bAccountForRadius = 0X0F4D; // bool
         };
 
         // Construct Allowed
@@ -5721,25 +6044,25 @@ namespace offsets {
         // Construct Allowed
         class C_OP_LockToSavedSequentialPathV2 : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flFadeStart = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flFadeEnd   = 0X01D4; // float32
-            static constexpr std::uintptr_t m_bCPPairs    = 0X01D8; // bool
-            static constexpr std::uintptr_t m_PathParams  = 0X01E0; // CPathParameters
+            static constexpr std::uintptr_t m_flFadeStart = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flFadeEnd   = 0X01DC; // float32
+            static constexpr std::uintptr_t m_bCPPairs    = 0X01E0; // bool
+            static constexpr std::uintptr_t m_PathParams  = 0X01F0; // CPathParameters
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_DistanceBetweenVecs : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecPoint1    = 0X01D8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecPoint2    = 0X0890; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flInputMin   = 0X0F48; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInputMax   = 0X10B8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMin  = 0X1228; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMax  = 0X1398; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nSetMethod   = 0X1508; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bDeltaTime   = 0X150C; // bool
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecPoint1    = 0X01E0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecPoint2    = 0X0898; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flInputMin   = 0X0F50; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInputMax   = 0X10C0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMin  = 0X1230; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMax  = 0X13A0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nSetMethod   = 0X1510; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bDeltaTime   = 0X1514; // bool
         };
 
         // Construct Allowed
@@ -5798,26 +6121,20 @@ namespace offsets {
             static constexpr std::uintptr_t m_flMaxHighlightLum        = 0X0038; // float32
         };
 
-        // Has Trivial Destructor
-        struct DestructibleHitGroupToDestroy_t {
-        public:
-            static constexpr std::uintptr_t m_nHitGroup       = 0X0000; // HitGroup_t
-            static constexpr std::uintptr_t m_nMaxDamageLevel = 0X0004; // int32
-        };
-
         struct CSAdditionalPerRoundStats_t {
         public:
-            static constexpr std::uintptr_t m_numChickensKilled      = 0X0000; // int32
-            static constexpr std::uintptr_t m_killsWhileBlind        = 0X0004; // int32
-            static constexpr std::uintptr_t m_bombCarrierkills       = 0X0008; // int32
-            static constexpr std::uintptr_t m_flBurnDamageInflicted  = 0X000C; // float32
-            static constexpr std::uintptr_t m_flBlastDamageInflicted = 0X0010; // float32
-            static constexpr std::uintptr_t m_iDinks                 = 0X0014; // int32
-            static constexpr std::uintptr_t m_bFreshStartThisRound   = 0X0018; // bool
-            static constexpr std::uintptr_t m_bBombPlantedAndAlive   = 0X0019; // bool
-            static constexpr std::uintptr_t m_nDefuseStarts          = 0X001C; // int32
-            static constexpr std::uintptr_t m_nHostagePickUps        = 0X0020; // int32
-            static constexpr std::uintptr_t m_numTeammatesFlashed    = 0X0024; // int32
+            static constexpr std::uintptr_t m_numChickensKilled        = 0X0000; // int32
+            static constexpr std::uintptr_t m_killsWhileBlind          = 0X0004; // int32
+            static constexpr std::uintptr_t m_bombCarrierkills         = 0X0008; // int32
+            static constexpr std::uintptr_t m_flBurnDamageInflicted    = 0X000C; // float32
+            static constexpr std::uintptr_t m_flBlastDamageInflicted   = 0X0010; // float32
+            static constexpr std::uintptr_t m_iDinks                   = 0X0014; // int32
+            static constexpr std::uintptr_t m_bFreshStartThisRound     = 0X0018; // bool
+            static constexpr std::uintptr_t m_bBombPlantedAndAlive     = 0X0019; // bool
+            static constexpr std::uintptr_t m_nDefuseStarts            = 0X001C; // int32
+            static constexpr std::uintptr_t m_nHostagePickUps          = 0X0020; // int32
+            static constexpr std::uintptr_t m_numTeammatesFlashed      = 0X0024; // int32
+            static constexpr std::uintptr_t m_strAnnotationsWorkshopId = 0X0028; // CUtlString
         };
 
         // Has Trivial Destructor
@@ -5943,18 +6260,18 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderSound : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flDurationScale         = 0X0220; // float32
-            static constexpr std::uintptr_t m_flSndLvlScale           = 0X0224; // float32
-            static constexpr std::uintptr_t m_flPitchScale            = 0X0228; // float32
-            static constexpr std::uintptr_t m_flVolumeScale           = 0X022C; // float32
-            static constexpr std::uintptr_t m_nSndLvlField            = 0X0230; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nDurationField          = 0X0234; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nPitchField             = 0X0238; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nVolumeField            = 0X023C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nChannel                = 0X0240; // int32
-            static constexpr std::uintptr_t m_nCPReference            = 0X0244; // int32
-            static constexpr std::uintptr_t m_pszSoundName            = 0X0248; // char[256]
-            static constexpr std::uintptr_t m_bSuppressStopSoundEvent = 0X0348; // bool
+            static constexpr std::uintptr_t m_flDurationScale         = 0X0228; // float32
+            static constexpr std::uintptr_t m_flSndLvlScale           = 0X022C; // float32
+            static constexpr std::uintptr_t m_flPitchScale            = 0X0230; // float32
+            static constexpr std::uintptr_t m_flVolumeScale           = 0X0234; // float32
+            static constexpr std::uintptr_t m_nSndLvlField            = 0X0238; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nDurationField          = 0X023C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nPitchField             = 0X0240; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nVolumeField            = 0X0244; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nChannel                = 0X0248; // int32
+            static constexpr std::uintptr_t m_nCPReference            = 0X024C; // int32
+            static constexpr std::uintptr_t m_pszSoundName            = 0X0250; // char[256]
+            static constexpr std::uintptr_t m_bSuppressStopSoundEvent = 0X0350; // bool
         };
 
         // Has Trivial Destructor
@@ -6042,9 +6359,9 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetControlPointFieldToWater : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nSourceCP = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nDestCP   = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nCPField  = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nSourceCP = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nDestCP   = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nCPField  = 0X01E8; // int32
         };
 
         // Has VTable
@@ -6121,38 +6438,45 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        struct DebugDrawBoneTransforms_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t vecBones = 0X0010; // CUtlVectorFixedGrowable<CTransform,128>
+        };
+
+        // Has VTable
+        // Construct Allowed
         class C_OP_SetControlPointFieldToScalarExpression : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nExpression     = 0X01D8; // ScalarExpressionType_t
-            static constexpr std::uintptr_t m_flInput1        = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flInput2        = 0X0350; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flOutputRemap   = 0X04C0; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nOutputCP       = 0X0630; // int32
-            static constexpr std::uintptr_t m_nOutVectorField = 0X0634; // int32
-            static constexpr std::uintptr_t m_flInterpolation = 0X0638; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nExpression     = 0X01E0; // ScalarExpressionType_t
+            static constexpr std::uintptr_t m_flInput1        = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInput2        = 0X0358; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOutputRemap   = 0X04C8; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nOutputCP       = 0X0638; // int32
+            static constexpr std::uintptr_t m_nOutVectorField = 0X063C; // int32
+            static constexpr std::uintptr_t m_flInterpolation = 0X0640; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ControlPointToRadialScreenSpace : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCPIn       = 0X01D8; // int32
-            static constexpr std::uintptr_t m_vecCP1Pos   = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_nCPOut      = 0X01E8; // int32
-            static constexpr std::uintptr_t m_nCPOutField = 0X01EC; // int32
-            static constexpr std::uintptr_t m_nCPSSPosOut = 0X01F0; // int32
+            static constexpr std::uintptr_t m_nCPIn       = 0X01E0; // int32
+            static constexpr std::uintptr_t m_vecCP1Pos   = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_nCPOut      = 0X01F0; // int32
+            static constexpr std::uintptr_t m_nCPOutField = 0X01F4; // int32
+            static constexpr std::uintptr_t m_nCPSSPosOut = 0X01F8; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderStatusEffectCitadel : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_pTextureColorWarp = 0X0220; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureNormal    = 0X0228; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureMetalness = 0X0230; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureRoughness = 0X0238; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureSelfIllum = 0X0240; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureDetail    = 0X0248; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureColorWarp = 0X0228; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureNormal    = 0X0230; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureMetalness = 0X0238; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureRoughness = 0X0240; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureSelfIllum = 0X0248; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureDetail    = 0X0250; // CStrongHandle<InfoForResourceTypeCTextureBase>
         };
 
         // Has VTable
@@ -6209,22 +6533,22 @@ namespace offsets {
         // Construct Allowed
         class C_OP_PointVectorAtNextParticle : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput    = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInterpolation = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFieldOutput    = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInterpolation = 0X01E0; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_LifespanFromVelocity : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecComponentScale  = 0X01D8; // Vector
-            static constexpr std::uintptr_t m_flTraceOffset      = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flTraceTolerance   = 0X01EC; // float32
-            static constexpr std::uintptr_t m_nMaxPlanes         = 0X01F0; // int32
-            static constexpr std::uintptr_t m_CollisionGroupName = 0X01F8; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet          = 0X0278; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_bIncludeWater      = 0X0288; // bool
+            static constexpr std::uintptr_t m_vecComponentScale  = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_flTraceOffset      = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flTraceTolerance   = 0X01F4; // float32
+            static constexpr std::uintptr_t m_nMaxPlanes         = 0X01F8; // int32
+            static constexpr std::uintptr_t m_CollisionGroupName = 0X0200; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet          = 0X0280; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_bIncludeWater      = 0X0290; // bool
         };
 
         // Construct Allowed
@@ -6262,16 +6586,16 @@ namespace offsets {
         // Construct Allowed
         class CNmTransitionEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_rule = 0X0020; // NmTransitionRule_t
-            static constexpr std::uintptr_t m_ID   = 0X0028; // CGlobalSymbol
+            static constexpr std::uintptr_t m_rule = 0X0018; // NmTransitionRule_t
+            static constexpr std::uintptr_t m_ID   = 0X0020; // CGlobalSymbol
         };
 
         // Has VTable
         // Construct Allowed
         class CNmFloatCurveEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_ID    = 0X0020; // CGlobalSymbol
-            static constexpr std::uintptr_t m_curve = 0X0028; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_ID    = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_curve = 0X0020; // CPiecewiseCurve
         };
 
         // Has Trivial Destructor
@@ -6287,6 +6611,20 @@ namespace offsets {
         struct ExternalAnimGraphHandle_t {
         public:
             static constexpr std::uintptr_t m_Value = 0X0000; // uint32
+        };
+
+        // Construct Allowed
+        struct DestructiblePartDamageRequest_t {
+        public:
+            static constexpr std::uintptr_t m_nHitGroup            = 0X0000; // HitGroup_t
+            static constexpr std::uintptr_t m_nDamageLevel         = 0X0004; // int32
+            static constexpr std::uintptr_t m_nDesiredHealth       = 0X0008; // uint16
+            static constexpr std::uintptr_t m_nDestroyFlags        = 0X000C; // EDestructibleParts_DestroyParameterFlags
+            static constexpr std::uintptr_t m_nDamageType          = 0X0010; // DamageTypes_t
+            static constexpr std::uintptr_t m_flBreakDamage        = 0X0014; // float32
+            static constexpr std::uintptr_t m_flBreakDamageRadius  = 0X0018; // float32
+            static constexpr std::uintptr_t m_vWsBreakDamageOrigin = 0X001C; // VectorWS
+            static constexpr std::uintptr_t m_vWsBreakDamageForce  = 0X0028; // Vector
         };
 
         // Has VTable
@@ -6392,23 +6730,36 @@ namespace offsets {
             static constexpr std::uintptr_t flwaitSound    = 0X0018; // GameTime_t
         };
 
+        // Has Trivial Destructor
+        struct FuncMoverMovementSummary_t {
+        public:
+            static constexpr std::uintptr_t flStartT        = 0X0000; // float32
+            static constexpr std::uintptr_t flEndT          = 0X0004; // float32
+            static constexpr std::uintptr_t nStartNodeIndex = 0X0008; // int32
+            static constexpr std::uintptr_t nStopNodeIndex  = 0X000C; // int32
+            static constexpr std::uintptr_t nMovementMode   = 0X0010; // int32
+            static constexpr std::uintptr_t nFlags          = 0X0014; // FuncMoverMovementSummaryFlags_t
+            static constexpr std::uintptr_t nTick           = 0X0018; // GameTick_t
+            static constexpr std::uintptr_t hPathMover      = 0X001C; // CHandle<CPathMover>
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_QuantizeFloat : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_InputValue   = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nOutputField = 0X0340; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_InputValue   = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nOutputField = 0X0348; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_BasicMovement : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_Gravity              = 0X01D0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_fDrag                = 0X0888; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_massControls         = 0X09F8; // CParticleMassCalculationParameters
-            static constexpr std::uintptr_t m_nMaxConstraintPasses = 0X0E50; // int32
-            static constexpr std::uintptr_t m_bUseNewCode          = 0X0E54; // bool
+            static constexpr std::uintptr_t m_Gravity              = 0X01D8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_fDrag                = 0X0890; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_massControls         = 0X0A00; // CParticleMassCalculationParameters
+            static constexpr std::uintptr_t m_nMaxConstraintPasses = 0X0E58; // int32
+            static constexpr std::uintptr_t m_bUseNewCode          = 0X0E5C; // bool
         };
 
         // Construct Allowed
@@ -6479,28 +6830,28 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_CreationNoise : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput     = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bAbsVal          = 0X01DC; // bool
-            static constexpr std::uintptr_t m_bAbsValInv       = 0X01DD; // bool
-            static constexpr std::uintptr_t m_flOffset         = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMin      = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flOutputMax      = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flNoiseScale     = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flNoiseScaleLoc  = 0X01F0; // float32
-            static constexpr std::uintptr_t m_vecOffsetLoc     = 0X01F4; // Vector
-            static constexpr std::uintptr_t m_flWorldTimeScale = 0X0200; // float32
+            static constexpr std::uintptr_t m_nFieldOutput     = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bAbsVal          = 0X01E4; // bool
+            static constexpr std::uintptr_t m_bAbsValInv       = 0X01E5; // bool
+            static constexpr std::uintptr_t m_flOffset         = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMin      = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flOutputMax      = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flNoiseScale     = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flNoiseScaleLoc  = 0X01F8; // float32
+            static constexpr std::uintptr_t m_vecOffsetLoc     = 0X01FC; // Vector
+            static constexpr std::uintptr_t m_flWorldTimeScale = 0X0208; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateWithinBox : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecMin               = 0X01D8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecMax               = 0X0890; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_nControlPointNumber  = 0X0F48; // int32
-            static constexpr std::uintptr_t m_bLocalSpace          = 0X0F4C; // bool
-            static constexpr std::uintptr_t m_randomnessParameters = 0X0F50; // CRandomNumberGeneratorParameters
-            static constexpr std::uintptr_t m_bUseNewCode          = 0X0F58; // bool
+            static constexpr std::uintptr_t m_vecMin               = 0X01E0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecMax               = 0X0898; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nControlPointNumber  = 0X0F50; // int32
+            static constexpr std::uintptr_t m_bLocalSpace          = 0X0F54; // bool
+            static constexpr std::uintptr_t m_randomnessParameters = 0X0F58; // CRandomNumberGeneratorParameters
+            static constexpr std::uintptr_t m_bUseNewCode          = 0X0F60; // bool
         };
 
         // Has VTable
@@ -6559,6 +6910,16 @@ namespace offsets {
             static constexpr std::uintptr_t m_bValue = 0X0010; // bool
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CWayPointHelperInstanceData {
+        public:
+            static constexpr std::uintptr_t m_vMovement                = 0X0000; // Vector
+            static constexpr std::uintptr_t m_vRotation                = 0X000C; // QAngle
+            static constexpr std::uintptr_t m_vWaypointPosWS           = 0X0018; // Vector
+            static constexpr std::uintptr_t m_bStopUpdatingWaypointPos = 0X0024; // bool
+        };
+
         // Has VTable
         // Construct Allowed
         class CNmZeroPoseNode__CDefinition : public CNmPoseNode__CDefinition {
@@ -6572,6 +6933,25 @@ namespace offsets {
             static constexpr std::uintptr_t m_LoopState   = 0X0000; // EngineLoopState_t
             static constexpr std::uintptr_t m_flRealTime  = 0X0028; // float32
             static constexpr std::uintptr_t m_flFrameTime = 0X002C; // float32
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CCS2UIPawnGraphController : public CAnimGraphControllerBase {
+        public:
+            static constexpr std::uintptr_t m_nAnimationSeed        = 0X0088; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_characterMode         = 0X00A0; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_nTeamPreviewVariant   = 0X00B8; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_nTeamPreviewRandom    = 0X00D0; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_nTeamPreviewPosition  = 0X00E8; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_endOfMatchCelebration = 0X0100; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_action                = 0X0118; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_bannerAnimation       = 0X0130; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_weaponCategory        = 0X0148; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_weaponType            = 0X0160; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_weaponState           = 0X0178; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_inspectTurnAngle      = 0X0190; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_bCT                   = 0X01A8; // CAnimGraph2ParamOptionalRef<bool>
         };
 
         class CRR_Response {
@@ -6592,14 +6972,14 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapScalarOnceTimed : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_bProportional = 0X01D0; // bool
-            static constexpr std::uintptr_t m_nFieldInput   = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput  = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin    = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flInputMax    = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMin   = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flOutputMax   = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flRemapTime   = 0X01EC; // float32
+            static constexpr std::uintptr_t m_bProportional = 0X01D8; // bool
+            static constexpr std::uintptr_t m_nFieldInput   = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput  = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin    = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flInputMax    = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMin   = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flOutputMax   = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flRemapTime   = 0X01F4; // float32
         };
 
         // Construct Allowed
@@ -6616,33 +6996,42 @@ namespace offsets {
         // Construct Allowed
         class C_OP_OrientTo2dDirection : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flRotOffset    = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flSpinStrength = 0X01D4; // float32
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flRotOffset    = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flSpinStrength = 0X01DC; // float32
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X01E0; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_VelocityMatchingForce : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flDirScale         = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flSpdScale         = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flNeighborDistance = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flFacingStrength   = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bUseAABB           = 0X01E0; // bool
-            static constexpr std::uintptr_t m_nCPBroadcast       = 0X01E4; // int32
+            static constexpr std::uintptr_t m_flDirScale         = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flSpdScale         = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flNeighborDistance = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flFacingStrength   = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bUseAABB           = 0X01E8; // bool
+            static constexpr std::uintptr_t m_nCPBroadcast       = 0X01EC; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LockPoints : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nMinCol       = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nMaxCol       = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nMinRow       = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nMaxRow       = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nControlPoint = 0X01E0; // int32
-            static constexpr std::uintptr_t m_flBlendValue  = 0X01E4; // float32
+            static constexpr std::uintptr_t m_nMinCol       = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nMaxCol       = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nMinRow       = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nMaxRow       = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nControlPoint = 0X01E8; // int32
+            static constexpr std::uintptr_t m_flBlendValue  = 0X01EC; // float32
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CBlend2DInstanceData {
+        public:
+            static constexpr std::uintptr_t m_dampedValue = 0X0008; // Vector2D
+            static constexpr std::uintptr_t m_flCycle     = 0X0044; // float32
+            static constexpr std::uintptr_t m_flPrevCycle = 0X0048; // float32
         };
 
         // Has VTable
@@ -6672,38 +7061,38 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t nSummarisedCount = 0X0000; // int32
             static constexpr std::uintptr_t info             = 0X0008; // CTakeDamageInfo
-            static constexpr std::uintptr_t result           = 0X0128; // CTakeDamageResult
-            static constexpr std::uintptr_t hTarget          = 0X0158; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t result           = 0X0120; // CTakeDamageResult
+            static constexpr std::uintptr_t hTarget          = 0X0170; // CHandle<CBaseEntity>
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateOnModel : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_modelInput                        = 0X01D8; // CParticleModelInput
-            static constexpr std::uintptr_t m_transformInput                    = 0X0238; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nForceInModel                     = 0X02A0; // int32
-            static constexpr std::uintptr_t m_bScaleToVolume                    = 0X02A4; // bool
-            static constexpr std::uintptr_t m_bEvenDistribution                 = 0X02A5; // bool
-            static constexpr std::uintptr_t m_nDesiredHitbox                    = 0X02A8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nHitboxValueFromControlPointIndex = 0X0418; // int32
-            static constexpr std::uintptr_t m_vecHitBoxScale                    = 0X0420; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_flBoneVelocity                    = 0X0AD8; // float32
-            static constexpr std::uintptr_t m_flMaxBoneVelocity                 = 0X0ADC; // float32
-            static constexpr std::uintptr_t m_vecDirectionBias                  = 0X0AE0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_HitboxSetName                     = 0X1198; // char[128]
-            static constexpr std::uintptr_t m_bLocalCoords                      = 0X1218; // bool
-            static constexpr std::uintptr_t m_bUseBones                         = 0X1219; // bool
-            static constexpr std::uintptr_t m_bUseMesh                          = 0X121A; // bool
-            static constexpr std::uintptr_t m_flShellSize                       = 0X1220; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_modelInput                        = 0X01E0; // CParticleModelInput
+            static constexpr std::uintptr_t m_transformInput                    = 0X0240; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nForceInModel                     = 0X02A8; // int32
+            static constexpr std::uintptr_t m_bScaleToVolume                    = 0X02AC; // bool
+            static constexpr std::uintptr_t m_bEvenDistribution                 = 0X02AD; // bool
+            static constexpr std::uintptr_t m_nDesiredHitbox                    = 0X02B0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nHitboxValueFromControlPointIndex = 0X0420; // int32
+            static constexpr std::uintptr_t m_vecHitBoxScale                    = 0X0428; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_flBoneVelocity                    = 0X0AE0; // float32
+            static constexpr std::uintptr_t m_flMaxBoneVelocity                 = 0X0AE4; // float32
+            static constexpr std::uintptr_t m_vecDirectionBias                  = 0X0AE8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_HitboxSetName                     = 0X11A0; // char[128]
+            static constexpr std::uintptr_t m_bLocalCoords                      = 0X1220; // bool
+            static constexpr std::uintptr_t m_bUseBones                         = 0X1221; // bool
+            static constexpr std::uintptr_t m_bUseMesh                          = 0X1222; // bool
+            static constexpr std::uintptr_t m_flShellSize                       = 0X1228; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointOrientationToCPVelocity : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCPInput  = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nCPOutput = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nCPInput  = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nCPOutput = 0X01E4; // int32
         };
 
         // Has Trivial Constructor
@@ -6758,11 +7147,11 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SelectivelyEnableChildren : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nChildGroupID        = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nFirstChild          = 0X0348; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nNumChildrenToEnable = 0X04B8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bPlayEndcapOnStop    = 0X0628; // bool
-            static constexpr std::uintptr_t m_bDestroyImmediately  = 0X0629; // bool
+            static constexpr std::uintptr_t m_nChildGroupID        = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nFirstChild          = 0X0350; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nNumChildrenToEnable = 0X04C0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bPlayEndcapOnStop    = 0X0630; // bool
+            static constexpr std::uintptr_t m_bDestroyImmediately  = 0X0631; // bool
         };
 
         // Has Trivial Constructor
@@ -6779,11 +7168,19 @@ namespace offsets {
         // Construct Allowed
         struct PulseGraphExecutionHistoryCursorDesc_t {
         public:
-            static constexpr std::uintptr_t vecAncestorCursorIDs = 0X0000; // CUtlVector<PulseCursorID_t>
-            static constexpr std::uintptr_t nSpawnNodeID         = 0X0018; // PulseDocNodeID_t
-            static constexpr std::uintptr_t nRetiredAtNodeID     = 0X001C; // PulseDocNodeID_t
-            static constexpr std::uintptr_t flLastReferenced     = 0X0020; // float32
-            static constexpr std::uintptr_t nLastValidEntryIdx   = 0X0024; // int32
+            static constexpr std::uintptr_t vecAncestorCursorIDs        = 0X0000; // CUtlVector<PulseCursorID_t>
+            static constexpr std::uintptr_t nSpawnNodeID                = 0X0018; // PulseDocNodeID_t
+            static constexpr std::uintptr_t nRetiredAtNodeID            = 0X001C; // PulseDocNodeID_t
+            static constexpr std::uintptr_t flLastReferenced            = 0X0020; // float32
+            static constexpr std::uintptr_t nLastValidEntryIdx          = 0X0024; // int32
+            static constexpr std::uintptr_t bWasAnObservableComputation = 0X0028; // bool
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class SlopeData {
+        public:
+            static constexpr std::uintptr_t m_vSlopeNormal = 0X0000; // Vector
         };
 
         // Has VTable
@@ -6807,122 +7204,145 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetFromCPSnapshot : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_strSnapshotSubset   = 0X01D8; // CUtlString
-            static constexpr std::uintptr_t m_nAttributeToRead    = 0X01E0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nAttributeToWrite   = 0X01E4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nLocalSpaceCP       = 0X01E8; // int32
-            static constexpr std::uintptr_t m_bRandom             = 0X01EC; // bool
-            static constexpr std::uintptr_t m_bReverse            = 0X01ED; // bool
-            static constexpr std::uintptr_t m_nRandomSeed         = 0X01F0; // int32
-            static constexpr std::uintptr_t m_nSnapShotStartPoint = 0X01F8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nSnapShotIncrement  = 0X0368; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flInterpolation     = 0X04D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bSubSample          = 0X0648; // bool
-            static constexpr std::uintptr_t m_bPrev               = 0X0649; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_strSnapshotSubset   = 0X01E0; // CUtlString
+            static constexpr std::uintptr_t m_nAttributeToRead    = 0X01E8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nAttributeToWrite   = 0X01EC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nLocalSpaceCP       = 0X01F0; // int32
+            static constexpr std::uintptr_t m_bRandom             = 0X01F4; // bool
+            static constexpr std::uintptr_t m_bReverse            = 0X01F5; // bool
+            static constexpr std::uintptr_t m_nRandomSeed         = 0X01F8; // int32
+            static constexpr std::uintptr_t m_nSnapShotStartPoint = 0X0200; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nSnapShotIncrement  = 0X0370; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInterpolation     = 0X04E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bSubSample          = 0X0650; // bool
+            static constexpr std::uintptr_t m_bPrev               = 0X0651; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ClampVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecOutputMin = 0X01D8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecOutputMax = 0X0890; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecOutputMin = 0X01E0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecOutputMax = 0X0898; // CPerParticleVecInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapDensityToVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flRadiusScale        = 0X01D0; // float32
-            static constexpr std::uintptr_t m_nFieldOutput         = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flDensityMin         = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flDensityMax         = 0X01DC; // float32
-            static constexpr std::uintptr_t m_vecOutputMin         = 0X01E0; // Vector
-            static constexpr std::uintptr_t m_vecOutputMax         = 0X01EC; // Vector
-            static constexpr std::uintptr_t m_bUseParentDensity    = 0X01F8; // bool
-            static constexpr std::uintptr_t m_nVoxelGridResolution = 0X01FC; // int32
+            static constexpr std::uintptr_t m_flRadiusScale        = 0X01D8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput         = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flDensityMin         = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flDensityMax         = 0X01E4; // float32
+            static constexpr std::uintptr_t m_vecOutputMin         = 0X01E8; // Vector
+            static constexpr std::uintptr_t m_vecOutputMax         = 0X01F4; // Vector
+            static constexpr std::uintptr_t m_bUseParentDensity    = 0X0200; // bool
+            static constexpr std::uintptr_t m_nVoxelGridResolution = 0X0204; // int32
+        };
+
+        class CSceneOpportunity {
+        public:
+            static constexpr std::uintptr_t m_hOwner               = 0X0000; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_uHandle              = 0X0004; // SceneOpportunityHandle_t
+            static constexpr std::uintptr_t m_strInteractVDataName = 0X0008; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bEnabled             = 0X0010; // bool
+            static constexpr std::uintptr_t m_bActive              = 0X0011; // bool
+            static constexpr std::uintptr_t m_ePriority            = 0X0014; // InteractionPriority_t
+            static constexpr std::uintptr_t m_flRadius             = 0X0018; // float32
+            static constexpr std::uintptr_t m_LocalInterestReqTags = 0X0020; // SceneInterestTags_t
+            static constexpr std::uintptr_t m_LocalInterestOptTags = 0X0038; // SceneInterestTags_t
+            static constexpr std::uintptr_t m_flOwnerFOV           = 0X0050; // float32
+            static constexpr std::uintptr_t m_ActorList            = 0X0058; // CUtlVector<SceneOpportunityActor_t>
+            static constexpr std::uintptr_t m_hLookTarget          = 0X0070; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_flDuration           = 0X0074; // float32
+            static constexpr std::uintptr_t m_tStartTime           = 0X0078; // GameTime_t
+            static constexpr std::uintptr_t m_flCooldown           = 0X007C; // float32
+            static constexpr std::uintptr_t m_tCooldownTime        = 0X0080; // GameTime_t
+            static constexpr std::uintptr_t m_nRepeatCount         = 0X0084; // int32
+            static constexpr std::uintptr_t m_bDisableOnExit       = 0X0088; // bool
         };
 
         // Has VTable
+        // Construct Allowed
         class CTakeDamageInfo {
         public:
-            static constexpr std::uintptr_t m_vecDamageForce                       = 0X0008; // Vector
-            static constexpr std::uintptr_t m_vecDamagePosition                    = 0X0014; // VectorWS
-            static constexpr std::uintptr_t m_vecReportedPosition                  = 0X0020; // VectorWS
-            static constexpr std::uintptr_t m_vecDamageDirection                   = 0X002C; // Vector
-            static constexpr std::uintptr_t m_hInflictor                           = 0X0038; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hAttacker                            = 0X003C; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hAbility                             = 0X0040; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_flDamage                             = 0X0044; // float32
-            static constexpr std::uintptr_t m_flTotalledDamage                     = 0X0048; // float32
-            static constexpr std::uintptr_t m_bitsDamageType                       = 0X004C; // DamageTypes_t
-            static constexpr std::uintptr_t m_iDamageCustom                        = 0X0050; // int32
-            static constexpr std::uintptr_t m_iAmmoType                            = 0X0054; // AmmoIndex_t
-            static constexpr std::uintptr_t m_flOriginalDamage                     = 0X0060; // float32
-            static constexpr std::uintptr_t m_bShouldBleed                         = 0X0064; // bool
-            static constexpr std::uintptr_t m_bShouldSpark                         = 0X0065; // bool
-            static constexpr std::uintptr_t m_nDamageFlags                         = 0X0070; // TakeDamageFlags_t
-            static constexpr std::uintptr_t m_iHitGroupId                          = 0X0078; // HitGroup_t
-            static constexpr std::uintptr_t m_nNumObjectsPenetrated                = 0X007C; // int32
-            static constexpr std::uintptr_t m_flFriendlyFireDamageReductionRatio   = 0X0080; // float32
-            static constexpr std::uintptr_t m_bStoppedBullet                       = 0X0084; // bool
-            static constexpr std::uintptr_t m_nDestructibleHitGroupsToForceDestroy = 0X0100; // CUtlVector<DestructibleHitGroupToDestroy_t>
-            static constexpr std::uintptr_t m_bInTakeDamageFlow                    = 0X0118; // bool
+            static constexpr std::uintptr_t m_vecDamageForce                     = 0X0008; // Vector
+            static constexpr std::uintptr_t m_vecDamagePosition                  = 0X0014; // VectorWS
+            static constexpr std::uintptr_t m_vecReportedPosition                = 0X0020; // VectorWS
+            static constexpr std::uintptr_t m_vecDamageDirection                 = 0X002C; // Vector
+            static constexpr std::uintptr_t m_hInflictor                         = 0X0038; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hAttacker                          = 0X003C; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hAbility                           = 0X0040; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_flDamage                           = 0X0044; // float32
+            static constexpr std::uintptr_t m_flTotalledDamage                   = 0X0048; // float32
+            static constexpr std::uintptr_t m_bitsDamageType                     = 0X004C; // DamageTypes_t
+            static constexpr std::uintptr_t m_iDamageCustom                      = 0X0050; // int32
+            static constexpr std::uintptr_t m_iAmmoType                          = 0X0054; // AmmoIndex_t
+            static constexpr std::uintptr_t m_flOriginalDamage                   = 0X0060; // float32
+            static constexpr std::uintptr_t m_bShouldBleed                       = 0X0064; // bool
+            static constexpr std::uintptr_t m_bShouldSpark                       = 0X0065; // bool
+            static constexpr std::uintptr_t m_nDamageFlags                       = 0X0070; // TakeDamageFlags_t
+            static constexpr std::uintptr_t m_iHitGroupId                        = 0X0078; // HitGroup_t
+            static constexpr std::uintptr_t m_nNumObjectsPenetrated              = 0X007C; // int32
+            static constexpr std::uintptr_t m_flFriendlyFireDamageReductionRatio = 0X0080; // float32
+            static constexpr std::uintptr_t m_bStoppedBullet                     = 0X0084; // bool
+            static constexpr std::uintptr_t m_DestructibleHitGroupRequests       = 0X0100; // CUtlLeanVector<DestructiblePartDamageRequest_t>
+            static constexpr std::uintptr_t m_bInTakeDamageFlow                  = 0X0110; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_DistanceCull : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPoint = 0X01D8; // int32
-            static constexpr std::uintptr_t m_flDistance    = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bCullInside   = 0X0350; // bool
+            static constexpr std::uintptr_t m_nControlPoint = 0X01E0; // int32
+            static constexpr std::uintptr_t m_flDistance    = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bCullInside   = 0X0358; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RemapTransformOrientationToRotations : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_TransformInput = 0X01D8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_vecRotation    = 0X0240; // Vector
-            static constexpr std::uintptr_t m_bUseQuat       = 0X024C; // bool
-            static constexpr std::uintptr_t m_bWriteNormal   = 0X024D; // bool
+            static constexpr std::uintptr_t m_TransformInput = 0X01E0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_vecRotation    = 0X0248; // Vector
+            static constexpr std::uintptr_t m_bUseQuat       = 0X0254; // bool
+            static constexpr std::uintptr_t m_bWriteNormal   = 0X0255; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateInEpitrochoid : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nComponent1        = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nComponent2        = 0X01DC; // int32
-            static constexpr std::uintptr_t m_TransformInput     = 0X01E0; // CParticleTransformInput
-            static constexpr std::uintptr_t m_flParticleDensity  = 0X0248; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOffset           = 0X03B8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRadius1          = 0X0528; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRadius2          = 0X0698; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bUseCount          = 0X0808; // bool
-            static constexpr std::uintptr_t m_bUseLocalCoords    = 0X0809; // bool
-            static constexpr std::uintptr_t m_bOffsetExistingPos = 0X080A; // bool
+            static constexpr std::uintptr_t m_nComponent1        = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nComponent2        = 0X01E4; // int32
+            static constexpr std::uintptr_t m_TransformInput     = 0X01E8; // CParticleTransformInput
+            static constexpr std::uintptr_t m_flParticleDensity  = 0X0250; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOffset           = 0X03C0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRadius1          = 0X0530; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRadius2          = 0X06A0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bUseCount          = 0X0810; // bool
+            static constexpr std::uintptr_t m_bUseLocalCoords    = 0X0811; // bool
+            static constexpr std::uintptr_t m_bOffsetExistingPos = 0X0812; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointPositions : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_bUseWorldLocation = 0X01D8; // bool
-            static constexpr std::uintptr_t m_bOrient           = 0X01D9; // bool
-            static constexpr std::uintptr_t m_bSetOnce          = 0X01DA; // bool
-            static constexpr std::uintptr_t m_nCP1              = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nCP2              = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nCP3              = 0X01E4; // int32
-            static constexpr std::uintptr_t m_nCP4              = 0X01E8; // int32
-            static constexpr std::uintptr_t m_vecCP1Pos         = 0X01EC; // Vector
-            static constexpr std::uintptr_t m_vecCP2Pos         = 0X01F8; // Vector
-            static constexpr std::uintptr_t m_vecCP3Pos         = 0X0204; // Vector
-            static constexpr std::uintptr_t m_vecCP4Pos         = 0X0210; // Vector
-            static constexpr std::uintptr_t m_nHeadLocation     = 0X021C; // int32
+            static constexpr std::uintptr_t m_bUseWorldLocation = 0X01E0; // bool
+            static constexpr std::uintptr_t m_bOrient           = 0X01E1; // bool
+            static constexpr std::uintptr_t m_bSetOnce          = 0X01E2; // bool
+            static constexpr std::uintptr_t m_nCP1              = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nCP2              = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nCP3              = 0X01EC; // int32
+            static constexpr std::uintptr_t m_nCP4              = 0X01F0; // int32
+            static constexpr std::uintptr_t m_vecCP1Pos         = 0X01F4; // Vector
+            static constexpr std::uintptr_t m_vecCP2Pos         = 0X0200; // Vector
+            static constexpr std::uintptr_t m_vecCP3Pos         = 0X020C; // Vector
+            static constexpr std::uintptr_t m_vecCP4Pos         = 0X0218; // Vector
+            static constexpr std::uintptr_t m_nHeadLocation     = 0X0224; // int32
         };
 
         // Has VTable
@@ -6998,13 +7418,13 @@ namespace offsets {
         // Construct Allowed
         class CNmBlend2DNode__CDefinition : public CNmPoseNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_sourceNodeIndices       = 0X0010; // CUtlVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_nInputParameterNodeIdx0 = 0X0038; // int16
-            static constexpr std::uintptr_t m_nInputParameterNodeIdx1 = 0X003A; // int16
-            static constexpr std::uintptr_t m_values                  = 0X0040; // CUtlVectorFixedGrowable<Vector2D,10>
-            static constexpr std::uintptr_t m_indices                 = 0X00A8; // CUtlVectorFixedGrowable<uint8,30>
-            static constexpr std::uintptr_t m_hullIndices             = 0X00E0; // CUtlVectorFixedGrowable<uint8,10>
-            static constexpr std::uintptr_t m_bAllowLooping           = 0X0108; // bool
+            static constexpr std::uintptr_t m_sourceNodeIndices       = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_values                  = 0X0028; // CUtlLeanVectorFixedGrowable<Vector2D,10>
+            static constexpr std::uintptr_t m_indices                 = 0X0080; // CUtlLeanVectorFixedGrowable<uint8,30>
+            static constexpr std::uintptr_t m_hullIndices             = 0X00A8; // CUtlLeanVectorFixedGrowable<uint8,10>
+            static constexpr std::uintptr_t m_nInputParameterNodeIdx0 = 0X00C0; // int16
+            static constexpr std::uintptr_t m_nInputParameterNodeIdx1 = 0X00C2; // int16
+            static constexpr std::uintptr_t m_bAllowLooping           = 0X00C4; // bool
         };
 
         // Has VTable
@@ -7041,39 +7461,39 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapDotProductToCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nInputCP1       = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nInputCP2       = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nOutputCP       = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nOutVectorField = 0X01E4; // int32
-            static constexpr std::uintptr_t m_flInputMin      = 0X01E8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flInputMax      = 0X0358; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flOutputMin     = 0X04C8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flOutputMax     = 0X0638; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nInputCP1       = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nInputCP2       = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nOutputCP       = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nOutVectorField = 0X01EC; // int32
+            static constexpr std::uintptr_t m_flInputMin      = 0X01F0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInputMax      = 0X0360; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOutputMin     = 0X04D0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOutputMax     = 0X0640; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateFromParentParticles : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flVelocityScale     = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flIncrement         = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bRandomDistribution = 0X01E0; // bool
-            static constexpr std::uintptr_t m_nRandomSeed         = 0X01E4; // int32
-            static constexpr std::uintptr_t m_bSubFrame           = 0X01E8; // bool
-            static constexpr std::uintptr_t m_bSetRopeSegmentID   = 0X01E9; // bool
+            static constexpr std::uintptr_t m_flVelocityScale     = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flIncrement         = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bRandomDistribution = 0X01E8; // bool
+            static constexpr std::uintptr_t m_nRandomSeed         = 0X01EC; // int32
+            static constexpr std::uintptr_t m_bSubFrame           = 0X01F0; // bool
+            static constexpr std::uintptr_t m_bSetRopeSegmentID   = 0X01F1; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_IntraParticleForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_flAttractionMinDistance = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flAttractionMaxDistance = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flAttractionMaxStrength = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flRepulsionMinDistance  = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flRepulsionMaxDistance  = 0X01F0; // float32
-            static constexpr std::uintptr_t m_flRepulsionMaxStrength  = 0X01F4; // float32
-            static constexpr std::uintptr_t m_bUseAABB                = 0X01F8; // bool
+            static constexpr std::uintptr_t m_flAttractionMinDistance = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flAttractionMaxDistance = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flAttractionMaxStrength = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flRepulsionMinDistance  = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flRepulsionMaxDistance  = 0X01F8; // float32
+            static constexpr std::uintptr_t m_flRepulsionMaxStrength  = 0X01FC; // float32
+            static constexpr std::uintptr_t m_bUseAABB                = 0X0200; // bool
         };
 
         // Has VTable
@@ -7173,6 +7593,16 @@ namespace offsets {
             static constexpr std::uintptr_t m_flOcclusionFactor     = 0X001C; // float32
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CRelativeTransform {
+        public:
+            static constexpr std::uintptr_t m_bTransformIsWorldSpace = 0X0000; // bool
+            static constexpr std::uintptr_t m_transform              = 0X0010; // CTransform
+            static constexpr std::uintptr_t m_transformWS            = 0X0030; // CTransformWS
+            static constexpr std::uintptr_t m_hEntity                = 0X0050; // CHandle<CBaseEntity>
+        };
+
         // Construct Allowed
         struct ParticlePreviewBodyGroup_t {
         public:
@@ -7184,30 +7614,30 @@ namespace offsets {
         // Construct Allowed
         class C_OP_GlobalLight : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flScale          = 0X01D0; // float32
-            static constexpr std::uintptr_t m_bClampLowerRange = 0X01D4; // bool
-            static constexpr std::uintptr_t m_bClampUpperRange = 0X01D5; // bool
+            static constexpr std::uintptr_t m_flScale          = 0X01D8; // float32
+            static constexpr std::uintptr_t m_bClampLowerRange = 0X01DC; // bool
+            static constexpr std::uintptr_t m_bClampUpperRange = 0X01DD; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RandomSequence : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nSequenceMin = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nSequenceMax = 0X01DC; // int32
-            static constexpr std::uintptr_t m_bShuffle     = 0X01E0; // bool
-            static constexpr std::uintptr_t m_bLinear      = 0X01E1; // bool
-            static constexpr std::uintptr_t m_WeightedList = 0X01E8; // CUtlVector<SequenceWeightedList_t>
+            static constexpr std::uintptr_t m_nSequenceMin = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nSequenceMax = 0X01E4; // int32
+            static constexpr std::uintptr_t m_bShuffle     = 0X01E8; // bool
+            static constexpr std::uintptr_t m_bLinear      = 0X01E9; // bool
+            static constexpr std::uintptr_t m_WeightedList = 0X01F0; // CUtlVector<SequenceWeightedList_t>
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateFromCPs : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nIncrement      = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nMinCP          = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nMaxCP          = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nDynamicCPCount = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nIncrement      = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nMinCP          = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nMaxCP          = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nDynamicCPCount = 0X01F0; // CParticleCollectionFloatInput
         };
 
         // Has Trivial Destructor
@@ -7242,15 +7672,14 @@ namespace offsets {
         // Construct Allowed
         class C_OP_MovementMoveAlongSkinnedCPSnapshot : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber         = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nSnapshotControlPointNumber = 0X01D4; // int32
-            static constexpr std::uintptr_t m_bSetNormal                  = 0X01D8; // bool
-            static constexpr std::uintptr_t m_bSetRadius                  = 0X01D9; // bool
-            static constexpr std::uintptr_t m_flInterpolation             = 0X01E0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flTValue                    = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nControlPointNumber         = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nSnapshotControlPointNumber = 0X01DC; // int32
+            static constexpr std::uintptr_t m_bSetNormal                  = 0X01E0; // bool
+            static constexpr std::uintptr_t m_bSetRadius                  = 0X01E1; // bool
+            static constexpr std::uintptr_t m_flInterpolation             = 0X01E8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flTValue                    = 0X0358; // CPerParticleFloatInput
         };
 
-        // Has Trivial Constructor
         // Has Trivial Destructor
         // Construct Allowed
         struct SteamAudioReverbSettings_t {
@@ -7259,6 +7688,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_nNumBounces      = 0X0004; // int32
             static constexpr std::uintptr_t m_flIRDuration     = 0X0008; // float32
             static constexpr std::uintptr_t m_nAmbisonicsOrder = 0X000C; // int32
+            static constexpr std::uintptr_t m_bExportScene     = 0X0010; // bool
         };
 
         class CEntityAttributeTable {
@@ -7277,19 +7707,19 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapCPtoVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nCPInput      = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFieldOutput  = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nLocalSpaceCP = 0X01D8; // int32
-            static constexpr std::uintptr_t m_vInputMin     = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_vInputMax     = 0X01E8; // Vector
-            static constexpr std::uintptr_t m_vOutputMin    = 0X01F4; // Vector
-            static constexpr std::uintptr_t m_vOutputMax    = 0X0200; // Vector
-            static constexpr std::uintptr_t m_flStartTime   = 0X020C; // float32
-            static constexpr std::uintptr_t m_flEndTime     = 0X0210; // float32
-            static constexpr std::uintptr_t m_flInterpRate  = 0X0214; // float32
-            static constexpr std::uintptr_t m_nSetMethod    = 0X0218; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bOffset       = 0X021C; // bool
-            static constexpr std::uintptr_t m_bAccelerate   = 0X021D; // bool
+            static constexpr std::uintptr_t m_nCPInput      = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldOutput  = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nLocalSpaceCP = 0X01E0; // int32
+            static constexpr std::uintptr_t m_vInputMin     = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_vInputMax     = 0X01F0; // Vector
+            static constexpr std::uintptr_t m_vOutputMin    = 0X01FC; // Vector
+            static constexpr std::uintptr_t m_vOutputMax    = 0X0208; // Vector
+            static constexpr std::uintptr_t m_flStartTime   = 0X0214; // float32
+            static constexpr std::uintptr_t m_flEndTime     = 0X0218; // float32
+            static constexpr std::uintptr_t m_flInterpRate  = 0X021C; // float32
+            static constexpr std::uintptr_t m_nSetMethod    = 0X0220; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bOffset       = 0X0224; // bool
+            static constexpr std::uintptr_t m_bAccelerate   = 0X0225; // bool
         };
 
         // Has Trivial Destructor
@@ -7308,8 +7738,9 @@ namespace offsets {
         // Construct Allowed
         class CNmParticleEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_relevance        = 0X0020; // CNmEventRelevance_t
-            static constexpr std::uintptr_t m_type             = 0X0024; // CNmParticleEvent::Type_t
+            static constexpr std::uintptr_t m_relevance        = 0X0018; // CNmEventRelevance_t
+            static constexpr std::uintptr_t m_type             = 0X001C; // CNmParticleEvent::Type_t
+            static constexpr std::uintptr_t m_target           = 0X0020; // CNmEventTargetEntity_t
             static constexpr std::uintptr_t m_hParticleSystem  = 0X0028; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
             static constexpr std::uintptr_t m_tags             = 0X0030; // CUtlString
             static constexpr std::uintptr_t m_bStopImmediately = 0X0038; // bool
@@ -7339,6 +7770,15 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PhysBlockHeader_t {
+        public:
+            static constexpr std::uintptr_t nSaved       = 0X0000; // int32
+            static constexpr std::uintptr_t pWorldObject = 0X0008; // uint64
+        };
+
         // Has Trivial Destructor
         struct lerpdata_t {
         public:
@@ -7354,71 +7794,72 @@ namespace offsets {
         // Construct Allowed
         class C_OP_LerpScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOutput     = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flStartTime  = 0X0348; // float32
-            static constexpr std::uintptr_t m_flEndTime    = 0X034C; // float32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOutput     = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flStartTime  = 0X0350; // float32
+            static constexpr std::uintptr_t m_flEndTime    = 0X0354; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderModels : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_bOnlyRenderInEffectsBloomPass    = 0X0220; // bool
-            static constexpr std::uintptr_t m_bOnlyRenderInEffectsWaterPass    = 0X0221; // bool
-            static constexpr std::uintptr_t m_bUseMixedResolutionRendering     = 0X0222; // bool
-            static constexpr std::uintptr_t m_bOnlyRenderInEffecsGameOverlay   = 0X0223; // bool
-            static constexpr std::uintptr_t m_ModelList                        = 0X0228; // CUtlVector<ModelReference_t>
-            static constexpr std::uintptr_t m_nBodyGroupField                  = 0X0240; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSubModelField                   = 0X0244; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bIgnoreNormal                    = 0X0248; // bool
-            static constexpr std::uintptr_t m_bOrientZ                         = 0X0249; // bool
-            static constexpr std::uintptr_t m_bCenterOffset                    = 0X024A; // bool
-            static constexpr std::uintptr_t m_vecLocalOffset                   = 0X0250; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecLocalRotation                 = 0X0908; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_bIgnoreRadius                    = 0X0FC0; // bool
-            static constexpr std::uintptr_t m_nModelScaleCP                    = 0X0FC4; // int32
-            static constexpr std::uintptr_t m_vecComponentScale                = 0X0FC8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_bLocalScale                      = 0X1680; // bool
-            static constexpr std::uintptr_t m_nSizeCullBloat                   = 0X1684; // int32
-            static constexpr std::uintptr_t m_bAnimated                        = 0X1688; // bool
-            static constexpr std::uintptr_t m_flAnimationRate                  = 0X1690; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bScaleAnimationRate              = 0X1800; // bool
-            static constexpr std::uintptr_t m_bForceLoopingAnimation           = 0X1801; // bool
-            static constexpr std::uintptr_t m_bResetAnimOnStop                 = 0X1802; // bool
-            static constexpr std::uintptr_t m_bManualAnimFrame                 = 0X1803; // bool
-            static constexpr std::uintptr_t m_nAnimationScaleField             = 0X1804; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nAnimationField                  = 0X1808; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nManualFrameField                = 0X180C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_ActivityName                     = 0X1810; // char[256]
-            static constexpr std::uintptr_t m_SequenceName                     = 0X1910; // char[256]
-            static constexpr std::uintptr_t m_bEnableClothSimulation           = 0X1A10; // bool
-            static constexpr std::uintptr_t m_ClothEffectName                  = 0X1A11; // char[64]
-            static constexpr std::uintptr_t m_hOverrideMaterial                = 0X1A58; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_bOverrideTranslucentMaterials    = 0X1A60; // bool
-            static constexpr std::uintptr_t m_nSkin                            = 0X1A68; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_MaterialVars                     = 0X1BD8; // CUtlVector<MaterialVariable_t>
-            static constexpr std::uintptr_t m_flRenderFilter                   = 0X1BF0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flManualModelSelection           = 0X1D60; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_modelInput                       = 0X1ED0; // CParticleModelInput
-            static constexpr std::uintptr_t m_nLOD                             = 0X1F30; // int32
-            static constexpr std::uintptr_t m_EconSlotName                     = 0X1F34; // char[256]
-            static constexpr std::uintptr_t m_bOriginalModel                   = 0X2034; // bool
-            static constexpr std::uintptr_t m_bSuppressTint                    = 0X2035; // bool
-            static constexpr std::uintptr_t m_nSubModelFieldType               = 0X2038; // RenderModelSubModelFieldType_t
-            static constexpr std::uintptr_t m_bDisableShadows                  = 0X203C; // bool
-            static constexpr std::uintptr_t m_bDisableDepthPrepass             = 0X203D; // bool
-            static constexpr std::uintptr_t m_bAcceptsDecals                   = 0X203E; // bool
-            static constexpr std::uintptr_t m_bForceDrawInterlevedWithSiblings = 0X203F; // bool
-            static constexpr std::uintptr_t m_bDoNotDrawInParticlePass         = 0X2040; // bool
-            static constexpr std::uintptr_t m_bAllowApproximateTransforms      = 0X2041; // bool
-            static constexpr std::uintptr_t m_szRenderAttribute                = 0X2042; // char[260]
-            static constexpr std::uintptr_t m_flRadiusScale                    = 0X2148; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flAlphaScale                     = 0X22B8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flRollScale                      = 0X2428; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nAlpha2Field                     = 0X2598; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecColorScale                    = 0X25A0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nColorBlendType                  = 0X2C58; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_bOnlyRenderInEffectsBloomPass    = 0X0228; // bool
+            static constexpr std::uintptr_t m_bOnlyRenderInEffectsWaterPass    = 0X0229; // bool
+            static constexpr std::uintptr_t m_bUseMixedResolutionRendering     = 0X022A; // bool
+            static constexpr std::uintptr_t m_bOnlyRenderInEffecsGameOverlay   = 0X022B; // bool
+            static constexpr std::uintptr_t m_ModelList                        = 0X0230; // CUtlVector<ModelReference_t>
+            static constexpr std::uintptr_t m_nBodyGroupField                  = 0X0248; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSubModelField                   = 0X024C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bIgnoreNormal                    = 0X0250; // bool
+            static constexpr std::uintptr_t m_bOrientZ                         = 0X0251; // bool
+            static constexpr std::uintptr_t m_bCenterOffset                    = 0X0252; // bool
+            static constexpr std::uintptr_t m_vecLocalOffset                   = 0X0258; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecLocalRotation                 = 0X0910; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_bIgnoreRadius                    = 0X0FC8; // bool
+            static constexpr std::uintptr_t m_nModelScaleCP                    = 0X0FCC; // int32
+            static constexpr std::uintptr_t m_vecComponentScale                = 0X0FD0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_bLocalScale                      = 0X1688; // bool
+            static constexpr std::uintptr_t m_nSizeCullBloat                   = 0X168C; // int32
+            static constexpr std::uintptr_t m_bAnimated                        = 0X1690; // bool
+            static constexpr std::uintptr_t m_flAnimationRate                  = 0X1698; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bScaleAnimationRate              = 0X1808; // bool
+            static constexpr std::uintptr_t m_bForceLoopingAnimation           = 0X1809; // bool
+            static constexpr std::uintptr_t m_bResetAnimOnStop                 = 0X180A; // bool
+            static constexpr std::uintptr_t m_bManualAnimFrame                 = 0X180B; // bool
+            static constexpr std::uintptr_t m_nAnimationScaleField             = 0X180C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nAnimationField                  = 0X1810; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nManualFrameField                = 0X1814; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_ActivityName                     = 0X1818; // char[256]
+            static constexpr std::uintptr_t m_SequenceName                     = 0X1918; // char[256]
+            static constexpr std::uintptr_t m_bEnableClothSimulation           = 0X1A18; // bool
+            static constexpr std::uintptr_t m_bDisableClothGroundCollision     = 0X1A19; // bool
+            static constexpr std::uintptr_t m_ClothEffectName                  = 0X1A1A; // char[64]
+            static constexpr std::uintptr_t m_hOverrideMaterial                = 0X1A60; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_bOverrideTranslucentMaterials    = 0X1A68; // bool
+            static constexpr std::uintptr_t m_nSkin                            = 0X1A70; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_MaterialVars                     = 0X1BE0; // CUtlVector<MaterialVariable_t>
+            static constexpr std::uintptr_t m_flRenderFilter                   = 0X1BF8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flManualModelSelection           = 0X1D68; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_modelInput                       = 0X1ED8; // CParticleModelInput
+            static constexpr std::uintptr_t m_nLOD                             = 0X1F38; // int32
+            static constexpr std::uintptr_t m_EconSlotName                     = 0X1F3C; // char[256]
+            static constexpr std::uintptr_t m_bOriginalModel                   = 0X203C; // bool
+            static constexpr std::uintptr_t m_bSuppressTint                    = 0X203D; // bool
+            static constexpr std::uintptr_t m_nSubModelFieldType               = 0X2040; // RenderModelSubModelFieldType_t
+            static constexpr std::uintptr_t m_bDisableShadows                  = 0X2044; // bool
+            static constexpr std::uintptr_t m_bDisableDepthPrepass             = 0X2045; // bool
+            static constexpr std::uintptr_t m_bAcceptsDecals                   = 0X2046; // bool
+            static constexpr std::uintptr_t m_bForceDrawInterlevedWithSiblings = 0X2047; // bool
+            static constexpr std::uintptr_t m_bDoNotDrawInParticlePass         = 0X2048; // bool
+            static constexpr std::uintptr_t m_bAllowApproximateTransforms      = 0X2049; // bool
+            static constexpr std::uintptr_t m_szRenderAttribute                = 0X204A; // char[260]
+            static constexpr std::uintptr_t m_flRadiusScale                    = 0X2150; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flAlphaScale                     = 0X22C0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flRollScale                      = 0X2430; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nAlpha2Field                     = 0X25A0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecColorScale                    = 0X25A8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nColorBlendType                  = 0X2C60; // ParticleColorBlendType_t
         };
 
         // Has Trivial Destructor
@@ -7449,13 +7890,12 @@ namespace offsets {
 
         // Has Trivial Destructor
         // Construct Allowed
-        class CNmIKEffector {
+        class CMoverInstanceData {
         public:
-            static constexpr std::uintptr_t m_nBodyIndex         = 0X0000; // int32
-            static constexpr std::uintptr_t m_bEnabled           = 0X0004; // bool
-            static constexpr std::uintptr_t m_vTargetPosition    = 0X0008; // Vector
-            static constexpr std::uintptr_t m_qTargetOrientation = 0X0020; // Quaternion
-            static constexpr std::uintptr_t m_flWeight           = 0X0030; // float32
+            static constexpr std::uintptr_t m_flDampedValue     = 0X0000; // float32
+            static constexpr std::uintptr_t m_vMovement         = 0X0004; // Vector
+            static constexpr std::uintptr_t m_Rotation          = 0X001C; // CRotation
+            static constexpr std::uintptr_t m_TargetOrientation = 0X0020; // CRotation
         };
 
         // Has VTable
@@ -7479,34 +7919,47 @@ namespace offsets {
             static constexpr std::uintptr_t m_nToolsVBBlock = 0X006C; // int32
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PrecipitationFilter_t {
+        public:
+            static constexpr std::uintptr_t m_flMaxRadius = 0X0000; // float32
+        };
+
+        class PathMoverEntitySpawn {
+        public:
+            static constexpr std::uintptr_t hMover           = 0X0000; // CHandle<CFuncMover>
+            static constexpr std::uintptr_t vecOtherEntities = 0X0008; // CUtlVector<CHandle<CBaseEntity>>
+        };
+
         // Has VTable
         // Construct Allowed
         class C_INIT_InitialRepulsionVelocity : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_CollisionGroupName  = 0X01D8; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet           = 0X0258; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_vecOutputMin        = 0X025C; // Vector
-            static constexpr std::uintptr_t m_vecOutputMax        = 0X0268; // Vector
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X0274; // int32
-            static constexpr std::uintptr_t m_bPerParticle        = 0X0278; // bool
-            static constexpr std::uintptr_t m_bTranslate          = 0X0279; // bool
-            static constexpr std::uintptr_t m_bProportional       = 0X027A; // bool
-            static constexpr std::uintptr_t m_flTraceLength       = 0X027C; // float32
-            static constexpr std::uintptr_t m_bPerParticleTR      = 0X0280; // bool
-            static constexpr std::uintptr_t m_bInherit            = 0X0281; // bool
-            static constexpr std::uintptr_t m_nChildCP            = 0X0284; // int32
-            static constexpr std::uintptr_t m_nChildGroupID       = 0X0288; // int32
+            static constexpr std::uintptr_t m_CollisionGroupName  = 0X01E0; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet           = 0X0260; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_vecOutputMin        = 0X0264; // Vector
+            static constexpr std::uintptr_t m_vecOutputMax        = 0X0270; // Vector
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X027C; // int32
+            static constexpr std::uintptr_t m_bPerParticle        = 0X0280; // bool
+            static constexpr std::uintptr_t m_bTranslate          = 0X0281; // bool
+            static constexpr std::uintptr_t m_bProportional       = 0X0282; // bool
+            static constexpr std::uintptr_t m_flTraceLength       = 0X0284; // float32
+            static constexpr std::uintptr_t m_bPerParticleTR      = 0X0288; // bool
+            static constexpr std::uintptr_t m_bInherit            = 0X0289; // bool
+            static constexpr std::uintptr_t m_nChildCP            = 0X028C; // int32
+            static constexpr std::uintptr_t m_nChildGroupID       = 0X0290; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_InitialVelocityFromHitbox : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flVelocityMin       = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flVelocityMax       = 0X01DC; // float32
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E0; // int32
-            static constexpr std::uintptr_t m_HitboxSetName       = 0X01E4; // char[128]
-            static constexpr std::uintptr_t m_bUseBones           = 0X0264; // bool
+            static constexpr std::uintptr_t m_flVelocityMin       = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flVelocityMax       = 0X01E4; // float32
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E8; // int32
+            static constexpr std::uintptr_t m_HitboxSetName       = 0X01EC; // char[128]
+            static constexpr std::uintptr_t m_bUseBones           = 0X026C; // bool
         };
 
         // Has VTable
@@ -7514,13 +7967,13 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RemapNamedModelElementToScalar : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_hModel             = 0X01D8; // CStrongHandle<InfoForResourceTypeCModel>
-            static constexpr std::uintptr_t m_names              = 0X01E0; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_values             = 0X01F8; // CUtlVector<float32>
-            static constexpr std::uintptr_t m_nFieldInput        = 0X0210; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput       = 0X0214; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod         = 0X0218; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bModelFromRenderer = 0X021C; // bool
+            static constexpr std::uintptr_t m_hModel             = 0X01E0; // CStrongHandle<InfoForResourceTypeCModel>
+            static constexpr std::uintptr_t m_names              = 0X01E8; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_values             = 0X0200; // CUtlVector<float32>
+            static constexpr std::uintptr_t m_nFieldInput        = 0X0218; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput       = 0X021C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod         = 0X0220; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bModelFromRenderer = 0X0224; // bool
         };
 
         // Has VTable
@@ -7546,6 +7999,16 @@ namespace offsets {
             static constexpr std::uintptr_t m_nSampleCount = 0X001C; // int32
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CStateMachineInstanceData {
+        public:
+            static constexpr std::uintptr_t m_flTimeInState            = 0X0000; // float32
+            static constexpr std::uintptr_t m_currentTransitionIndex   = 0X0004; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_prevStateIndex           = 0X0010; // int32
+            static constexpr std::uintptr_t m_scheduledTransitionIndex = 0X0014; // int32
+        };
+
         // Has VTable
         // Construct Allowed
         class CAnimGraphSettingsManager {
@@ -7566,44 +8029,54 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        struct AI_BaseNPCAnimGraph_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t e_action_desired        = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t b_action_restart        = 0X0010; // bool
+            static constexpr std::uintptr_t e_movement_type_desired = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t b_movement_type_restart = 0X0020; // bool
+        };
+
+        // Has VTable
+        // Construct Allowed
         class C_INIT_StatusEffect : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nDetail2Combo                      = 0X01D8; // Detail2Combo_t
-            static constexpr std::uintptr_t m_flDetail2Rotation                  = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flDetail2Scale                     = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flDetail2BlendFactor               = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flColorWarpIntensity               = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flDiffuseWarpBlendToFull           = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flEnvMapIntensity                  = 0X01F0; // float32
-            static constexpr std::uintptr_t m_flAmbientScale                     = 0X01F4; // float32
-            static constexpr std::uintptr_t m_specularColor                      = 0X01F8; // Color
-            static constexpr std::uintptr_t m_flSpecularScale                    = 0X01FC; // float32
-            static constexpr std::uintptr_t m_flSpecularExponent                 = 0X0200; // float32
-            static constexpr std::uintptr_t m_flSpecularExponentBlendToFull      = 0X0204; // float32
-            static constexpr std::uintptr_t m_flSpecularBlendToFull              = 0X0208; // float32
-            static constexpr std::uintptr_t m_rimLightColor                      = 0X020C; // Color
-            static constexpr std::uintptr_t m_flRimLightScale                    = 0X0210; // float32
-            static constexpr std::uintptr_t m_flReflectionsTintByBaseBlendToNone = 0X0214; // float32
-            static constexpr std::uintptr_t m_flMetalnessBlendToFull             = 0X0218; // float32
-            static constexpr std::uintptr_t m_flSelfIllumBlendToFull             = 0X021C; // float32
+            static constexpr std::uintptr_t m_nDetail2Combo                      = 0X01E0; // Detail2Combo_t
+            static constexpr std::uintptr_t m_flDetail2Rotation                  = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flDetail2Scale                     = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flDetail2BlendFactor               = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flColorWarpIntensity               = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flDiffuseWarpBlendToFull           = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flEnvMapIntensity                  = 0X01F8; // float32
+            static constexpr std::uintptr_t m_flAmbientScale                     = 0X01FC; // float32
+            static constexpr std::uintptr_t m_specularColor                      = 0X0200; // Color
+            static constexpr std::uintptr_t m_flSpecularScale                    = 0X0204; // float32
+            static constexpr std::uintptr_t m_flSpecularExponent                 = 0X0208; // float32
+            static constexpr std::uintptr_t m_flSpecularExponentBlendToFull      = 0X020C; // float32
+            static constexpr std::uintptr_t m_flSpecularBlendToFull              = 0X0210; // float32
+            static constexpr std::uintptr_t m_rimLightColor                      = 0X0214; // Color
+            static constexpr std::uintptr_t m_flRimLightScale                    = 0X0218; // float32
+            static constexpr std::uintptr_t m_flReflectionsTintByBaseBlendToNone = 0X021C; // float32
+            static constexpr std::uintptr_t m_flMetalnessBlendToFull             = 0X0220; // float32
+            static constexpr std::uintptr_t m_flSelfIllumBlendToFull             = 0X0224; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ColorInterpolate : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_ColorFade       = 0X01D0; // Color
-            static constexpr std::uintptr_t m_flFadeStartTime = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flFadeEndTime   = 0X01E4; // float32
-            static constexpr std::uintptr_t m_nFieldOutput    = 0X01E8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bEaseInOut      = 0X01EC; // bool
+            static constexpr std::uintptr_t m_ColorFade       = 0X01D8; // Color
+            static constexpr std::uintptr_t m_flFadeStartTime = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flFadeEndTime   = 0X01EC; // float32
+            static constexpr std::uintptr_t m_nFieldOutput    = 0X01F0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bEaseInOut      = 0X01F4; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_WindForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_vForce = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_vForce = 0X01E8; // Vector
         };
 
         // Has VTable
@@ -7698,49 +8171,49 @@ namespace offsets {
         // Construct Allowed
         class C_OP_DifferencePreviousParticle : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldInput          = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput         = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin           = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flInputMax           = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flOutputMin          = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMax          = 0X01E4; // float32
-            static constexpr std::uintptr_t m_nSetMethod           = 0X01E8; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bActiveRange         = 0X01EC; // bool
-            static constexpr std::uintptr_t m_bSetPreviousParticle = 0X01ED; // bool
+            static constexpr std::uintptr_t m_nFieldInput          = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput         = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin           = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flInputMax           = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flOutputMin          = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMax          = 0X01EC; // float32
+            static constexpr std::uintptr_t m_nSetMethod           = 0X01F0; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bActiveRange         = 0X01F4; // bool
+            static constexpr std::uintptr_t m_bSetPreviousParticle = 0X01F5; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapDirectionToCPToVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nCP            = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flScale        = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flOffsetRot    = 0X01DC; // float32
-            static constexpr std::uintptr_t m_vecOffsetAxis  = 0X01E0; // Vector
-            static constexpr std::uintptr_t m_bNormalize     = 0X01EC; // bool
-            static constexpr std::uintptr_t m_nFieldStrength = 0X01F0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nCP            = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flScale        = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flOffsetRot    = 0X01E4; // float32
+            static constexpr std::uintptr_t m_vecOffsetAxis  = 0X01E8; // Vector
+            static constexpr std::uintptr_t m_bNormalize     = 0X01F4; // bool
+            static constexpr std::uintptr_t m_nFieldStrength = 0X01F8; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_DistanceToCPInit : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput       = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin         = 0X01E0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInputMax         = 0X0350; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMin        = 0X04C0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMax        = 0X0630; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nStartCP           = 0X07A0; // int32
-            static constexpr std::uintptr_t m_bLOS               = 0X07A4; // bool
-            static constexpr std::uintptr_t m_CollisionGroupName = 0X07A5; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet          = 0X0828; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X0830; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flLOSScale         = 0X09A0; // float32
-            static constexpr std::uintptr_t m_nSetMethod         = 0X09A4; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bActiveRange       = 0X09A8; // bool
-            static constexpr std::uintptr_t m_vecDistanceScale   = 0X09AC; // Vector
-            static constexpr std::uintptr_t m_flRemapBias        = 0X09B8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput       = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin         = 0X01E8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInputMax         = 0X0358; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMin        = 0X04C8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMax        = 0X0638; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nStartCP           = 0X07A8; // int32
+            static constexpr std::uintptr_t m_bLOS               = 0X07AC; // bool
+            static constexpr std::uintptr_t m_CollisionGroupName = 0X07AD; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet          = 0X0830; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X0838; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flLOSScale         = 0X09A8; // float32
+            static constexpr std::uintptr_t m_nSetMethod         = 0X09AC; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bActiveRange       = 0X09B0; // bool
+            static constexpr std::uintptr_t m_vecDistanceScale   = 0X09B4; // Vector
+            static constexpr std::uintptr_t m_flRemapBias        = 0X09C0; // float32
         };
 
         // Construct Allowed
@@ -7879,34 +8352,34 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RandomVector : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecMin               = 0X01D8; // Vector
-            static constexpr std::uintptr_t m_vecMax               = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_nFieldOutput         = 0X01F0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_randomnessParameters = 0X01F4; // CRandomNumberGeneratorParameters
+            static constexpr std::uintptr_t m_vecMin               = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_vecMax               = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_nFieldOutput         = 0X01F8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_randomnessParameters = 0X01FC; // CRandomNumberGeneratorParameters
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_TimeVaryingForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_flStartLerpTime = 0X01E0; // float32
-            static constexpr std::uintptr_t m_StartingForce   = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_flEndLerpTime   = 0X01F0; // float32
-            static constexpr std::uintptr_t m_EndingForce     = 0X01F4; // Vector
+            static constexpr std::uintptr_t m_flStartLerpTime = 0X01E8; // float32
+            static constexpr std::uintptr_t m_StartingForce   = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_flEndLerpTime   = 0X01F8; // float32
+            static constexpr std::uintptr_t m_EndingForce     = 0X01FC; // Vector
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_ScaleVelocity : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecScale = 0X01D8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_vecScale = 0X01E0; // CParticleCollectionVecInput
         };
 
         // Construct Allowed
         class CVoiceContainerSetElement {
         public:
             static constexpr std::uintptr_t m_sound      = 0X0000; // CSoundContainerReference
-            static constexpr std::uintptr_t m_flVolumeDB = 0X0018; // float32
+            static constexpr std::uintptr_t m_flVolumeDB = 0X0020; // float32
         };
 
         // Has Trivial Constructor
@@ -7978,27 +8451,38 @@ namespace offsets {
             static constexpr std::uintptr_t m_flLength  = 0X0004; // float32
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CChoiceInstanceData {
+        public:
+            static constexpr std::uintptr_t m_currentChoice       = 0X0010; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_previousChoice      = 0X001C; // int32
+            static constexpr std::uintptr_t m_flClipStartTime     = 0X0020; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_choicePreviousCycle = 0X002C; // float32
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_MovementPlaceOnGround : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flOffset           = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X0340; // float32
-            static constexpr std::uintptr_t m_flTolerance        = 0X0344; // float32
-            static constexpr std::uintptr_t m_flTraceOffset      = 0X0348; // float32
-            static constexpr std::uintptr_t m_flLerpRate         = 0X034C; // float32
-            static constexpr std::uintptr_t m_CollisionGroupName = 0X0350; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet          = 0X03D0; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_nRefCP1            = 0X03D4; // int32
-            static constexpr std::uintptr_t m_nRefCP2            = 0X03D8; // int32
-            static constexpr std::uintptr_t m_nLerpCP            = 0X03DC; // int32
-            static constexpr std::uintptr_t m_nTraceMissBehavior = 0X03E8; // ParticleTraceMissBehavior_t
-            static constexpr std::uintptr_t m_bIncludeShotHull   = 0X03EC; // bool
-            static constexpr std::uintptr_t m_bIncludeWater      = 0X03ED; // bool
-            static constexpr std::uintptr_t m_bSetNormal         = 0X03F0; // bool
-            static constexpr std::uintptr_t m_bScaleOffset       = 0X03F1; // bool
-            static constexpr std::uintptr_t m_nPreserveOffsetCP  = 0X03F4; // int32
-            static constexpr std::uintptr_t m_nIgnoreCP          = 0X03F8; // int32
+            static constexpr std::uintptr_t m_flOffset           = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X0348; // float32
+            static constexpr std::uintptr_t m_flTolerance        = 0X034C; // float32
+            static constexpr std::uintptr_t m_vecTraceDir        = 0X0350; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flTraceOffset      = 0X0A08; // float32
+            static constexpr std::uintptr_t m_flLerpRate         = 0X0A0C; // float32
+            static constexpr std::uintptr_t m_CollisionGroupName = 0X0A10; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet          = 0X0A90; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_nRefCP1            = 0X0A94; // int32
+            static constexpr std::uintptr_t m_nRefCP2            = 0X0A98; // int32
+            static constexpr std::uintptr_t m_nLerpCP            = 0X0A9C; // int32
+            static constexpr std::uintptr_t m_nTraceMissBehavior = 0X0AA8; // ParticleTraceMissBehavior_t
+            static constexpr std::uintptr_t m_bIncludeShotHull   = 0X0AAC; // bool
+            static constexpr std::uintptr_t m_bIncludeWater      = 0X0AAD; // bool
+            static constexpr std::uintptr_t m_bSetNormal         = 0X0AB0; // bool
+            static constexpr std::uintptr_t m_bScaleOffset       = 0X0AB1; // bool
+            static constexpr std::uintptr_t m_nPreserveOffsetCP  = 0X0AB4; // int32
+            static constexpr std::uintptr_t m_nIgnoreCP          = 0X0AB8; // int32
         };
 
         // Has VTable
@@ -8006,10 +8490,10 @@ namespace offsets {
         class CVoiceContainerLoopTrigger : public CVoiceContainerBase {
         public:
             static constexpr std::uintptr_t m_sound              = 0X00A8; // CSoundContainerReference
-            static constexpr std::uintptr_t m_flRetriggerTimeMin = 0X00C0; // float32
-            static constexpr std::uintptr_t m_flRetriggerTimeMax = 0X00C4; // float32
-            static constexpr std::uintptr_t m_flFadeTime         = 0X00C8; // float32
-            static constexpr std::uintptr_t m_bCrossFade         = 0X00CC; // bool
+            static constexpr std::uintptr_t m_flRetriggerTimeMin = 0X00C8; // float32
+            static constexpr std::uintptr_t m_flRetriggerTimeMax = 0X00CC; // float32
+            static constexpr std::uintptr_t m_flFadeTime         = 0X00D0; // float32
+            static constexpr std::uintptr_t m_bCrossFade         = 0X00D4; // bool
         };
 
         // Construct Allowed
@@ -8064,12 +8548,6 @@ namespace offsets {
             static constexpr std::uintptr_t m_bLockWhenWaning = 0X008A; // bool
         };
 
-        class CPathMoverEntitySpawn {
-        public:
-            static constexpr std::uintptr_t hMover           = 0X0000; // CHandle<CFuncMover>
-            static constexpr std::uintptr_t vecOtherEntities = 0X0008; // CUtlVector<CHandle<CBaseEntity>>
-        };
-
         // Has VTable
         class CNetworkTransmitComponent {
         public:
@@ -8090,15 +8568,15 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderScreenVelocityRotate : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flRotateRateDegrees = 0X0220; // float32
-            static constexpr std::uintptr_t m_flForwardDegrees    = 0X0224; // float32
+            static constexpr std::uintptr_t m_flRotateRateDegrees = 0X0228; // float32
+            static constexpr std::uintptr_t m_flForwardDegrees    = 0X022C; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class CNmFrameSnapEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_frameSnapMode = 0X0020; // NmFrameSnapEventMode_t
+            static constexpr std::uintptr_t m_frameSnapMode = 0X0018; // NmFrameSnapEventMode_t
         };
 
         // Construct Allowed
@@ -8125,9 +8603,9 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetControlPointPositionToTimeOfDayValue : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber   = 0X01D8; // int32
-            static constexpr std::uintptr_t m_pszTimeOfDayParameter = 0X01DC; // char[128]
-            static constexpr std::uintptr_t m_vecDefaultValue       = 0X025C; // Vector
+            static constexpr std::uintptr_t m_nControlPointNumber   = 0X01E0; // int32
+            static constexpr std::uintptr_t m_pszTimeOfDayParameter = 0X01E4; // char[128]
+            static constexpr std::uintptr_t m_vecDefaultValue       = 0X0264; // Vector
         };
 
         // Has VTable
@@ -8135,12 +8613,12 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RandomNamedModelElement : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_hModel             = 0X01D8; // CStrongHandle<InfoForResourceTypeCModel>
-            static constexpr std::uintptr_t m_names              = 0X01E0; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_bShuffle           = 0X01F8; // bool
-            static constexpr std::uintptr_t m_bLinear            = 0X01F9; // bool
-            static constexpr std::uintptr_t m_bModelFromRenderer = 0X01FA; // bool
-            static constexpr std::uintptr_t m_nFieldOutput       = 0X01FC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_hModel             = 0X01E0; // CStrongHandle<InfoForResourceTypeCModel>
+            static constexpr std::uintptr_t m_names              = 0X01E8; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_bShuffle           = 0X0200; // bool
+            static constexpr std::uintptr_t m_bLinear            = 0X0201; // bool
+            static constexpr std::uintptr_t m_bModelFromRenderer = 0X0202; // bool
+            static constexpr std::uintptr_t m_nFieldOutput       = 0X0204; // ParticleAttributeIndex_t
         };
 
         // Has VTable
@@ -8207,6 +8685,7 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
         class CCopyRecipientFilter {
         public:
             static constexpr std::uintptr_t m_Flags                             = 0X0008; // int32
@@ -8218,40 +8697,40 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ConstrainLineLength : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_flMinDistance = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flMaxDistance = 0X01D4; // float32
+            static constexpr std::uintptr_t m_flMinDistance = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flMaxDistance = 0X01DC; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapParticleCountOnScalarEndCap : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nInputMin    = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nInputMax    = 0X01D8; // int32
-            static constexpr std::uintptr_t m_flOutputMin  = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flOutputMax  = 0X01E0; // float32
-            static constexpr std::uintptr_t m_bBackwards   = 0X01E4; // bool
-            static constexpr std::uintptr_t m_nSetMethod   = 0X01E8; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nInputMin    = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nInputMax    = 0X01E0; // int32
+            static constexpr std::uintptr_t m_flOutputMin  = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flOutputMax  = 0X01E8; // float32
+            static constexpr std::uintptr_t m_bBackwards   = 0X01EC; // bool
+            static constexpr std::uintptr_t m_nSetMethod   = 0X01F0; // ParticleSetMethod_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RemapTransformToVector : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vInputMin           = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_vInputMax           = 0X01E8; // Vector
-            static constexpr std::uintptr_t m_vOutputMin          = 0X01F4; // Vector
-            static constexpr std::uintptr_t m_vOutputMax          = 0X0200; // Vector
-            static constexpr std::uintptr_t m_TransformInput      = 0X0210; // CParticleTransformInput
-            static constexpr std::uintptr_t m_LocalSpaceTransform = 0X0278; // CParticleTransformInput
-            static constexpr std::uintptr_t m_flStartTime         = 0X02E0; // float32
-            static constexpr std::uintptr_t m_flEndTime           = 0X02E4; // float32
-            static constexpr std::uintptr_t m_nSetMethod          = 0X02E8; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bOffset             = 0X02EC; // bool
-            static constexpr std::uintptr_t m_bAccelerate         = 0X02ED; // bool
-            static constexpr std::uintptr_t m_flRemapBias         = 0X02F0; // float32
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vInputMin           = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_vInputMax           = 0X01F0; // Vector
+            static constexpr std::uintptr_t m_vOutputMin          = 0X01FC; // Vector
+            static constexpr std::uintptr_t m_vOutputMax          = 0X0208; // Vector
+            static constexpr std::uintptr_t m_TransformInput      = 0X0218; // CParticleTransformInput
+            static constexpr std::uintptr_t m_LocalSpaceTransform = 0X0280; // CParticleTransformInput
+            static constexpr std::uintptr_t m_flStartTime         = 0X02E8; // float32
+            static constexpr std::uintptr_t m_flEndTime           = 0X02EC; // float32
+            static constexpr std::uintptr_t m_nSetMethod          = 0X02F0; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bOffset             = 0X02F4; // bool
+            static constexpr std::uintptr_t m_bAccelerate         = 0X02F5; // bool
+            static constexpr std::uintptr_t m_flRemapBias         = 0X02F8; // float32
         };
 
         // Has VTable
@@ -8334,48 +8813,54 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderStandardLight : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_nLightType                     = 0X0220; // ParticleLightTypeChoiceList_t
-            static constexpr std::uintptr_t m_vecColorScale                  = 0X0228; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nColorBlendType                = 0X08E0; // ParticleColorBlendType_t
-            static constexpr std::uintptr_t m_flIntensity                    = 0X08E8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bCastShadows                   = 0X0A58; // bool
-            static constexpr std::uintptr_t m_flTheta                        = 0X0A60; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flPhi                          = 0X0BD0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flRadiusMultiplier             = 0X0D40; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nAttenuationStyle              = 0X0EB0; // StandardLightingAttenuationStyle_t
-            static constexpr std::uintptr_t m_flFalloffLinearity             = 0X0EB8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flFiftyPercentFalloff          = 0X1028; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flZeroPercentFalloff           = 0X1198; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bRenderDiffuse                 = 0X1308; // bool
-            static constexpr std::uintptr_t m_bRenderSpecular                = 0X1309; // bool
-            static constexpr std::uintptr_t m_lightCookie                    = 0X1310; // CUtlString
-            static constexpr std::uintptr_t m_nPriority                      = 0X1318; // int32
-            static constexpr std::uintptr_t m_nFogLightingMode               = 0X131C; // ParticleLightFogLightingMode_t
-            static constexpr std::uintptr_t m_flFogContribution              = 0X1320; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_nCapsuleLightBehavior          = 0X1490; // ParticleLightBehaviorChoiceList_t
-            static constexpr std::uintptr_t m_flCapsuleLength                = 0X1494; // float32
-            static constexpr std::uintptr_t m_bReverseOrder                  = 0X1498; // bool
-            static constexpr std::uintptr_t m_bClosedLoop                    = 0X1499; // bool
-            static constexpr std::uintptr_t m_nPrevPntSource                 = 0X149C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flMaxLength                    = 0X14A0; // float32
-            static constexpr std::uintptr_t m_flMinLength                    = 0X14A4; // float32
-            static constexpr std::uintptr_t m_bIgnoreDT                      = 0X14A8; // bool
-            static constexpr std::uintptr_t m_flConstrainRadiusToLengthRatio = 0X14AC; // float32
-            static constexpr std::uintptr_t m_flLengthScale                  = 0X14B0; // float32
-            static constexpr std::uintptr_t m_flLengthFadeInTime             = 0X14B4; // float32
+            static constexpr std::uintptr_t m_nLightType                     = 0X0228; // ParticleLightTypeChoiceList_t
+            static constexpr std::uintptr_t m_nMaxAllowed                    = 0X022C; // uint16
+            static constexpr std::uintptr_t m_vecColorScale                  = 0X0230; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nColorBlendType                = 0X08E8; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_flIntensity                    = 0X08F0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bCastShadows                   = 0X0A60; // bool
+            static constexpr std::uintptr_t m_bDynamicBounce                 = 0X0A61; // bool
+            static constexpr std::uintptr_t m_flBounceScale                  = 0X0A68; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flTheta                        = 0X0BD8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flPhi                          = 0X0D48; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flRadiusMultiplier             = 0X0EB8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nAttenuationStyle              = 0X1028; // StandardLightingAttenuationStyle_t
+            static constexpr std::uintptr_t m_flFalloffLinearity             = 0X1030; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flFiftyPercentFalloff          = 0X11A0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flZeroPercentFalloff           = 0X1310; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bRenderDiffuse                 = 0X1480; // bool
+            static constexpr std::uintptr_t m_bRenderSpecular                = 0X1481; // bool
+            static constexpr std::uintptr_t m_lightCookie                    = 0X1488; // CUtlString
+            static constexpr std::uintptr_t m_nPriority                      = 0X1490; // int32
+            static constexpr std::uintptr_t m_nFogLightingMode               = 0X1494; // ParticleLightFogLightingMode_t
+            static constexpr std::uintptr_t m_flFogContribution              = 0X1498; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_nCapsuleLightBehavior          = 0X1608; // ParticleLightBehaviorChoiceList_t
+            static constexpr std::uintptr_t m_flCapsuleLength                = 0X160C; // float32
+            static constexpr std::uintptr_t m_bReverseOrder                  = 0X1610; // bool
+            static constexpr std::uintptr_t m_bClosedLoop                    = 0X1611; // bool
+            static constexpr std::uintptr_t m_nPrevPntSource                 = 0X1614; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flMaxLength                    = 0X1618; // float32
+            static constexpr std::uintptr_t m_flMinLength                    = 0X161C; // float32
+            static constexpr std::uintptr_t m_bIgnoreDT                      = 0X1620; // bool
+            static constexpr std::uintptr_t m_flConstrainRadiusToLengthRatio = 0X1624; // float32
+            static constexpr std::uintptr_t m_flLengthScale                  = 0X1628; // float32
+            static constexpr std::uintptr_t m_flLengthFadeInTime             = 0X162C; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderLightBeam : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_vColorBlend                = 0X0220; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nColorBlendType            = 0X08D8; // ParticleColorBlendType_t
-            static constexpr std::uintptr_t m_flBrightnessLumensPerMeter = 0X08E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bCastShadows               = 0X0A50; // bool
-            static constexpr std::uintptr_t m_flSkirt                    = 0X0A58; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flRange                    = 0X0BC8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flThickness                = 0X0D38; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nMaxAllowed                = 0X0228; // uint16
+            static constexpr std::uintptr_t m_vColorBlend                = 0X0230; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nColorBlendType            = 0X08E8; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_flBrightnessLumensPerMeter = 0X08F0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bCastShadows               = 0X0A60; // bool
+            static constexpr std::uintptr_t m_bDynamicBounce             = 0X0A61; // bool
+            static constexpr std::uintptr_t m_flBounceScale              = 0X0A68; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flSkirt                    = 0X0BD8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flRange                    = 0X0D48; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flThickness                = 0X0EB8; // CParticleCollectionFloatInput
         };
 
         // Has Trivial Destructor
@@ -8453,20 +8938,6 @@ namespace offsets {
         };
 
         // Has VTable
-        // Construct Allowed
-        class C_CSGO_PreviewPlayer_GraphController : public CAnimGraphControllerBase {
-        public:
-            static constexpr std::uintptr_t m_pszCharacterMode         = 0X0090; // CAnimGraphParamRef<char*>
-            static constexpr std::uintptr_t m_pszTeamPreviewVariant    = 0X00C0; // CAnimGraphParamRef<char*>
-            static constexpr std::uintptr_t m_pszTeamPreviewPosition   = 0X00F0; // CAnimGraphParamRef<char*>
-            static constexpr std::uintptr_t m_pszEndOfMatchCelebration = 0X0120; // CAnimGraphParamRef<char*>
-            static constexpr std::uintptr_t m_nTeamPreviewRandom       = 0X0150; // CAnimGraphParamRef<int32>
-            static constexpr std::uintptr_t m_pszWeaponState           = 0X0178; // CAnimGraphParamRef<char*>
-            static constexpr std::uintptr_t m_pszWeaponType            = 0X01A8; // CAnimGraphParamRef<char*>
-            static constexpr std::uintptr_t m_bCT                      = 0X01D8; // CAnimGraphParamRef<bool>
-        };
-
-        // Has VTable
         class CAI_Expresser {
         public:
             static constexpr std::uintptr_t m_flStopTalkTime                    = 0X0060; // GameTime_t
@@ -8479,7 +8950,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_bConsiderSceneInvolvementAsSpeech = 0X0079; // bool
             static constexpr std::uintptr_t m_bSceneEntityDisabled              = 0X007A; // bool
             static constexpr std::uintptr_t m_nLastSpokenPriority               = 0X007C; // int32
-            static constexpr std::uintptr_t m_pOuter                            = 0X0098; // CBaseFlex*
+            static constexpr std::uintptr_t m_pOuter                            = 0X0098; // CBaseModelEntity*
         };
 
         // Has Trivial Destructor
@@ -8493,15 +8964,15 @@ namespace offsets {
         // Construct Allowed
         class C_OP_DriveCPFromGlobalSoundFloat : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nOutputControlPoint = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nOutputField        = 0X01DC; // int32
-            static constexpr std::uintptr_t m_flInputMin          = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flInputMax          = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flOutputMin         = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flOutputMax         = 0X01EC; // float32
-            static constexpr std::uintptr_t m_StackName           = 0X01F0; // CUtlString
-            static constexpr std::uintptr_t m_OperatorName        = 0X01F8; // CUtlString
-            static constexpr std::uintptr_t m_FieldName           = 0X0200; // CUtlString
+            static constexpr std::uintptr_t m_nOutputControlPoint = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nOutputField        = 0X01E4; // int32
+            static constexpr std::uintptr_t m_flInputMin          = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flInputMax          = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flOutputMin         = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flOutputMax         = 0X01F4; // float32
+            static constexpr std::uintptr_t m_StackName           = 0X01F8; // CUtlString
+            static constexpr std::uintptr_t m_OperatorName        = 0X0200; // CUtlString
+            static constexpr std::uintptr_t m_FieldName           = 0X0208; // CUtlString
         };
 
         // Construct Allowed
@@ -8563,63 +9034,52 @@ namespace offsets {
             static constexpr std::uintptr_t m_emaMovementDirection = 0X0014; // CVectorExponentialMovingAverage
         };
 
-        // Has Trivial Destructor
-        struct DestructiblePartDestructionRequest_t {
-        public:
-            static constexpr std::uintptr_t m_nDestroyFlags       = 0X0000; // EDestructibleParts_DestroyParameterFlags
-            static constexpr std::uintptr_t m_nDamageType         = 0X0004; // DamageTypes_t
-            static constexpr std::uintptr_t m_flPartDamage        = 0X0008; // float32
-            static constexpr std::uintptr_t m_flPartDamageRadius  = 0X000C; // float32
-            static constexpr std::uintptr_t m_vWsPartDamageOrigin = 0X0010; // VectorWS
-            static constexpr std::uintptr_t m_vWsPartDamageForce  = 0X001C; // Vector
-        };
-
         // Has VTable
         // Construct Allowed
         class C_OP_RemapControlPointDirectionToVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flScale             = 0X01D4; // float32
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flScale             = 0X01DC; // float32
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E0; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ScreenSpacePositionOfTarget : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_vecTargetPosition   = 0X01D0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_bOututBehindness    = 0X0888; // bool
-            static constexpr std::uintptr_t m_nBehindFieldOutput  = 0X088C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flBehindOutputRemap = 0X0890; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nBehindSetMethod    = 0X0A00; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_vecTargetPosition   = 0X01D8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_bOututBehindness    = 0X0890; // bool
+            static constexpr std::uintptr_t m_nBehindFieldOutput  = 0X0894; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flBehindOutputRemap = 0X0898; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nBehindSetMethod    = 0X0A08; // ParticleSetMethod_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_PositionOffset : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_OffsetMin            = 0X01D8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_OffsetMax            = 0X0890; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_TransformInput       = 0X0F48; // CParticleTransformInput
-            static constexpr std::uintptr_t m_bLocalCoords         = 0X0FB0; // bool
-            static constexpr std::uintptr_t m_bProportional        = 0X0FB1; // bool
-            static constexpr std::uintptr_t m_randomnessParameters = 0X0FB4; // CRandomNumberGeneratorParameters
+            static constexpr std::uintptr_t m_OffsetMin            = 0X01E0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_OffsetMax            = 0X0898; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_TransformInput       = 0X0F50; // CParticleTransformInput
+            static constexpr std::uintptr_t m_bLocalCoords         = 0X0FB8; // bool
+            static constexpr std::uintptr_t m_bProportional        = 0X0FB9; // bool
+            static constexpr std::uintptr_t m_randomnessParameters = 0X0FBC; // CRandomNumberGeneratorParameters
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ChladniWave : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput            = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin              = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInputMax              = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMin             = 0X04B8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMax             = 0X0628; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vecWaveLength           = 0X0798; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecHarmonics            = 0X0E50; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_nSetMethod              = 0X1508; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_nLocalSpaceControlPoint = 0X150C; // int32
-            static constexpr std::uintptr_t m_b3D                     = 0X1510; // bool
+            static constexpr std::uintptr_t m_nFieldOutput            = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin              = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInputMax              = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMin             = 0X04C0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMax             = 0X0630; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecWaveLength           = 0X07A0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecHarmonics            = 0X0E58; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nSetMethod              = 0X1510; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nLocalSpaceControlPoint = 0X1514; // int32
+            static constexpr std::uintptr_t m_b3D                     = 0X1518; // bool
         };
 
         // Construct Allowed
@@ -8640,26 +9100,26 @@ namespace offsets {
         // Construct Allowed
         class CNmTwoBoneIKNode__CDefinition : public CNmPassthroughNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_effectorBoneID             = 0X0018; // CGlobalSymbol
-            static constexpr std::uintptr_t m_nEffectorTargetNodeIdx     = 0X0020; // int16
-            static constexpr std::uintptr_t m_nEnabledNodeIdx            = 0X0022; // int16
-            static constexpr std::uintptr_t m_flBlendTimeSeconds         = 0X0024; // float32
-            static constexpr std::uintptr_t m_blendMode                  = 0X0028; // NmIKBlendMode_t
-            static constexpr std::uintptr_t m_bIsTargetInWorldSpace      = 0X0029; // bool
-            static constexpr std::uintptr_t m_flReferencePoseTwistWeight = 0X002C; // float32
+            static constexpr std::uintptr_t m_effectorBoneID         = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nEffectorTargetNodeIdx = 0X0020; // int16
+            static constexpr std::uintptr_t m_nEnabledNodeIdx        = 0X0022; // int16
+            static constexpr std::uintptr_t m_flBlendTimeSeconds     = 0X0024; // float32
+            static constexpr std::uintptr_t m_blendMode              = 0X0028; // NmIKBlendMode_t
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace  = 0X0029; // bool
+            static constexpr std::uintptr_t m_flChainRotationWeight  = 0X002C; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class CNmSoundEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_relevance                          = 0X0020; // CNmEventRelevance_t
-            static constexpr std::uintptr_t m_name                               = 0X0028; // CUtlString
-            static constexpr std::uintptr_t m_position                           = 0X0030; // CNmSoundEvent::Position_t
-            static constexpr std::uintptr_t m_attachmentName                     = 0X0038; // CUtlString
-            static constexpr std::uintptr_t m_tags                               = 0X0040; // CUtlString
-            static constexpr std::uintptr_t m_bContinuePlayingSoundAtDurationEnd = 0X0048; // bool
-            static constexpr std::uintptr_t m_flDurationInterruptionThreshold    = 0X004C; // float32
+            static constexpr std::uintptr_t m_relevance                          = 0X0018; // CNmEventRelevance_t
+            static constexpr std::uintptr_t m_name                               = 0X0020; // CUtlString
+            static constexpr std::uintptr_t m_position                           = 0X0028; // CNmSoundEvent::Position_t
+            static constexpr std::uintptr_t m_attachmentName                     = 0X0030; // CUtlString
+            static constexpr std::uintptr_t m_tags                               = 0X0038; // CUtlString
+            static constexpr std::uintptr_t m_bContinuePlayingSoundAtDurationEnd = 0X0040; // bool
+            static constexpr std::uintptr_t m_flDurationInterruptionThreshold    = 0X0044; // float32
         };
 
         // Has VTable
@@ -8676,18 +9136,19 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
         class CCommentarySystem {
         public:
-            static constexpr std::uintptr_t m_bCommentaryConvarsChanging = 0X0011; // bool
-            static constexpr std::uintptr_t m_bCommentaryEnabledMidGame  = 0X0012; // bool
-            static constexpr std::uintptr_t m_flNextTeleportTime         = 0X0014; // GameTime_t
-            static constexpr std::uintptr_t m_iTeleportStage             = 0X0018; // int32
-            static constexpr std::uintptr_t m_bCheatState                = 0X001C; // bool
-            static constexpr std::uintptr_t m_bIsFirstSpawnGroupToLoad   = 0X001D; // bool
-            static constexpr std::uintptr_t m_hCurrentNode               = 0X0038; // CHandle<CPointCommentaryNode>
-            static constexpr std::uintptr_t m_hActiveCommentaryNode      = 0X003C; // CHandle<CPointCommentaryNode>
-            static constexpr std::uintptr_t m_hLastCommentaryNode        = 0X0040; // CHandle<CPointCommentaryNode>
-            static constexpr std::uintptr_t m_vecNodes                   = 0X0048; // CUtlVector<CHandle<CPointCommentaryNode>>
+            static constexpr std::uintptr_t m_bCommentaryEnabledMidGame = 0X0012; // bool
+            static constexpr std::uintptr_t m_flNextTeleportTime        = 0X0014; // GameTime_t
+            static constexpr std::uintptr_t m_iTeleportStage            = 0X0018; // int32
+            static constexpr std::uintptr_t m_bCheatState               = 0X001C; // bool
+            static constexpr std::uintptr_t m_bIsFirstSpawnGroupToLoad  = 0X001D; // bool
+            static constexpr std::uintptr_t m_ModifiedConvars           = 0X0020; // CUtlVector<modifiedconvars_t>
+            static constexpr std::uintptr_t m_hCurrentNode              = 0X0038; // CHandle<CPointCommentaryNode>
+            static constexpr std::uintptr_t m_hActiveCommentaryNode     = 0X003C; // CHandle<CPointCommentaryNode>
+            static constexpr std::uintptr_t m_hLastCommentaryNode       = 0X0040; // CHandle<CPointCommentaryNode>
+            static constexpr std::uintptr_t m_vecNodes                  = 0X0048; // CUtlVector<CHandle<CPointCommentaryNode>>
         };
 
         // Has Trivial Destructor
@@ -8723,26 +9184,26 @@ namespace offsets {
         // Construct Allowed
         class C_OP_DistanceBetweenTransforms : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput       = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_TransformStart     = 0X01D8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_TransformEnd       = 0X0240; // CParticleTransformInput
-            static constexpr std::uintptr_t m_flInputMin         = 0X02A8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInputMax         = 0X0418; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMin        = 0X0588; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMax        = 0X06F8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X0868; // float32
-            static constexpr std::uintptr_t m_flLOSScale         = 0X086C; // float32
-            static constexpr std::uintptr_t m_CollisionGroupName = 0X0870; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet          = 0X08F0; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_bLOS               = 0X08F4; // bool
-            static constexpr std::uintptr_t m_nSetMethod         = 0X08F8; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nFieldOutput       = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_TransformStart     = 0X01E0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_TransformEnd       = 0X0248; // CParticleTransformInput
+            static constexpr std::uintptr_t m_flInputMin         = 0X02B0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInputMax         = 0X0420; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMin        = 0X0590; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMax        = 0X0700; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X0870; // float32
+            static constexpr std::uintptr_t m_flLOSScale         = 0X0874; // float32
+            static constexpr std::uintptr_t m_CollisionGroupName = 0X0878; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet          = 0X08F8; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_bLOS               = 0X08FC; // bool
+            static constexpr std::uintptr_t m_nSetMethod         = 0X0900; // ParticleSetMethod_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_SequenceLifeTime : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flFramerate = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flFramerate = 0X01E0; // float32
         };
 
         // Has VTable
@@ -8755,26 +9216,26 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapModelVolumetoCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nBBoxType                 = 0X01D8; // BBoxVolumeType_t
-            static constexpr std::uintptr_t m_nInControlPointNumber     = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nOutControlPointNumber    = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nOutControlPointMaxNumber = 0X01E4; // int32
-            static constexpr std::uintptr_t m_nField                    = 0X01E8; // int32
-            static constexpr std::uintptr_t m_flInputMin                = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flInputMax                = 0X01F0; // float32
-            static constexpr std::uintptr_t m_flOutputMin               = 0X01F4; // float32
-            static constexpr std::uintptr_t m_flOutputMax               = 0X01F8; // float32
-            static constexpr std::uintptr_t m_bBBoxOnly                 = 0X01FC; // bool
-            static constexpr std::uintptr_t m_bCubeRoot                 = 0X01FD; // bool
+            static constexpr std::uintptr_t m_nBBoxType                 = 0X01E0; // BBoxVolumeType_t
+            static constexpr std::uintptr_t m_nInControlPointNumber     = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nOutControlPointNumber    = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nOutControlPointMaxNumber = 0X01EC; // int32
+            static constexpr std::uintptr_t m_nField                    = 0X01F0; // int32
+            static constexpr std::uintptr_t m_flInputMin                = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flInputMax                = 0X01F8; // float32
+            static constexpr std::uintptr_t m_flOutputMin               = 0X01FC; // float32
+            static constexpr std::uintptr_t m_flOutputMax               = 0X0200; // float32
+            static constexpr std::uintptr_t m_bBBoxOnly                 = 0X0204; // bool
+            static constexpr std::uintptr_t m_bCubeRoot                 = 0X0205; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LerpEndCapScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOutput     = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flLerpTime   = 0X01D8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOutput     = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flLerpTime   = 0X01E0; // float32
         };
 
         // Construct Allowed
@@ -8815,11 +9276,11 @@ namespace offsets {
         // Construct Allowed
         class C_OP_CreateParticleSystemRenderer : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_hEffect          = 0X0220; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
-            static constexpr std::uintptr_t m_nEventType       = 0X0228; // EventTypeSelection_t
-            static constexpr std::uintptr_t m_vecCPs           = 0X0230; // CUtlLeanVector<CPAssignment_t>
-            static constexpr std::uintptr_t m_szParticleConfig = 0X0240; // CUtlString
-            static constexpr std::uintptr_t m_AggregationPos   = 0X0248; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_hEffect          = 0X0228; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
+            static constexpr std::uintptr_t m_nEventType       = 0X0230; // EventTypeSelection_t
+            static constexpr std::uintptr_t m_vecCPs           = 0X0238; // CUtlLeanVector<CPAssignment_t>
+            static constexpr std::uintptr_t m_szParticleConfig = 0X0248; // CUtlString
+            static constexpr std::uintptr_t m_AggregationPos   = 0X0250; // CPerParticleVecInput
         };
 
         // Has Trivial Constructor
@@ -8884,8 +9345,8 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_NormalAlignToCP : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_transformInput    = 0X01D8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nControlPointAxis = 0X0240; // ParticleControlPointAxis_t
+            static constexpr std::uintptr_t m_transformInput    = 0X01E0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nControlPointAxis = 0X0248; // ParticleControlPointAxis_t
         };
 
         // Construct Allowed
@@ -8894,6 +9355,12 @@ namespace offsets {
             static constexpr std::uintptr_t m_vLODOrigin       = 0X0000; // Vector
             static constexpr std::uintptr_t m_fMaxObjectScale  = 0X000C; // float32
             static constexpr std::uintptr_t m_fSwitchDistances = 0X0010; // CUtlVector<float32>
+        };
+
+        // Has VTable
+        // Is Absract
+        class IPhysicsBodyList {
+        public:
         };
 
         // Has VTable
@@ -8982,32 +9449,32 @@ namespace offsets {
         // Construct Allowed
         class C_OP_DragRelativeToPlane : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flDragAtPlane       = 0X01D0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flFalloff           = 0X0340; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bDirectional        = 0X04B0; // bool
-            static constexpr std::uintptr_t m_vecPlaneNormal      = 0X04B8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X0B70; // int32
+            static constexpr std::uintptr_t m_flDragAtPlane       = 0X01D8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flFalloff           = 0X0348; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bDirectional        = 0X04B8; // bool
+            static constexpr std::uintptr_t m_vecPlaneNormal      = 0X04C0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X0B78; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_MaxVelocity : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flMaxVelocity    = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flMinVelocity    = 0X01D4; // float32
-            static constexpr std::uintptr_t m_nOverrideCP      = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nOverrideCPField = 0X01DC; // int32
+            static constexpr std::uintptr_t m_flMaxVelocity    = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flMinVelocity    = 0X01DC; // float32
+            static constexpr std::uintptr_t m_nOverrideCP      = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nOverrideCPField = 0X01E4; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapBoundingVolumetoCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_flInputMin             = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flInputMax             = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMin            = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flOutputMax            = 0X01E8; // float32
+            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X01E0; // int32
+            static constexpr std::uintptr_t m_flInputMin             = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flInputMax             = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMin            = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flOutputMax            = 0X01F0; // float32
         };
 
         // Has Trivial Constructor
@@ -9026,17 +9493,18 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_variationID                 = 0X0000; // CGlobalSymbol
             static constexpr std::uintptr_t m_skeleton                    = 0X0008; // CStrongHandle<InfoForResourceTypeCNmSkeleton>
-            static constexpr std::uintptr_t m_pUserData                   = 0X0010; // CNmGraphVariationUserData*
-            static constexpr std::uintptr_t m_persistentNodeIndices       = 0X0018; // CUtlVector<int16>
-            static constexpr std::uintptr_t m_nRootNodeIdx                = 0X0030; // int16
-            static constexpr std::uintptr_t m_controlParameterIDs         = 0X0038; // CUtlVector<CGlobalSymbol>
-            static constexpr std::uintptr_t m_virtualParameterIDs         = 0X0050; // CUtlVector<CGlobalSymbol>
-            static constexpr std::uintptr_t m_virtualParameterNodeIndices = 0X0068; // CUtlVector<int16>
-            static constexpr std::uintptr_t m_referencedGraphSlots        = 0X0080; // CUtlVector<CNmGraphDefinition::ReferencedGraphSlot_t>
-            static constexpr std::uintptr_t m_externalGraphSlots          = 0X0098; // CUtlVector<CNmGraphDefinition::ExternalGraphSlot_t>
-            static constexpr std::uintptr_t m_externalPoseSlots           = 0X00B0; // CUtlVector<CNmGraphDefinition::ExternalPoseSlot_t>
-            static constexpr std::uintptr_t m_nodePaths                   = 0X0138; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_resources                   = 0X0150; // CUtlVector<CStrongHandleVoid>
+            static constexpr std::uintptr_t m_supportedSecondarySkeletons = 0X0010; // CUtlVector<CStrongHandle<InfoForResourceTypeCNmSkeleton>>
+            static constexpr std::uintptr_t m_pUserData                   = 0X0028; // CNmGraphVariationUserData*
+            static constexpr std::uintptr_t m_persistentNodeIndices       = 0X0030; // CUtlVector<int16>
+            static constexpr std::uintptr_t m_nRootNodeIdx                = 0X0048; // int16
+            static constexpr std::uintptr_t m_controlParameterIDs         = 0X0050; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t m_virtualParameterIDs         = 0X0068; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t m_virtualParameterNodeIndices = 0X0080; // CUtlVector<int16>
+            static constexpr std::uintptr_t m_referencedGraphSlots        = 0X0098; // CUtlVector<CNmGraphDefinition::ReferencedGraphSlot_t>
+            static constexpr std::uintptr_t m_externalGraphSlots          = 0X00B0; // CUtlVector<CNmGraphDefinition::ExternalGraphSlot_t>
+            static constexpr std::uintptr_t m_externalPoseSlots           = 0X00C8; // CUtlVector<CNmGraphDefinition::ExternalPoseSlot_t>
+            static constexpr std::uintptr_t m_nodePaths                   = 0X0150; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_resources                   = 0X0168; // CUtlVector<CStrongHandleVoid>
         };
 
         // Has Trivial Destructor
@@ -9095,47 +9563,47 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderDeferredLight : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_bUseAlphaTestWindow      = 0X0220; // bool
-            static constexpr std::uintptr_t m_bUseTexture              = 0X0221; // bool
-            static constexpr std::uintptr_t m_flRadiusScale            = 0X0224; // float32
-            static constexpr std::uintptr_t m_flAlphaScale             = 0X0228; // float32
-            static constexpr std::uintptr_t m_nAlpha2Field             = 0X022C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecColorScale            = 0X0230; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nColorBlendType          = 0X08E8; // ParticleColorBlendType_t
-            static constexpr std::uintptr_t m_flLightDistance          = 0X08EC; // float32
-            static constexpr std::uintptr_t m_flStartFalloff           = 0X08F0; // float32
-            static constexpr std::uintptr_t m_flDistanceFalloff        = 0X08F4; // float32
-            static constexpr std::uintptr_t m_flSpotFoV                = 0X08F8; // float32
-            static constexpr std::uintptr_t m_nAlphaTestPointField     = 0X08FC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nAlphaTestRangeField     = 0X0900; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nAlphaTestSharpnessField = 0X0904; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_hTexture                 = 0X0908; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_nHSVShiftControlPoint    = 0X0910; // int32
+            static constexpr std::uintptr_t m_bUseAlphaTestWindow      = 0X0228; // bool
+            static constexpr std::uintptr_t m_bUseTexture              = 0X0229; // bool
+            static constexpr std::uintptr_t m_flRadiusScale            = 0X022C; // float32
+            static constexpr std::uintptr_t m_flAlphaScale             = 0X0230; // float32
+            static constexpr std::uintptr_t m_nAlpha2Field             = 0X0234; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecColorScale            = 0X0238; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nColorBlendType          = 0X08F0; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_flLightDistance          = 0X08F4; // float32
+            static constexpr std::uintptr_t m_flStartFalloff           = 0X08F8; // float32
+            static constexpr std::uintptr_t m_flDistanceFalloff        = 0X08FC; // float32
+            static constexpr std::uintptr_t m_flSpotFoV                = 0X0900; // float32
+            static constexpr std::uintptr_t m_nAlphaTestPointField     = 0X0904; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nAlphaTestRangeField     = 0X0908; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nAlphaTestSharpnessField = 0X090C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_hTexture                 = 0X0910; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_nHSVShiftControlPoint    = 0X0918; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_InitFloatCollection : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_InputValue   = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nOutputField = 0X0348; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_InputValue   = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nOutputField = 0X0350; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapDotProductToScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nInputCP1            = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nInputCP2            = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nFieldOutput         = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin           = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flInputMax           = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMin          = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flOutputMax          = 0X01E8; // float32
-            static constexpr std::uintptr_t m_bUseParticleVelocity = 0X01EC; // bool
-            static constexpr std::uintptr_t m_nSetMethod           = 0X01F0; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bActiveRange         = 0X01F4; // bool
-            static constexpr std::uintptr_t m_bUseParticleNormal   = 0X01F5; // bool
+            static constexpr std::uintptr_t m_nInputCP1            = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nInputCP2            = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nFieldOutput         = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin           = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flInputMax           = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMin          = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flOutputMax          = 0X01F0; // float32
+            static constexpr std::uintptr_t m_bUseParticleVelocity = 0X01F4; // bool
+            static constexpr std::uintptr_t m_nSetMethod           = 0X01F8; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bActiveRange         = 0X01FC; // bool
+            static constexpr std::uintptr_t m_bUseParticleNormal   = 0X01FD; // bool
         };
 
         // Has Trivial Destructor
@@ -9225,10 +9693,10 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetSingleControlPointPosition : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_bSetOnce       = 0X01D8; // bool
-            static constexpr std::uintptr_t m_nCP1           = 0X01DC; // int32
-            static constexpr std::uintptr_t m_vecCP1Pos      = 0X01E0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_transformInput = 0X0898; // CParticleTransformInput
+            static constexpr std::uintptr_t m_bSetOnce       = 0X01E0; // bool
+            static constexpr std::uintptr_t m_nCP1           = 0X01E4; // int32
+            static constexpr std::uintptr_t m_vecCP1Pos      = 0X01E8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_transformInput = 0X08A0; // CParticleTransformInput
         };
 
         // Construct Allowed
@@ -9251,25 +9719,25 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetControlPointsToParticle : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nChildGroupID      = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFirstControlPoint = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nNumControlPoints  = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nFirstSourcePoint  = 0X01DC; // int32
-            static constexpr std::uintptr_t m_bReverse           = 0X01E0; // bool
-            static constexpr std::uintptr_t m_bSetOrientation    = 0X01E1; // bool
-            static constexpr std::uintptr_t m_nOrientationMode   = 0X01E4; // ParticleOrientationSetMode_t
-            static constexpr std::uintptr_t m_nSetParent         = 0X01E8; // ParticleParentSetMode_t
+            static constexpr std::uintptr_t m_nChildGroupID      = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFirstControlPoint = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nNumControlPoints  = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nFirstSourcePoint  = 0X01E4; // int32
+            static constexpr std::uintptr_t m_bReverse           = 0X01E8; // bool
+            static constexpr std::uintptr_t m_bSetOrientation    = 0X01E9; // bool
+            static constexpr std::uintptr_t m_nOrientationMode   = 0X01EC; // ParticleOrientationSetMode_t
+            static constexpr std::uintptr_t m_nSetParent         = 0X01F0; // ParticleParentSetMode_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ExternalGameImpulseForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_flForceScale = 0X01E0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bRopes       = 0X0350; // bool
-            static constexpr std::uintptr_t m_bRopesZOnly  = 0X0351; // bool
-            static constexpr std::uintptr_t m_bExplosions  = 0X0352; // bool
-            static constexpr std::uintptr_t m_bParticles   = 0X0353; // bool
+            static constexpr std::uintptr_t m_flForceScale = 0X01E8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bRopes       = 0X0358; // bool
+            static constexpr std::uintptr_t m_bRopesZOnly  = 0X0359; // bool
+            static constexpr std::uintptr_t m_bExplosions  = 0X035A; // bool
+            static constexpr std::uintptr_t m_bParticles   = 0X035B; // bool
         };
 
         // Has VTable
@@ -9451,24 +9919,24 @@ namespace offsets {
         // Construct Allowed
         class C_OP_VelocityDecay : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flMinVelocity = 0X01D0; // float32
+            static constexpr std::uintptr_t m_flMinVelocity = 0X01D8; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_CalculateVectorAttribute : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_vStartValue          = 0X01D0; // Vector
-            static constexpr std::uintptr_t m_nFieldInput1         = 0X01DC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputScale1        = 0X01E0; // float32
-            static constexpr std::uintptr_t m_nFieldInput2         = 0X01E4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputScale2        = 0X01E8; // float32
-            static constexpr std::uintptr_t m_nControlPointInput1  = 0X01EC; // ControlPointReference_t
-            static constexpr std::uintptr_t m_flControlPointScale1 = 0X0200; // float32
-            static constexpr std::uintptr_t m_nControlPointInput2  = 0X0204; // ControlPointReference_t
-            static constexpr std::uintptr_t m_flControlPointScale2 = 0X0218; // float32
-            static constexpr std::uintptr_t m_nFieldOutput         = 0X021C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vFinalOutputScale    = 0X0220; // Vector
+            static constexpr std::uintptr_t m_vStartValue          = 0X01D8; // Vector
+            static constexpr std::uintptr_t m_nFieldInput1         = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputScale1        = 0X01E8; // float32
+            static constexpr std::uintptr_t m_nFieldInput2         = 0X01EC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputScale2        = 0X01F0; // float32
+            static constexpr std::uintptr_t m_nControlPointInput1  = 0X01F4; // ControlPointReference_t
+            static constexpr std::uintptr_t m_flControlPointScale1 = 0X0208; // float32
+            static constexpr std::uintptr_t m_nControlPointInput2  = 0X020C; // ControlPointReference_t
+            static constexpr std::uintptr_t m_flControlPointScale2 = 0X0220; // float32
+            static constexpr std::uintptr_t m_nFieldOutput         = 0X0224; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vFinalOutputScale    = 0X0228; // Vector
         };
 
         // Construct Allowed
@@ -9554,9 +10022,9 @@ namespace offsets {
         // Construct Allowed
         class CNmIDSelectorNode__CDefinition : public CNmIDValueNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0010; // CUtlVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_values               = 0X0038; // CUtlVectorFixedGrowable<CGlobalSymbol,5>
-            static constexpr std::uintptr_t m_defaultValue         = 0X0078; // CGlobalSymbol
+            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_values               = 0X0028; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,5>
+            static constexpr std::uintptr_t m_defaultValue         = 0X0058; // CGlobalSymbol
         };
 
         // Has Trivial Destructor
@@ -9582,20 +10050,20 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RandomVectorComponent : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flMin        = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flMax        = 0X01DC; // float32
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01E0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nComponent   = 0X01E4; // int32
+            static constexpr std::uintptr_t m_flMin        = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flMax        = 0X01E4; // float32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01E8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nComponent   = 0X01EC; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_InheritFromParentParticles : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flScale             = 0X01D0; // float32
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nIncrement          = 0X01D8; // int32
-            static constexpr std::uintptr_t m_bRandomDistribution = 0X01DC; // bool
+            static constexpr std::uintptr_t m_flScale             = 0X01D8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nIncrement          = 0X01E0; // int32
+            static constexpr std::uintptr_t m_bRandomDistribution = 0X01E4; // bool
         };
 
         // Has VTable
@@ -9603,70 +10071,71 @@ namespace offsets {
         // Construct Allowed
         class CBaseRendererSource2 : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flRadiusScale                  = 0X0220; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flAlphaScale                   = 0X0390; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flRollScale                    = 0X0500; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_nAlpha2Field                   = 0X0670; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecColorScale                  = 0X0678; // CParticleCollectionRendererVecInput
-            static constexpr std::uintptr_t m_nColorBlendType                = 0X0D30; // ParticleColorBlendType_t
-            static constexpr std::uintptr_t m_nShaderType                    = 0X0D34; // SpriteCardShaderType_t
-            static constexpr std::uintptr_t m_strShaderOverride              = 0X0D38; // CUtlString
-            static constexpr std::uintptr_t m_flCenterXOffset                = 0X0D40; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flCenterYOffset                = 0X0EB0; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flBumpStrength                 = 0X1020; // float32
-            static constexpr std::uintptr_t m_nCropTextureOverride           = 0X1024; // ParticleSequenceCropOverride_t
-            static constexpr std::uintptr_t m_vecTexturesInput               = 0X1028; // CUtlLeanVector<TextureGroup_t>
-            static constexpr std::uintptr_t m_flAnimationRate                = 0X1038; // float32
-            static constexpr std::uintptr_t m_nAnimationType                 = 0X103C; // AnimationType_t
-            static constexpr std::uintptr_t m_bAnimateInFPS                  = 0X1040; // bool
-            static constexpr std::uintptr_t m_flMotionVectorScaleU           = 0X1048; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flMotionVectorScaleV           = 0X11B8; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flSelfIllumAmount              = 0X1328; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flDiffuseAmount                = 0X1498; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flDiffuseClamp                 = 0X1608; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_nLightingControlPoint          = 0X1778; // int32
-            static constexpr std::uintptr_t m_nOutputBlendMode               = 0X177C; // ParticleOutputBlendMode_t
-            static constexpr std::uintptr_t m_bGammaCorrectVertexColors      = 0X1780; // bool
-            static constexpr std::uintptr_t m_bSaturateColorPreAlphaBlend    = 0X1781; // bool
-            static constexpr std::uintptr_t m_flAddSelfAmount                = 0X1788; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flDesaturation                 = 0X18F8; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flOverbrightFactor             = 0X1A68; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_nHSVShiftControlPoint          = 0X1BD8; // int32
-            static constexpr std::uintptr_t m_nFogType                       = 0X1BDC; // ParticleFogType_t
-            static constexpr std::uintptr_t m_flFogAmount                    = 0X1BE0; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_bTintByFOW                     = 0X1D50; // bool
-            static constexpr std::uintptr_t m_bTintByGlobalLight             = 0X1D51; // bool
-            static constexpr std::uintptr_t m_nPerParticleAlphaReference     = 0X1D54; // SpriteCardPerParticleScale_t
-            static constexpr std::uintptr_t m_nPerParticleAlphaRefWindow     = 0X1D58; // SpriteCardPerParticleScale_t
-            static constexpr std::uintptr_t m_nAlphaReferenceType            = 0X1D5C; // ParticleAlphaReferenceType_t
-            static constexpr std::uintptr_t m_flAlphaReferenceSoftness       = 0X1D60; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flSourceAlphaValueToMapToZero  = 0X1ED0; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flSourceAlphaValueToMapToOne   = 0X2040; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_bRefract                       = 0X21B0; // bool
-            static constexpr std::uintptr_t m_bRefractSolid                  = 0X21B1; // bool
-            static constexpr std::uintptr_t m_flRefractAmount                = 0X21B8; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_nRefractBlurRadius             = 0X2328; // int32
-            static constexpr std::uintptr_t m_nRefractBlurType               = 0X232C; // BlurFilterType_t
-            static constexpr std::uintptr_t m_bOnlyRenderInEffectsBloomPass  = 0X2330; // bool
-            static constexpr std::uintptr_t m_bOnlyRenderInEffectsWaterPass  = 0X2331; // bool
-            static constexpr std::uintptr_t m_bUseMixedResolutionRendering   = 0X2332; // bool
-            static constexpr std::uintptr_t m_bOnlyRenderInEffecsGameOverlay = 0X2333; // bool
-            static constexpr std::uintptr_t m_stencilTestID                  = 0X2334; // char[128]
-            static constexpr std::uintptr_t m_bStencilTestExclude            = 0X23B4; // bool
-            static constexpr std::uintptr_t m_stencilWriteID                 = 0X23B5; // char[128]
-            static constexpr std::uintptr_t m_bWriteStencilOnDepthPass       = 0X2435; // bool
-            static constexpr std::uintptr_t m_bWriteStencilOnDepthFail       = 0X2436; // bool
-            static constexpr std::uintptr_t m_bReverseZBuffering             = 0X2437; // bool
-            static constexpr std::uintptr_t m_bDisableZBuffering             = 0X2438; // bool
-            static constexpr std::uintptr_t m_nFeatheringMode                = 0X243C; // ParticleDepthFeatheringMode_t
-            static constexpr std::uintptr_t m_flFeatheringMinDist            = 0X2440; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flFeatheringMaxDist            = 0X25B0; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flFeatheringFilter             = 0X2720; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flFeatheringDepthMapFilter     = 0X2890; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flDepthBias                    = 0X2A00; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_nSortMethod                    = 0X2B70; // ParticleSortingChoiceList_t
-            static constexpr std::uintptr_t m_bBlendFramesSeq0               = 0X2B74; // bool
-            static constexpr std::uintptr_t m_bMaxLuminanceBlendingSequence0 = 0X2B75; // bool
+            static constexpr std::uintptr_t m_flRadiusScale                  = 0X0228; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flAlphaScale                   = 0X0398; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flRollScale                    = 0X0508; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_nAlpha2Field                   = 0X0678; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecColorScale                  = 0X0680; // CParticleCollectionRendererVecInput
+            static constexpr std::uintptr_t m_nColorBlendType                = 0X0D38; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_nShaderType                    = 0X0D3C; // SpriteCardShaderType_t
+            static constexpr std::uintptr_t m_strShaderOverride              = 0X0D40; // CUtlString
+            static constexpr std::uintptr_t m_flCenterXOffset                = 0X0D48; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flCenterYOffset                = 0X0EB8; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flBumpStrength                 = 0X1028; // float32
+            static constexpr std::uintptr_t m_nCropTextureOverride           = 0X102C; // ParticleSequenceCropOverride_t
+            static constexpr std::uintptr_t m_vecTexturesInput               = 0X1030; // CUtlLeanVector<TextureGroup_t>
+            static constexpr std::uintptr_t m_flAnimationRate                = 0X1040; // float32
+            static constexpr std::uintptr_t m_nAnimationType                 = 0X1044; // AnimationType_t
+            static constexpr std::uintptr_t m_bAnimateInFPS                  = 0X1048; // bool
+            static constexpr std::uintptr_t m_flMotionVectorScaleU           = 0X1050; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flMotionVectorScaleV           = 0X11C0; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flSelfIllumAmount              = 0X1330; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flDiffuseAmount                = 0X14A0; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flDiffuseClamp                 = 0X1610; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_nLightingControlPoint          = 0X1780; // int32
+            static constexpr std::uintptr_t m_nOutputBlendMode               = 0X1784; // ParticleOutputBlendMode_t
+            static constexpr std::uintptr_t m_bGammaCorrectVertexColors      = 0X1788; // bool
+            static constexpr std::uintptr_t m_bSaturateColorPreAlphaBlend    = 0X1789; // bool
+            static constexpr std::uintptr_t m_flAddSelfAmount                = 0X1790; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flDesaturation                 = 0X1900; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flOverbrightFactor             = 0X1A70; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_nHSVShiftControlPoint          = 0X1BE0; // int32
+            static constexpr std::uintptr_t m_nFogType                       = 0X1BE4; // ParticleFogType_t
+            static constexpr std::uintptr_t m_flFogAmount                    = 0X1BE8; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_bTintByFOW                     = 0X1D58; // bool
+            static constexpr std::uintptr_t m_bTintByGlobalLight             = 0X1D59; // bool
+            static constexpr std::uintptr_t m_nPerParticleAlphaReference     = 0X1D5C; // SpriteCardPerParticleScale_t
+            static constexpr std::uintptr_t m_nPerParticleAlphaRefWindow     = 0X1D60; // SpriteCardPerParticleScale_t
+            static constexpr std::uintptr_t m_nAlphaReferenceType            = 0X1D64; // ParticleAlphaReferenceType_t
+            static constexpr std::uintptr_t m_flAlphaReferenceSoftness       = 0X1D68; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flSourceAlphaValueToMapToZero  = 0X1ED8; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flSourceAlphaValueToMapToOne   = 0X2048; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_bRefract                       = 0X21B8; // bool
+            static constexpr std::uintptr_t m_bRefractSolid                  = 0X21B9; // bool
+            static constexpr std::uintptr_t m_bRefract2Passes                = 0X21BA; // bool
+            static constexpr std::uintptr_t m_flRefractAmount                = 0X21C0; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_nRefractBlurRadius             = 0X2330; // int32
+            static constexpr std::uintptr_t m_nRefractBlurType               = 0X2334; // BlurFilterType_t
+            static constexpr std::uintptr_t m_bOnlyRenderInEffectsBloomPass  = 0X2338; // bool
+            static constexpr std::uintptr_t m_bOnlyRenderInEffectsWaterPass  = 0X2339; // bool
+            static constexpr std::uintptr_t m_bUseMixedResolutionRendering   = 0X233A; // bool
+            static constexpr std::uintptr_t m_bOnlyRenderInEffecsGameOverlay = 0X233B; // bool
+            static constexpr std::uintptr_t m_stencilTestID                  = 0X233C; // char[128]
+            static constexpr std::uintptr_t m_bStencilTestExclude            = 0X23BC; // bool
+            static constexpr std::uintptr_t m_stencilWriteID                 = 0X23BD; // char[128]
+            static constexpr std::uintptr_t m_bWriteStencilOnDepthPass       = 0X243D; // bool
+            static constexpr std::uintptr_t m_bWriteStencilOnDepthFail       = 0X243E; // bool
+            static constexpr std::uintptr_t m_bReverseZBuffering             = 0X243F; // bool
+            static constexpr std::uintptr_t m_bDisableZBuffering             = 0X2440; // bool
+            static constexpr std::uintptr_t m_nFeatheringMode                = 0X2444; // ParticleDepthFeatheringMode_t
+            static constexpr std::uintptr_t m_flFeatheringMinDist            = 0X2448; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flFeatheringMaxDist            = 0X25B8; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flFeatheringFilter             = 0X2728; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flFeatheringDepthMapFilter     = 0X2898; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flDepthBias                    = 0X2A08; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_nSortMethod                    = 0X2B78; // ParticleSortingChoiceList_t
+            static constexpr std::uintptr_t m_bBlendFramesSeq0               = 0X2B7C; // bool
+            static constexpr std::uintptr_t m_bMaxLuminanceBlendingSequence0 = 0X2B7D; // bool
         };
 
         // Has VTable
@@ -9674,13 +10143,13 @@ namespace offsets {
         // Construct Allowed
         class CBaseTrailRenderer : public CBaseRendererSource2 {
         public:
-            static constexpr std::uintptr_t m_nOrientationType         = 0X2DE8; // ParticleOrientationChoiceList_t
-            static constexpr std::uintptr_t m_nOrientationControlPoint = 0X2DEC; // int32
-            static constexpr std::uintptr_t m_flMinSize                = 0X2DF0; // float32
-            static constexpr std::uintptr_t m_flMaxSize                = 0X2DF4; // float32
-            static constexpr std::uintptr_t m_flStartFadeSize          = 0X2DF8; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flEndFadeSize            = 0X2F68; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_bClampV                  = 0X30D8; // bool
+            static constexpr std::uintptr_t m_nOrientationType         = 0X2DF0; // ParticleOrientationChoiceList_t
+            static constexpr std::uintptr_t m_nOrientationControlPoint = 0X2DF4; // int32
+            static constexpr std::uintptr_t m_flMinSize                = 0X2DF8; // float32
+            static constexpr std::uintptr_t m_flMaxSize                = 0X2DFC; // float32
+            static constexpr std::uintptr_t m_flStartFadeSize          = 0X2E00; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flEndFadeSize            = 0X2F70; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_bClampV                  = 0X30E0; // bool
         };
 
         // Has Trivial Destructor
@@ -9689,6 +10158,14 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_wheelDrag          = 0X0000; // float32
             static constexpr std::uintptr_t m_wheelFrictionScale = 0X0004; // float32
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CLeanMatrixInstanceData {
+        public:
+            static constexpr std::uintptr_t m_flValueY = 0X0000; // float32
+            static constexpr std::uintptr_t m_flValueX = 0X0004; // float32
         };
 
         // Has VTable
@@ -9704,6 +10181,24 @@ namespace offsets {
             static constexpr std::uintptr_t m_hLookTarget            = 0X0040; // CAnimParamHandle
             static constexpr std::uintptr_t m_hLookTargetWorldSpace  = 0X0042; // CAnimParamHandle
             static constexpr std::uintptr_t m_bNetworkLookTarget     = 0X0044; // bool
+        };
+
+        // Has VTable
+        // Is Absract
+        // Construct Allowed
+        class CNmClipReferenceNode__CDefinition : public CNmPoseNode__CDefinition {
+        public:
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CNmIDBasedClipSelectorNode__CDefinition : public CNmClipReferenceNode__CDefinition {
+        public:
+            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionIDs             = 0X0028; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,5>
+            static constexpr std::uintptr_t m_nParameterNodeIdx     = 0X0058; // int16
+            static constexpr std::uintptr_t m_nFallbackNodeIdx      = 0X005A; // int16
+            static constexpr std::uintptr_t m_bIgnoreInvalidOptions = 0X005C; // bool
         };
 
         // Has VTable
@@ -9728,27 +10223,27 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ModelSurfaceSnapshotGenerator : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCPSnapshot     = 0X01D8; // int32
-            static constexpr std::uintptr_t m_modelInput      = 0X01E0; // CParticleModelInput
-            static constexpr std::uintptr_t m_flRecalcRate    = 0X0240; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flUSpacing      = 0X03B0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flVSpacing      = 0X0520; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flSurfaceOffset = 0X0690; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bSetNormal      = 0X0800; // bool
-            static constexpr std::uintptr_t m_bSetUp          = 0X0801; // bool
-            static constexpr std::uintptr_t m_bSetGravity     = 0X0802; // bool
-            static constexpr std::uintptr_t m_bSetUV          = 0X0803; // bool
+            static constexpr std::uintptr_t m_nCPSnapshot     = 0X01E0; // int32
+            static constexpr std::uintptr_t m_modelInput      = 0X01E8; // CParticleModelInput
+            static constexpr std::uintptr_t m_flRecalcRate    = 0X0248; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flUSpacing      = 0X03B8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flVSpacing      = 0X0528; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flSurfaceOffset = 0X0698; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bSetNormal      = 0X0808; // bool
+            static constexpr std::uintptr_t m_bSetUp          = 0X0809; // bool
+            static constexpr std::uintptr_t m_bSetGravity     = 0X080A; // bool
+            static constexpr std::uintptr_t m_bSetUV          = 0X080B; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ConstrainDistanceToUserSpecifiedPath : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_fMinDistance  = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flMaxDistance = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flTimeScale   = 0X01D8; // float32
-            static constexpr std::uintptr_t m_bLoopedPath   = 0X01DC; // bool
-            static constexpr std::uintptr_t m_pointList     = 0X01E0; // CUtlVector<PointDefinitionWithTimeValues_t>
+            static constexpr std::uintptr_t m_fMinDistance  = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flMaxDistance = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flTimeScale   = 0X01E0; // float32
+            static constexpr std::uintptr_t m_bLoopedPath   = 0X01E4; // bool
+            static constexpr std::uintptr_t m_pointList     = 0X01E8; // CUtlVector<PointDefinitionWithTimeValues_t>
         };
 
         // Has Trivial Destructor
@@ -9778,7 +10273,7 @@ namespace offsets {
         // Construct Allowed
         class CNmFootEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_phase = 0X0020; // NmFootPhase_t
+            static constexpr std::uintptr_t m_phase = 0X0018; // NmFootPhase_t
         };
 
         // Construct Allowed
@@ -9804,30 +10299,40 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_InitFromParentKilled : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nAttributeToCopy = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nEventType       = 0X01DC; // EventTypeSelection_t
+            static constexpr std::uintptr_t m_nAttributeToCopy = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nEventType       = 0X01E4; // EventTypeSelection_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderOmni2Light : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_nLightType           = 0X0220; // ParticleOmni2LightTypeChoiceList_t
-            static constexpr std::uintptr_t m_vColorBlend          = 0X0228; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nColorBlendType      = 0X08E0; // ParticleColorBlendType_t
-            static constexpr std::uintptr_t m_nBrightnessUnit      = 0X08E4; // ParticleLightUnitChoiceList_t
-            static constexpr std::uintptr_t m_flBrightnessLumens   = 0X08E8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flBrightnessCandelas = 0X0A58; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bCastShadows         = 0X0BC8; // bool
-            static constexpr std::uintptr_t m_bFog                 = 0X0BC9; // bool
-            static constexpr std::uintptr_t m_flFogScale           = 0X0BD0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flLuminaireRadius    = 0X0D40; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flSkirt              = 0X0EB0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRange              = 0X1020; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInnerConeAngle     = 0X1190; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOuterConeAngle     = 0X1300; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_hLightCookie         = 0X1470; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_bSphericalCookie     = 0X1478; // bool
+            static constexpr std::uintptr_t m_nLightType           = 0X0228; // ParticleOmni2LightTypeChoiceList_t
+            static constexpr std::uintptr_t m_nMaxAllowed          = 0X022C; // uint16
+            static constexpr std::uintptr_t m_vColorBlend          = 0X0230; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nColorBlendType      = 0X08E8; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_nBrightnessUnit      = 0X08EC; // ParticleLightUnitChoiceList_t
+            static constexpr std::uintptr_t m_flBrightnessLumens   = 0X08F0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flBrightnessCandelas = 0X0A60; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bCastShadows         = 0X0BD0; // bool
+            static constexpr std::uintptr_t m_bDynamicBounce       = 0X0BD1; // bool
+            static constexpr std::uintptr_t m_flBounceScale        = 0X0BD8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bFog                 = 0X0D48; // bool
+            static constexpr std::uintptr_t m_flFogScale           = 0X0D50; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flLuminaireRadius    = 0X0EC0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flSkirt              = 0X1030; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRange              = 0X11A0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInnerConeAngle     = 0X1310; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOuterConeAngle     = 0X1480; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_hLightCookie         = 0X15F0; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_bSphericalCookie     = 0X15F8; // bool
+        };
+
+        // Has VTable
+        // Is Absract
+        // Has Trivial Destructor
+        class ISndSeqInstruments {
+        public:
         };
 
         // Has Trivial Destructor
@@ -9868,10 +10373,10 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_InitFloat : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_InputValue    = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nOutputField  = 0X0348; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod    = 0X034C; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_InputStrength = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_InputValue    = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nOutputField  = 0X0350; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod    = 0X0354; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_InputStrength = 0X0358; // CPerParticleFloatInput
         };
 
         // Construct Allowed
@@ -9912,8 +10417,8 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetCPtoVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nCPInput     = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nCPInput     = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01DC; // ParticleAttributeIndex_t
         };
 
         // Has VTable
@@ -9953,35 +10458,35 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_InitSkinnedPositionFromCPSnapshot : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nSnapshotControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nControlPointNumber         = 0X01DC; // int32
-            static constexpr std::uintptr_t m_bRandom                     = 0X01E0; // bool
-            static constexpr std::uintptr_t m_nRandomSeed                 = 0X01E4; // int32
-            static constexpr std::uintptr_t m_bRigid                      = 0X01E8; // bool
-            static constexpr std::uintptr_t m_bSetNormal                  = 0X01E9; // bool
-            static constexpr std::uintptr_t m_bIgnoreDt                   = 0X01EA; // bool
-            static constexpr std::uintptr_t m_flMinNormalVelocity         = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flMaxNormalVelocity         = 0X01F0; // float32
-            static constexpr std::uintptr_t m_nIndexType                  = 0X01F4; // SnapshotIndexType_t
-            static constexpr std::uintptr_t m_flReadIndex                 = 0X01F8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flIncrement                 = 0X0368; // float32
-            static constexpr std::uintptr_t m_nFullLoopIncrement          = 0X036C; // int32
-            static constexpr std::uintptr_t m_nSnapShotStartPoint         = 0X0370; // int32
-            static constexpr std::uintptr_t m_flBoneVelocity              = 0X0374; // float32
-            static constexpr std::uintptr_t m_flBoneVelocityMax           = 0X0378; // float32
-            static constexpr std::uintptr_t m_bCopyColor                  = 0X037C; // bool
-            static constexpr std::uintptr_t m_bCopyAlpha                  = 0X037D; // bool
-            static constexpr std::uintptr_t m_bSetRadius                  = 0X037E; // bool
+            static constexpr std::uintptr_t m_nSnapshotControlPointNumber = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nControlPointNumber         = 0X01E4; // int32
+            static constexpr std::uintptr_t m_bRandom                     = 0X01E8; // bool
+            static constexpr std::uintptr_t m_nRandomSeed                 = 0X01EC; // int32
+            static constexpr std::uintptr_t m_bRigid                      = 0X01F0; // bool
+            static constexpr std::uintptr_t m_bSetNormal                  = 0X01F1; // bool
+            static constexpr std::uintptr_t m_bIgnoreDt                   = 0X01F2; // bool
+            static constexpr std::uintptr_t m_flMinNormalVelocity         = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flMaxNormalVelocity         = 0X01F8; // float32
+            static constexpr std::uintptr_t m_nIndexType                  = 0X01FC; // SnapshotIndexType_t
+            static constexpr std::uintptr_t m_flReadIndex                 = 0X0200; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flIncrement                 = 0X0370; // float32
+            static constexpr std::uintptr_t m_nFullLoopIncrement          = 0X0374; // int32
+            static constexpr std::uintptr_t m_nSnapShotStartPoint         = 0X0378; // int32
+            static constexpr std::uintptr_t m_flBoneVelocity              = 0X037C; // float32
+            static constexpr std::uintptr_t m_flBoneVelocityMax           = 0X0380; // float32
+            static constexpr std::uintptr_t m_bCopyColor                  = 0X0384; // bool
+            static constexpr std::uintptr_t m_bCopyAlpha                  = 0X0385; // bool
+            static constexpr std::uintptr_t m_bSetRadius                  = 0X0386; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LerpToOtherAttribute : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flInterpolation = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nFieldInputFrom = 0X0340; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldInput     = 0X0344; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput    = 0X0348; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInterpolation = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFieldInputFrom = 0X0348; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldInput     = 0X034C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput    = 0X0350; // ParticleAttributeIndex_t
         };
 
         // Has Trivial Constructor
@@ -10031,19 +10536,6 @@ namespace offsets {
             static constexpr std::uintptr_t m_blendMode                     = 0X000B; // NmPoseBlendMode_t
         };
 
-        // Has Trivial Destructor
-        // Construct Allowed
-        class CNmIKJoint {
-        public:
-            static constexpr std::uintptr_t m_nParentIndex    = 0X0000; // int32
-            static constexpr std::uintptr_t m_nBodyIndex      = 0X0004; // int32
-            static constexpr std::uintptr_t m_xLocalFrame     = 0X0010; // CTransform
-            static constexpr std::uintptr_t m_flSwingLimit    = 0X0030; // float32
-            static constexpr std::uintptr_t m_flMinTwistLimit = 0X0034; // float32
-            static constexpr std::uintptr_t m_flMaxTwistLimit = 0X0038; // float32
-            static constexpr std::uintptr_t m_flWeight        = 0X003C; // float32
-        };
-
         // Has VTable
         // Construct Allowed
         class CNmRootMotionOverrideNode__CDefinition : public CNmPassthroughNode__CDefinition {
@@ -10072,14 +10564,14 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetControlPointOrientation : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_bUseWorldLocation = 0X01D8; // bool
-            static constexpr std::uintptr_t m_bRandomize        = 0X01DA; // bool
-            static constexpr std::uintptr_t m_bSetOnce          = 0X01DB; // bool
-            static constexpr std::uintptr_t m_nCP               = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nHeadLocation     = 0X01E0; // int32
-            static constexpr std::uintptr_t m_vecRotation       = 0X01E4; // QAngle
-            static constexpr std::uintptr_t m_vecRotationB      = 0X01F0; // QAngle
-            static constexpr std::uintptr_t m_flInterpolation   = 0X0200; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bUseWorldLocation = 0X01E0; // bool
+            static constexpr std::uintptr_t m_bRandomize        = 0X01E2; // bool
+            static constexpr std::uintptr_t m_bSetOnce          = 0X01E3; // bool
+            static constexpr std::uintptr_t m_nCP               = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nHeadLocation     = 0X01E8; // int32
+            static constexpr std::uintptr_t m_vecRotation       = 0X01EC; // QAngle
+            static constexpr std::uintptr_t m_vecRotationB      = 0X01F8; // QAngle
+            static constexpr std::uintptr_t m_flInterpolation   = 0X0208; // CParticleCollectionFloatInput
         };
 
         // Construct Allowed
@@ -10143,18 +10635,11 @@ namespace offsets {
         };
 
         // Has VTable
-        // Is Absract
-        // Construct Allowed
-        class CNmClipReferenceNode__CDefinition : public CNmPoseNode__CDefinition {
-        public:
-        };
-
-        // Has VTable
         // Construct Allowed
         class CNmParameterizedClipSelectorNode__CDefinition : public CNmClipReferenceNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_optionWeights         = 0X0028; // CUtlLeanVectorFixedGrowable<uint8,5>
+            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_optionWeights         = 0X0028; // CUtlLeanVectorFixedGrowable<uint8,8>
             static constexpr std::uintptr_t m_parameterNodeIdx      = 0X0038; // int16
             static constexpr std::uintptr_t m_bIgnoreInvalidOptions = 0X003A; // bool
             static constexpr std::uintptr_t m_bHasWeightsSet        = 0X003B; // bool
@@ -10205,7 +10690,7 @@ namespace offsets {
         // Has VTable
         class CGameChoreoServices : public IChoreoServices {
         public:
-            static constexpr std::uintptr_t m_hOwner             = 0X0008; // CHandle<CBaseAnimGraph>
+            static constexpr std::uintptr_t m_hOwner             = 0X0008; // CHandle<CBaseModelEntity>
             static constexpr std::uintptr_t m_hScriptedSequence  = 0X000C; // CHandle<CScriptedSequence>
             static constexpr std::uintptr_t m_scriptState        = 0X0010; // IChoreoServices::ScriptState_t
             static constexpr std::uintptr_t m_choreoState        = 0X0014; // IChoreoServices::ChoreoState_t
@@ -10237,6 +10722,12 @@ namespace offsets {
         };
 
         // Has VTable
+        struct TestComponent_t {
+        public:
+            static constexpr std::uintptr_t m_ComponentData = 0X0008; // CUtlString
+        };
+
+        // Has VTable
         // Construct Allowed
         class CVMixSteamAudioHybridReverbProcessorDesc : public CVMixBaseProcessorDesc {
         public:
@@ -10247,13 +10738,13 @@ namespace offsets {
         class CVoiceContainerParameterBlender : public CVoiceContainerBase {
         public:
             static constexpr std::uintptr_t m_firstSound            = 0X00A8; // CSoundContainerReference
-            static constexpr std::uintptr_t m_secondSound           = 0X00C0; // CSoundContainerReference
-            static constexpr std::uintptr_t m_bEnableOcclusionBlend = 0X00D8; // bool
-            static constexpr std::uintptr_t m_curve1                = 0X00E0; // CPiecewiseCurve
-            static constexpr std::uintptr_t m_curve2                = 0X0120; // CPiecewiseCurve
-            static constexpr std::uintptr_t m_bEnableDistanceBlend  = 0X0160; // bool
-            static constexpr std::uintptr_t m_curve3                = 0X0168; // CPiecewiseCurve
-            static constexpr std::uintptr_t m_curve4                = 0X01A8; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_secondSound           = 0X00C8; // CSoundContainerReference
+            static constexpr std::uintptr_t m_bEnableOcclusionBlend = 0X00E8; // bool
+            static constexpr std::uintptr_t m_curve1                = 0X00F0; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_curve2                = 0X0130; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_bEnableDistanceBlend  = 0X0170; // bool
+            static constexpr std::uintptr_t m_curve3                = 0X0178; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_curve4                = 0X01B8; // CPiecewiseCurve
         };
 
         // Construct Allowed
@@ -10278,10 +10769,10 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetFloat : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_InputValue   = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nOutputField = 0X0340; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod   = 0X0344; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_Lerp         = 0X0348; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_InputValue   = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nOutputField = 0X0348; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod   = 0X034C; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_Lerp         = 0X0350; // CPerParticleFloatInput
         };
 
         // Has VTable
@@ -10318,10 +10809,11 @@ namespace offsets {
             static constexpr std::uintptr_t m_translationRangeY    = 0X0008; // NmCompressionSettings_t::QuantizationRange_t
             static constexpr std::uintptr_t m_translationRangeZ    = 0X0010; // NmCompressionSettings_t::QuantizationRange_t
             static constexpr std::uintptr_t m_scaleRange           = 0X0018; // NmCompressionSettings_t::QuantizationRange_t
-            static constexpr std::uintptr_t m_constantRotation     = 0X0020; // Quaternion
-            static constexpr std::uintptr_t m_bIsRotationStatic    = 0X0030; // bool
-            static constexpr std::uintptr_t m_bIsTranslationStatic = 0X0031; // bool
-            static constexpr std::uintptr_t m_bIsScaleStatic       = 0X0032; // bool
+            static constexpr std::uintptr_t m_nTrackReadOffset     = 0X0020; // int32
+            static constexpr std::uintptr_t m_constantRotation     = 0X0030; // Quaternion
+            static constexpr std::uintptr_t m_bIsRotationStatic    = 0X0040; // bool
+            static constexpr std::uintptr_t m_bIsTranslationStatic = 0X0041; // bool
+            static constexpr std::uintptr_t m_bIsScaleStatic       = 0X0042; // bool
         };
 
         // Has Trivial Destructor
@@ -10342,8 +10834,8 @@ namespace offsets {
         // Construct Allowed
         class CNmTargetWarpEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_rule      = 0X0020; // NmTargetWarpRule_t
-            static constexpr std::uintptr_t m_algorithm = 0X0021; // NmTargetWarpAlgorithm_t
+            static constexpr std::uintptr_t m_rule      = 0X0018; // NmTargetWarpRule_t
+            static constexpr std::uintptr_t m_algorithm = 0X0019; // NmTargetWarpAlgorithm_t
         };
 
         // Construct Allowed
@@ -10363,15 +10855,15 @@ namespace offsets {
         // Construct Allowed
         class C_OP_FadeOutSimple : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flFadeOutTime = 0X01D0; // float32
-            static constexpr std::uintptr_t m_nFieldOutput  = 0X01D4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flFadeOutTime = 0X01D8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput  = 0X01DC; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_EndCapTimedFreeze : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flFreezeTime = 0X01D0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flFreezeTime = 0X01D8; // CParticleCollectionFloatInput
         };
 
         // Has Trivial Destructor
@@ -10423,8 +10915,9 @@ namespace offsets {
         public:
         };
 
-        // Has Trivial Destructor
-        struct EntOutput_t {
+        // Has VTable
+        // Is Absract
+        class IPhysicsMotionController {
         public:
         };
 
@@ -10432,9 +10925,17 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RandomRadius : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flRadiusMin          = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flRadiusMax          = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flRadiusRandExponent = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flRadiusMin          = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flRadiusMax          = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flRadiusRandExponent = 0X01E8; // float32
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class C_OP_RemapVectorToRotations : public CParticleFunctionOperator {
+        public:
+            static constexpr std::uintptr_t m_vecInput    = 0X01D8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecRotation = 0X0890; // CPerParticleVecInput
         };
 
         // Construct Allowed
@@ -10487,8 +10988,8 @@ namespace offsets {
         // Construct Allowed
         class CNmLegacyEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_animEventClassName = 0X0020; // CUtlString
-            static constexpr std::uintptr_t m_KV                 = 0X0028; // KeyValues3
+            static constexpr std::uintptr_t m_animEventClassName = 0X0018; // CUtlString
+            static constexpr std::uintptr_t m_KV                 = 0X0020; // KeyValues3
         };
 
         // Has VTable
@@ -10508,32 +11009,42 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct AI_Navigator_DebugSnapshotData_t__Waypoint_t {
+        public:
+            static constexpr std::uintptr_t position = 0X0000; // VectorWS
+            static constexpr std::uintptr_t nav_type = 0X000C; // uint32
+            static constexpr std::uintptr_t flags    = 0X0010; // uint32
+        };
+
         // Has VTable
         // Construct Allowed
         class C_INIT_RemapQAnglesToRotation : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_TransformInput = 0X01D8; // CParticleTransformInput
+            static constexpr std::uintptr_t m_TransformInput = 0X01E0; // CParticleTransformInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LockToBone : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_modelInput          = 0X01D0; // CParticleModelInput
-            static constexpr std::uintptr_t m_transformInput      = 0X0230; // CParticleTransformInput
-            static constexpr std::uintptr_t m_flLifeTimeFadeStart = 0X0298; // float32
-            static constexpr std::uintptr_t m_flLifeTimeFadeEnd   = 0X029C; // float32
-            static constexpr std::uintptr_t m_flJumpThreshold     = 0X02A0; // float32
-            static constexpr std::uintptr_t m_flPrevPosScale      = 0X02A4; // float32
-            static constexpr std::uintptr_t m_HitboxSetName       = 0X02A8; // char[128]
-            static constexpr std::uintptr_t m_bRigid              = 0X0328; // bool
-            static constexpr std::uintptr_t m_bUseBones           = 0X0329; // bool
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X032C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutputPrev    = 0X0330; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nRotationSetType    = 0X0334; // ParticleRotationLockType_t
-            static constexpr std::uintptr_t m_bRigidRotationLock  = 0X0338; // bool
-            static constexpr std::uintptr_t m_vecRotation         = 0X0340; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flRotLerp           = 0X09F8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_modelInput          = 0X01D8; // CParticleModelInput
+            static constexpr std::uintptr_t m_transformInput      = 0X0238; // CParticleTransformInput
+            static constexpr std::uintptr_t m_flLifeTimeFadeStart = 0X02A0; // float32
+            static constexpr std::uintptr_t m_flLifeTimeFadeEnd   = 0X02A4; // float32
+            static constexpr std::uintptr_t m_flJumpThreshold     = 0X02A8; // float32
+            static constexpr std::uintptr_t m_flPrevPosScale      = 0X02AC; // float32
+            static constexpr std::uintptr_t m_HitboxSetName       = 0X02B0; // char[128]
+            static constexpr std::uintptr_t m_bRigid              = 0X0330; // bool
+            static constexpr std::uintptr_t m_bUseBones           = 0X0331; // bool
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X0334; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutputPrev    = 0X0338; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nRotationSetType    = 0X033C; // ParticleRotationLockType_t
+            static constexpr std::uintptr_t m_bRigidRotationLock  = 0X0340; // bool
+            static constexpr std::uintptr_t m_vecRotation         = 0X0348; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flRotLerp           = 0X0A00; // CPerParticleFloatInput
         };
 
         // Construct Allowed
@@ -10654,11 +11165,11 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_CreateAlongPath : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_fMaxDistance  = 0X01D8; // float32
-            static constexpr std::uintptr_t m_PathParams    = 0X01E0; // CPathParameters
-            static constexpr std::uintptr_t m_bUseRandomCPs = 0X0220; // bool
-            static constexpr std::uintptr_t m_vEndOffset    = 0X0224; // Vector
-            static constexpr std::uintptr_t m_bSaveOffset   = 0X0230; // bool
+            static constexpr std::uintptr_t m_fMaxDistance  = 0X01E0; // float32
+            static constexpr std::uintptr_t m_PathParams    = 0X01F0; // CPathParameters
+            static constexpr std::uintptr_t m_bUseRandomCPs = 0X0230; // bool
+            static constexpr std::uintptr_t m_vEndOffset    = 0X0234; // Vector
+            static constexpr std::uintptr_t m_bSaveOffset   = 0X0240; // bool
         };
 
         // Has Trivial Destructor
@@ -10717,45 +11228,45 @@ namespace offsets {
         // Construct Allowed
         class C_OP_LocalAccelerationForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_nCP      = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nScaleCP = 0X01E4; // int32
-            static constexpr std::uintptr_t m_vecAccel = 0X01E8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nCP      = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nScaleCP = 0X01EC; // int32
+            static constexpr std::uintptr_t m_vecAccel = 0X01F0; // CParticleCollectionVecInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LerpEndCapVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecOutput    = 0X01D4; // Vector
-            static constexpr std::uintptr_t m_flLerpTime   = 0X01E0; // float32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecOutput    = 0X01DC; // Vector
+            static constexpr std::uintptr_t m_flLerpTime   = 0X01E8; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_InheritVelocity : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_flVelocityScale     = 0X01DC; // float32
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E0; // int32
+            static constexpr std::uintptr_t m_flVelocityScale     = 0X01E4; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RampScalarLinearSimple : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_Rate        = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flStartTime = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flEndTime   = 0X01D8; // float32
-            static constexpr std::uintptr_t m_nField      = 0X0200; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_Rate        = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flStartTime = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flEndTime   = 0X01E0; // float32
+            static constexpr std::uintptr_t m_nField      = 0X0210; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderClientPhysicsImpulse : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flRadius     = 0X0220; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flMagnitude  = 0X0390; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nSimIdFilter = 0X0500; // int32
+            static constexpr std::uintptr_t m_flRadius     = 0X0228; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMagnitude  = 0X0398; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nSimIdFilter = 0X0508; // int32
         };
 
         // Construct Allowed
@@ -10825,16 +11336,16 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapCPtoCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nInputControlPoint  = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nOutputControlPoint = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nInputField         = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nOutputField        = 0X01E4; // int32
-            static constexpr std::uintptr_t m_flInputMin          = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flInputMax          = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flOutputMin         = 0X01F0; // float32
-            static constexpr std::uintptr_t m_flOutputMax         = 0X01F4; // float32
-            static constexpr std::uintptr_t m_bDerivative         = 0X01F8; // bool
-            static constexpr std::uintptr_t m_flInterpRate        = 0X01FC; // float32
+            static constexpr std::uintptr_t m_nInputControlPoint  = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nOutputControlPoint = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nInputField         = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nOutputField        = 0X01EC; // int32
+            static constexpr std::uintptr_t m_flInputMin          = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flInputMax          = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flOutputMin         = 0X01F8; // float32
+            static constexpr std::uintptr_t m_flOutputMax         = 0X01FC; // float32
+            static constexpr std::uintptr_t m_bDerivative         = 0X0200; // bool
+            static constexpr std::uintptr_t m_flInterpRate        = 0X0204; // float32
         };
 
         // Has Trivial Destructor
@@ -10909,6 +11420,14 @@ namespace offsets {
             static constexpr std::uintptr_t m_bApplyAntialiasing = 0X002C; // bool
         };
 
+        // Has VTable
+        // Is Absract
+        class IPhysAggregateInstance : public IPhysicsBodyList {
+        public:
+            static constexpr std::uintptr_t m_pSkeleton      = 0X0008; // void*
+            static constexpr std::uintptr_t m_bIsAxisAligned = 0X0010; // bool
+        };
+
         // Has Trivial Destructor
         // Construct Allowed
         struct SkeletonAnimCapture_t__FrameStamp_t {
@@ -10950,14 +11469,14 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_VelocityRadialRandom : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_bPerParticleCenter                 = 0X01D8; // bool
-            static constexpr std::uintptr_t m_nControlPointNumber                = 0X01DC; // int32
-            static constexpr std::uintptr_t m_vecPosition                        = 0X01E0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecFwd                             = 0X0898; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_fSpeedMin                          = 0X0F50; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fSpeedMax                          = 0X10C0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vecLocalCoordinateSystemSpeedScale = 0X1230; // Vector
-            static constexpr std::uintptr_t m_bIgnoreDelta                       = 0X123D; // bool
+            static constexpr std::uintptr_t m_bPerParticleCenter                 = 0X01E0; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber                = 0X01E4; // int32
+            static constexpr std::uintptr_t m_vecPosition                        = 0X01E8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecFwd                             = 0X08A0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_fSpeedMin                          = 0X0F58; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fSpeedMax                          = 0X10C8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecLocalCoordinateSystemSpeedScale = 0X1238; // Vector
+            static constexpr std::uintptr_t m_bIgnoreDelta                       = 0X1245; // bool
         };
 
         // Has VTable
@@ -11020,16 +11539,25 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Destructor
+        struct globalentity_t {
+        public:
+            static constexpr std::uintptr_t name      = 0X0000; // CUtlSymbol
+            static constexpr std::uintptr_t levelName = 0X0002; // CUtlSymbol
+            static constexpr std::uintptr_t state     = 0X0004; // GLOBALESTATE
+            static constexpr std::uintptr_t counter   = 0X0008; // int32
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointToVectorExpression : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nExpression       = 0X01D8; // VectorExpressionType_t
-            static constexpr std::uintptr_t m_nOutputCP         = 0X01DC; // int32
-            static constexpr std::uintptr_t m_vInput1           = 0X01E0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_vInput2           = 0X0898; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_flLerp            = 0X0F50; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bNormalizedOutput = 0X10C0; // bool
+            static constexpr std::uintptr_t m_nExpression       = 0X01E0; // VectorExpressionType_t
+            static constexpr std::uintptr_t m_nOutputCP         = 0X01E4; // int32
+            static constexpr std::uintptr_t m_vInput1           = 0X01E8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_vInput2           = 0X08A0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_flLerp            = 0X0F58; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bNormalizedOutput = 0X10C8; // bool
         };
 
         // Has Trivial Destructor
@@ -11050,11 +11578,11 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_InitFromVectorFieldSnapshot : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber  = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nLocalSpaceCP        = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nWeightUpdateCP      = 0X01E0; // int32
-            static constexpr std::uintptr_t m_bUseVerticalVelocity = 0X01E4; // bool
-            static constexpr std::uintptr_t m_vecScale             = 0X01E8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nControlPointNumber  = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nLocalSpaceCP        = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nWeightUpdateCP      = 0X01E8; // int32
+            static constexpr std::uintptr_t m_bUseVerticalVelocity = 0X01EC; // bool
+            static constexpr std::uintptr_t m_vecScale             = 0X01F0; // CPerParticleVecInput
         };
 
         // Has VTable
@@ -11087,6 +11615,15 @@ namespace offsets {
         class CNmConstIDNode__CDefinition : public CNmIDValueNode__CDefinition {
         public:
             static constexpr std::uintptr_t m_value = 0X0010; // CGlobalSymbol
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CFootAdjustmentInstanceData {
+        public:
+            static constexpr std::uintptr_t m_flStartTime      = 0X000C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flDuration       = 0X0018; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flStartHeadingWS = 0X003C; // float32
         };
 
         // Has Trivial Destructor
@@ -11180,6 +11717,10 @@ namespace offsets {
             static constexpr std::uintptr_t m_flProgression    = 0X0018; // float32
         };
 
+        class CEntityKeyValues {
+        public:
+        };
+
         // Has Trivial Constructor
         // Has Trivial Destructor
         // Global Type Scope
@@ -11221,6 +11762,19 @@ namespace offsets {
 
         // Has Trivial Destructor
         // Construct Allowed
+        class CBlendNodeInstanceData {
+        public:
+            static constexpr std::uintptr_t m_dampedValue     = 0X0000; // float32
+            static constexpr std::uintptr_t m_flCycle         = 0X0004; // float32
+            static constexpr std::uintptr_t m_flCycleZeroTime = 0X0008; // float32
+            static constexpr std::uintptr_t m_flPlaybackRate  = 0X000C; // float32
+            static constexpr std::uintptr_t m_flBlendValue    = 0X0010; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flDuration      = 0X001C; // float32
+            static constexpr std::uintptr_t m_resetCount      = 0X0020; // CAnimNetVar<uint8>
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
         struct VMixDynamicsBand_t {
         public:
             static constexpr std::uintptr_t m_fldbGainInput      = 0X0000; // float32
@@ -11233,6 +11787,16 @@ namespace offsets {
             static constexpr std::uintptr_t m_flReleaseTimeMS    = 0X001C; // float32
             static constexpr std::uintptr_t m_bEnable            = 0X0020; // bool
             static constexpr std::uintptr_t m_bSolo              = 0X0021; // bool
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CStateNodeInstanceData {
+        public:
+            static constexpr std::uintptr_t m_stateWeights               = 0X0000; // CRelativeArray<float32>
+            static constexpr std::uintptr_t m_vTransitionVelocityDeltaWS = 0X0008; // Vector
+            static constexpr std::uintptr_t m_currentStateStartTime      = 0X0020; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_resetCount                 = 0X003C; // CAnimNetVar<uint8>
         };
 
         // Construct Allowed
@@ -11267,11 +11831,11 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_CreateSequentialPath : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_fMaxDistance  = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flNumToAssign = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bLoop         = 0X01E0; // bool
-            static constexpr std::uintptr_t m_bCPPairs      = 0X01E1; // bool
-            static constexpr std::uintptr_t m_bSaveOffset   = 0X01E2; // bool
+            static constexpr std::uintptr_t m_fMaxDistance  = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flNumToAssign = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bLoop         = 0X01E8; // bool
+            static constexpr std::uintptr_t m_bCPPairs      = 0X01E9; // bool
+            static constexpr std::uintptr_t m_bSaveOffset   = 0X01EA; // bool
             static constexpr std::uintptr_t m_PathParams    = 0X01F0; // CPathParameters
         };
 
@@ -11279,11 +11843,11 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetUserEvent : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flInput           = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRisingEdge      = 0X0340; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nRisingEventType  = 0X04B0; // EventTypeSelection_t
-            static constexpr std::uintptr_t m_flFallingEdge     = 0X04B8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nFallingEventType = 0X0628; // EventTypeSelection_t
+            static constexpr std::uintptr_t m_flInput           = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRisingEdge      = 0X0348; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nRisingEventType  = 0X04B8; // EventTypeSelection_t
+            static constexpr std::uintptr_t m_flFallingEdge     = 0X04C0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFallingEventType = 0X0630; // EventTypeSelection_t
         };
 
         // Has Trivial Destructor
@@ -11323,53 +11887,64 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ClampScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOutputMin  = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMax  = 0X0348; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOutputMin  = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMax  = 0X0350; // CPerParticleFloatInput
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CFollowPathInstanceData {
+        public:
+            static constexpr std::uintptr_t m_xLastPredictedTransformsDeltas = 0X0000; // CRelativeArray<CMotionTransform>
+            static constexpr std::uintptr_t m_dampedTurnValue                = 0X0008; // float32
+            static constexpr std::uintptr_t m_flTurnAmount                   = 0X000C; // float32
+            static constexpr std::uintptr_t m_flPredictionScale              = 0X0010; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flLastPathTime                 = 0X001C; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_WorldTraceConstraint : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_nCP                          = 0X01D0; // int32
-            static constexpr std::uintptr_t m_vecCpOffset                  = 0X01D4; // Vector
-            static constexpr std::uintptr_t m_nCollisionMode               = 0X01E0; // ParticleCollisionMode_t
-            static constexpr std::uintptr_t m_nCollisionModeMin            = 0X01E4; // ParticleCollisionMode_t
-            static constexpr std::uintptr_t m_nTraceSet                    = 0X01E8; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_CollisionGroupName           = 0X01EC; // char[128]
-            static constexpr std::uintptr_t m_bWorldOnly                   = 0X026C; // bool
-            static constexpr std::uintptr_t m_bBrushOnly                   = 0X026D; // bool
-            static constexpr std::uintptr_t m_bIncludeWater                = 0X026E; // bool
-            static constexpr std::uintptr_t m_nIgnoreCP                    = 0X0270; // int32
-            static constexpr std::uintptr_t m_flCpMovementTolerance        = 0X0274; // float32
-            static constexpr std::uintptr_t m_flRetestRate                 = 0X0278; // float32
-            static constexpr std::uintptr_t m_flTraceTolerance             = 0X027C; // float32
-            static constexpr std::uintptr_t m_flCollisionConfirmationSpeed = 0X0280; // float32
-            static constexpr std::uintptr_t m_nMaxTracesPerFrame           = 0X0284; // float32
-            static constexpr std::uintptr_t m_flRadiusScale                = 0X0288; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flBounceAmount               = 0X03F8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flSlideAmount                = 0X0568; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRandomDirScale             = 0X06D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bDecayBounce                 = 0X0848; // bool
-            static constexpr std::uintptr_t m_bKillonContact               = 0X0849; // bool
-            static constexpr std::uintptr_t m_flMinSpeed                   = 0X084C; // float32
-            static constexpr std::uintptr_t m_bSetNormal                   = 0X0850; // bool
-            static constexpr std::uintptr_t m_nStickOnCollisionField       = 0X0854; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flStopSpeed                  = 0X0858; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nEntityStickDataField        = 0X09C8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nEntityStickNormalField      = 0X09CC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nCP                          = 0X01D8; // int32
+            static constexpr std::uintptr_t m_vecCpOffset                  = 0X01DC; // Vector
+            static constexpr std::uintptr_t m_nCollisionMode               = 0X01E8; // ParticleCollisionMode_t
+            static constexpr std::uintptr_t m_nCollisionModeMin            = 0X01EC; // ParticleCollisionMode_t
+            static constexpr std::uintptr_t m_nTraceSet                    = 0X01F0; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_CollisionGroupName           = 0X01F4; // char[128]
+            static constexpr std::uintptr_t m_bWorldOnly                   = 0X0274; // bool
+            static constexpr std::uintptr_t m_bBrushOnly                   = 0X0275; // bool
+            static constexpr std::uintptr_t m_bIncludeWater                = 0X0276; // bool
+            static constexpr std::uintptr_t m_nIgnoreCP                    = 0X0278; // int32
+            static constexpr std::uintptr_t m_flCpMovementTolerance        = 0X027C; // float32
+            static constexpr std::uintptr_t m_flRetestRate                 = 0X0280; // float32
+            static constexpr std::uintptr_t m_flTraceTolerance             = 0X0284; // float32
+            static constexpr std::uintptr_t m_flCollisionConfirmationSpeed = 0X0288; // float32
+            static constexpr std::uintptr_t m_nMaxTracesPerFrame           = 0X028C; // float32
+            static constexpr std::uintptr_t m_flRadiusScale                = 0X0290; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flBounceAmount               = 0X0400; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flSlideAmount                = 0X0570; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRandomDirScale             = 0X06E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bDecayBounce                 = 0X0850; // bool
+            static constexpr std::uintptr_t m_bKillonContact               = 0X0851; // bool
+            static constexpr std::uintptr_t m_flMinSpeed                   = 0X0854; // float32
+            static constexpr std::uintptr_t m_bSetNormal                   = 0X0858; // bool
+            static constexpr std::uintptr_t m_nStickOnCollisionField       = 0X085C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flStopSpeed                  = 0X0860; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nEntityStickDataField        = 0X09D0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nEntityStickNormalField      = 0X09D4; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RemapInitialVisibilityScalar : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01DC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin   = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flInputMax   = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flOutputMin  = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flOutputMax  = 0X01EC; // float32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin   = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flInputMax   = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flOutputMin  = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flOutputMax  = 0X01F4; // float32
         };
 
         // Has VTable
@@ -11427,28 +12002,28 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RemapParticleCountToScalar : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput            = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nInputMin               = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nInputMax               = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nScaleControlPoint      = 0X01E4; // int32
-            static constexpr std::uintptr_t m_nScaleControlPointField = 0X01E8; // int32
-            static constexpr std::uintptr_t m_flOutputMin             = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flOutputMax             = 0X01F0; // float32
-            static constexpr std::uintptr_t m_nSetMethod              = 0X01F4; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bActiveRange            = 0X01F8; // bool
-            static constexpr std::uintptr_t m_bInvert                 = 0X01F9; // bool
-            static constexpr std::uintptr_t m_bWrap                   = 0X01FA; // bool
-            static constexpr std::uintptr_t m_flRemapBias             = 0X01FC; // float32
+            static constexpr std::uintptr_t m_nFieldOutput            = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nInputMin               = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nInputMax               = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nScaleControlPoint      = 0X01EC; // int32
+            static constexpr std::uintptr_t m_nScaleControlPointField = 0X01F0; // int32
+            static constexpr std::uintptr_t m_flOutputMin             = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flOutputMax             = 0X01F8; // float32
+            static constexpr std::uintptr_t m_nSetMethod              = 0X01FC; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bActiveRange            = 0X0200; // bool
+            static constexpr std::uintptr_t m_bInvert                 = 0X0201; // bool
+            static constexpr std::uintptr_t m_bWrap                   = 0X0202; // bool
+            static constexpr std::uintptr_t m_flRemapBias             = 0X0204; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RemapParticleCountToNamedModelElementScalar : public C_INIT_RemapParticleCountToScalar {
         public:
-            static constexpr std::uintptr_t m_hModel             = 0X0208; // CStrongHandle<InfoForResourceTypeCModel>
-            static constexpr std::uintptr_t m_outputMinName      = 0X0210; // CUtlString
-            static constexpr std::uintptr_t m_outputMaxName      = 0X0218; // CUtlString
-            static constexpr std::uintptr_t m_bModelFromRenderer = 0X0220; // bool
+            static constexpr std::uintptr_t m_hModel             = 0X0210; // CStrongHandle<InfoForResourceTypeCModel>
+            static constexpr std::uintptr_t m_outputMinName      = 0X0218; // CUtlString
+            static constexpr std::uintptr_t m_outputMaxName      = 0X0220; // CUtlString
+            static constexpr std::uintptr_t m_bModelFromRenderer = 0X0228; // bool
         };
 
         // Has VTable
@@ -11516,19 +12091,27 @@ namespace offsets {
             static constexpr std::uintptr_t orbit_distance = 0X001C; // float32
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct SceneRequestTargetMapPair_t {
+        public:
+            static constexpr std::uintptr_t m_actorName  = 0X0000; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_targetName = 0X0008; // CUtlSymbolLarge
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_VectorFieldSnapshot : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nAttributeToWrite   = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nLocalSpaceCP       = 0X01D8; // int32
-            static constexpr std::uintptr_t m_flInterpolation     = 0X01E0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vecScale            = 0X0350; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flBoundaryDampening = 0X0A08; // float32
-            static constexpr std::uintptr_t m_bSetVelocity        = 0X0A0C; // bool
-            static constexpr std::uintptr_t m_bLockToSurface      = 0X0A0D; // bool
-            static constexpr std::uintptr_t m_flGridSpacing       = 0X0A10; // float32
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nAttributeToWrite   = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nLocalSpaceCP       = 0X01E0; // int32
+            static constexpr std::uintptr_t m_flInterpolation     = 0X01E8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecScale            = 0X0358; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flBoundaryDampening = 0X0A10; // float32
+            static constexpr std::uintptr_t m_bSetVelocity        = 0X0A14; // bool
+            static constexpr std::uintptr_t m_bLockToSurface      = 0X0A15; // bool
+            static constexpr std::uintptr_t m_flGridSpacing       = 0X0A18; // float32
         };
 
         // Construct Allowed
@@ -11558,7 +12141,7 @@ namespace offsets {
         // Construct Allowed
         class CNmTargetSelectorNode__CDefinition : public CNmClipReferenceNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices        = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionNodeIndices        = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
             static constexpr std::uintptr_t m_flOrientationScoreWeight = 0X0028; // float32
             static constexpr std::uintptr_t m_flPositionScoreWeight    = 0X002C; // float32
             static constexpr std::uintptr_t m_parameterNodeIdx         = 0X0030; // int16
@@ -11582,37 +12165,37 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapVelocityToVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flScale      = 0X01D4; // float32
-            static constexpr std::uintptr_t m_bNormalize   = 0X01D8; // bool
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flScale      = 0X01DC; // float32
+            static constexpr std::uintptr_t m_bNormalize   = 0X01E0; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateOnGrid : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nXCount             = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nYCount             = 0X0348; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nZCount             = 0X04B8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nXSpacing           = 0X0628; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nYSpacing           = 0X0798; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nZSpacing           = 0X0908; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X0A78; // int32
-            static constexpr std::uintptr_t m_bLocalSpace         = 0X0A7C; // bool
-            static constexpr std::uintptr_t m_bCenter             = 0X0A7D; // bool
-            static constexpr std::uintptr_t m_bHollow             = 0X0A7E; // bool
+            static constexpr std::uintptr_t m_nXCount             = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nYCount             = 0X0350; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nZCount             = 0X04C0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nXSpacing           = 0X0630; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nYSpacing           = 0X07A0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nZSpacing           = 0X0910; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X0A80; // int32
+            static constexpr std::uintptr_t m_bLocalSpace         = 0X0A84; // bool
+            static constexpr std::uintptr_t m_bCenter             = 0X0A85; // bool
+            static constexpr std::uintptr_t m_bHollow             = 0X0A86; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointToCPVelocity : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCPInput              = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nCPOutputVel          = 0X01DC; // int32
-            static constexpr std::uintptr_t m_bNormalize            = 0X01E0; // bool
-            static constexpr std::uintptr_t m_nCPOutputMag          = 0X01E4; // int32
-            static constexpr std::uintptr_t m_nCPField              = 0X01E8; // int32
-            static constexpr std::uintptr_t m_vecComparisonVelocity = 0X01F0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nCPInput              = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nCPOutputVel          = 0X01E4; // int32
+            static constexpr std::uintptr_t m_bNormalize            = 0X01E8; // bool
+            static constexpr std::uintptr_t m_nCPOutputMag          = 0X01EC; // int32
+            static constexpr std::uintptr_t m_nCPField              = 0X01F0; // int32
+            static constexpr std::uintptr_t m_vecComparisonVelocity = 0X01F8; // CParticleCollectionVecInput
         };
 
         // Construct Allowed
@@ -11636,9 +12219,9 @@ namespace offsets {
         // Construct Allowed
         class CNmParameterizedBlendNode__CDefinition : public CNmPoseNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_sourceNodeIndices           = 0X0010; // CUtlVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_nInputParameterValueNodeIdx = 0X0038; // int16
-            static constexpr std::uintptr_t m_bAllowLooping               = 0X003A; // bool
+            static constexpr std::uintptr_t m_sourceNodeIndices           = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_nInputParameterValueNodeIdx = 0X0028; // int16
+            static constexpr std::uintptr_t m_bAllowLooping               = 0X002A; // bool
         };
 
         // Has VTable
@@ -11676,7 +12259,7 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ControlpointLight : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flScale          = 0X01D0; // float32
+            static constexpr std::uintptr_t m_flScale          = 0X01D8; // float32
             static constexpr std::uintptr_t m_nControlPoint1   = 0X0660; // int32
             static constexpr std::uintptr_t m_nControlPoint2   = 0X0664; // int32
             static constexpr std::uintptr_t m_nControlPoint3   = 0X0668; // int32
@@ -11748,19 +12331,19 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapGravityToVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_vInput1           = 0X01D0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_nOutputField      = 0X0888; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod        = 0X088C; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bNormalizedOutput = 0X0890; // bool
+            static constexpr std::uintptr_t m_vInput1           = 0X01D8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nOutputField      = 0X0890; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod        = 0X0894; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bNormalizedOutput = 0X0898; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_VelocityFromNormal : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_fSpeedMin = 0X01D8; // float32
-            static constexpr std::uintptr_t m_fSpeedMax = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bIgnoreDt = 0X01E0; // bool
+            static constexpr std::uintptr_t m_fSpeedMin = 0X01E0; // float32
+            static constexpr std::uintptr_t m_fSpeedMax = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bIgnoreDt = 0X01E8; // bool
         };
 
         // Construct Allowed
@@ -11895,18 +12478,18 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ChooseRandomChildrenInGroup : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nChildGroupID      = 0X01D8; // int32
-            static constexpr std::uintptr_t m_flNumberOfChildren = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nChildGroupID      = 0X01E0; // int32
+            static constexpr std::uintptr_t m_flNumberOfChildren = 0X01E8; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_Cull : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flCullPerc  = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flCullStart = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flCullEnd   = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flCullExp   = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flCullPerc  = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flCullStart = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flCullEnd   = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flCullExp   = 0X01E4; // float32
         };
 
         // Has Trivial Destructor
@@ -11954,6 +12537,14 @@ namespace offsets {
 
         // Has Trivial Destructor
         // Construct Allowed
+        class MotionMatchingInstanceData {
+        public:
+            static constexpr std::uintptr_t m_currentSelection  = 0X002C; // MotionSelection
+            static constexpr std::uintptr_t m_previousSelection = 0X0084; // MotionSelection
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
         struct CNmFloatRemapNode__RemapRange_t {
         public:
             static constexpr std::uintptr_t m_flBegin = 0X0000; // float32
@@ -11985,59 +12576,77 @@ namespace offsets {
             static constexpr std::uintptr_t m_secondaryWeightLists = 0X0118; // CUtlLeanVector<CNmBoneWeightList>
         };
 
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct modifiedconvars_t {
+        public:
+            static constexpr std::uintptr_t pszConvar       = 0X0000; // char[128]
+            static constexpr std::uintptr_t pszCurrentValue = 0X0080; // char[128]
+            static constexpr std::uintptr_t pszOrgValue     = 0X0100; // char[128]
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        struct physics_save_sphere_t {
+        public:
+            static constexpr std::uintptr_t radius = 0X0000; // float32
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_RemapControlPointOrientationToRotation : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nCP          = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOffsetRot  = 0X01D8; // float32
-            static constexpr std::uintptr_t m_nComponent   = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nCP          = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOffsetRot  = 0X01E0; // float32
+            static constexpr std::uintptr_t m_nComponent   = 0X01E4; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderTreeShake : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flPeakStrength                  = 0X0220; // float32
-            static constexpr std::uintptr_t m_nPeakStrengthFieldOverride      = 0X0224; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flRadius                        = 0X0228; // float32
-            static constexpr std::uintptr_t m_nRadiusFieldOverride            = 0X022C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flShakeDuration                 = 0X0230; // float32
-            static constexpr std::uintptr_t m_flTransitionTime                = 0X0234; // float32
-            static constexpr std::uintptr_t m_flTwistAmount                   = 0X0238; // float32
-            static constexpr std::uintptr_t m_flRadialAmount                  = 0X023C; // float32
-            static constexpr std::uintptr_t m_flControlPointOrientationAmount = 0X0240; // float32
-            static constexpr std::uintptr_t m_nControlPointForLinearDirection = 0X0244; // int32
+            static constexpr std::uintptr_t m_flPeakStrength                  = 0X0228; // float32
+            static constexpr std::uintptr_t m_nPeakStrengthFieldOverride      = 0X022C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flRadius                        = 0X0230; // float32
+            static constexpr std::uintptr_t m_nRadiusFieldOverride            = 0X0234; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flShakeDuration                 = 0X0238; // float32
+            static constexpr std::uintptr_t m_flTransitionTime                = 0X023C; // float32
+            static constexpr std::uintptr_t m_flTwistAmount                   = 0X0240; // float32
+            static constexpr std::uintptr_t m_flRadialAmount                  = 0X0244; // float32
+            static constexpr std::uintptr_t m_flControlPointOrientationAmount = 0X0248; // float32
+            static constexpr std::uintptr_t m_nControlPointForLinearDirection = 0X024C; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RotateVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput  = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecRotAxisMin = 0X01D4; // Vector
-            static constexpr std::uintptr_t m_vecRotAxisMax = 0X01E0; // Vector
-            static constexpr std::uintptr_t m_flRotRateMin  = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flRotRateMax  = 0X01F0; // float32
-            static constexpr std::uintptr_t m_bNormalize    = 0X01F4; // bool
-            static constexpr std::uintptr_t m_flScale       = 0X01F8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFieldOutput  = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecRotAxisMin = 0X01DC; // Vector
+            static constexpr std::uintptr_t m_vecRotAxisMax = 0X01E8; // Vector
+            static constexpr std::uintptr_t m_flRotRateMin  = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flRotRateMax  = 0X01F8; // float32
+            static constexpr std::uintptr_t m_bNormalize    = 0X01FC; // bool
+            static constexpr std::uintptr_t m_flScale       = 0X0200; // CPerParticleFloatInput
         };
 
         // Construct Allowed
         class CSteamAudioBakedReverbData {
         public:
             static constexpr std::uintptr_t m_nBands                    = 0X0000; // int32
-            static constexpr std::uintptr_t m_probes                    = 0X0008; // CSteamAudioProbeData
-            static constexpr std::uintptr_t m_grid                      = 0X0010; // CSteamAudioProbeGrid
-            static constexpr std::uintptr_t m_reverbSettings            = 0X0068; // SteamAudioReverbSettings_t
-            static constexpr std::uintptr_t m_reverbClusteringSettings  = 0X0078; // SteamAudioReverbClusteringSettings_t
-            static constexpr std::uintptr_t m_reverbCompressionSettings = 0X0084; // SteamAudioReverbCompressionSettings_t
-            static constexpr std::uintptr_t m_clusteredProbes           = 0X0090; // CSteamAudioProbeData
-            static constexpr std::uintptr_t m_vecClusterForProbe        = 0X0098; // CUtlVector<int16>
-            static constexpr std::uintptr_t m_compressedData            = 0X00B0; // CSteamAudioCompressedReverb
-            static constexpr std::uintptr_t m_compressedClusteredData   = 0X0110; // CSteamAudioCompressedReverb
-            static constexpr std::uintptr_t m_movables                  = 0X0170; // CSteamAudioMovableBakedData<CSteamAudioBakedReverbData>
+            static constexpr std::uintptr_t m_scene                     = 0X0008; // CSteamAudioSceneData
+            static constexpr std::uintptr_t m_probes                    = 0X0018; // CSteamAudioProbeData
+            static constexpr std::uintptr_t m_grid                      = 0X0020; // CSteamAudioProbeGrid
+            static constexpr std::uintptr_t m_reverbSettings            = 0X0078; // SteamAudioReverbSettings_t
+            static constexpr std::uintptr_t m_reverbClusteringSettings  = 0X008C; // SteamAudioReverbClusteringSettings_t
+            static constexpr std::uintptr_t m_reverbCompressionSettings = 0X0098; // SteamAudioReverbCompressionSettings_t
+            static constexpr std::uintptr_t m_clusteredProbes           = 0X00A0; // CSteamAudioProbeData
+            static constexpr std::uintptr_t m_vecClusterForProbe        = 0X00A8; // CUtlVector<int16>
+            static constexpr std::uintptr_t m_compressedData            = 0X00C0; // CSteamAudioCompressedReverb
+            static constexpr std::uintptr_t m_compressedClusteredData   = 0X0120; // CSteamAudioCompressedReverb
+            static constexpr std::uintptr_t m_movables                  = 0X0180; // CSteamAudioMovableBakedData<CSteamAudioBakedReverbData>
         };
 
         // Construct Allowed
@@ -12073,12 +12682,12 @@ namespace offsets {
         // Construct Allowed
         class C_OP_AttractToControlPoint : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_vecComponentScale = 0X01E0; // Vector
-            static constexpr std::uintptr_t m_fForceAmount      = 0X01F0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fFalloffPower     = 0X0360; // float32
-            static constexpr std::uintptr_t m_TransformInput    = 0X0368; // CParticleTransformInput
-            static constexpr std::uintptr_t m_fForceAmountMin   = 0X03D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bApplyMinForce    = 0X0540; // bool
+            static constexpr std::uintptr_t m_vecComponentScale = 0X01E8; // Vector
+            static constexpr std::uintptr_t m_fForceAmount      = 0X01F8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fFalloffPower     = 0X0368; // float32
+            static constexpr std::uintptr_t m_TransformInput    = 0X0370; // CParticleTransformInput
+            static constexpr std::uintptr_t m_fForceAmountMin   = 0X03D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bApplyMinForce    = 0X0548; // bool
         };
 
         // Construct Allowed
@@ -12178,25 +12787,25 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ConstrainDistance : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_fMinDistance        = 0X01D0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_fMaxDistance        = 0X0340; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X04B0; // int32
-            static constexpr std::uintptr_t m_CenterOffset        = 0X04B4; // Vector
-            static constexpr std::uintptr_t m_bGlobalCenter       = 0X04C0; // bool
+            static constexpr std::uintptr_t m_fMinDistance        = 0X01D8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_fMaxDistance        = 0X0348; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X04B8; // int32
+            static constexpr std::uintptr_t m_CenterOffset        = 0X04BC; // Vector
+            static constexpr std::uintptr_t m_bGlobalCenter       = 0X04C8; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_InstantaneousEmitter : public CParticleFunctionEmitter {
         public:
-            static constexpr std::uintptr_t m_nParticlesToEmit                = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flStartTime                     = 0X0348; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flInitFromKilledParentParticles = 0X04B8; // float32
-            static constexpr std::uintptr_t m_nEventType                      = 0X04BC; // EventTypeSelection_t
-            static constexpr std::uintptr_t m_flParentParticleScale           = 0X04C0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nMaxEmittedPerFrame             = 0X0630; // int32
-            static constexpr std::uintptr_t m_nSnapshotControlPoint           = 0X0634; // int32
-            static constexpr std::uintptr_t m_strSnapshotSubset               = 0X0638; // CUtlString
+            static constexpr std::uintptr_t m_nParticlesToEmit                = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flStartTime                     = 0X0350; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInitFromKilledParentParticles = 0X04C0; // float32
+            static constexpr std::uintptr_t m_nEventType                      = 0X04C4; // EventTypeSelection_t
+            static constexpr std::uintptr_t m_flParentParticleScale           = 0X04C8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nMaxEmittedPerFrame             = 0X0638; // int32
+            static constexpr std::uintptr_t m_nSnapshotControlPoint           = 0X063C; // int32
+            static constexpr std::uintptr_t m_strSnapshotSubset               = 0X0640; // CUtlString
         };
 
         // Has VTable
@@ -12204,15 +12813,15 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapNamedModelElementOnceTimed : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_hModel             = 0X01D0; // CStrongHandle<InfoForResourceTypeCModel>
-            static constexpr std::uintptr_t m_inNames            = 0X01D8; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_outNames           = 0X01F0; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_fallbackNames      = 0X0208; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_bModelFromRenderer = 0X0220; // bool
-            static constexpr std::uintptr_t m_bProportional      = 0X0221; // bool
-            static constexpr std::uintptr_t m_nFieldInput        = 0X0224; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput       = 0X0228; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flRemapTime        = 0X022C; // float32
+            static constexpr std::uintptr_t m_hModel             = 0X01D8; // CStrongHandle<InfoForResourceTypeCModel>
+            static constexpr std::uintptr_t m_inNames            = 0X01E0; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_outNames           = 0X01F8; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_fallbackNames      = 0X0210; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_bModelFromRenderer = 0X0228; // bool
+            static constexpr std::uintptr_t m_bProportional      = 0X0229; // bool
+            static constexpr std::uintptr_t m_nFieldInput        = 0X022C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput       = 0X0230; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flRemapTime        = 0X0234; // float32
         };
 
         // Has VTable
@@ -12262,34 +12871,34 @@ namespace offsets {
         // Construct Allowed
         class C_OP_DecayOffscreen : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flOffscreenTime = 0X01D0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOffscreenTime = 0X01D8; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderGpuImplicit : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_bUsePerParticleRadius = 0X0220; // bool
-            static constexpr std::uintptr_t m_nVertexCountKb        = 0X0224; // uint32
-            static constexpr std::uintptr_t m_nIndexCountKb         = 0X0228; // uint32
-            static constexpr std::uintptr_t m_fGridSize             = 0X0230; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_fRadiusScale          = 0X03A0; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_fIsosurfaceThreshold  = 0X0510; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_nScaleCP              = 0X0680; // int32
-            static constexpr std::uintptr_t m_hMaterial             = 0X0688; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_bUsePerParticleRadius = 0X0228; // bool
+            static constexpr std::uintptr_t m_nVertexCountKb        = 0X022C; // uint32
+            static constexpr std::uintptr_t m_nIndexCountKb         = 0X0230; // uint32
+            static constexpr std::uintptr_t m_fGridSize             = 0X0238; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_fRadiusScale          = 0X03A8; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_fIsosurfaceThreshold  = 0X0518; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_nScaleCP              = 0X0688; // int32
+            static constexpr std::uintptr_t m_hMaterial             = 0X0690; // CStrongHandle<InfoForResourceTypeIMaterial2>
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ForceBasedOnDistanceToPlane : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_flMinDist           = 0X01E0; // float32
-            static constexpr std::uintptr_t m_vecForceAtMinDist   = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_flMaxDist           = 0X01F0; // float32
-            static constexpr std::uintptr_t m_vecForceAtMaxDist   = 0X01F4; // Vector
-            static constexpr std::uintptr_t m_vecPlaneNormal      = 0X0200; // Vector
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X020C; // int32
-            static constexpr std::uintptr_t m_flExponent          = 0X0210; // float32
+            static constexpr std::uintptr_t m_flMinDist           = 0X01E8; // float32
+            static constexpr std::uintptr_t m_vecForceAtMinDist   = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_flMaxDist           = 0X01F8; // float32
+            static constexpr std::uintptr_t m_vecForceAtMaxDist   = 0X01FC; // Vector
+            static constexpr std::uintptr_t m_vecPlaneNormal      = 0X0208; // Vector
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X0214; // int32
+            static constexpr std::uintptr_t m_flExponent          = 0X0218; // float32
         };
 
         // Construct Allowed
@@ -12344,24 +12953,24 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_PositionOffsetToCP : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumberStart = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nControlPointNumberEnd   = 0X01DC; // int32
-            static constexpr std::uintptr_t m_bLocalCoords             = 0X01E0; // bool
+            static constexpr std::uintptr_t m_nControlPointNumberStart = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nControlPointNumberEnd   = 0X01E4; // int32
+            static constexpr std::uintptr_t m_bLocalCoords             = 0X01E8; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetCPOrientationToGroundNormal : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flInterpRate       = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flTolerance        = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flTraceOffset      = 0X01DC; // float32
-            static constexpr std::uintptr_t m_CollisionGroupName = 0X01E0; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet          = 0X0260; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_nInputCP           = 0X0264; // int32
-            static constexpr std::uintptr_t m_nOutputCP          = 0X0268; // int32
-            static constexpr std::uintptr_t m_bIncludeWater      = 0X0278; // bool
+            static constexpr std::uintptr_t m_flInterpRate       = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flTolerance        = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flTraceOffset      = 0X01E4; // float32
+            static constexpr std::uintptr_t m_CollisionGroupName = 0X01E8; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet          = 0X0268; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_nInputCP           = 0X026C; // int32
+            static constexpr std::uintptr_t m_nOutputCP          = 0X0270; // int32
+            static constexpr std::uintptr_t m_bIncludeWater      = 0X0280; // bool
         };
 
         // Construct Allowed
@@ -12380,10 +12989,10 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_ScreenSpacePositionOfTarget : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecTargetPosition   = 0X01D8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_bOututBehindness    = 0X0890; // bool
-            static constexpr std::uintptr_t m_nBehindFieldOutput  = 0X0894; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flBehindOutputRemap = 0X0898; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_vecTargetPosition   = 0X01E0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_bOututBehindness    = 0X0898; // bool
+            static constexpr std::uintptr_t m_nBehindFieldOutput  = 0X089C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flBehindOutputRemap = 0X08A0; // CParticleRemapFloatInput
         };
 
         // Has VTable
@@ -12399,8 +13008,8 @@ namespace offsets {
         // Construct Allowed
         class CNmParameterizedSelectorNode__CDefinition : public CNmPoseNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_optionWeights         = 0X0028; // CUtlLeanVectorFixedGrowable<uint8,5>
+            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_optionWeights         = 0X0028; // CUtlLeanVectorFixedGrowable<uint8,8>
             static constexpr std::uintptr_t m_parameterNodeIdx      = 0X0038; // int16
             static constexpr std::uintptr_t m_bIgnoreInvalidOptions = 0X003A; // bool
             static constexpr std::uintptr_t m_bHasWeightsSet        = 0X003B; // bool
@@ -12456,7 +13065,7 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetSimulationRate : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_flSimulationScale = 0X01D8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flSimulationScale = 0X01E0; // CParticleCollectionFloatInput
         };
 
         // Has Trivial Destructor
@@ -12477,12 +13086,24 @@ namespace offsets {
             static constexpr std::uintptr_t m_Text        = 0X0058; // CUtlString
         };
 
+        // Has Trivial Constructor
         // Has Trivial Destructor
+        // Global Type Scope
+        class InfoForResourceTypeCVDataItemDefs {
+        public:
+        };
+
         class CSceneRequest {
         public:
-            static constexpr std::uintptr_t m_szPayloadTypeName = 0X0000; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_uHandle           = 0X0008; // SceneRequestHandle_t
-            static constexpr std::uintptr_t m_state             = 0X000C; // ESceneRequestState_t
+            static constexpr std::uintptr_t m_szPayloadVDataName   = 0X0000; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_uHandle              = 0X0008; // SceneRequestHandle_t
+            static constexpr std::uintptr_t m_state                = 0X000C; // ESceneRequestState_t
+            static constexpr std::uintptr_t m_nNPCBehaviorOverride = 0X0010; // ENPCBehaviorOverride_t
+            static constexpr std::uintptr_t m_vecActorMap          = 0X0018; // CUtlVector<SceneRequestTargetMapPair_t>
+            static constexpr std::uintptr_t m_vecAnchorMap         = 0X0030; // CUtlVector<SceneRequestTargetMapPair_t>
+            static constexpr std::uintptr_t m_vecGraphMap          = 0X0048; // CUtlVector<SceneRequestTargetMapPair_t>
+            static constexpr std::uintptr_t m_hOwner               = 0X0060; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_nameMapKV3           = 0X0068; // KeyValues3
         };
 
         // Has VTable
@@ -12530,13 +13151,13 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapNamedModelElementEndCap : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_hModel             = 0X01D0; // CStrongHandle<InfoForResourceTypeCModel>
-            static constexpr std::uintptr_t m_inNames            = 0X01D8; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_outNames           = 0X01F0; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_fallbackNames      = 0X0208; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_bModelFromRenderer = 0X0220; // bool
-            static constexpr std::uintptr_t m_nFieldInput        = 0X0224; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput       = 0X0228; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_hModel             = 0X01D8; // CStrongHandle<InfoForResourceTypeCModel>
+            static constexpr std::uintptr_t m_inNames            = 0X01E0; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_outNames           = 0X01F8; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_fallbackNames      = 0X0210; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_bModelFromRenderer = 0X0228; // bool
+            static constexpr std::uintptr_t m_nFieldInput        = 0X022C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput       = 0X0230; // ParticleAttributeIndex_t
         };
 
         // Has VTable
@@ -12549,15 +13170,15 @@ namespace offsets {
         // Construct Allowed
         class C_OP_MaintainEmitter : public CParticleFunctionEmitter {
         public:
-            static constexpr std::uintptr_t m_nParticlesToMaintain  = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flStartTime           = 0X0348; // float32
-            static constexpr std::uintptr_t m_flEmissionDuration    = 0X0350; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flEmissionRate        = 0X04C0; // float32
-            static constexpr std::uintptr_t m_nSnapshotControlPoint = 0X04C4; // int32
-            static constexpr std::uintptr_t m_strSnapshotSubset     = 0X04C8; // CUtlString
-            static constexpr std::uintptr_t m_bEmitInstantaneously  = 0X04D0; // bool
-            static constexpr std::uintptr_t m_bFinalEmitOnStop      = 0X04D1; // bool
-            static constexpr std::uintptr_t m_flScale               = 0X04D8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nParticlesToMaintain  = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flStartTime           = 0X0350; // float32
+            static constexpr std::uintptr_t m_flEmissionDuration    = 0X0358; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flEmissionRate        = 0X04C8; // float32
+            static constexpr std::uintptr_t m_nSnapshotControlPoint = 0X04CC; // int32
+            static constexpr std::uintptr_t m_strSnapshotSubset     = 0X04D0; // CUtlString
+            static constexpr std::uintptr_t m_bEmitInstantaneously  = 0X04D8; // bool
+            static constexpr std::uintptr_t m_bFinalEmitOnStop      = 0X04D9; // bool
+            static constexpr std::uintptr_t m_flScale               = 0X04E0; // CParticleCollectionFloatInput
         };
 
         // Construct Allowed
@@ -12580,6 +13201,17 @@ namespace offsets {
             static constexpr std::uintptr_t m_flUWidthSrc  = 0X0004; // float32
             static constexpr std::uintptr_t m_flVHeightSrc = 0X0008; // float32
             static constexpr std::uintptr_t m_bundleDatas  = 0X0010; // CUtlVector<CMorphBundleData>
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CNetworkedCycle {
+        public:
+            static constexpr std::uintptr_t m_flCycleUnclamped     = 0X0000; // float32
+            static constexpr std::uintptr_t m_flPrevCycleUnclamped = 0X0004; // float32
+            static constexpr std::uintptr_t m_flCyclesPerSecond    = 0X0010; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flCycleZeroTime      = 0X001C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_resetCount           = 0X0028; // CAnimNetVar<uint8>
         };
 
         // Has VTable
@@ -12632,17 +13264,17 @@ namespace offsets {
         // Construct Allowed
         class C_OP_MovementRotateParticleAroundAxis : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_vecRotAxis     = 0X01D0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_flRotRate      = 0X0888; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_TransformInput = 0X09F8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_bLocalSpace    = 0X0A60; // bool
+            static constexpr std::uintptr_t m_vecRotAxis     = 0X01D8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_flRotRate      = 0X0890; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_TransformInput = 0X0A00; // CParticleTransformInput
+            static constexpr std::uintptr_t m_bLocalSpace    = 0X0A68; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RadiusFromCPObject : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPoint = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nControlPoint = 0X01E0; // int32
         };
 
         // Construct Allowed
@@ -12661,8 +13293,8 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_QuantizeFloat : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_InputValue   = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nOutputField = 0X0348; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_InputValue   = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nOutputField = 0X0350; // ParticleAttributeIndex_t
         };
 
         // Has VTable
@@ -12680,6 +13312,32 @@ namespace offsets {
             static constexpr std::uintptr_t itemTypeName = 0X0010; // CUtlString
             static constexpr std::uintptr_t itemKVString = 0X0020; // CUtlString
             static constexpr std::uintptr_t itemPos      = 0X0028; // Vector2D
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CDirectPlaybackInstanceData {
+        public:
+            static constexpr std::uintptr_t m_vTargetPosition       = 0X0000; // Vector
+            static constexpr std::uintptr_t m_flTargetFacing        = 0X000C; // float32
+            static constexpr std::uintptr_t m_flInterpEndTime       = 0X0010; // float32
+            static constexpr std::uintptr_t m_weights               = 0X0014; // float32[4]
+            static constexpr std::uintptr_t m_sequences             = 0X0024; // SequenceData[4]
+            static constexpr std::uintptr_t m_currentSequenceIndex  = 0X0104; // uint32
+            static constexpr std::uintptr_t m_currentSequenceData   = 0X0108; // CAnimNetVar<uint64>
+            static constexpr std::uintptr_t m_flFadeInTime          = 0X0118; // float32
+            static constexpr std::uintptr_t m_flFadeOutTime         = 0X011C; // float32
+            static constexpr std::uintptr_t m_flForcedCycle         = 0X0120; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_bResetPending         = 0X0130; // bool
+            static constexpr std::uintptr_t m_SequenceCycleZeroTime = 0X0138; // CAnimNetVar<float32>
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class SequenceData {
+        public:
+            static constexpr std::uintptr_t m_hSequence = 0X0000; // HSequence
+            static constexpr std::uintptr_t m_cycle     = 0X0004; // CNetworkedCycle
         };
 
         // Has VTable
@@ -12721,11 +13379,20 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapExternalWindToCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCP             = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nCPOutput       = 0X01DC; // int32
-            static constexpr std::uintptr_t m_vecScale        = 0X01E0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_bSetMagnitude   = 0X0898; // bool
-            static constexpr std::uintptr_t m_nOutVectorField = 0X089C; // int32
+            static constexpr std::uintptr_t m_nCP             = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nCPOutput       = 0X01E4; // int32
+            static constexpr std::uintptr_t m_vecScale        = 0X01E8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_bSetMagnitude   = 0X08A0; // bool
+            static constexpr std::uintptr_t m_nOutVectorField = 0X08A4; // int32
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CTurnHelperInstanceData {
+        public:
+            static constexpr std::uintptr_t m_turnAmount    = 0X0000; // float32
+            static constexpr std::uintptr_t m_turnStartTime = 0X0004; // float32
+            static constexpr std::uintptr_t m_duration      = 0X0008; // float32
         };
 
         // Has VTable
@@ -12744,6 +13411,21 @@ namespace offsets {
             static constexpr std::uintptr_t m_bOrientMovement    = 0X00A6; // bool
             static constexpr std::uintptr_t m_bApplyRotation     = 0X00A7; // bool
             static constexpr std::uintptr_t m_bLimitOnly         = 0X00A8; // bool
+        };
+
+        // Construct Allowed
+        struct entitytable_t {
+        public:
+            static constexpr std::uintptr_t id                    = 0X0000; // int32
+            static constexpr std::uintptr_t edictindex            = 0X0004; // CEntityIndex
+            static constexpr std::uintptr_t saveentityindex       = 0X0008; // CEntityIndex
+            static constexpr std::uintptr_t bWasSaved             = 0X0014; // bool
+            static constexpr std::uintptr_t flags                 = 0X0018; // SaveRestoreTableFlags_t
+            static constexpr std::uintptr_t classname             = 0X0020; // CUtlSymbolLarge
+            static constexpr std::uintptr_t globalname            = 0X0028; // CUtlSymbolLarge
+            static constexpr std::uintptr_t entityname            = 0X0030; // CUtlSymbolLarge
+            static constexpr std::uintptr_t landmarkModelSpace    = 0X0038; // Vector
+            static constexpr std::uintptr_t m_pPrecacheEntityKeys = 0X0048; // CEntityKeyValues*
         };
 
         // Construct Allowed
@@ -12795,9 +13477,9 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RandomModelSequence : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_ActivityName = 0X01D8; // char[256]
-            static constexpr std::uintptr_t m_SequenceName = 0X02D8; // char[256]
-            static constexpr std::uintptr_t m_hModel       = 0X03D8; // CStrongHandle<InfoForResourceTypeCModel>
+            static constexpr std::uintptr_t m_ActivityName = 0X01E0; // char[256]
+            static constexpr std::uintptr_t m_SequenceName = 0X02E0; // char[256]
+            static constexpr std::uintptr_t m_hModel       = 0X03E0; // CStrongHandle<InfoForResourceTypeCModel>
         };
 
         // Has VTable
@@ -12805,29 +13487,29 @@ namespace offsets {
         // Construct Allowed
         class CGeneralRandomRotation : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput           = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flDegrees              = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flDegreesMin           = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flDegreesMax           = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flRotationRandExponent = 0X01E8; // float32
-            static constexpr std::uintptr_t m_bRandomlyFlipDirection = 0X01EC; // bool
+            static constexpr std::uintptr_t m_nFieldOutput           = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flDegrees              = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flDegreesMin           = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flDegreesMax           = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flRotationRandExponent = 0X01F0; // float32
+            static constexpr std::uintptr_t m_bRandomlyFlipDirection = 0X01F4; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateWithinCapsuleTransform : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_fRadiusMin                    = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fRadiusMax                    = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fHeight                       = 0X04B8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_TransformInput                = 0X0628; // CParticleTransformInput
-            static constexpr std::uintptr_t m_fSpeedMin                     = 0X0690; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fSpeedMax                     = 0X0800; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fSpeedRandExp                 = 0X0970; // float32
-            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMin = 0X0978; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMax = 0X1030; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_nFieldOutput                  = 0X16E8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldVelocity                = 0X16EC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_fRadiusMin                    = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fRadiusMax                    = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fHeight                       = 0X04C0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_TransformInput                = 0X0630; // CParticleTransformInput
+            static constexpr std::uintptr_t m_fSpeedMin                     = 0X0698; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fSpeedMax                     = 0X0808; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fSpeedRandExp                 = 0X0978; // float32
+            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMin = 0X0980; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMax = 0X1038; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nFieldOutput                  = 0X16F0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldVelocity                = 0X16F4; // ParticleAttributeIndex_t
         };
 
         // Has VTable
@@ -12913,10 +13595,40 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
+        class CTestPulseIOComponent {
+        public:
+            static constexpr std::uintptr_t m_ComponentData       = 0X0008; // CUtlString
+            static constexpr std::uintptr_t m_OnComponentTestFunc = 0X0010; // CEntityOutputTemplate<CUtlSymbolLarge>
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CTestPulseIOComponent_Derived : public CTestPulseIOComponent {
+        public:
+        };
+
+        // Has VTable
         // Is Absract
         class CSkeletonAnimationController : public ISkeletonAnimationController {
         public:
             static constexpr std::uintptr_t m_pSkeletonInstance = 0X0008; // CSkeletonInstance*
+        };
+
+        // Has VTable
+        // Construct Allowed
+        struct AI_MotorGroundAnimgraph_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t state                          = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t b_has_path                     = 0X0010; // bool
+            static constexpr std::uintptr_t f_remaining_ground_path_length = 0X0014; // float32
+            static constexpr std::uintptr_t f_current_speed                = 0X0018; // float32
+            static constexpr std::uintptr_t move_type                      = 0X0020; // CGlobalSymbol
+            static constexpr std::uintptr_t f_move_heading_actual          = 0X0028; // float32
+            static constexpr std::uintptr_t f_move_heading_desired         = 0X002C; // float32
+            static constexpr std::uintptr_t f_current_lean                 = 0X0030; // float32
+            static constexpr std::uintptr_t f_target_lean                  = 0X0034; // float32
+            static constexpr std::uintptr_t vec_events                     = 0X0038; // CUtlVector<AI_MotorGroundAnimgraph_DebugSnapshotData_t::Event_t>
         };
 
         // Construct Allowed
@@ -13034,9 +13746,9 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ParentVortices : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_flForceScale    = 0X01E0; // float32
-            static constexpr std::uintptr_t m_vecTwistAxis    = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_bFlipBasedOnYaw = 0X01F0; // bool
+            static constexpr std::uintptr_t m_flForceScale    = 0X01E8; // float32
+            static constexpr std::uintptr_t m_vecTwistAxis    = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_bFlipBasedOnYaw = 0X01F8; // bool
         };
 
         // Has VTable
@@ -13061,6 +13773,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_boneName      = 0X0000; // CUtlString
             static constexpr std::uintptr_t m_boneNameToken = 0X0008; // uint32
             static constexpr std::uintptr_t m_controls      = 0X0010; // CUtlVector<ModelBoneFlexDriverControl_t>
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct DampedPathMotorInstanceData_t {
+        public:
+            static constexpr std::uintptr_t m_vVelocity     = 0X0000; // Vector
+            static constexpr std::uintptr_t m_vAcceleration = 0X000C; // Vector
+            static constexpr std::uintptr_t m_bStopping     = 0X0024; // bool
         };
 
         // Has VTable
@@ -13115,12 +13836,12 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RemapInitialDirectionToTransformToVector : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_TransformInput = 0X01D8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X0240; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flScale        = 0X0244; // float32
-            static constexpr std::uintptr_t m_flOffsetRot    = 0X0248; // float32
-            static constexpr std::uintptr_t m_vecOffsetAxis  = 0X024C; // Vector
-            static constexpr std::uintptr_t m_bNormalize     = 0X0258; // bool
+            static constexpr std::uintptr_t m_TransformInput = 0X01E0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X0248; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flScale        = 0X024C; // float32
+            static constexpr std::uintptr_t m_flOffsetRot    = 0X0250; // float32
+            static constexpr std::uintptr_t m_vecOffsetAxis  = 0X0254; // Vector
+            static constexpr std::uintptr_t m_bNormalize     = 0X0260; // bool
         };
 
         // Has Trivial Constructor
@@ -13176,16 +13897,16 @@ namespace offsets {
         // Construct Allowed
         class CNmTwoBoneIKTask : public CNmPoseTask {
         public:
-            static constexpr std::uintptr_t m_nEffectorBoneIdx               = 0X0058; // int32
-            static constexpr std::uintptr_t m_nEffectorTargetBoneIdx         = 0X005C; // int32
-            static constexpr std::uintptr_t m_targetTransform                = 0X0060; // CTransform
-            static constexpr std::uintptr_t m_effectorTarget                 = 0X0080; // CNmTarget
-            static constexpr std::uintptr_t m_blendMode                      = 0X00B0; // NmIKBlendMode_t
-            static constexpr std::uintptr_t m_flBlendWeight                  = 0X00B4; // float32
-            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X00B8; // bool
-            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X00B9; // bool
-            static constexpr std::uintptr_t m_flReferencePoseTwistWeight     = 0X00BC; // float32
-            static constexpr std::uintptr_t m_debugEffectorBoneID            = 0X00C0; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nEffectorBoneIdx               = 0X0048; // int32
+            static constexpr std::uintptr_t m_nEffectorTargetBoneIdx         = 0X004C; // int32
+            static constexpr std::uintptr_t m_targetTransform                = 0X0050; // CTransform
+            static constexpr std::uintptr_t m_effectorTarget                 = 0X0070; // CNmTarget
+            static constexpr std::uintptr_t m_blendMode                      = 0X00A0; // NmIKBlendMode_t
+            static constexpr std::uintptr_t m_flBlendWeight                  = 0X00A4; // float32
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X00A8; // bool
+            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X00A9; // bool
+            static constexpr std::uintptr_t m_flChainRotationWeight          = 0X00AC; // float32
+            static constexpr std::uintptr_t m_debugEffectorBoneID            = 0X00B0; // CGlobalSymbol
         };
 
         // Has VTable
@@ -13217,17 +13938,17 @@ namespace offsets {
         // Construct Allowed
         class C_OP_CollideWithSelf : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_flRadiusScale  = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flMinimumSpeed = 0X0340; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRadiusScale  = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMinimumSpeed = 0X0348; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_PlaneCull : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPoint = 0X01D8; // int32
-            static constexpr std::uintptr_t m_flDistance    = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bCullInside   = 0X0350; // bool
+            static constexpr std::uintptr_t m_nControlPoint = 0X01E0; // int32
+            static constexpr std::uintptr_t m_flDistance    = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bCullInside   = 0X0358; // bool
         };
 
         // Has VTable
@@ -13235,38 +13956,38 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapDistanceToLineSegmentBase : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nCP0            = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nCP1            = 0X01D4; // int32
-            static constexpr std::uintptr_t m_flMinInputValue = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flMaxInputValue = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bInfiniteLine   = 0X01E0; // bool
+            static constexpr std::uintptr_t m_nCP0            = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nCP1            = 0X01DC; // int32
+            static constexpr std::uintptr_t m_flMinInputValue = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flMaxInputValue = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bInfiniteLine   = 0X01E8; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapDistanceToLineSegmentToVector : public C_OP_RemapDistanceToLineSegmentBase {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput    = 0X01E8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vMinOutputValue = 0X01EC; // Vector
-            static constexpr std::uintptr_t m_vMaxOutputValue = 0X01F8; // Vector
+            static constexpr std::uintptr_t m_nFieldOutput    = 0X01F0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vMinOutputValue = 0X01F4; // Vector
+            static constexpr std::uintptr_t m_vMaxOutputValue = 0X0200; // Vector
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_PercentageBetweenTransformLerpCPs : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput      = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin        = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flInputMax        = 0X01D8; // float32
-            static constexpr std::uintptr_t m_TransformStart    = 0X01E0; // CParticleTransformInput
-            static constexpr std::uintptr_t m_TransformEnd      = 0X0248; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nOutputStartCP    = 0X02B0; // int32
-            static constexpr std::uintptr_t m_nOutputStartField = 0X02B4; // int32
-            static constexpr std::uintptr_t m_nOutputEndCP      = 0X02B8; // int32
-            static constexpr std::uintptr_t m_nOutputEndField   = 0X02BC; // int32
-            static constexpr std::uintptr_t m_nSetMethod        = 0X02C0; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bActiveRange      = 0X02C4; // bool
-            static constexpr std::uintptr_t m_bRadialCheck      = 0X02C5; // bool
+            static constexpr std::uintptr_t m_nFieldOutput      = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin        = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flInputMax        = 0X01E0; // float32
+            static constexpr std::uintptr_t m_TransformStart    = 0X01E8; // CParticleTransformInput
+            static constexpr std::uintptr_t m_TransformEnd      = 0X0250; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nOutputStartCP    = 0X02B8; // int32
+            static constexpr std::uintptr_t m_nOutputStartField = 0X02BC; // int32
+            static constexpr std::uintptr_t m_nOutputEndCP      = 0X02C0; // int32
+            static constexpr std::uintptr_t m_nOutputEndField   = 0X02C4; // int32
+            static constexpr std::uintptr_t m_nSetMethod        = 0X02C8; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bActiveRange      = 0X02CC; // bool
+            static constexpr std::uintptr_t m_bRadialCheck      = 0X02CD; // bool
         };
 
         // Has VTable
@@ -13315,6 +14036,30 @@ namespace offsets {
             static constexpr std::uintptr_t m_startIndex        = 0X0060; // int32
             static constexpr std::uintptr_t m_writeIndex        = 0X0064; // int32
             static constexpr std::uintptr_t m_frameCount        = 0X0068; // int32
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class MovementData {
+        public:
+            static constexpr std::uintptr_t m_goalWayPointPos        = 0X0000; // Vector
+            static constexpr std::uintptr_t m_vMoveDir               = 0X000C; // CAnimNetVar<Vector>
+            static constexpr std::uintptr_t m_vAcceleration          = 0X0020; // CAnimNetVar<Vector>
+            static constexpr std::uintptr_t m_flCurrentMoveSpeed     = 0X0034; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flTargetMoveSpeed      = 0X0040; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flGoalDistance         = 0X004C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flBoundaryRadius       = 0X0058; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_bGoalChanged           = 0X0064; // bool
+            static constexpr std::uintptr_t m_bHasPath               = 0X0068; // CAnimNetVar<bool>
+            static constexpr std::uintptr_t m_flFacingHeading        = 0X0074; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_vManualFacingDirection = 0X0080; // Vector
+            static constexpr std::uintptr_t m_vManualFacingTarget    = 0X008C; // VectorWS
+            static constexpr std::uintptr_t m_nFacingMode            = 0X0098; // CAnimNetVar<uint8>
+            static constexpr std::uintptr_t m_bForceFacing           = 0X00A4; // CAnimNetVar<bool>
+            static constexpr std::uintptr_t m_nActiveMotorIndex      = 0X00B0; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_bOnGround              = 0X00BC; // CAnimNetVar<bool>
+            static constexpr std::uintptr_t m_vFacingPosition        = 0X00C8; // CAnimNetVar<Vector>
+            static constexpr std::uintptr_t m_vPrevFacingPosition    = 0X00DC; // Vector
         };
 
         // Has VTable
@@ -13412,6 +14157,13 @@ namespace offsets {
         };
 
         // Has VTable
+        // Is Absract
+        class INavObstacle {
+        public:
+            static constexpr std::uintptr_t m_nId = 0X0008; // uint64
+        };
+
+        // Has VTable
         // Construct Allowed
         class CSequenceUpdateNode : public CSequenceUpdateNodeBase {
         public:
@@ -13492,71 +14244,72 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetControlPointToImpactPoint : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCPOut                 = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nCPIn                  = 0X01DC; // int32
-            static constexpr std::uintptr_t m_flUpdateRate           = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flTraceLength          = 0X01E8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flStartOffset          = 0X0358; // float32
-            static constexpr std::uintptr_t m_flOffset               = 0X035C; // float32
-            static constexpr std::uintptr_t m_vecTraceDir            = 0X0360; // Vector
-            static constexpr std::uintptr_t m_CollisionGroupName     = 0X036C; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet              = 0X03EC; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_bSetToEndpoint         = 0X03F0; // bool
-            static constexpr std::uintptr_t m_bTraceToClosestSurface = 0X03F1; // bool
-            static constexpr std::uintptr_t m_bIncludeWater          = 0X03F2; // bool
+            static constexpr std::uintptr_t m_nCPOut                 = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nCPIn                  = 0X01E4; // int32
+            static constexpr std::uintptr_t m_flUpdateRate           = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flTraceLength          = 0X01F0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flStartOffset          = 0X0360; // float32
+            static constexpr std::uintptr_t m_flOffset               = 0X0364; // float32
+            static constexpr std::uintptr_t m_vecTraceDir            = 0X0368; // Vector
+            static constexpr std::uintptr_t m_CollisionGroupName     = 0X0374; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet              = 0X03F4; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_bSetToEndpoint         = 0X03F8; // bool
+            static constexpr std::uintptr_t m_bTraceToClosestSurface = 0X03F9; // bool
+            static constexpr std::uintptr_t m_bIncludeWater          = 0X03FA; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapVisibilityScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldInput   = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput  = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin    = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flInputMax    = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flOutputMin   = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMax   = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flRadiusScale = 0X01E8; // float32
+            static constexpr std::uintptr_t m_nFieldInput   = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput  = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin    = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flInputMax    = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flOutputMin   = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMax   = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flRadiusScale = 0X01F0; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ScreenSpaceRotateTowardTarget : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_vecTargetPosition             = 0X01D0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flOutputRemap                 = 0X0888; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nSetMethod                    = 0X09F8; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_flScreenEdgeAlignmentDistance = 0X0A00; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecTargetPosition             = 0X01D8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flOutputRemap                 = 0X0890; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nSetMethod                    = 0X0A00; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_flScreenEdgeAlignmentDistance = 0X0A08; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateWithinSphereTransform : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_fRadiusMin                    = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fRadiusMax                    = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vecDistanceBias               = 0X04B8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecDistanceBiasAbs            = 0X0B70; // Vector
-            static constexpr std::uintptr_t m_TransformInput                = 0X0B80; // CParticleTransformInput
-            static constexpr std::uintptr_t m_fSpeedMin                     = 0X0BE8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fSpeedMax                     = 0X0D58; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fSpeedRandExp                 = 0X0EC8; // float32
-            static constexpr std::uintptr_t m_bLocalCoords                  = 0X0ECC; // bool
-            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMin = 0X0ED0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMax = 0X1588; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_nFieldOutput                  = 0X1C40; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldVelocity                = 0X1C44; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_fRadiusMin                    = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fRadiusMax                    = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecDistanceBias               = 0X04C0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecDistanceBiasAbs            = 0X0B78; // Vector
+            static constexpr std::uintptr_t m_TransformInput                = 0X0B88; // CParticleTransformInput
+            static constexpr std::uintptr_t m_fSpeedMin                     = 0X0BF0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fSpeedMax                     = 0X0D60; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fSpeedRandExp                 = 0X0ED0; // float32
+            static constexpr std::uintptr_t m_bLocalCoords                  = 0X0ED4; // bool
+            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMin = 0X0ED8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMax = 0X1590; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nFieldOutput                  = 0X1C48; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldVelocity                = 0X1C4C; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetGravityToCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCPInput        = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nCPOutput       = 0X01DC; // int32
-            static constexpr std::uintptr_t m_flScale         = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bSetOrientation = 0X0350; // bool
-            static constexpr std::uintptr_t m_bSetZDown       = 0X0351; // bool
+            static constexpr std::uintptr_t m_nCPInput        = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nCPOutput       = 0X01E4; // int32
+            static constexpr std::uintptr_t m_flScale         = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bSetPosition    = 0X0358; // bool
+            static constexpr std::uintptr_t m_bSetOrientation = 0X0359; // bool
+            static constexpr std::uintptr_t m_bSetZDown       = 0X035A; // bool
         };
 
         // Has Trivial Destructor
@@ -13586,11 +14339,11 @@ namespace offsets {
         // Construct Allowed
         class CNmFloatSelectorNode__CDefinition : public CNmFloatValueNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0010; // CUtlVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_values               = 0X0038; // CUtlVectorFixedGrowable<float32,5>
-            static constexpr std::uintptr_t m_flDefaultValue       = 0X0068; // float32
-            static constexpr std::uintptr_t m_flEaseTime           = 0X006C; // float32
-            static constexpr std::uintptr_t m_easingOp             = 0X0070; // NmEasingOperation_t
+            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_values               = 0X0028; // CUtlLeanVectorFixedGrowable<float32,5>
+            static constexpr std::uintptr_t m_flDefaultValue       = 0X0048; // float32
+            static constexpr std::uintptr_t m_flEaseTime           = 0X004C; // float32
+            static constexpr std::uintptr_t m_easingOp             = 0X0050; // NmEasingOperation_t
         };
 
         // Has VTable
@@ -13634,47 +14387,47 @@ namespace offsets {
 
         struct CSAdditionalMatchStats_t : public CSAdditionalPerRoundStats_t {
         public:
-            static constexpr std::uintptr_t m_numRoundsSurvivedStreak        = 0X00F0; // int32
-            static constexpr std::uintptr_t m_maxNumRoundsSurvivedStreak     = 0X00F4; // int32
-            static constexpr std::uintptr_t m_numRoundsSurvivedTotal         = 0X00F8; // int32
-            static constexpr std::uintptr_t m_iRoundsWonWithoutPurchase      = 0X00FC; // int32
-            static constexpr std::uintptr_t m_iRoundsWonWithoutPurchaseTotal = 0X0100; // int32
-            static constexpr std::uintptr_t m_numFirstKills                  = 0X0104; // int32
-            static constexpr std::uintptr_t m_numClutchKills                 = 0X0108; // int32
-            static constexpr std::uintptr_t m_numPistolKills                 = 0X010C; // int32
-            static constexpr std::uintptr_t m_numSniperKills                 = 0X0110; // int32
-            static constexpr std::uintptr_t m_iNumSuicides                   = 0X0114; // int32
-            static constexpr std::uintptr_t m_iNumTeamKills                  = 0X0118; // int32
-            static constexpr std::uintptr_t m_flTeamDamage                   = 0X011C; // float32
+            static constexpr std::uintptr_t m_numRoundsSurvivedStreak        = 0X00F8; // int32
+            static constexpr std::uintptr_t m_maxNumRoundsSurvivedStreak     = 0X00FC; // int32
+            static constexpr std::uintptr_t m_numRoundsSurvivedTotal         = 0X0100; // int32
+            static constexpr std::uintptr_t m_iRoundsWonWithoutPurchase      = 0X0104; // int32
+            static constexpr std::uintptr_t m_iRoundsWonWithoutPurchaseTotal = 0X0108; // int32
+            static constexpr std::uintptr_t m_numFirstKills                  = 0X010C; // int32
+            static constexpr std::uintptr_t m_numClutchKills                 = 0X0110; // int32
+            static constexpr std::uintptr_t m_numPistolKills                 = 0X0114; // int32
+            static constexpr std::uintptr_t m_numSniperKills                 = 0X0118; // int32
+            static constexpr std::uintptr_t m_iNumSuicides                   = 0X011C; // int32
+            static constexpr std::uintptr_t m_iNumTeamKills                  = 0X0120; // int32
+            static constexpr std::uintptr_t m_flTeamDamage                   = 0X0124; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderCables : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flRadiusScale                 = 0X0220; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flAlphaScale                  = 0X0390; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_vecColorScale                 = 0X0500; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nColorBlendType               = 0X0BB8; // ParticleColorBlendType_t
-            static constexpr std::uintptr_t m_hMaterial                     = 0X0BC0; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_nTextureRepetitionMode        = 0X0BC8; // TextureRepetitionMode_t
-            static constexpr std::uintptr_t m_flTextureRepeatsPerSegment    = 0X0BD0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flTextureRepeatsCircumference = 0X0D40; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flColorMapOffsetV             = 0X0EB0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flColorMapOffsetU             = 0X1020; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flNormalMapOffsetV            = 0X1190; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flNormalMapOffsetU            = 0X1300; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bDrawCableCaps                = 0X1470; // bool
-            static constexpr std::uintptr_t m_flCapRoundness                = 0X1474; // float32
-            static constexpr std::uintptr_t m_flCapOffsetAmount             = 0X1478; // float32
-            static constexpr std::uintptr_t m_flTessScale                   = 0X147C; // float32
-            static constexpr std::uintptr_t m_nMinTesselation               = 0X1480; // int32
-            static constexpr std::uintptr_t m_nMaxTesselation               = 0X1484; // int32
-            static constexpr std::uintptr_t m_nRoundness                    = 0X1488; // int32
-            static constexpr std::uintptr_t m_nForceRoundnessFixed          = 0X148C; // bool
-            static constexpr std::uintptr_t m_LightingTransform             = 0X1490; // CParticleTransformInput
-            static constexpr std::uintptr_t m_MaterialFloatVars             = 0X14F8; // CUtlLeanVector<FloatInputMaterialVariable_t>
-            static constexpr std::uintptr_t m_MaterialVecVars               = 0X1518; // CUtlLeanVector<VecInputMaterialVariable_t>
+            static constexpr std::uintptr_t m_flRadiusScale                 = 0X0228; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flAlphaScale                  = 0X0398; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_vecColorScale                 = 0X0508; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nColorBlendType               = 0X0BC0; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_hMaterial                     = 0X0BC8; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_nTextureRepetitionMode        = 0X0BD0; // TextureRepetitionMode_t
+            static constexpr std::uintptr_t m_flTextureRepeatsPerSegment    = 0X0BD8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flTextureRepeatsCircumference = 0X0D48; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flColorMapOffsetV             = 0X0EB8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flColorMapOffsetU             = 0X1028; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flNormalMapOffsetV            = 0X1198; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flNormalMapOffsetU            = 0X1308; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bDrawCableCaps                = 0X1478; // bool
+            static constexpr std::uintptr_t m_flCapRoundness                = 0X147C; // float32
+            static constexpr std::uintptr_t m_flCapOffsetAmount             = 0X1480; // float32
+            static constexpr std::uintptr_t m_flTessScale                   = 0X1484; // float32
+            static constexpr std::uintptr_t m_nMinTesselation               = 0X1488; // int32
+            static constexpr std::uintptr_t m_nMaxTesselation               = 0X148C; // int32
+            static constexpr std::uintptr_t m_nRoundness                    = 0X1490; // int32
+            static constexpr std::uintptr_t m_nForceRoundnessFixed          = 0X1494; // bool
+            static constexpr std::uintptr_t m_LightingTransform             = 0X1498; // CParticleTransformInput
+            static constexpr std::uintptr_t m_MaterialFloatVars             = 0X1500; // CUtlLeanVector<FloatInputMaterialVariable_t>
+            static constexpr std::uintptr_t m_MaterialVecVars               = 0X1520; // CUtlLeanVector<VecInputMaterialVariable_t>
         };
 
         // Has Trivial Constructor
@@ -13719,48 +14472,61 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetPerChildControlPointFromAttribute : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nChildGroupID            = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFirstControlPoint       = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nNumControlPoints        = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nParticleIncrement       = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nFirstSourcePoint        = 0X01E0; // int32
-            static constexpr std::uintptr_t m_bNumBasedOnParticleCount = 0X01E4; // bool
-            static constexpr std::uintptr_t m_nAttributeToRead         = 0X01E8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nCPField                 = 0X01EC; // int32
+            static constexpr std::uintptr_t m_nChildGroupID            = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFirstControlPoint       = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nNumControlPoints        = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nParticleIncrement       = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nFirstSourcePoint        = 0X01E8; // int32
+            static constexpr std::uintptr_t m_bNumBasedOnParticleCount = 0X01EC; // bool
+            static constexpr std::uintptr_t m_nAttributeToRead         = 0X01F0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nCPField                 = 0X01F4; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LightningSnapshotGenerator : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCPSnapshot     = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nCPStartPnt     = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nCPEndPnt       = 0X01E0; // int32
-            static constexpr std::uintptr_t m_flSegments      = 0X01E8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flOffset        = 0X0358; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flOffsetDecay   = 0X04C8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flRecalcRate    = 0X0638; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flUVScale       = 0X07A8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flUVOffset      = 0X0918; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flSplitRate     = 0X0A88; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flBranchTwist   = 0X0BF8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nBranchBehavior = 0X0D68; // ParticleLightnintBranchBehavior_t
-            static constexpr std::uintptr_t m_flRadiusStart   = 0X0D70; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flRadiusEnd     = 0X0EE0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flDedicatedPool = 0X1050; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nCPSnapshot     = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nCPStartPnt     = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nCPEndPnt       = 0X01E8; // int32
+            static constexpr std::uintptr_t m_flSegments      = 0X01F0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOffset        = 0X0360; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOffsetDecay   = 0X04D0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flRecalcRate    = 0X0640; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flUVScale       = 0X07B0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flUVOffset      = 0X0920; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flSplitRate     = 0X0A90; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flBranchTwist   = 0X0C00; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nBranchBehavior = 0X0D70; // ParticleLightnintBranchBehavior_t
+            static constexpr std::uintptr_t m_flRadiusStart   = 0X0D78; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flRadiusEnd     = 0X0EE8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flDedicatedPool = 0X1058; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapSpeed : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin   = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flInputMax   = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flOutputMin  = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flOutputMax  = 0X01E0; // float32
-            static constexpr std::uintptr_t m_nSetMethod   = 0X01E4; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bIgnoreDelta = 0X01E8; // bool
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin   = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flInputMax   = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flOutputMin  = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flOutputMax  = 0X01E8; // float32
+            static constexpr std::uintptr_t m_nSetMethod   = 0X01EC; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bIgnoreDelta = 0X01F0; // bool
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CDirectionalBlendInstanceData {
+        public:
+            static constexpr std::uintptr_t m_dampedValue     = 0X0000; // float32
+            static constexpr std::uintptr_t m_flCycle         = 0X0014; // float32
+            static constexpr std::uintptr_t m_flPrevCycle     = 0X0018; // float32
+            static constexpr std::uintptr_t m_flPlaybackRate  = 0X001C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flCycleZeroTime = 0X0028; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_resetCycleValue = 0X0034; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_resetCount      = 0X0040; // CAnimNetVar<float32>
         };
 
         // Has VTable
@@ -13828,8 +14594,8 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetCPOrientationToDirection : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nInputControlPoint  = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nOutputControlPoint = 0X01D4; // int32
+            static constexpr std::uintptr_t m_nInputControlPoint  = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nOutputControlPoint = 0X01DC; // int32
         };
 
         // Construct Allowed
@@ -13911,9 +14677,9 @@ namespace offsets {
         // Construct Allowed
         class C_OP_Diffusion : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flRadiusScale        = 0X01D0; // float32
-            static constexpr std::uintptr_t m_nFieldOutput         = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nVoxelGridResolution = 0X01D8; // int32
+            static constexpr std::uintptr_t m_flRadiusScale        = 0X01D8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput         = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nVoxelGridResolution = 0X01E0; // int32
         };
 
         // Has VTable
@@ -13924,28 +14690,37 @@ namespace offsets {
             static constexpr std::uintptr_t m_flMaxDuration = 0X000C; // float32
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CRootMotion {
+        public:
+            static constexpr std::uintptr_t m_deltaTransform = 0X0000; // CMotionTransform
+            static constexpr std::uintptr_t m_vVelocityMS    = 0X0010; // Vector
+            static constexpr std::uintptr_t m_vUpOverride    = 0X001C; // Vector
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_RenderProjected : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_bProjectCharacter             = 0X0220; // bool
-            static constexpr std::uintptr_t m_bProjectWorld                 = 0X0221; // bool
-            static constexpr std::uintptr_t m_bProjectWater                 = 0X0222; // bool
-            static constexpr std::uintptr_t m_bFlipHorizontal               = 0X0223; // bool
-            static constexpr std::uintptr_t m_bEnableProjectedDepthControls = 0X0224; // bool
-            static constexpr std::uintptr_t m_flMinProjectionDepth          = 0X0228; // float32
-            static constexpr std::uintptr_t m_flMaxProjectionDepth          = 0X022C; // float32
-            static constexpr std::uintptr_t m_vecProjectedMaterials         = 0X0230; // CUtlVector<RenderProjectedMaterial_t>
-            static constexpr std::uintptr_t m_flMaterialSelection           = 0X0248; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flAnimationTimeScale          = 0X03B8; // float32
-            static constexpr std::uintptr_t m_bOrientToNormal               = 0X03BC; // bool
-            static constexpr std::uintptr_t m_MaterialVars                  = 0X03C0; // CUtlVector<MaterialVariable_t>
-            static constexpr std::uintptr_t m_flRadiusScale                 = 0X03D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flAlphaScale                  = 0X0548; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flRollScale                   = 0X06B8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nAlpha2Field                  = 0X0828; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecColorScale                 = 0X0830; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nColorBlendType               = 0X0EE8; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_bProjectCharacter             = 0X0228; // bool
+            static constexpr std::uintptr_t m_bProjectWorld                 = 0X0229; // bool
+            static constexpr std::uintptr_t m_bProjectWater                 = 0X022A; // bool
+            static constexpr std::uintptr_t m_bFlipHorizontal               = 0X022B; // bool
+            static constexpr std::uintptr_t m_bEnableProjectedDepthControls = 0X022C; // bool
+            static constexpr std::uintptr_t m_flMinProjectionDepth          = 0X0230; // float32
+            static constexpr std::uintptr_t m_flMaxProjectionDepth          = 0X0234; // float32
+            static constexpr std::uintptr_t m_vecProjectedMaterials         = 0X0238; // CUtlVector<RenderProjectedMaterial_t>
+            static constexpr std::uintptr_t m_flMaterialSelection           = 0X0250; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flAnimationTimeScale          = 0X03C0; // float32
+            static constexpr std::uintptr_t m_bOrientToNormal               = 0X03C4; // bool
+            static constexpr std::uintptr_t m_MaterialVars                  = 0X03C8; // CUtlVector<MaterialVariable_t>
+            static constexpr std::uintptr_t m_flRadiusScale                 = 0X03E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flAlphaScale                  = 0X0550; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flRollScale                   = 0X06C0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nAlpha2Field                  = 0X0830; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecColorScale                 = 0X0838; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nColorBlendType               = 0X0EF0; // ParticleColorBlendType_t
         };
 
         // Has Trivial Destructor
@@ -14089,23 +14864,23 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_NormalOffset : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_OffsetMin           = 0X01D8; // Vector
-            static constexpr std::uintptr_t m_OffsetMax           = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01F0; // int32
-            static constexpr std::uintptr_t m_bLocalCoords        = 0X01F4; // bool
-            static constexpr std::uintptr_t m_bNormalize          = 0X01F5; // bool
+            static constexpr std::uintptr_t m_OffsetMin           = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_OffsetMax           = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01F8; // int32
+            static constexpr std::uintptr_t m_bLocalCoords        = 0X01FC; // bool
+            static constexpr std::uintptr_t m_bNormalize          = 0X01FD; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_SetAttributeToScalarExpression : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nExpression   = 0X01D8; // ScalarExpressionType_t
-            static constexpr std::uintptr_t m_flInput1      = 0X01E0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInput2      = 0X0350; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputRemap = 0X04C0; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nOutputField  = 0X0630; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod    = 0X0634; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nExpression   = 0X01E0; // ScalarExpressionType_t
+            static constexpr std::uintptr_t m_flInput1      = 0X01E8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInput2      = 0X0358; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputRemap = 0X04C8; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nOutputField  = 0X0638; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod    = 0X063C; // ParticleSetMethod_t
         };
 
         // Has VTable
@@ -14143,9 +14918,9 @@ namespace offsets {
         // Construct Allowed
         class C_OP_GameLiquidSpill : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flLiquidContentsField = 0X0220; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flExpirationTime      = 0X0390; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nAmountAttribute      = 0X0500; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flLiquidContentsField = 0X0228; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flExpirationTime      = 0X0398; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nAmountAttribute      = 0X0508; // ParticleAttributeIndex_t
         };
 
         // Has VTable
@@ -14188,24 +14963,24 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderAsModels : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_ModelList              = 0X0220; // CUtlVector<ModelReference_t>
-            static constexpr std::uintptr_t m_flModelScale           = 0X023C; // float32
-            static constexpr std::uintptr_t m_bFitToModelSize        = 0X0240; // bool
-            static constexpr std::uintptr_t m_bNonUniformScaling     = 0X0241; // bool
-            static constexpr std::uintptr_t m_nXAxisScalingAttribute = 0X0244; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nYAxisScalingAttribute = 0X0248; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nZAxisScalingAttribute = 0X024C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSizeCullBloat         = 0X0250; // int32
+            static constexpr std::uintptr_t m_ModelList              = 0X0228; // CUtlVector<ModelReference_t>
+            static constexpr std::uintptr_t m_flModelScale           = 0X0244; // float32
+            static constexpr std::uintptr_t m_bFitToModelSize        = 0X0248; // bool
+            static constexpr std::uintptr_t m_bNonUniformScaling     = 0X0249; // bool
+            static constexpr std::uintptr_t m_nXAxisScalingAttribute = 0X024C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nYAxisScalingAttribute = 0X0250; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nZAxisScalingAttribute = 0X0254; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSizeCullBloat         = 0X0258; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointToPlayer : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCP1          = 0X01D8; // int32
-            static constexpr std::uintptr_t m_vecCP1Pos     = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_bOrientToEyes = 0X01E8; // bool
-            static constexpr std::uintptr_t m_nPosition     = 0X01EC; // ParticleEntityPos_t
+            static constexpr std::uintptr_t m_nCP1          = 0X01E0; // int32
+            static constexpr std::uintptr_t m_vecCP1Pos     = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_bOrientToEyes = 0X01F0; // bool
+            static constexpr std::uintptr_t m_nPosition     = 0X01F4; // ParticleEntityPos_t
         };
 
         // Construct Allowed
@@ -14221,8 +14996,8 @@ namespace offsets {
         // Construct Allowed
         class CNmClipSelectorNode__CDefinition : public CNmClipReferenceNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices    = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0028; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionNodeIndices    = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0028; // CUtlLeanVectorFixedGrowable<int16,8>
         };
 
         // Has VTable
@@ -14256,26 +15031,26 @@ namespace offsets {
         // Construct Allowed
         class C_OP_MovementLoopInsideSphere : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nCP          = 0X01D0; // int32
-            static constexpr std::uintptr_t m_flDistance   = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_vecScale     = 0X0348; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nDistSqrAttr = 0X0A00; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nCP          = 0X01D8; // int32
+            static constexpr std::uintptr_t m_flDistance   = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_vecScale     = 0X0350; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nDistSqrAttr = 0X0A08; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_CycleScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nDestField            = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flStartValue          = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flEndValue            = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flCycleTime           = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bDoNotRepeatCycle     = 0X01E0; // bool
-            static constexpr std::uintptr_t m_bSynchronizeParticles = 0X01E1; // bool
-            static constexpr std::uintptr_t m_nCPScale              = 0X01E4; // int32
-            static constexpr std::uintptr_t m_nCPFieldMin           = 0X01E8; // int32
-            static constexpr std::uintptr_t m_nCPFieldMax           = 0X01EC; // int32
-            static constexpr std::uintptr_t m_nSetMethod            = 0X01F0; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nDestField            = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flStartValue          = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flEndValue            = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flCycleTime           = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bDoNotRepeatCycle     = 0X01E8; // bool
+            static constexpr std::uintptr_t m_bSynchronizeParticles = 0X01E9; // bool
+            static constexpr std::uintptr_t m_nCPScale              = 0X01EC; // int32
+            static constexpr std::uintptr_t m_nCPFieldMin           = 0X01F0; // int32
+            static constexpr std::uintptr_t m_nCPFieldMax           = 0X01F4; // int32
+            static constexpr std::uintptr_t m_nSetMethod            = 0X01F8; // ParticleSetMethod_t
         };
 
         // Construct Allowed
@@ -14332,52 +15107,52 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldInput  = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin   = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flInputMax   = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flOutputMin  = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMax  = 0X01E4; // float32
-            static constexpr std::uintptr_t m_bOldCode     = 0X01E8; // bool
+            static constexpr std::uintptr_t m_nFieldInput  = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin   = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flInputMax   = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flOutputMin  = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMax  = 0X01EC; // float32
+            static constexpr std::uintptr_t m_bOldCode     = 0X01F0; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_DirectionBetweenVecsToVec : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecPoint1    = 0X01D8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecPoint2    = 0X0890; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecPoint1    = 0X01E0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecPoint2    = 0X0898; // CPerParticleVecInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ReinitializeScalarEndCap : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOutputMin  = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flOutputMax  = 0X01D8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOutputMin  = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flOutputMax  = 0X01E0; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_NoiseEmitter : public CParticleFunctionEmitter {
         public:
-            static constexpr std::uintptr_t m_flEmissionDuration      = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flStartTime             = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flEmissionScale         = 0X01E0; // float32
-            static constexpr std::uintptr_t m_nScaleControlPoint      = 0X01E4; // int32
-            static constexpr std::uintptr_t m_nScaleControlPointField = 0X01E8; // int32
-            static constexpr std::uintptr_t m_nWorldNoisePoint        = 0X01EC; // int32
-            static constexpr std::uintptr_t m_bAbsVal                 = 0X01F0; // bool
-            static constexpr std::uintptr_t m_bAbsValInv              = 0X01F1; // bool
-            static constexpr std::uintptr_t m_flOffset                = 0X01F4; // float32
-            static constexpr std::uintptr_t m_flOutputMin             = 0X01F8; // float32
-            static constexpr std::uintptr_t m_flOutputMax             = 0X01FC; // float32
-            static constexpr std::uintptr_t m_flNoiseScale            = 0X0200; // float32
-            static constexpr std::uintptr_t m_flWorldNoiseScale       = 0X0204; // float32
-            static constexpr std::uintptr_t m_vecOffsetLoc            = 0X0208; // Vector
-            static constexpr std::uintptr_t m_flWorldTimeScale        = 0X0214; // float32
+            static constexpr std::uintptr_t m_flEmissionDuration      = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flStartTime             = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flEmissionScale         = 0X01E8; // float32
+            static constexpr std::uintptr_t m_nScaleControlPoint      = 0X01EC; // int32
+            static constexpr std::uintptr_t m_nScaleControlPointField = 0X01F0; // int32
+            static constexpr std::uintptr_t m_nWorldNoisePoint        = 0X01F4; // int32
+            static constexpr std::uintptr_t m_bAbsVal                 = 0X01F8; // bool
+            static constexpr std::uintptr_t m_bAbsValInv              = 0X01F9; // bool
+            static constexpr std::uintptr_t m_flOffset                = 0X01FC; // float32
+            static constexpr std::uintptr_t m_flOutputMin             = 0X0200; // float32
+            static constexpr std::uintptr_t m_flOutputMax             = 0X0204; // float32
+            static constexpr std::uintptr_t m_flNoiseScale            = 0X0208; // float32
+            static constexpr std::uintptr_t m_flWorldNoiseScale       = 0X020C; // float32
+            static constexpr std::uintptr_t m_vecOffsetLoc            = 0X0210; // Vector
+            static constexpr std::uintptr_t m_flWorldTimeScale        = 0X021C; // float32
         };
 
         // Has VTable
@@ -14430,19 +15205,24 @@ namespace offsets {
         // Construct Allowed
         class C_OP_QuantizeCPComponent : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_flInputValue    = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nCPOutput       = 0X0348; // int32
-            static constexpr std::uintptr_t m_nOutVectorField = 0X034C; // int32
-            static constexpr std::uintptr_t m_flQuantizeValue = 0X0350; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInputValue    = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nCPOutput       = 0X0350; // int32
+            static constexpr std::uintptr_t m_nOutVectorField = 0X0354; // int32
+            static constexpr std::uintptr_t m_flQuantizeValue = 0X0358; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_PerParticleForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_flForceScale = 0X01E0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vForce       = 0X0350; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_nCP          = 0X0A08; // int32
+            static constexpr std::uintptr_t m_flForceScale = 0X01E8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vForce       = 0X0358; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nCP          = 0X0A10; // int32
+        };
+
+        // Has VTable
+        class CSndSeqInstruments : public ISndSeqInstruments {
+        public:
         };
 
         // Has VTable
@@ -14576,21 +15356,27 @@ namespace offsets {
         // Construct Allowed
         class C_OP_Decay : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_bRopeDecay                  = 0X01D0; // bool
-            static constexpr std::uintptr_t m_bForcePreserveParticleOrder = 0X01D1; // bool
+            static constexpr std::uintptr_t m_bRopeDecay                  = 0X01D8; // bool
+            static constexpr std::uintptr_t m_bForcePreserveParticleOrder = 0X01D9; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SnapshotSkinToBones : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_bTransformNormals   = 0X01D0; // bool
-            static constexpr std::uintptr_t m_bTransformRadii     = 0X01D1; // bool
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D4; // int32
-            static constexpr std::uintptr_t m_flLifeTimeFadeStart = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flLifeTimeFadeEnd   = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flJumpThreshold     = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flPrevPosScale      = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bTransformNormals   = 0X01D8; // bool
+            static constexpr std::uintptr_t m_bTransformRadii     = 0X01D9; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01DC; // int32
+            static constexpr std::uintptr_t m_flLifeTimeFadeStart = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flLifeTimeFadeEnd   = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flJumpThreshold     = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flPrevPosScale      = 0X01EC; // float32
+        };
+
+        // Has VTable
+        // Is Absract
+        class IPhysicsRagdollControl {
+        public:
         };
 
         // Construct Allowed
@@ -14612,24 +15398,17 @@ namespace offsets {
             static constexpr std::uintptr_t m_clampRange         = 0X0014; // Range_t
         };
 
-        // Has Trivial Constructor
-        // Has Trivial Destructor
-        // Global Type Scope
-        class InfoForResourceTypeCNmIKRig {
-        public:
-        };
-
         // Has VTable
         // Construct Allowed
         class C_INIT_DistanceToNeighborCull : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flDistance        = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bIncludeRadii     = 0X0348; // bool
-            static constexpr std::uintptr_t m_flLifespanOverlap = 0X0350; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nFieldModify      = 0X04C0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flModify          = 0X04C8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nSetMethod        = 0X0638; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bUseNeighbor      = 0X063C; // bool
+            static constexpr std::uintptr_t m_flDistance        = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bIncludeRadii     = 0X0350; // bool
+            static constexpr std::uintptr_t m_flLifespanOverlap = 0X0358; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFieldModify      = 0X04C8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flModify          = 0X04D0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nSetMethod        = 0X0640; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bUseNeighbor      = 0X0644; // bool
         };
 
         // Construct Allowed
@@ -14670,9 +15449,9 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RampCPLinearRandom : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_vecRateMin             = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_vecRateMax             = 0X01E8; // Vector
+            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X01E0; // int32
+            static constexpr std::uintptr_t m_vecRateMin             = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_vecRateMax             = 0X01F0; // Vector
         };
 
         // Has Trivial Destructor
@@ -14688,23 +15467,24 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RandomScalar : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flMin        = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flMax        = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flExponent   = 0X01E0; // float32
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flMin        = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flMax        = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flExponent   = 0X01E8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01EC; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_InheritFromParentParticlesV2 : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flScale                = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nFieldOutput           = 0X0340; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nIncrement             = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bRandomDistribution    = 0X04B8; // bool
-            static constexpr std::uintptr_t m_bReverse               = 0X04B9; // bool
-            static constexpr std::uintptr_t m_nMissingParentBehavior = 0X04BC; // MissingParentInheritBehavior_t
-            static constexpr std::uintptr_t m_flInterpolation        = 0X04C0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flScale                = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFieldOutput           = 0X0348; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nIncrement             = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bSubSample             = 0X04C0; // bool
+            static constexpr std::uintptr_t m_bRandomDistribution    = 0X04C1; // bool
+            static constexpr std::uintptr_t m_bReverse               = 0X04C2; // bool
+            static constexpr std::uintptr_t m_nMissingParentBehavior = 0X04C4; // MissingParentInheritBehavior_t
+            static constexpr std::uintptr_t m_flInterpolation        = 0X04C8; // CPerParticleFloatInput
         };
 
         // Has Trivial Destructor
@@ -14756,6 +15536,25 @@ namespace offsets {
             static constexpr std::uintptr_t m_opFixedData           = 0X0070; // FollowTargetOpFixedSettings_t
             static constexpr std::uintptr_t m_hParameterPosition    = 0X0088; // CAnimParamHandle
             static constexpr std::uintptr_t m_hParameterOrientation = 0X008A; // CAnimParamHandle
+        };
+
+        // Construct Allowed
+        struct CDebugSnapshotData_t {
+        public:
+            static constexpr std::uintptr_t m_text                = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_dataType            = 0X0008; // uint32
+            static constexpr std::uintptr_t m_userFlags           = 0X000C; // uint32
+            static constexpr std::uintptr_t m_userData            = 0X0010; // uint32
+            static constexpr std::uintptr_t m_userVector          = 0X0014; // VectorWS
+            static constexpr std::uintptr_t m_userTransform       = 0X0020; // CTransformWS
+            static constexpr std::uintptr_t m_userShape           = 0X0040; // CGenericShapeProxy
+            static constexpr std::uintptr_t m_drawColor           = 0X00D8; // Color
+            static constexpr std::uintptr_t m_vecDebugOverlayData = 0X00E0; // CUtlVector<CDebugDrawHistoryData*>
+            static constexpr std::uintptr_t m_pStructuredData     = 0X00F8; // DebugSnapshotBaseStructuredData_t*
+            static constexpr std::uintptr_t m_hEntity             = 0X0100; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_sEntityName         = 0X0108; // CUtlString
+            static constexpr std::uintptr_t m_nEntityIndex        = 0X0110; // CEntityIndex
+            static constexpr std::uintptr_t m_children            = 0X0120; // CUtlLeanVector<CDebugSnapshotData_t>
         };
 
         // Has Trivial Destructor
@@ -14816,6 +15615,7 @@ namespace offsets {
         };
 
         // Has Trivial Destructor
+        // Construct Allowed
         class CRelativeLocation {
         public:
             static constexpr std::uintptr_t m_Type            = 0X0018; // RelativeLocationType_t
@@ -14828,43 +15628,43 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapTransformToVelocity : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_TransformInput = 0X01D0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_TransformInput = 0X01D8; // CParticleTransformInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderSprites : public CBaseRendererSource2 {
         public:
-            static constexpr std::uintptr_t m_nSequenceOverride                     = 0X2DE8; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_bSequenceNumbersAreRawSequenceIndices = 0X2F58; // bool
-            static constexpr std::uintptr_t m_nOrientationType                      = 0X2F5C; // ParticleOrientationChoiceList_t
-            static constexpr std::uintptr_t m_nOrientationControlPoint              = 0X2F60; // int32
-            static constexpr std::uintptr_t m_bUseYawWithNormalAligned              = 0X2F64; // bool
-            static constexpr std::uintptr_t m_flMinSize                             = 0X2F68; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flMaxSize                             = 0X30D8; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flAlphaAdjustWithSizeAdjust           = 0X3248; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flStartFadeSize                       = 0X33B8; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flEndFadeSize                         = 0X3528; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flStartFadeDot                        = 0X3698; // float32
-            static constexpr std::uintptr_t m_flEndFadeDot                          = 0X369C; // float32
-            static constexpr std::uintptr_t m_bDistanceAlpha                        = 0X36A0; // bool
-            static constexpr std::uintptr_t m_bSoftEdges                            = 0X36A1; // bool
-            static constexpr std::uintptr_t m_flEdgeSoftnessStart                   = 0X36A4; // float32
-            static constexpr std::uintptr_t m_flEdgeSoftnessEnd                     = 0X36A8; // float32
-            static constexpr std::uintptr_t m_bOutline                              = 0X36AC; // bool
-            static constexpr std::uintptr_t m_OutlineColor                          = 0X36AD; // Color
-            static constexpr std::uintptr_t m_nOutlineAlpha                         = 0X36B4; // int32
-            static constexpr std::uintptr_t m_flOutlineStart0                       = 0X36B8; // float32
-            static constexpr std::uintptr_t m_flOutlineStart1                       = 0X36BC; // float32
-            static constexpr std::uintptr_t m_flOutlineEnd0                         = 0X36C0; // float32
-            static constexpr std::uintptr_t m_flOutlineEnd1                         = 0X36C4; // float32
-            static constexpr std::uintptr_t m_nLightingMode                         = 0X36C8; // ParticleLightingQuality_t
-            static constexpr std::uintptr_t m_vecLightingOverride                   = 0X36D0; // CParticleCollectionRendererVecInput
-            static constexpr std::uintptr_t m_flLightingTessellation                = 0X3D88; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flLightingDirectionality              = 0X3EF8; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_bParticleShadows                      = 0X4068; // bool
-            static constexpr std::uintptr_t m_flShadowDensity                       = 0X406C; // float32
-            static constexpr std::uintptr_t m_replicationParameters                 = 0X4070; // CReplicationParameters
+            static constexpr std::uintptr_t m_nSequenceOverride                     = 0X2DF0; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_bSequenceNumbersAreRawSequenceIndices = 0X2F60; // bool
+            static constexpr std::uintptr_t m_nOrientationType                      = 0X2F64; // ParticleOrientationChoiceList_t
+            static constexpr std::uintptr_t m_nOrientationControlPoint              = 0X2F68; // int32
+            static constexpr std::uintptr_t m_bUseYawWithNormalAligned              = 0X2F6C; // bool
+            static constexpr std::uintptr_t m_flMinSize                             = 0X2F70; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flMaxSize                             = 0X30E0; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flAlphaAdjustWithSizeAdjust           = 0X3250; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flStartFadeSize                       = 0X33C0; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flEndFadeSize                         = 0X3530; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flStartFadeDot                        = 0X36A0; // float32
+            static constexpr std::uintptr_t m_flEndFadeDot                          = 0X36A4; // float32
+            static constexpr std::uintptr_t m_bDistanceAlpha                        = 0X36A8; // bool
+            static constexpr std::uintptr_t m_bSoftEdges                            = 0X36A9; // bool
+            static constexpr std::uintptr_t m_flEdgeSoftnessStart                   = 0X36AC; // float32
+            static constexpr std::uintptr_t m_flEdgeSoftnessEnd                     = 0X36B0; // float32
+            static constexpr std::uintptr_t m_bOutline                              = 0X36B4; // bool
+            static constexpr std::uintptr_t m_OutlineColor                          = 0X36B5; // Color
+            static constexpr std::uintptr_t m_nOutlineAlpha                         = 0X36BC; // int32
+            static constexpr std::uintptr_t m_flOutlineStart0                       = 0X36C0; // float32
+            static constexpr std::uintptr_t m_flOutlineStart1                       = 0X36C4; // float32
+            static constexpr std::uintptr_t m_flOutlineEnd0                         = 0X36C8; // float32
+            static constexpr std::uintptr_t m_flOutlineEnd1                         = 0X36CC; // float32
+            static constexpr std::uintptr_t m_nLightingMode                         = 0X36D0; // ParticleLightingQuality_t
+            static constexpr std::uintptr_t m_vecLightingOverride                   = 0X36D8; // CParticleCollectionRendererVecInput
+            static constexpr std::uintptr_t m_flLightingTessellation                = 0X3D90; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flLightingDirectionality              = 0X3F00; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_bParticleShadows                      = 0X4070; // bool
+            static constexpr std::uintptr_t m_flShadowDensity                       = 0X4074; // float32
+            static constexpr std::uintptr_t m_replicationParameters                 = 0X4078; // CReplicationParameters
         };
 
         // Construct Allowed
@@ -14920,15 +15720,15 @@ namespace offsets {
         // Construct Allowed
         class C_OP_MoveToHitbox : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_modelInput          = 0X01D0; // CParticleModelInput
-            static constexpr std::uintptr_t m_transformInput      = 0X0230; // CParticleTransformInput
-            static constexpr std::uintptr_t m_flLifeTimeLerpStart = 0X029C; // float32
-            static constexpr std::uintptr_t m_flLifeTimeLerpEnd   = 0X02A0; // float32
-            static constexpr std::uintptr_t m_flPrevPosScale      = 0X02A4; // float32
-            static constexpr std::uintptr_t m_HitboxSetName       = 0X02A8; // char[128]
-            static constexpr std::uintptr_t m_bUseBones           = 0X0328; // bool
-            static constexpr std::uintptr_t m_nLerpType           = 0X032C; // HitboxLerpType_t
-            static constexpr std::uintptr_t m_flInterpolation     = 0X0330; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_modelInput          = 0X01D8; // CParticleModelInput
+            static constexpr std::uintptr_t m_transformInput      = 0X0238; // CParticleTransformInput
+            static constexpr std::uintptr_t m_flLifeTimeLerpStart = 0X02A4; // float32
+            static constexpr std::uintptr_t m_flLifeTimeLerpEnd   = 0X02A8; // float32
+            static constexpr std::uintptr_t m_flPrevPosScale      = 0X02AC; // float32
+            static constexpr std::uintptr_t m_HitboxSetName       = 0X02B0; // char[128]
+            static constexpr std::uintptr_t m_bUseBones           = 0X0330; // bool
+            static constexpr std::uintptr_t m_nLerpType           = 0X0334; // HitboxLerpType_t
+            static constexpr std::uintptr_t m_flInterpolation     = 0X0338; // CPerParticleFloatInput
         };
 
         // Construct Allowed
@@ -15019,33 +15819,34 @@ namespace offsets {
             static constexpr std::uintptr_t m_flMinimumSimTime                        = 0X0328; // float32
             static constexpr std::uintptr_t m_flMinimumTimeStep                       = 0X032C; // float32
             static constexpr std::uintptr_t m_nMinimumFrames                          = 0X0330; // int32
-            static constexpr std::uintptr_t m_nMinCPULevel                            = 0X0334; // int32
-            static constexpr std::uintptr_t m_nMinGPULevel                            = 0X0338; // int32
-            static constexpr std::uintptr_t m_flNoDrawTimeToGoToSleep                 = 0X033C; // float32
-            static constexpr std::uintptr_t m_flMaxDrawDistance                       = 0X0340; // float32
-            static constexpr std::uintptr_t m_flStartFadeDistance                     = 0X0344; // float32
-            static constexpr std::uintptr_t m_flMaxCreationDistance                   = 0X0348; // float32
-            static constexpr std::uintptr_t m_nAggregationMinAvailableParticles       = 0X034C; // int32
-            static constexpr std::uintptr_t m_flAggregateRadius                       = 0X0350; // float32
-            static constexpr std::uintptr_t m_bShouldBatch                            = 0X0354; // bool
-            static constexpr std::uintptr_t m_bShouldHitboxesFallbackToRenderBounds   = 0X0355; // bool
-            static constexpr std::uintptr_t m_bShouldHitboxesFallbackToSnapshot       = 0X0356; // bool
-            static constexpr std::uintptr_t m_bShouldHitboxesFallbackToCollisionHulls = 0X0357; // bool
-            static constexpr std::uintptr_t m_nViewModelEffect                        = 0X0358; // InheritableBoolType_t
-            static constexpr std::uintptr_t m_bScreenSpaceEffect                      = 0X035C; // bool
-            static constexpr std::uintptr_t m_pszTargetLayerID                        = 0X0360; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_nSkipRenderControlPoint                 = 0X0368; // int32
-            static constexpr std::uintptr_t m_nAllowRenderControlPoint                = 0X036C; // int32
-            static constexpr std::uintptr_t m_bShouldSort                             = 0X0370; // bool
-            static constexpr std::uintptr_t m_controlPointConfigurations              = 0X03B8; // CUtlVector<ParticleControlPointConfiguration_t>
+            static constexpr std::uintptr_t m_bIsGPUParticleSystem                    = 0X0334; // bool
+            static constexpr std::uintptr_t m_nMinCPULevel                            = 0X0338; // int32
+            static constexpr std::uintptr_t m_nMinGPULevel                            = 0X033C; // int32
+            static constexpr std::uintptr_t m_flNoDrawTimeToGoToSleep                 = 0X0340; // float32
+            static constexpr std::uintptr_t m_flMaxDrawDistance                       = 0X0344; // float32
+            static constexpr std::uintptr_t m_flStartFadeDistance                     = 0X0348; // float32
+            static constexpr std::uintptr_t m_flMaxCreationDistance                   = 0X034C; // float32
+            static constexpr std::uintptr_t m_nAggregationMinAvailableParticles       = 0X0350; // int32
+            static constexpr std::uintptr_t m_flAggregateRadius                       = 0X0354; // float32
+            static constexpr std::uintptr_t m_bShouldBatch                            = 0X0358; // bool
+            static constexpr std::uintptr_t m_bShouldHitboxesFallbackToRenderBounds   = 0X0359; // bool
+            static constexpr std::uintptr_t m_bShouldHitboxesFallbackToSnapshot       = 0X035A; // bool
+            static constexpr std::uintptr_t m_bShouldHitboxesFallbackToCollisionHulls = 0X035B; // bool
+            static constexpr std::uintptr_t m_nViewModelEffect                        = 0X035C; // InheritableBoolType_t
+            static constexpr std::uintptr_t m_bScreenSpaceEffect                      = 0X0360; // bool
+            static constexpr std::uintptr_t m_pszTargetLayerID                        = 0X0368; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_nSkipRenderControlPoint                 = 0X0370; // int32
+            static constexpr std::uintptr_t m_nAllowRenderControlPoint                = 0X0374; // int32
+            static constexpr std::uintptr_t m_bShouldSort                             = 0X0378; // bool
+            static constexpr std::uintptr_t m_controlPointConfigurations              = 0X03C0; // CUtlVector<ParticleControlPointConfiguration_t>
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_InitVecCollection : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_InputValue   = 0X01D8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nOutputField = 0X0890; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_InputValue   = 0X01E0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nOutputField = 0X0898; // ParticleAttributeIndex_t
         };
 
         // Has Trivial Destructor
@@ -15118,8 +15919,8 @@ namespace offsets {
         // Has Trivial Destructor
         struct SoundeventPathCornerPairNetworked_t {
         public:
-            static constexpr std::uintptr_t vP1             = 0X0000; // Vector
-            static constexpr std::uintptr_t vP2             = 0X000C; // Vector
+            static constexpr std::uintptr_t vP1             = 0X0000; // VectorWS
+            static constexpr std::uintptr_t vP2             = 0X000C; // VectorWS
             static constexpr std::uintptr_t flPathLengthSqr = 0X0018; // float32
             static constexpr std::uintptr_t flP1Pct         = 0X001C; // float32
             static constexpr std::uintptr_t flP2Pct         = 0X0020; // float32
@@ -15136,9 +15937,9 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_CreateFromPlaneCache : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecOffsetMin = 0X01D8; // Vector
-            static constexpr std::uintptr_t m_vecOffsetMax = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_bUseNormal   = 0X01F1; // bool
+            static constexpr std::uintptr_t m_vecOffsetMin = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_vecOffsetMax = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_bUseNormal   = 0X01F9; // bool
         };
 
         // Construct Allowed
@@ -15169,31 +15970,31 @@ namespace offsets {
         // Construct Allowed
         class CNmSnapWeaponNode__CDefinition : public CNmPassthroughNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_nEnabledNodeIdx      = 0X0018; // int16
-            static constexpr std::uintptr_t m_nLockLeftHandNodeIdx = 0X001A; // int16
-            static constexpr std::uintptr_t m_flBlendTimeSeconds   = 0X001C; // float32
+            static constexpr std::uintptr_t m_nFlashedAmountNodeIdx  = 0X0018; // int16
+            static constexpr std::uintptr_t m_nWeaponCategoryNodeIdx = 0X001A; // int16
+            static constexpr std::uintptr_t m_nWeaponTypeNodeIdx     = 0X001C; // int16
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_GameDecalRenderer : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_sDecalGroupName             = 0X0220; // CGlobalSymbol
-            static constexpr std::uintptr_t m_nEventType                  = 0X0228; // EventTypeSelection_t
-            static constexpr std::uintptr_t m_nInteractionMask            = 0X0230; // ParticleCollisionMask_t
-            static constexpr std::uintptr_t m_nCollisionGroup             = 0X0238; // ParticleCollisionGroup_t
-            static constexpr std::uintptr_t m_vecStartPos                 = 0X0240; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecEndPos                   = 0X08F8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flTraceBloat                = 0X0FB0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flDecalSize                 = 0X1120; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nDecalGroupIndex            = 0X1290; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flDecalRotation             = 0X1400; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vModulationColor            = 0X1570; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_bUseGameDefaultDecalSize    = 0X1C28; // bool
-            static constexpr std::uintptr_t m_bRandomDecalRotation        = 0X1C29; // bool
-            static constexpr std::uintptr_t m_bRandomlySelectDecalInGroup = 0X1C2A; // bool
-            static constexpr std::uintptr_t m_bNoDecalsOnOwner            = 0X1C2B; // bool
-            static constexpr std::uintptr_t m_bVisualizeTraces            = 0X1C2C; // bool
+            static constexpr std::uintptr_t m_sDecalGroupName             = 0X0228; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nEventType                  = 0X0230; // EventTypeSelection_t
+            static constexpr std::uintptr_t m_nInteractionMask            = 0X0238; // ParticleCollisionMask_t
+            static constexpr std::uintptr_t m_nCollisionGroup             = 0X0240; // ParticleCollisionGroup_t
+            static constexpr std::uintptr_t m_vecStartPos                 = 0X0248; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecEndPos                   = 0X0900; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flTraceBloat                = 0X0FB8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flDecalSize                 = 0X1128; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nDecalGroupIndex            = 0X1298; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flDecalRotation             = 0X1408; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vModulationColor            = 0X1578; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_bUseGameDefaultDecalSize    = 0X1C30; // bool
+            static constexpr std::uintptr_t m_bRandomDecalRotation        = 0X1C31; // bool
+            static constexpr std::uintptr_t m_bRandomlySelectDecalInGroup = 0X1C32; // bool
+            static constexpr std::uintptr_t m_bNoDecalsOnOwner            = 0X1C33; // bool
+            static constexpr std::uintptr_t m_bVisualizeTraces            = 0X1C34; // bool
         };
 
         // Has VTable
@@ -15230,14 +16031,14 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderBlobs : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_cubeWidth      = 0X0220; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_cutoffRadius   = 0X0390; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_renderRadius   = 0X0500; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_nVertexCountKb = 0X0670; // uint32
-            static constexpr std::uintptr_t m_nIndexCountKb  = 0X0674; // uint32
-            static constexpr std::uintptr_t m_nScaleCP       = 0X0678; // int32
-            static constexpr std::uintptr_t m_MaterialVars   = 0X0680; // CUtlVector<MaterialVariable_t>
-            static constexpr std::uintptr_t m_hMaterial      = 0X06B0; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_cubeWidth      = 0X0228; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_cutoffRadius   = 0X0398; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_renderRadius   = 0X0508; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_nVertexCountKb = 0X0678; // uint32
+            static constexpr std::uintptr_t m_nIndexCountKb  = 0X067C; // uint32
+            static constexpr std::uintptr_t m_nScaleCP       = 0X0680; // int32
+            static constexpr std::uintptr_t m_MaterialVars   = 0X0688; // CUtlVector<MaterialVariable_t>
+            static constexpr std::uintptr_t m_hMaterial      = 0X06B8; // CStrongHandle<InfoForResourceTypeIMaterial2>
         };
 
         // Has VTable
@@ -15293,54 +16094,53 @@ namespace offsets {
         // Construct Allowed
         class CCS2ChickenGraphController : public CAnimGraphControllerBase {
         public:
-            static constexpr std::uintptr_t m_action                    = 0X0090; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_actionSubtype             = 0X00A8; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_bActionReset              = 0X00C0; // CAnimGraph2ParamAutoResetOptionalRef
-            static constexpr std::uintptr_t m_idleVariation             = 0X00E0; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_runVariation              = 0X00F8; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_panicVariation            = 0X0110; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_squatVariation            = 0X0128; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_bInWater                  = 0X0140; // CAnimGraph2ParamOptionalRef<bool>
-            static constexpr std::uintptr_t m_bHasActionCompletedEvent  = 0X0158; // bool
-            static constexpr std::uintptr_t m_bWaitingForCompletedEvent = 0X0159; // bool
+            static constexpr std::uintptr_t m_action                    = 0X0088; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_actionSubtype             = 0X00A0; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_bActionReset              = 0X00B8; // CAnimGraph2ParamAutoResetOptionalRef
+            static constexpr std::uintptr_t m_idleVariation             = 0X00D8; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_runVariation              = 0X00F0; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_panicVariation            = 0X0108; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_squatVariation            = 0X0120; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_bInWater                  = 0X0138; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_bHasActionCompletedEvent  = 0X0150; // bool
+            static constexpr std::uintptr_t m_bWaitingForCompletedEvent = 0X0151; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_FadeAndKill : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flStartFadeInTime           = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flEndFadeInTime             = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flStartFadeOutTime          = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flEndFadeOutTime            = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flStartAlpha                = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flEndAlpha                  = 0X01E4; // float32
-            static constexpr std::uintptr_t m_bForcePreserveParticleOrder = 0X01E8; // bool
+            static constexpr std::uintptr_t m_flStartFadeInTime           = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flEndFadeInTime             = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flStartFadeOutTime          = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flEndFadeOutTime            = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flStartAlpha                = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flEndAlpha                  = 0X01EC; // float32
+            static constexpr std::uintptr_t m_bForcePreserveParticleOrder = 0X01F0; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateSpiralSphere : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nOverrideCP         = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nDensity            = 0X01E0; // int32
-            static constexpr std::uintptr_t m_flInitialRadius     = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flInitialSpeedMin   = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flInitialSpeedMax   = 0X01EC; // float32
-            static constexpr std::uintptr_t m_bUseParticleCount   = 0X01F0; // bool
+            static constexpr std::uintptr_t m_TransformInput    = 0X01E0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_flDensity         = 0X0248; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInitialRadius   = 0X03B8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInitialSpeedMin = 0X0528; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInitialSpeedMax = 0X0698; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bUseParticleCount = 0X0808; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_EnableChildrenFromParentParticleCount : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nChildGroupID        = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nFirstChild          = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nNumChildrenToEnable = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bDisableChildren     = 0X0350; // bool
-            static constexpr std::uintptr_t m_bPlayEndcapOnStop    = 0X0351; // bool
-            static constexpr std::uintptr_t m_bDestroyImmediately  = 0X0352; // bool
+            static constexpr std::uintptr_t m_nChildGroupID        = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nFirstChild          = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nNumChildrenToEnable = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bDisableChildren     = 0X0358; // bool
+            static constexpr std::uintptr_t m_bPlayEndcapOnStop    = 0X0359; // bool
+            static constexpr std::uintptr_t m_bDestroyImmediately  = 0X035A; // bool
         };
 
         // Has VTable
@@ -15354,16 +16154,24 @@ namespace offsets {
             static constexpr std::uintptr_t m_pNext     = 0X0020; // CEntityComponentHelper*
         };
 
+        class CSceneCriteria {
+        public:
+            static constexpr std::uintptr_t m_hOwner          = 0X0000; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_ePriority       = 0X0004; // InteractionPriority_t
+            static constexpr std::uintptr_t m_InterestReqTags = 0X0008; // SceneInterestTags_t
+            static constexpr std::uintptr_t m_InterestOptTags = 0X0020; // SceneInterestTags_t
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_UpdateLightSource : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_vColorTint                = 0X01D0; // Color
-            static constexpr std::uintptr_t m_flBrightnessScale         = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flRadiusScale             = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flMinimumLightingRadius   = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flMaximumLightingRadius   = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flPositionDampingConstant = 0X01E4; // float32
+            static constexpr std::uintptr_t m_vColorTint                = 0X01D8; // Color
+            static constexpr std::uintptr_t m_flBrightnessScale         = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flRadiusScale             = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flMinimumLightingRadius   = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flMaximumLightingRadius   = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flPositionDampingConstant = 0X01EC; // float32
         };
 
         // Construct Allowed
@@ -15408,37 +16216,37 @@ namespace offsets {
         // Construct Allowed
         class C_OP_MovementSkinnedPositionFromCPSnapshot : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nSnapshotControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nControlPointNumber         = 0X01D4; // int32
-            static constexpr std::uintptr_t m_bRandom                     = 0X01D8; // bool
-            static constexpr std::uintptr_t m_nRandomSeed                 = 0X01DC; // int32
-            static constexpr std::uintptr_t m_bSetNormal                  = 0X01E0; // bool
-            static constexpr std::uintptr_t m_bSetRadius                  = 0X01E1; // bool
-            static constexpr std::uintptr_t m_nIndexType                  = 0X01E4; // SnapshotIndexType_t
-            static constexpr std::uintptr_t m_flReadIndex                 = 0X01E8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flIncrement                 = 0X0358; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nFullLoopIncrement          = 0X04C8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nSnapShotStartPoint         = 0X0638; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flInterpolation             = 0X07A8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nSnapshotControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nControlPointNumber         = 0X01DC; // int32
+            static constexpr std::uintptr_t m_bRandom                     = 0X01E0; // bool
+            static constexpr std::uintptr_t m_nRandomSeed                 = 0X01E4; // int32
+            static constexpr std::uintptr_t m_bSetNormal                  = 0X01E8; // bool
+            static constexpr std::uintptr_t m_bSetRadius                  = 0X01E9; // bool
+            static constexpr std::uintptr_t m_nIndexType                  = 0X01EC; // SnapshotIndexType_t
+            static constexpr std::uintptr_t m_flReadIndex                 = 0X01F0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flIncrement                 = 0X0360; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nFullLoopIncrement          = 0X04D0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nSnapShotStartPoint         = 0X0640; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInterpolation             = 0X07B0; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_OscillateScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_RateMin         = 0X01D0; // float32
-            static constexpr std::uintptr_t m_RateMax         = 0X01D4; // float32
-            static constexpr std::uintptr_t m_FrequencyMin    = 0X01D8; // float32
-            static constexpr std::uintptr_t m_FrequencyMax    = 0X01DC; // float32
-            static constexpr std::uintptr_t m_nField          = 0X01E0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bProportional   = 0X01E4; // bool
-            static constexpr std::uintptr_t m_bProportionalOp = 0X01E5; // bool
-            static constexpr std::uintptr_t m_flStartTime_min = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flStartTime_max = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flEndTime_min   = 0X01F0; // float32
-            static constexpr std::uintptr_t m_flEndTime_max   = 0X01F4; // float32
-            static constexpr std::uintptr_t m_flOscMult       = 0X01F8; // float32
-            static constexpr std::uintptr_t m_flOscAdd        = 0X01FC; // float32
+            static constexpr std::uintptr_t m_RateMin         = 0X01D8; // float32
+            static constexpr std::uintptr_t m_RateMax         = 0X01DC; // float32
+            static constexpr std::uintptr_t m_FrequencyMin    = 0X01E0; // float32
+            static constexpr std::uintptr_t m_FrequencyMax    = 0X01E4; // float32
+            static constexpr std::uintptr_t m_nField          = 0X01E8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bProportional   = 0X01EC; // bool
+            static constexpr std::uintptr_t m_bProportionalOp = 0X01ED; // bool
+            static constexpr std::uintptr_t m_flStartTime_min = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flStartTime_max = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flEndTime_min   = 0X01F8; // float32
+            static constexpr std::uintptr_t m_flEndTime_max   = 0X01FC; // float32
+            static constexpr std::uintptr_t m_flOscMult       = 0X0200; // float32
+            static constexpr std::uintptr_t m_flOscAdd        = 0X0204; // float32
         };
 
         // Has VTable
@@ -15478,12 +16286,20 @@ namespace offsets {
         // Construct Allowed
         class CNmMaterialAttributeEvent : public CNmEvent {
         public:
+            static constexpr std::uintptr_t m_target             = 0X0018; // CNmEventTargetEntity_t
             static constexpr std::uintptr_t m_attributeName      = 0X0020; // CUtlString
             static constexpr std::uintptr_t m_attributeNameToken = 0X0028; // CUtlStringToken
             static constexpr std::uintptr_t m_x                  = 0X0030; // CPiecewiseCurve
             static constexpr std::uintptr_t m_y                  = 0X0070; // CPiecewiseCurve
             static constexpr std::uintptr_t m_z                  = 0X00B0; // CPiecewiseCurve
             static constexpr std::uintptr_t m_w                  = 0X00F0; // CPiecewiseCurve
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class PairedSequenceData {
+        public:
+            static constexpr std::uintptr_t m_vecPairedSequences = 0X0000; // PairedSequence_t[8]
         };
 
         // Has VTable
@@ -15505,37 +16321,37 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapCPtoScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nCPInput     = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nField       = 0X01D8; // int32
-            static constexpr std::uintptr_t m_flInputMin   = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flInputMax   = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMin  = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flOutputMax  = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flStartTime  = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flEndTime    = 0X01F0; // float32
-            static constexpr std::uintptr_t m_flInterpRate = 0X01F4; // float32
-            static constexpr std::uintptr_t m_nSetMethod   = 0X01F8; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nCPInput     = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nField       = 0X01E0; // int32
+            static constexpr std::uintptr_t m_flInputMin   = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flInputMax   = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMin  = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flOutputMax  = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flStartTime  = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flEndTime    = 0X01F8; // float32
+            static constexpr std::uintptr_t m_flInterpRate = 0X01FC; // float32
+            static constexpr std::uintptr_t m_nSetMethod   = 0X0200; // ParticleSetMethod_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_PinParticleToCP : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber       = 0X01D0; // int32
-            static constexpr std::uintptr_t m_vecOffset                 = 0X01D8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_bOffsetLocal              = 0X0890; // bool
-            static constexpr std::uintptr_t m_nParticleSelection        = 0X0894; // ParticleSelection_t
-            static constexpr std::uintptr_t m_nParticleNumber           = 0X0898; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nPinBreakType             = 0X0A08; // ParticlePinDistance_t
-            static constexpr std::uintptr_t m_flBreakDistance           = 0X0A10; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flBreakSpeed              = 0X0B80; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flAge                     = 0X0CF0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nBreakControlPointNumber  = 0X0E60; // int32
-            static constexpr std::uintptr_t m_nBreakControlPointNumber2 = 0X0E64; // int32
-            static constexpr std::uintptr_t m_flBreakValue              = 0X0E68; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flInterpolation           = 0X0FD8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bRetainInitialVelocity    = 0X1148; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber       = 0X01D8; // int32
+            static constexpr std::uintptr_t m_vecOffset                 = 0X01E0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_bOffsetLocal              = 0X0898; // bool
+            static constexpr std::uintptr_t m_nParticleSelection        = 0X089C; // ParticleSelection_t
+            static constexpr std::uintptr_t m_nParticleNumber           = 0X08A0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nPinBreakType             = 0X0A10; // ParticlePinDistance_t
+            static constexpr std::uintptr_t m_flBreakDistance           = 0X0A18; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flBreakSpeed              = 0X0B88; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flAge                     = 0X0CF8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nBreakControlPointNumber  = 0X0E68; // int32
+            static constexpr std::uintptr_t m_nBreakControlPointNumber2 = 0X0E6C; // int32
+            static constexpr std::uintptr_t m_flBreakValue              = 0X0E70; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInterpolation           = 0X0FE0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bRetainInitialVelocity    = 0X1150; // bool
         };
 
         // Has Trivial Constructor
@@ -15595,7 +16411,7 @@ namespace offsets {
         // Construct Allowed
         class C_OP_NormalLock : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
         };
 
         // Has VTable
@@ -15608,12 +16424,12 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetVariable : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_variableReference = 0X01D8; // CParticleVariableRef
-            static constexpr std::uintptr_t m_transformInput    = 0X0228; // CParticleTransformInput
-            static constexpr std::uintptr_t m_positionOffset    = 0X0290; // Vector
-            static constexpr std::uintptr_t m_rotationOffset    = 0X029C; // QAngle
-            static constexpr std::uintptr_t m_vecInput          = 0X02A8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_floatInput        = 0X0960; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_variableReference = 0X01E0; // CParticleVariableRef
+            static constexpr std::uintptr_t m_transformInput    = 0X0230; // CParticleTransformInput
+            static constexpr std::uintptr_t m_positionOffset    = 0X0298; // Vector
+            static constexpr std::uintptr_t m_rotationOffset    = 0X02A4; // QAngle
+            static constexpr std::uintptr_t m_vecInput          = 0X02B0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_floatInput        = 0X0968; // CParticleCollectionFloatInput
         };
 
         // Has Trivial Constructor
@@ -15706,21 +16522,21 @@ namespace offsets {
         // Construct Allowed
         class C_OP_LazyCullCompareFloat : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flComparsion1 = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flComparsion2 = 0X0340; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flCullTime    = 0X04B0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flComparsion1 = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flComparsion2 = 0X0348; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flCullTime    = 0X04B8; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_GlobalScale : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flScale                  = 0X01D8; // float32
-            static constexpr std::uintptr_t m_nScaleControlPointNumber = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nControlPointNumber      = 0X01E0; // int32
-            static constexpr std::uintptr_t m_bScaleRadius             = 0X01E4; // bool
-            static constexpr std::uintptr_t m_bScalePosition           = 0X01E5; // bool
-            static constexpr std::uintptr_t m_bScaleVelocity           = 0X01E6; // bool
+            static constexpr std::uintptr_t m_flScale                  = 0X01E0; // float32
+            static constexpr std::uintptr_t m_nScaleControlPointNumber = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nControlPointNumber      = 0X01E8; // int32
+            static constexpr std::uintptr_t m_bScaleRadius             = 0X01EC; // bool
+            static constexpr std::uintptr_t m_bScalePosition           = 0X01ED; // bool
+            static constexpr std::uintptr_t m_bScaleVelocity           = 0X01EE; // bool
         };
 
         // Has Trivial Destructor
@@ -15784,13 +16600,13 @@ namespace offsets {
         class CVoiceContainerLoopXFade : public CVoiceContainerBase {
         public:
             static constexpr std::uintptr_t m_sound       = 0X00A8; // CSoundContainerReference
-            static constexpr std::uintptr_t m_flLoopEnd   = 0X00C0; // float32
-            static constexpr std::uintptr_t m_flLoopStart = 0X00C4; // float32
-            static constexpr std::uintptr_t m_flFadeOut   = 0X00C8; // float32
-            static constexpr std::uintptr_t m_flFadeIn    = 0X00CC; // float32
-            static constexpr std::uintptr_t m_bPlayHead   = 0X00D0; // bool
-            static constexpr std::uintptr_t m_bPlayTail   = 0X00D1; // bool
-            static constexpr std::uintptr_t m_bEqualPow   = 0X00D2; // bool
+            static constexpr std::uintptr_t m_flLoopEnd   = 0X00C8; // float32
+            static constexpr std::uintptr_t m_flLoopStart = 0X00CC; // float32
+            static constexpr std::uintptr_t m_flFadeOut   = 0X00D0; // float32
+            static constexpr std::uintptr_t m_flFadeIn    = 0X00D4; // float32
+            static constexpr std::uintptr_t m_bPlayHead   = 0X00D8; // bool
+            static constexpr std::uintptr_t m_bPlayTail   = 0X00D9; // bool
+            static constexpr std::uintptr_t m_bEqualPow   = 0X00DA; // bool
         };
 
         // Has Trivial Constructor
@@ -15829,6 +16645,7 @@ namespace offsets {
         // Construct Allowed
         class CNmEntityAttributeEventBase : public CNmEvent {
         public:
+            static constexpr std::uintptr_t m_target        = 0X0018; // CNmEventTargetEntity_t
             static constexpr std::uintptr_t m_attributeName = 0X0020; // CUtlString
         };
 
@@ -15878,19 +16695,19 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderPoints : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_hMaterial = 0X0220; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_hMaterial = 0X0228; // CStrongHandle<InfoForResourceTypeIMaterial2>
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetCPOrientationToPointAtCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nInputCP          = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nOutputCP         = 0X01DC; // int32
-            static constexpr std::uintptr_t m_flInterpolation   = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_b2DOrientation    = 0X0350; // bool
-            static constexpr std::uintptr_t m_bAvoidSingularity = 0X0351; // bool
-            static constexpr std::uintptr_t m_bPointAway        = 0X0352; // bool
+            static constexpr std::uintptr_t m_nInputCP          = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nOutputCP         = 0X01E4; // int32
+            static constexpr std::uintptr_t m_flInterpolation   = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_b2DOrientation    = 0X0358; // bool
+            static constexpr std::uintptr_t m_bAvoidSingularity = 0X0359; // bool
+            static constexpr std::uintptr_t m_bPointAway        = 0X035A; // bool
         };
 
         // Construct Allowed
@@ -15938,9 +16755,43 @@ namespace offsets {
         };
 
         // Has Trivial Destructor
+        // Construct Allowed
+        struct PairedSequence_t {
+        public:
+            static constexpr std::uintptr_t m_sRole         = 0X0000; // CGlobalSymbol
+            static constexpr std::uintptr_t m_sSequenceName = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t m_hSequence     = 0X0010; // CAnimNetVar<uint32>
+        };
+
+        // Has Trivial Destructor
         // Global Type Scope
         struct EventClientPostSimulate_t : public EventSimulate_t {
         public:
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class C_OP_MultiSegmentDisplaySnapshotGenerator : public CParticleFunctionPreEmission {
+        public:
+            static constexpr std::uintptr_t m_nCPSnapshot          = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nSegCount            = 0X01E4; // ParticleMultiSegmentCountSelection_t
+            static constexpr std::uintptr_t m_nInputType           = 0X01E8; // ParticleMultiSegmentInputSelection_t
+            static constexpr std::uintptr_t m_strDefaultString     = 0X01F0; // CUtlString
+            static constexpr std::uintptr_t m_flValue              = 0X01F8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_SpecialCharList      = 0X0368; // CUtlVector<ParticleMultiSegmentSpecialCharacter_t>
+            static constexpr std::uintptr_t m_vecColorUnlit        = 0X0380; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_vecColorLit          = 0X0A38; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_flRadius             = 0X10F0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flSpacing            = 0X1260; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flMinCount           = 0X13D0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flMaxCount           = 0X1540; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bPrependEmpty        = 0X16B0; // bool
+            static constexpr std::uintptr_t m_flDigitsAfterDecimal = 0X16B8; // CParticleCollectionFloatInput
+        };
+
+        class CGenericShapeProxy {
+        public:
+            static constexpr std::uintptr_t m_verts = 0X0030; // CUtlLeanVectorFixedGrowable<Vector,8>
         };
 
         // Construct Allowed
@@ -16009,13 +16860,37 @@ namespace offsets {
         };
 
         // Has VTable
+        // Has Trivial Destructor
+        class CCSPlayerAnimationState {
+        public:
+            static constexpr std::uintptr_t m_currentMoveType                     = 0X0018; // CCSPlayerAnimationState::MoveType_t
+            static constexpr std::uintptr_t m_groundMoveState                     = 0X0019; // CCSPlayerAnimationState::GroundMoveState_t
+            static constexpr std::uintptr_t m_groundActionDirection               = 0X001A; // CCSPlayerAnimationState::Direction_t
+            static constexpr std::uintptr_t m_airAction                           = 0X001B; // CCSPlayerAnimationState::AirAction_t
+            static constexpr std::uintptr_t m_bWasOnGroundLastUpdate              = 0X001C; // bool
+            static constexpr std::uintptr_t m_bWasStationaryLastUpdate            = 0X001D; // bool
+            static constexpr std::uintptr_t m_actionStartTick                     = 0X0020; // GameTick_t
+            static constexpr std::uintptr_t m_staticAimTimerStartTick             = 0X0024; // GameTick_t
+            static constexpr std::uintptr_t m_stutterStepStartTick                = 0X0028; // GameTick_t
+            static constexpr std::uintptr_t m_plantAndTurnStartTick               = 0X002C; // GameTick_t
+            static constexpr std::uintptr_t m_bIsStutterStep                      = 0X0030; // bool
+            static constexpr std::uintptr_t m_flTurnOnSpotAngle                   = 0X0034; // float32
+            static constexpr std::uintptr_t m_flPreviousAimYaw                    = 0X0038; // float32
+            static constexpr std::uintptr_t m_flPreviousHorizontalSpeed           = 0X003C; // float32
+            static constexpr std::uintptr_t m_flFootIKOffsetLeft                  = 0X0040; // float32
+            static constexpr std::uintptr_t m_flFootIKOffsetRight                 = 0X0044; // float32
+            static constexpr std::uintptr_t m_flWeaponDropPercentageDueToMovement = 0X0048; // float32
+            static constexpr std::uintptr_t m_flWeaponDropSmoothDampVelocity      = 0X004C; // float32
+        };
+
+        // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointToHand : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCP1          = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nHand         = 0X01DC; // int32
-            static constexpr std::uintptr_t m_vecCP1Pos     = 0X01E0; // Vector
-            static constexpr std::uintptr_t m_bOrientToHand = 0X01EC; // bool
+            static constexpr std::uintptr_t m_nCP1          = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nHand         = 0X01E4; // int32
+            static constexpr std::uintptr_t m_vecCP1Pos     = 0X01E8; // Vector
+            static constexpr std::uintptr_t m_bOrientToHand = 0X01F4; // bool
         };
 
         // Has VTable
@@ -16093,6 +16968,12 @@ namespace offsets {
         public:
         };
 
+        // Has VTable
+        // Is Absract
+        class IPhysicsParticleRope {
+        public:
+        };
+
         class C_CommandContext {
         public:
             static constexpr std::uintptr_t needsprocessing = 0X0000; // bool
@@ -16102,6 +16983,7 @@ namespace offsets {
         // Has Trivial Destructor
         struct thinkfunc_t {
         public:
+            static constexpr std::uintptr_t m_think          = 0X0000; // BASEPTR
             static constexpr std::uintptr_t m_hFn            = 0X0008; // HSCRIPT
             static constexpr std::uintptr_t m_nContext       = 0X0010; // CUtlStringToken
             static constexpr std::uintptr_t m_nNextThinkTick = 0X0014; // GameTick_t
@@ -16112,13 +16994,13 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetVectorAttributeToVectorExpression : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nExpression       = 0X01D0; // VectorExpressionType_t
-            static constexpr std::uintptr_t m_vInput1           = 0X01D8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vInput2           = 0X0890; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flLerp            = 0X0F48; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nOutputField      = 0X10B8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod        = 0X10BC; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bNormalizedOutput = 0X10C0; // bool
+            static constexpr std::uintptr_t m_nExpression       = 0X01D8; // VectorExpressionType_t
+            static constexpr std::uintptr_t m_vInput1           = 0X01E0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vInput2           = 0X0898; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flLerp            = 0X0F50; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nOutputField      = 0X10C0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod        = 0X10C4; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bNormalizedOutput = 0X10C8; // bool
         };
 
         // Has VTable
@@ -16160,40 +17042,40 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_VelocityRandom : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber           = 0X01D8; // int32
-            static constexpr std::uintptr_t m_fSpeedMin                     = 0X01E0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_fSpeedMax                     = 0X0350; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMin = 0X04C0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMax = 0X0B78; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_bIgnoreDT                     = 0X1230; // bool
-            static constexpr std::uintptr_t m_randomnessParameters          = 0X1234; // CRandomNumberGeneratorParameters
+            static constexpr std::uintptr_t m_nControlPointNumber           = 0X01E0; // int32
+            static constexpr std::uintptr_t m_fSpeedMin                     = 0X01E8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_fSpeedMax                     = 0X0358; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMin = 0X04C8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_LocalCoordinateSystemSpeedMax = 0X0B80; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_bIgnoreDT                     = 0X1238; // bool
+            static constexpr std::uintptr_t m_randomnessParameters          = 0X123C; // CRandomNumberGeneratorParameters
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_CylindricalDistanceToTransform : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin     = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInputMax     = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMin    = 0X04B8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMax    = 0X0628; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_TransformStart = 0X0798; // CParticleTransformInput
-            static constexpr std::uintptr_t m_TransformEnd   = 0X0800; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nSetMethod     = 0X0868; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bActiveRange   = 0X086C; // bool
-            static constexpr std::uintptr_t m_bAdditive      = 0X086D; // bool
-            static constexpr std::uintptr_t m_bCapsule       = 0X086E; // bool
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin     = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInputMax     = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMin    = 0X04C0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMax    = 0X0630; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_TransformStart = 0X07A0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_TransformEnd   = 0X0808; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nSetMethod     = 0X0870; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bActiveRange   = 0X0874; // bool
+            static constexpr std::uintptr_t m_bAdditive      = 0X0875; // bool
+            static constexpr std::uintptr_t m_bCapsule       = 0X0876; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointRotation : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_vecRotAxis = 0X01D8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_flRotRate  = 0X0890; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nCP        = 0X0A00; // int32
-            static constexpr std::uintptr_t m_nLocalCP   = 0X0A04; // int32
+            static constexpr std::uintptr_t m_vecRotAxis = 0X01E0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_flRotRate  = 0X0898; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nCP        = 0X0A08; // int32
+            static constexpr std::uintptr_t m_nLocalCP   = 0X0A0C; // int32
         };
 
         // Has VTable
@@ -16256,6 +17138,18 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        class CSosGroupActionOcclusionSchema : public CSosGroupActionSchema {
+        public:
+            static constexpr std::uintptr_t m_flCalculationInterval = 0X0008; // float32
+            static constexpr std::uintptr_t m_flRadius              = 0X000C; // float32
+            static constexpr std::uintptr_t m_flOcclusionScale      = 0X0010; // float32
+            static constexpr std::uintptr_t m_flOcclusionMin        = 0X0014; // float32
+            static constexpr std::uintptr_t m_flOcclusionMax        = 0X0018; // float32
+            static constexpr std::uintptr_t m_flTestDepth           = 0X001C; // float32
+        };
+
+        // Has VTable
+        // Construct Allowed
         class CNmFloatAngleMathNode__CDefinition : public CNmFloatValueNode__CDefinition {
         public:
             static constexpr std::uintptr_t m_nInputValueNodeIdx = 0X0010; // int16
@@ -16309,41 +17203,41 @@ namespace offsets {
         // Construct Allowed
         class C_OP_PlaneCull : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nPlaneControlPoint = 0X01D0; // int32
-            static constexpr std::uintptr_t m_vecPlaneDirection  = 0X01D8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_bLocalSpace        = 0X0890; // bool
-            static constexpr std::uintptr_t m_flPlaneOffset      = 0X0894; // float32
+            static constexpr std::uintptr_t m_nPlaneControlPoint = 0X01D8; // int32
+            static constexpr std::uintptr_t m_vecPlaneDirection  = 0X01E0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_bLocalSpace        = 0X0898; // bool
+            static constexpr std::uintptr_t m_flPlaneOffset      = 0X089C; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointsToModelParticles : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_HitboxSetName      = 0X01D0; // char[128]
-            static constexpr std::uintptr_t m_AttachmentName     = 0X0250; // char[128]
-            static constexpr std::uintptr_t m_nFirstControlPoint = 0X02D0; // int32
-            static constexpr std::uintptr_t m_nNumControlPoints  = 0X02D4; // int32
-            static constexpr std::uintptr_t m_nFirstSourcePoint  = 0X02D8; // int32
-            static constexpr std::uintptr_t m_bSkin              = 0X02DC; // bool
-            static constexpr std::uintptr_t m_bAttachment        = 0X02DD; // bool
+            static constexpr std::uintptr_t m_HitboxSetName      = 0X01D8; // char[128]
+            static constexpr std::uintptr_t m_AttachmentName     = 0X0258; // char[128]
+            static constexpr std::uintptr_t m_nFirstControlPoint = 0X02D8; // int32
+            static constexpr std::uintptr_t m_nNumControlPoints  = 0X02DC; // int32
+            static constexpr std::uintptr_t m_nFirstSourcePoint  = 0X02E0; // int32
+            static constexpr std::uintptr_t m_bSkin              = 0X02E4; // bool
+            static constexpr std::uintptr_t m_bAttachment        = 0X02E5; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RemapScalarToVector : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldInput         = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01DC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin          = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flInputMax          = 0X01E4; // float32
-            static constexpr std::uintptr_t m_vecOutputMin        = 0X01E8; // Vector
-            static constexpr std::uintptr_t m_vecOutputMax        = 0X01F4; // Vector
-            static constexpr std::uintptr_t m_flStartTime         = 0X0200; // float32
-            static constexpr std::uintptr_t m_flEndTime           = 0X0204; // float32
-            static constexpr std::uintptr_t m_nSetMethod          = 0X0208; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X020C; // int32
-            static constexpr std::uintptr_t m_bLocalCoords        = 0X0210; // bool
-            static constexpr std::uintptr_t m_flRemapBias         = 0X0214; // float32
+            static constexpr std::uintptr_t m_nFieldInput         = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin          = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flInputMax          = 0X01EC; // float32
+            static constexpr std::uintptr_t m_vecOutputMin        = 0X01F0; // Vector
+            static constexpr std::uintptr_t m_vecOutputMax        = 0X01FC; // Vector
+            static constexpr std::uintptr_t m_flStartTime         = 0X0208; // float32
+            static constexpr std::uintptr_t m_flEndTime           = 0X020C; // float32
+            static constexpr std::uintptr_t m_nSetMethod          = 0X0210; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X0214; // int32
+            static constexpr std::uintptr_t m_bLocalCoords        = 0X0218; // bool
+            static constexpr std::uintptr_t m_flRemapBias         = 0X021C; // float32
         };
 
         // Has VTable
@@ -16417,11 +17311,11 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RampScalarSplineSimple : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_Rate        = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flStartTime = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flEndTime   = 0X01D8; // float32
-            static constexpr std::uintptr_t m_nField      = 0X0200; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bEaseOut    = 0X0204; // bool
+            static constexpr std::uintptr_t m_Rate        = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flStartTime = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flEndTime   = 0X01E0; // float32
+            static constexpr std::uintptr_t m_nField      = 0X0210; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bEaseOut    = 0X0214; // bool
         };
 
         // Has Trivial Constructor
@@ -16453,9 +17347,9 @@ namespace offsets {
             static constexpr std::uintptr_t m_defaultMaskNodeIdx    = 0X0010; // int16
             static constexpr std::uintptr_t m_parameterValueNodeIdx = 0X0012; // int16
             static constexpr std::uintptr_t m_bSwitchDynamically    = 0X0014; // bool
-            static constexpr std::uintptr_t m_maskNodeIndices       = 0X0018; // CUtlVectorFixedGrowable<int16,7>
-            static constexpr std::uintptr_t m_parameterValues       = 0X0040; // CUtlVectorFixedGrowable<CGlobalSymbol,7>
-            static constexpr std::uintptr_t m_flBlendTimeSeconds    = 0X0090; // float32
+            static constexpr std::uintptr_t m_maskNodeIndices       = 0X0018; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_parameterValues       = 0X0030; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,7>
+            static constexpr std::uintptr_t m_flBlendTimeSeconds    = 0X0070; // float32
         };
 
         // Has Trivial Constructor
@@ -16469,55 +17363,55 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_CreatePhyllotaxis : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nScaleCP            = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nComponent          = 0X01E0; // int32
-            static constexpr std::uintptr_t m_fRadCentCore        = 0X01E4; // float32
-            static constexpr std::uintptr_t m_fRadPerPoint        = 0X01E8; // float32
-            static constexpr std::uintptr_t m_fRadPerPointTo      = 0X01EC; // float32
-            static constexpr std::uintptr_t m_fpointAngle         = 0X01F0; // float32
-            static constexpr std::uintptr_t m_fsizeOverall        = 0X01F4; // float32
-            static constexpr std::uintptr_t m_fRadBias            = 0X01F8; // float32
-            static constexpr std::uintptr_t m_fMinRad             = 0X01FC; // float32
-            static constexpr std::uintptr_t m_fDistBias           = 0X0200; // float32
-            static constexpr std::uintptr_t m_bUseLocalCoords     = 0X0204; // bool
-            static constexpr std::uintptr_t m_bUseWithContEmit    = 0X0205; // bool
-            static constexpr std::uintptr_t m_bUseOrigRadius      = 0X0206; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nScaleCP            = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nComponent          = 0X01E8; // int32
+            static constexpr std::uintptr_t m_fRadCentCore        = 0X01EC; // float32
+            static constexpr std::uintptr_t m_fRadPerPoint        = 0X01F0; // float32
+            static constexpr std::uintptr_t m_fRadPerPointTo      = 0X01F4; // float32
+            static constexpr std::uintptr_t m_fpointAngle         = 0X01F8; // float32
+            static constexpr std::uintptr_t m_fsizeOverall        = 0X01FC; // float32
+            static constexpr std::uintptr_t m_fRadBias            = 0X0200; // float32
+            static constexpr std::uintptr_t m_fMinRad             = 0X0204; // float32
+            static constexpr std::uintptr_t m_fDistBias           = 0X0208; // float32
+            static constexpr std::uintptr_t m_bUseLocalCoords     = 0X020C; // bool
+            static constexpr std::uintptr_t m_bUseWithContEmit    = 0X020D; // bool
+            static constexpr std::uintptr_t m_bUseOrigRadius      = 0X020E; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_AddVectorToVector : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecScale             = 0X01D8; // Vector
-            static constexpr std::uintptr_t m_nFieldOutput         = 0X01E4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldInput          = 0X01E8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vOffsetMin           = 0X01EC; // Vector
-            static constexpr std::uintptr_t m_vOffsetMax           = 0X01F8; // Vector
-            static constexpr std::uintptr_t m_randomnessParameters = 0X0204; // CRandomNumberGeneratorParameters
+            static constexpr std::uintptr_t m_vecScale             = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_nFieldOutput         = 0X01EC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldInput          = 0X01F0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vOffsetMin           = 0X01F4; // Vector
+            static constexpr std::uintptr_t m_vOffsetMax           = 0X0200; // Vector
+            static constexpr std::uintptr_t m_randomnessParameters = 0X020C; // CRandomNumberGeneratorParameters
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RestartAfterDuration : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flDurationMin = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flDurationMax = 0X01D4; // float32
-            static constexpr std::uintptr_t m_nCP           = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nCPField      = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nChildGroupID = 0X01E0; // int32
-            static constexpr std::uintptr_t m_bOnlyChildren = 0X01E4; // bool
+            static constexpr std::uintptr_t m_flDurationMin = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flDurationMax = 0X01DC; // float32
+            static constexpr std::uintptr_t m_nCP           = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nCPField      = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nChildGroupID = 0X01E8; // int32
+            static constexpr std::uintptr_t m_bOnlyChildren = 0X01EC; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_InitVec : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_InputValue             = 0X01D8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_nOutputField           = 0X0890; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod             = 0X0894; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bNormalizedOutput      = 0X0898; // bool
-            static constexpr std::uintptr_t m_bWritePreviousPosition = 0X0899; // bool
+            static constexpr std::uintptr_t m_InputValue             = 0X01E0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nOutputField           = 0X0898; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod             = 0X089C; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bNormalizedOutput      = 0X08A0; // bool
+            static constexpr std::uintptr_t m_bWritePreviousPosition = 0X08A1; // bool
         };
 
         // Construct Allowed
@@ -16575,6 +17469,15 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        struct AI_Motor_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t current_movement_gait_set = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t current_movement_gait     = 0X0010; // CGlobalSymbol
+            static constexpr std::uintptr_t movement_setting_id       = 0X0018; // CGlobalSymbol
+        };
+
+        // Has VTable
+        // Construct Allowed
         class C_OP_RemapNamedModelMeshGroupOnceTimed : public C_OP_RemapNamedModelElementOnceTimed {
         public:
         };
@@ -16583,10 +17486,10 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapTransformOrientationToYaw : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_TransformInput = 0X01D0; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X0238; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flRotOffset    = 0X023C; // float32
-            static constexpr std::uintptr_t m_flSpinStrength = 0X0240; // float32
+            static constexpr std::uintptr_t m_TransformInput = 0X01D8; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X0240; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flRotOffset    = 0X0244; // float32
+            static constexpr std::uintptr_t m_flSpinStrength = 0X0248; // float32
         };
 
         // Construct Allowed
@@ -16606,7 +17509,14 @@ namespace offsets {
         // Construct Allowed
         class CNmBlend1DNode__CDefinition : public CNmParameterizedBlendNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_parameterization = 0X0040; // CNmParameterizedBlendNode::Parameterization_t
+            static constexpr std::uintptr_t m_parameterization = 0X0030; // CNmParameterizedBlendNode::Parameterization_t
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class NetVarConfigIndex {
+        public:
+            static constexpr std::uintptr_t m_index = 0X0000; // CAnimNetVar<uint32>
         };
 
         // Has Trivial Destructor
@@ -16623,6 +17533,21 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct screenshake_t {
+        public:
+            static constexpr std::uintptr_t endtime    = 0X0000; // GameTime_t
+            static constexpr std::uintptr_t duration   = 0X0004; // float32
+            static constexpr std::uintptr_t amplitude  = 0X0008; // float32
+            static constexpr std::uintptr_t frequency  = 0X000C; // float32
+            static constexpr std::uintptr_t nextShake  = 0X0010; // GameTime_t
+            static constexpr std::uintptr_t offset     = 0X0014; // Vector
+            static constexpr std::uintptr_t angle      = 0X0020; // float32
+            static constexpr std::uintptr_t direction  = 0X0028; // Vector
+            static constexpr std::uintptr_t nShakeType = 0X0034; // uint8
+        };
+
         // Has VTable
         // Is Absract
         class IRagdoll {
@@ -16635,10 +17560,31 @@ namespace offsets {
             static constexpr std::uintptr_t m_flValue = 0X0008; // float32
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PhysObjectHeader_t {
+        public:
+            static constexpr std::uintptr_t type      = 0X0000; // PhysInterfaceId_t
+            static constexpr std::uintptr_t hEntity   = 0X0004; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t fieldName = 0X0008; // CUtlSymbolLarge
+            static constexpr std::uintptr_t nObjects  = 0X0010; // int32
+            static constexpr std::uintptr_t modelName = 0X0018; // CUtlSymbolLarge
+            static constexpr std::uintptr_t bbox      = 0X0020; // AABB_t
+            static constexpr std::uintptr_t sphere    = 0X0038; // physics_save_sphere_t
+            static constexpr std::uintptr_t iCollide  = 0X003C; // int32
+        };
+
         // Has VTable
         // Is Absract
         class IEconItemInterface {
         public:
+        };
+
+        // Construct Allowed
+        class CSteamAudioSceneData {
+        public:
+            static constexpr std::uintptr_t m_pScene      = 0X0000; // IPLScene
+            static constexpr std::uintptr_t m_pStaticMesh = 0X0008; // IPLStaticMesh
         };
 
         // Construct Allowed
@@ -16692,14 +17638,6 @@ namespace offsets {
             static constexpr std::uintptr_t m_Tag                          = 0X00C0; // CUtlString
         };
 
-        // Construct Allowed
-        class CNmIKRig {
-        public:
-            static constexpr std::uintptr_t m_skeleton  = 0X0000; // CStrongHandle<InfoForResourceTypeCNmSkeleton>
-            static constexpr std::uintptr_t m_vecBodies = 0X0008; // CUtlVector<CNmIKBody>
-            static constexpr std::uintptr_t m_vecJoints = 0X0020; // CUtlVector<CNmIKJoint>
-        };
-
         // Has VTable
         // Construct Allowed
         class CPlayerInputAnimMotorUpdater : public CAnimMotorUpdaterBase {
@@ -16730,11 +17668,11 @@ namespace offsets {
         // Construct Allowed
         class C_OP_LockToPointList : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_pointList           = 0X01D8; // CUtlVector<PointDefinition_t>
-            static constexpr std::uintptr_t m_bPlaceAlongPath     = 0X01F0; // bool
-            static constexpr std::uintptr_t m_bClosedLoop         = 0X01F1; // bool
-            static constexpr std::uintptr_t m_nNumPointsAlongPath = 0X01F4; // int32
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_pointList           = 0X01E0; // CUtlVector<PointDefinition_t>
+            static constexpr std::uintptr_t m_bPlaceAlongPath     = 0X01F8; // bool
+            static constexpr std::uintptr_t m_bClosedLoop         = 0X01F9; // bool
+            static constexpr std::uintptr_t m_nNumPointsAlongPath = 0X01FC; // int32
         };
 
         // Construct Allowed
@@ -16753,6 +17691,25 @@ namespace offsets {
             static constexpr std::uintptr_t m_encodedHeader  = 0X0058; // CUtlBinaryBlock
         };
 
+        // Has VTable
+        // Is Absract
+        // Construct Allowed
+        class CSndSeqInstBaseSchema {
+        public:
+            static constexpr std::uintptr_t m_nType              = 0X0008; // SndSeqInstrumentType_t
+            static constexpr std::uintptr_t m_nPlayerType        = 0X000C; // SndSeqPlayerType_t
+            static constexpr std::uintptr_t m_bStopCurrentEvents = 0X0012; // bool
+            static constexpr std::uintptr_t m_flBPM              = 0X0014; // float32
+            static constexpr std::uintptr_t m_flBPMFactor        = 0X0018; // float32
+            static constexpr std::uintptr_t m_flBPMInvFactor     = 0X001C; // float32
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CSndSeqInstSndEvtSchema : public CSndSeqInstBaseSchema {
+        public:
+        };
+
         // Has Trivial Destructor
         // Construct Allowed
         struct FeSimdQuad_t {
@@ -16767,8 +17724,8 @@ namespace offsets {
         // Construct Allowed
         class CNmSelectorNode__CDefinition : public CNmPoseNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices    = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0028; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionNodeIndices    = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0028; // CUtlLeanVectorFixedGrowable<int16,8>
         };
 
         // Has VTable
@@ -16799,12 +17756,12 @@ namespace offsets {
         // Construct Allowed
         class C_OP_OscillateVectorSimple : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_Rate      = 0X01D0; // Vector
-            static constexpr std::uintptr_t m_Frequency = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_nField    = 0X01E8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOscMult = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flOscAdd  = 0X01F0; // float32
-            static constexpr std::uintptr_t m_bOffset   = 0X01F4; // bool
+            static constexpr std::uintptr_t m_Rate      = 0X01D8; // Vector
+            static constexpr std::uintptr_t m_Frequency = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_nField    = 0X01F0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOscMult = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flOscAdd  = 0X01F8; // float32
+            static constexpr std::uintptr_t m_bOffset   = 0X01FC; // bool
         };
 
         // Has VTable
@@ -16812,9 +17769,9 @@ namespace offsets {
         // Construct Allowed
         class CGeneralSpin : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nSpinRateDegrees    = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nSpinRateMinDegrees = 0X01D4; // int32
-            static constexpr std::uintptr_t m_fSpinRateStopTime   = 0X01DC; // float32
+            static constexpr std::uintptr_t m_nSpinRateDegrees    = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nSpinRateMinDegrees = 0X01DC; // int32
+            static constexpr std::uintptr_t m_fSpinRateStopTime   = 0X01E4; // float32
         };
 
         // Has VTable
@@ -16827,28 +17784,28 @@ namespace offsets {
         // Construct Allowed
         class C_OP_AlphaDecay : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flMinAlpha = 0X01D0; // float32
+            static constexpr std::uintptr_t m_flMinAlpha = 0X01D8; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateParticleImpulse : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_InputRadius      = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_InputMagnitude   = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nFalloffFunction = 0X04B8; // ParticleFalloffFunction_t
-            static constexpr std::uintptr_t m_InputFalloffExp  = 0X04C0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nImpulseType     = 0X0630; // ParticleImpulseType_t
+            static constexpr std::uintptr_t m_InputRadius      = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_InputMagnitude   = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFalloffFunction = 0X04C0; // ParticleFalloffFunction_t
+            static constexpr std::uintptr_t m_InputFalloffExp  = 0X04C8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nImpulseType     = 0X0638; // ParticleImpulseType_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RemapInitialTransformDirectionToRotation : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_TransformInput = 0X01D8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X0240; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOffsetRot    = 0X0244; // float32
-            static constexpr std::uintptr_t m_nComponent     = 0X0248; // int32
+            static constexpr std::uintptr_t m_TransformInput = 0X01E0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X0248; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOffsetRot    = 0X024C; // float32
+            static constexpr std::uintptr_t m_nComponent     = 0X0250; // int32
         };
 
         // Has VTable
@@ -16873,6 +17830,23 @@ namespace offsets {
             static constexpr std::uintptr_t flAxialModelDist    = 0X002C; // float32
             static constexpr std::uintptr_t flAxialModelWeights = 0X0030; // float32[4]
             static constexpr std::uintptr_t m_nNode             = 0X0040; // uint16[4]
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct vphysics_save_ragdoll_control_t {
+        public:
+            static constexpr std::uintptr_t m_flMinSpringFrequency        = 0X0000; // float32
+            static constexpr std::uintptr_t m_flMaxSpringFrequency        = 0X0004; // float32
+            static constexpr std::uintptr_t m_flMaxStretch                = 0X0008; // float32
+            static constexpr std::uintptr_t m_bSolidCollisionAtZeroWeight = 0X000C; // bool
+            static constexpr std::uintptr_t m_bRequiresDynamicBodies      = 0X000D; // bool
+            static constexpr std::uintptr_t m_bIgnoreTeleport             = 0X000E; // bool
+            static constexpr std::uintptr_t m_vLinearVelocityAccumulator  = 0X0010; // Vector
+            static constexpr std::uintptr_t m_vAngularVelocityAccumulator = 0X001C; // RotationVector
+            static constexpr std::uintptr_t m_vForceAccumulator           = 0X0028; // Vector
+            static constexpr std::uintptr_t m_nBodyCount                  = 0X0034; // int32
         };
 
         // Construct Allowed
@@ -16915,31 +17889,31 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderLights : public C_OP_RenderPoints {
         public:
-            static constexpr std::uintptr_t m_flAnimationRate = 0X0228; // float32
-            static constexpr std::uintptr_t m_nAnimationType  = 0X022C; // AnimationType_t
-            static constexpr std::uintptr_t m_bAnimateInFPS   = 0X0230; // bool
-            static constexpr std::uintptr_t m_flMinSize       = 0X0234; // float32
-            static constexpr std::uintptr_t m_flMaxSize       = 0X0238; // float32
-            static constexpr std::uintptr_t m_flStartFadeSize = 0X023C; // float32
-            static constexpr std::uintptr_t m_flEndFadeSize   = 0X0240; // float32
+            static constexpr std::uintptr_t m_flAnimationRate = 0X0230; // float32
+            static constexpr std::uintptr_t m_nAnimationType  = 0X0234; // AnimationType_t
+            static constexpr std::uintptr_t m_bAnimateInFPS   = 0X0238; // bool
+            static constexpr std::uintptr_t m_flMinSize       = 0X023C; // float32
+            static constexpr std::uintptr_t m_flMaxSize       = 0X0240; // float32
+            static constexpr std::uintptr_t m_flStartFadeSize = 0X0244; // float32
+            static constexpr std::uintptr_t m_flEndFadeSize   = 0X0248; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_StopAfterCPDuration : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_flDuration          = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bDestroyImmediately = 0X0348; // bool
-            static constexpr std::uintptr_t m_bPlayEndCap         = 0X0349; // bool
+            static constexpr std::uintptr_t m_flDuration          = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bDestroyImmediately = 0X0350; // bool
+            static constexpr std::uintptr_t m_bPlayEndCap         = 0X0351; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_Orient2DRelToCP : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nCP          = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01DC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flRotOffset  = 0X01E0; // float32
+            static constexpr std::uintptr_t m_nCP          = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flRotOffset  = 0X01E8; // float32
         };
 
         // Construct Allowed
@@ -16962,48 +17936,56 @@ namespace offsets {
             static constexpr std::uintptr_t m_nClipReferenceNodeIdx               = 0X0010; // int16
             static constexpr std::uintptr_t m_nTargetValueNodeIdx                 = 0X0012; // int16
             static constexpr std::uintptr_t m_samplingMode                        = 0X0014; // CNmRootMotionData::SamplingMode_t
-            static constexpr std::uintptr_t m_bAllowTargetUpdate                  = 0X0015; // bool
+            static constexpr std::uintptr_t m_targetUpdateRule                    = 0X0015; // CNmTargetWarpNode::TargetUpdateRule_t
             static constexpr std::uintptr_t m_bAlignWithTargetAtLastWarpEvent     = 0X0016; // bool
             static constexpr std::uintptr_t m_flSamplingPositionErrorThresholdSq  = 0X0018; // float32
             static constexpr std::uintptr_t m_flMaxTangentLength                  = 0X001C; // float32
             static constexpr std::uintptr_t m_flLerpFallbackDistanceThreshold     = 0X0020; // float32
             static constexpr std::uintptr_t m_flTargetUpdateDistanceThreshold     = 0X0024; // float32
             static constexpr std::uintptr_t m_flTargetUpdateAngleThresholdRadians = 0X0028; // float32
+            static constexpr std::uintptr_t m_alignmentBoneID                     = 0X0030; // CGlobalSymbol
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct NavHull_t {
+        public:
+            static constexpr std::uintptr_t m_nHullIdx = 0X0000; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapCPVelocityToVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPoint = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFieldOutput  = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flScale       = 0X01D8; // float32
-            static constexpr std::uintptr_t m_bNormalize    = 0X01DC; // bool
+            static constexpr std::uintptr_t m_nControlPoint = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldOutput  = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flScale       = 0X01E0; // float32
+            static constexpr std::uintptr_t m_bNormalize    = 0X01E4; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderSimpleModelCollection : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_bCenterOffset         = 0X0220; // bool
-            static constexpr std::uintptr_t m_hModel                = 0X0228; // CStrongHandle<InfoForResourceTypeCModel>
-            static constexpr std::uintptr_t m_modelInput            = 0X0230; // CParticleModelInput
-            static constexpr std::uintptr_t m_fSizeCullScale        = 0X0290; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bDisableShadows       = 0X0400; // bool
-            static constexpr std::uintptr_t m_bDisableMotionBlur    = 0X0401; // bool
-            static constexpr std::uintptr_t m_bAcceptsDecals        = 0X0402; // bool
-            static constexpr std::uintptr_t m_fDrawFilter           = 0X0408; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nAngularVelocityField = 0X0578; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bCenterOffset         = 0X0228; // bool
+            static constexpr std::uintptr_t m_hModel                = 0X0230; // CStrongHandle<InfoForResourceTypeCModel>
+            static constexpr std::uintptr_t m_modelInput            = 0X0238; // CParticleModelInput
+            static constexpr std::uintptr_t m_fSizeCullScale        = 0X0298; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bDisableShadows       = 0X0408; // bool
+            static constexpr std::uintptr_t m_bDisableMotionBlur    = 0X0409; // bool
+            static constexpr std::uintptr_t m_bAcceptsDecals        = 0X040A; // bool
+            static constexpr std::uintptr_t m_fDrawFilter           = 0X0410; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nAngularVelocityField = 0X0580; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_HSVShiftToCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nColorCP          = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nColorGemEnableCP = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nOutputCP         = 0X01E0; // int32
-            static constexpr std::uintptr_t m_DefaultHSVColor   = 0X01E4; // Color
+            static constexpr std::uintptr_t m_nColorCP          = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nColorGemEnableCP = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nOutputCP         = 0X01E8; // int32
+            static constexpr std::uintptr_t m_DefaultHSVColor   = 0X01EC; // Color
         };
 
         // Has VTable
@@ -17105,8 +18087,8 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderText : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_OutlineColor = 0X0220; // Color
-            static constexpr std::uintptr_t m_DefaultText  = 0X0228; // CUtlString
+            static constexpr std::uintptr_t m_OutlineColor = 0X0228; // Color
+            static constexpr std::uintptr_t m_DefaultText  = 0X0230; // CUtlString
         };
 
         // Has Trivial Destructor
@@ -17115,6 +18097,17 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_vCenter  = 0X0000; // Vector[2]
             static constexpr std::uintptr_t m_flRadius = 0X0018; // float32
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CNmFloatSpringNode__CDefinition : public CNmFloatValueNode__CDefinition {
+        public:
+            static constexpr std::uintptr_t m_flStartValue       = 0X0010; // float32
+            static constexpr std::uintptr_t m_flHertz            = 0X0014; // float32
+            static constexpr std::uintptr_t m_flDampingRatio     = 0X0018; // float32
+            static constexpr std::uintptr_t m_nInputValueNodeIdx = 0X001C; // int16
+            static constexpr std::uintptr_t m_bUseStartValue     = 0X001E; // bool
         };
 
         // Has Trivial Destructor
@@ -17135,15 +18128,15 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_SetHitboxToClosest : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber      = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nDesiredHitbox           = 0X01DC; // int32
-            static constexpr std::uintptr_t m_vecHitBoxScale           = 0X01E0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_HitboxSetName            = 0X0898; // char[128]
-            static constexpr std::uintptr_t m_bUseBones                = 0X0918; // bool
-            static constexpr std::uintptr_t m_bUseClosestPointOnHitbox = 0X0919; // bool
-            static constexpr std::uintptr_t m_nTestType                = 0X091C; // ClosestPointTestType_t
-            static constexpr std::uintptr_t m_flHybridRatio            = 0X0920; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bUpdatePosition          = 0X0A90; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber      = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nDesiredHitbox           = 0X01E4; // int32
+            static constexpr std::uintptr_t m_vecHitBoxScale           = 0X01E8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_HitboxSetName            = 0X08A0; // char[128]
+            static constexpr std::uintptr_t m_bUseBones                = 0X0920; // bool
+            static constexpr std::uintptr_t m_bUseClosestPointOnHitbox = 0X0921; // bool
+            static constexpr std::uintptr_t m_nTestType                = 0X0924; // ClosestPointTestType_t
+            static constexpr std::uintptr_t m_flHybridRatio            = 0X0928; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bUpdatePosition          = 0X0A98; // bool
         };
 
         // Has VTable
@@ -17180,10 +18173,10 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetControlPointPositionToRandomActiveCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCP1             = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nHeadLocationMin = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nHeadLocationMax = 0X01E0; // int32
-            static constexpr std::uintptr_t m_flResetRate      = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nCP1             = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nHeadLocationMin = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nHeadLocationMax = 0X01E8; // int32
+            static constexpr std::uintptr_t m_flResetRate      = 0X01F0; // CParticleCollectionFloatInput
         };
 
         // Construct Allowed
@@ -17221,8 +18214,8 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RandomForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_MinForce = 0X01E0; // Vector
-            static constexpr std::uintptr_t m_MaxForce = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_MinForce = 0X01E8; // Vector
+            static constexpr std::uintptr_t m_MaxForce = 0X01F4; // Vector
         };
 
         // Has Trivial Destructor
@@ -17269,7 +18262,7 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ShapeMatchingConstraint : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_flShapeRestorationTime = 0X01D0; // float32
+            static constexpr std::uintptr_t m_flShapeRestorationTime = 0X01D8; // float32
         };
 
         // Has Trivial Constructor
@@ -17310,6 +18303,16 @@ namespace offsets {
 
         // Has Trivial Destructor
         // Construct Allowed
+        struct SelectorInstanceData_t {
+        public:
+            static constexpr std::uintptr_t m_weights               = 0X0000; // CRelativeArray<float32>
+            static constexpr std::uintptr_t m_currentIndexStartTime = 0X0008; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_currentIndex          = 0X0014; // int32
+            static constexpr std::uintptr_t m_previousIndex         = 0X0018; // int32
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
         struct SkeletonAnimCapture_t__Camera_t {
         public:
             static constexpr std::uintptr_t m_tmCamera = 0X0000; // CTransform
@@ -17337,24 +18340,24 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RtEnvCull : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecTestDir    = 0X01D8; // Vector
-            static constexpr std::uintptr_t m_vecTestNormal = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_bUseVelocity  = 0X01F0; // bool
-            static constexpr std::uintptr_t m_bCullOnMiss   = 0X01F1; // bool
-            static constexpr std::uintptr_t m_bLifeAdjust   = 0X01F2; // bool
-            static constexpr std::uintptr_t m_RtEnvName     = 0X01F3; // char[128]
-            static constexpr std::uintptr_t m_nRTEnvCP      = 0X0274; // int32
-            static constexpr std::uintptr_t m_nComponent    = 0X0278; // int32
+            static constexpr std::uintptr_t m_vecTestDir    = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_vecTestNormal = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_bUseVelocity  = 0X01F8; // bool
+            static constexpr std::uintptr_t m_bCullOnMiss   = 0X01F9; // bool
+            static constexpr std::uintptr_t m_bLifeAdjust   = 0X01FA; // bool
+            static constexpr std::uintptr_t m_RtEnvName     = 0X01FB; // char[128]
+            static constexpr std::uintptr_t m_nRTEnvCP      = 0X027C; // int32
+            static constexpr std::uintptr_t m_nComponent    = 0X0280; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_Orient2DRelToCP : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flRotOffset    = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flSpinStrength = 0X01D4; // float32
-            static constexpr std::uintptr_t m_nCP            = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flRotOffset    = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flSpinStrength = 0X01DC; // float32
+            static constexpr std::uintptr_t m_nCP            = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X01E4; // ParticleAttributeIndex_t
         };
 
         // Has Trivial Destructor
@@ -17370,6 +18373,7 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
         class CShatterGlassShard {
         public:
             static constexpr std::uintptr_t m_hShardHandle                 = 0X0008; // uint32
@@ -17417,33 +18421,33 @@ namespace offsets {
         // Construct Allowed
         class C_OP_TeleportBeam : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nCPPosition      = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nCPVelocity      = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nCPMisc          = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nCPColor         = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nCPInvalidColor  = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nCPExtraArcData  = 0X01E4; // int32
-            static constexpr std::uintptr_t m_vGravity         = 0X01E8; // Vector
-            static constexpr std::uintptr_t m_flArcMaxDuration = 0X01F4; // float32
-            static constexpr std::uintptr_t m_flSegmentBreak   = 0X01F8; // float32
-            static constexpr std::uintptr_t m_flArcSpeed       = 0X01FC; // float32
-            static constexpr std::uintptr_t m_flAlpha          = 0X0200; // float32
+            static constexpr std::uintptr_t m_nCPPosition      = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nCPVelocity      = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nCPMisc          = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nCPColor         = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nCPInvalidColor  = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nCPExtraArcData  = 0X01EC; // int32
+            static constexpr std::uintptr_t m_vGravity         = 0X01F0; // Vector
+            static constexpr std::uintptr_t m_flArcMaxDuration = 0X01FC; // float32
+            static constexpr std::uintptr_t m_flSegmentBreak   = 0X0200; // float32
+            static constexpr std::uintptr_t m_flArcSpeed       = 0X0204; // float32
+            static constexpr std::uintptr_t m_flAlpha          = 0X0208; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_PercentageBetweenTransforms : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin     = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flInputMax     = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flOutputMin    = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flOutputMax    = 0X01E0; // float32
-            static constexpr std::uintptr_t m_TransformStart = 0X01E8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_TransformEnd   = 0X0250; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nSetMethod     = 0X02B8; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bActiveRange   = 0X02BC; // bool
-            static constexpr std::uintptr_t m_bRadialCheck   = 0X02BD; // bool
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin     = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flInputMax     = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flOutputMin    = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flOutputMax    = 0X01E8; // float32
+            static constexpr std::uintptr_t m_TransformStart = 0X01F0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_TransformEnd   = 0X0258; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nSetMethod     = 0X02C0; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bActiveRange   = 0X02C4; // bool
+            static constexpr std::uintptr_t m_bRadialCheck   = 0X02C5; // bool
         };
 
         // Has Trivial Destructor
@@ -17469,7 +18473,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_nAttachBoneIdx            = 0X0090; // int32
             static constexpr std::uintptr_t m_nAttachMeshIdx            = 0X0094; // int32
             static constexpr std::uintptr_t m_nAttachMeshDrawCallIdx    = 0X0098; // int32
-            static constexpr std::uintptr_t m_bEnableSimulation         = 0X009C; // bool
+            static constexpr std::uintptr_t m_bEnableSimulation         = 0X00AC; // bool
         };
 
         // Construct Allowed
@@ -17488,10 +18492,10 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_SetRigidAttachment : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nFieldInput         = 0X01DC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bLocalSpace         = 0X01E4; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nFieldInput         = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bLocalSpace         = 0X01EC; // bool
         };
 
         // Has Trivial Destructor
@@ -17526,6 +18530,34 @@ namespace offsets {
             static constexpr std::uintptr_t m_bIsOncePerFrameAsyncWorkPhase = 0X0000; // bool
         };
 
+        // Has VTable
+        // Construct Allowed
+        struct AI_BaseNPC_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t npc_state                   = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t current_enemy               = 0X0010; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t s_current_schedule          = 0X0018; // CUtlString
+            static constexpr std::uintptr_t s_current_task              = 0X0020; // CGlobalSymbol
+            static constexpr std::uintptr_t s_schedule_interrupt_reason = 0X0028; // CUtlString
+            static constexpr std::uintptr_t s_schedule_fail_reason      = 0X0030; // CUtlString
+            static constexpr std::uintptr_t conditions                  = 0X0038; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t anim_events                 = 0X0050; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t e_action_body_section       = 0X0068; // CGlobalSymbol
+            static constexpr std::uintptr_t e_movement_body_section     = 0X0070; // CGlobalSymbol
+        };
+
+        // Has VTable
+        // Construct Allowed
+        struct AI_Navigator_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t s_npc_nav_authority    = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t s_goal_nav_search_id   = 0X0010; // CGlobalSymbol
+            static constexpr std::uintptr_t s_goal_source_location = 0X0018; // CUtlString
+            static constexpr std::uintptr_t goal_actual_pos        = 0X0020; // VectorWS
+            static constexpr std::uintptr_t goal_base_pos          = 0X002C; // VectorWS
+            static constexpr std::uintptr_t waypoints              = 0X0038; // CUtlVector<AI_Navigator_DebugSnapshotData_t::Waypoint_t>
+        };
+
         // Construct Allowed
         struct DecalGroupOption_t {
         public:
@@ -17541,9 +18573,9 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetToCP : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_vecOffset           = 0X01D4; // Vector
-            static constexpr std::uintptr_t m_bOffsetLocal        = 0X01E0; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_vecOffset           = 0X01DC; // Vector
+            static constexpr std::uintptr_t m_bOffsetLocal        = 0X01E8; // bool
         };
 
         // Has Trivial Destructor
@@ -17598,23 +18630,33 @@ namespace offsets {
         public:
         };
 
+        // Construct Allowed
+        class SPAWNGROUP_HEADER {
+        public:
+            static constexpr std::uintptr_t m_sGroupName           = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_sEntityLumpName      = 0X0008; // CUtlString
+            static constexpr std::uintptr_t m_vecWorldOffset       = 0X0010; // matrix3x4a_t
+            static constexpr std::uintptr_t m_bClientSpawnGroup    = 0X0040; // bool
+            static constexpr std::uintptr_t m_bSuppressAllEntities = 0X0041; // bool
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_RemapCrossProductOfTwoVectorsToVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_InputVec1    = 0X01D0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_InputVec2    = 0X0888; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_nFieldOutput = 0X0F40; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bNormalize   = 0X0F44; // bool
+            static constexpr std::uintptr_t m_InputVec1    = 0X01D8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_InputVec2    = 0X0890; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nFieldOutput = 0X0F48; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bNormalize   = 0X0F4C; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_DensityForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_flRadiusScale   = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flForceScale    = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flTargetDensity = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flRadiusScale   = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flForceScale    = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flTargetDensity = 0X01F0; // float32
         };
 
         // Has Trivial Destructor
@@ -17662,17 +18704,17 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_InitFromCPSnapshot : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber  = 0X01D8; // int32
-            static constexpr std::uintptr_t m_strSnapshotSubset    = 0X01E0; // CUtlString
-            static constexpr std::uintptr_t m_nAttributeToRead     = 0X01E8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nAttributeToWrite    = 0X01EC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nLocalSpaceCP        = 0X01F0; // int32
-            static constexpr std::uintptr_t m_bRandom              = 0X01F4; // bool
-            static constexpr std::uintptr_t m_bReverse             = 0X01F5; // bool
-            static constexpr std::uintptr_t m_nSnapShotIncrement   = 0X01F8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nManualSnapshotIndex = 0X0368; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nRandomSeed          = 0X04D8; // int32
-            static constexpr std::uintptr_t m_bLocalSpaceAngles    = 0X04DC; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber  = 0X01E0; // int32
+            static constexpr std::uintptr_t m_strSnapshotSubset    = 0X01E8; // CUtlString
+            static constexpr std::uintptr_t m_nAttributeToRead     = 0X01F0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nAttributeToWrite    = 0X01F4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nLocalSpaceCP        = 0X01F8; // int32
+            static constexpr std::uintptr_t m_bRandom              = 0X01FC; // bool
+            static constexpr std::uintptr_t m_bReverse             = 0X01FD; // bool
+            static constexpr std::uintptr_t m_nSnapShotIncrement   = 0X0200; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nManualSnapshotIndex = 0X0370; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nRandomSeed          = 0X04E0; // int32
+            static constexpr std::uintptr_t m_bLocalSpaceAngles    = 0X04E4; // bool
         };
 
         // Has Trivial Destructor
@@ -17714,27 +18756,27 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapTransformVisibilityToScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nSetMethod     = 0X01D0; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_TransformInput = 0X01D8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X0240; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin     = 0X0244; // float32
-            static constexpr std::uintptr_t m_flInputMax     = 0X0248; // float32
-            static constexpr std::uintptr_t m_flOutputMin    = 0X024C; // float32
-            static constexpr std::uintptr_t m_flOutputMax    = 0X0250; // float32
-            static constexpr std::uintptr_t m_flRadius       = 0X0254; // float32
+            static constexpr std::uintptr_t m_nSetMethod     = 0X01D8; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_TransformInput = 0X01E0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X0248; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin     = 0X024C; // float32
+            static constexpr std::uintptr_t m_flInputMax     = 0X0250; // float32
+            static constexpr std::uintptr_t m_flOutputMin    = 0X0254; // float32
+            static constexpr std::uintptr_t m_flOutputMax    = 0X0258; // float32
+            static constexpr std::uintptr_t m_flRadius       = 0X025C; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_VectorNoise : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput              = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecOutputMin              = 0X01D4; // Vector
-            static constexpr std::uintptr_t m_vecOutputMax              = 0X01E0; // Vector
-            static constexpr std::uintptr_t m_fl4NoiseScale             = 0X01EC; // float32
-            static constexpr std::uintptr_t m_bAdditive                 = 0X01F0; // bool
-            static constexpr std::uintptr_t m_bOffset                   = 0X01F1; // bool
-            static constexpr std::uintptr_t m_flNoiseAnimationTimeScale = 0X01F4; // float32
+            static constexpr std::uintptr_t m_nFieldOutput              = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecOutputMin              = 0X01DC; // Vector
+            static constexpr std::uintptr_t m_vecOutputMax              = 0X01E8; // Vector
+            static constexpr std::uintptr_t m_fl4NoiseScale             = 0X01F4; // float32
+            static constexpr std::uintptr_t m_bAdditive                 = 0X01F8; // bool
+            static constexpr std::uintptr_t m_bOffset                   = 0X01F9; // bool
+            static constexpr std::uintptr_t m_flNoiseAnimationTimeScale = 0X01FC; // float32
         };
 
         // Has Trivial Destructor
@@ -17758,6 +18800,17 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_nParent = 0X0000; // uint16
             static constexpr std::uintptr_t m_nChild  = 0X0002; // uint16
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class MotionSelection {
+        public:
+            static constexpr std::uintptr_t m_nConfigIndex    = 0X0024; // NetVarConfigIndex
+            static constexpr std::uintptr_t m_flCycleZeroTime = 0X0030; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flPlaybackSpeed = 0X003C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flStartTime     = 0X0048; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_nSample         = 0X0054; // int32
         };
 
         // Has Trivial Destructor
@@ -17814,29 +18867,29 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ModelDampenMovement : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_bBoundBox           = 0X01D4; // bool
-            static constexpr std::uintptr_t m_bOutside            = 0X01D5; // bool
-            static constexpr std::uintptr_t m_bUseBones           = 0X01D6; // bool
-            static constexpr std::uintptr_t m_HitboxSetName       = 0X01D7; // char[128]
-            static constexpr std::uintptr_t m_vecPosOffset        = 0X0258; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_fDrag               = 0X0910; // float32
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_bBoundBox           = 0X01DC; // bool
+            static constexpr std::uintptr_t m_bOutside            = 0X01DD; // bool
+            static constexpr std::uintptr_t m_bUseBones           = 0X01DE; // bool
+            static constexpr std::uintptr_t m_HitboxSetName       = 0X01DF; // char[128]
+            static constexpr std::uintptr_t m_vecPosOffset        = 0X0260; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_fDrag               = 0X0918; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SnapshotRigidSkinToBones : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_bTransformNormals   = 0X01D0; // bool
-            static constexpr std::uintptr_t m_bTransformRadii     = 0X01D1; // bool
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D4; // int32
+            static constexpr std::uintptr_t m_bTransformNormals   = 0X01D8; // bool
+            static constexpr std::uintptr_t m_bTransformRadii     = 0X01D9; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01DC; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RandomYawFlip : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flPercent = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flPercent = 0X01E0; // float32
         };
 
         // Construct Allowed
@@ -17850,23 +18903,24 @@ namespace offsets {
         // Construct Allowed
         class CNmChainLookatTask : public CNmPoseTask {
         public:
-            static constexpr std::uintptr_t m_nChainEndBoneIdx               = 0X0058; // int32
-            static constexpr std::uintptr_t m_nNumBonesInChain               = 0X005C; // int32
-            static constexpr std::uintptr_t m_chainForwardDir                = 0X0060; // Vector
-            static constexpr std::uintptr_t m_flBlendWeight                  = 0X006C; // float32
-            static constexpr std::uintptr_t m_flHorizontalAngleLimitDegrees  = 0X0070; // float32
-            static constexpr std::uintptr_t m_flVerticalAngleLimitDegrees    = 0X0074; // float32
-            static constexpr std::uintptr_t m_lookatTarget                   = 0X0078; // Vector
-            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X0084; // bool
-            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X0085; // bool
-            static constexpr std::uintptr_t m_flHorizontalAngleDegrees       = 0X0088; // float32
-            static constexpr std::uintptr_t m_flVerticalAngleDegrees         = 0X008C; // float32
+            static constexpr std::uintptr_t m_nChainEndBoneIdx               = 0X0048; // int32
+            static constexpr std::uintptr_t m_nNumBonesInChain               = 0X004C; // int32
+            static constexpr std::uintptr_t m_chainForwardDir                = 0X0050; // Vector
+            static constexpr std::uintptr_t m_flBlendWeight                  = 0X005C; // float32
+            static constexpr std::uintptr_t m_flHorizontalAngleLimitDegrees  = 0X0060; // float32
+            static constexpr std::uintptr_t m_flVerticalAngleLimitDegrees    = 0X0064; // float32
+            static constexpr std::uintptr_t m_lookatTarget                   = 0X0068; // Vector
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X0074; // bool
+            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X0075; // bool
+            static constexpr std::uintptr_t m_flHorizontalAngleDegrees       = 0X0078; // float32
+            static constexpr std::uintptr_t m_flVerticalAngleDegrees         = 0X007C; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class CNmBodyGroupEvent : public CNmEvent {
         public:
+            static constexpr std::uintptr_t m_target      = 0X0018; // CNmEventTargetEntity_t
             static constexpr std::uintptr_t m_groupName   = 0X0020; // CUtlString
             static constexpr std::uintptr_t m_nGroupValue = 0X0028; // int32
         };
@@ -17881,32 +18935,32 @@ namespace offsets {
         // Construct Allowed
         class C_OP_InterpolateRadius : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flStartTime   = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flEndTime     = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flStartScale  = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flEndScale    = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bEaseInAndOut = 0X01E0; // bool
-            static constexpr std::uintptr_t m_flBias        = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flStartTime   = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flEndTime     = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flStartScale  = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flEndScale    = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bEaseInAndOut = 0X01E8; // bool
+            static constexpr std::uintptr_t m_flBias        = 0X01EC; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ReadFromNeighboringParticle : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldInput     = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput    = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nIncrement      = 0X01D8; // int32
-            static constexpr std::uintptr_t m_DistanceCheck   = 0X01E0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInterpolation = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFieldInput     = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput    = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nIncrement      = 0X01E0; // int32
+            static constexpr std::uintptr_t m_DistanceCheck   = 0X01E8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInterpolation = 0X0358; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointToHMD : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCP1         = 0X01D8; // int32
-            static constexpr std::uintptr_t m_vecCP1Pos    = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_bOrientToHMD = 0X01E8; // bool
+            static constexpr std::uintptr_t m_nCP1         = 0X01E0; // int32
+            static constexpr std::uintptr_t m_vecCP1Pos    = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_bOrientToHMD = 0X01F0; // bool
         };
 
         // Construct Allowed
@@ -17933,16 +18987,6 @@ namespace offsets {
             static constexpr std::uintptr_t m_flEndCPGrowthTime     = 0X0064; // float32
         };
 
-        // Has Trivial Destructor
-        // Construct Allowed
-        class CNmIKBody {
-        public:
-            static constexpr std::uintptr_t m_flMass           = 0X0000; // float32
-            static constexpr std::uintptr_t m_vLocalMassCenter = 0X0004; // Vector
-            static constexpr std::uintptr_t m_vRadius          = 0X0010; // Vector
-            static constexpr std::uintptr_t m_flResistance     = 0X001C; // float32
-        };
-
         // Has VTable
         // Construct Allowed
         class CFloatAnimParameter : public CConcreteAnimParameter {
@@ -17957,29 +19001,29 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapAverageHitboxSpeedtoCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nInControlPointNumber     = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nOutControlPointNumber    = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nField                    = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nHitboxDataType           = 0X01E4; // ParticleHitboxDataSelection_t
-            static constexpr std::uintptr_t m_flInputMin                = 0X01E8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flInputMax                = 0X0358; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flOutputMin               = 0X04C8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flOutputMax               = 0X0638; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nHeightControlPointNumber = 0X07A8; // int32
-            static constexpr std::uintptr_t m_vecComparisonVelocity     = 0X07B0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_HitboxSetName             = 0X0E68; // char[128]
+            static constexpr std::uintptr_t m_nInControlPointNumber     = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nOutControlPointNumber    = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nField                    = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nHitboxDataType           = 0X01EC; // ParticleHitboxDataSelection_t
+            static constexpr std::uintptr_t m_flInputMin                = 0X01F0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInputMax                = 0X0360; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOutputMin               = 0X04D0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flOutputMax               = 0X0640; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nHeightControlPointNumber = 0X07B0; // int32
+            static constexpr std::uintptr_t m_vecComparisonVelocity     = 0X07B8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_HitboxSetName             = 0X0E70; // char[128]
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_SetFloatAttributeToVectorExpression : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nExpression   = 0X01D8; // VectorFloatExpressionType_t
-            static constexpr std::uintptr_t m_vInput1       = 0X01E0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vInput2       = 0X0898; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flOutputRemap = 0X0F50; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nOutputField  = 0X10C0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod    = 0X10C4; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nExpression   = 0X01E0; // VectorFloatExpressionType_t
+            static constexpr std::uintptr_t m_vInput1       = 0X01E8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vInput2       = 0X08A0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flOutputRemap = 0X0F58; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nOutputField  = 0X10C8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod    = 0X10CC; // ParticleSetMethod_t
         };
 
         // Has Trivial Destructor
@@ -18104,30 +19148,30 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ConstrainDistanceToPath : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_fMinDistance     = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flMaxDistance0   = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flMaxDistanceMid = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flMaxDistance1   = 0X01DC; // float32
-            static constexpr std::uintptr_t m_PathParameters   = 0X01E0; // CPathParameters
-            static constexpr std::uintptr_t m_flTravelTime     = 0X0220; // float32
-            static constexpr std::uintptr_t m_nFieldScale      = 0X0224; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nManualTField    = 0X0228; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_fMinDistance     = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flMaxDistance0   = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flMaxDistanceMid = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flMaxDistance1   = 0X01E4; // float32
+            static constexpr std::uintptr_t m_PathParameters   = 0X01F0; // CPathParameters
+            static constexpr std::uintptr_t m_flTravelTime     = 0X0230; // float32
+            static constexpr std::uintptr_t m_nFieldScale      = 0X0234; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nManualTField    = 0X0238; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_DecayClampCount : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nCount = 0X01D0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nCount = 0X01D8; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RandomAlphaWindowThreshold : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flMin      = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flMax      = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flExponent = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flMin      = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flMax      = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flExponent = 0X01E8; // float32
         };
 
         // Construct Allowed
@@ -18168,6 +19212,23 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        class CSndSeqInstMidiSampler : public CSndSeqInstBaseSchema {
+        public:
+            static constexpr std::uintptr_t m_bIsSoundEvent      = 0X0020; // bool
+            static constexpr std::uintptr_t m_bStopPrevious      = 0X0021; // bool
+            static constexpr std::uintptr_t m_nMinNote           = 0X0022; // uint8
+            static constexpr std::uintptr_t m_nMaxNote           = 0X0023; // uint8
+            static constexpr std::uintptr_t m_flMinVelocityAtten = 0X0024; // float32
+            static constexpr std::uintptr_t m_flMaxVelocityAtten = 0X0028; // float32
+            static constexpr std::uintptr_t m_flAttack           = 0X002C; // float32
+            static constexpr std::uintptr_t m_flRelease          = 0X0030; // float32
+            static constexpr std::uintptr_t m_bBeatEnvelopes     = 0X0034; // bool
+            static constexpr std::uintptr_t m_nNextVoiceSlot     = 0X00D4; // uint8
+            static constexpr std::uintptr_t m_hSoundEventHash    = 0X00D8; // uint32
+        };
+
+        // Has VTable
+        // Construct Allowed
         class CNmCurrentSyncEventNode__CDefinition : public CNmFloatValueNode__CDefinition {
         public:
             static constexpr std::uintptr_t m_nSourceStateNodeIdx = 0X0010; // int16
@@ -18178,13 +19239,13 @@ namespace offsets {
         // Construct Allowed
         class C_OP_DecayMaintainCount : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nParticlesToMaintain  = 0X01D0; // int32
-            static constexpr std::uintptr_t m_flDecayDelay          = 0X01D4; // float32
-            static constexpr std::uintptr_t m_nSnapshotControlPoint = 0X01D8; // int32
-            static constexpr std::uintptr_t m_strSnapshotSubset     = 0X01E0; // CUtlString
-            static constexpr std::uintptr_t m_bLifespanDecay        = 0X01E8; // bool
-            static constexpr std::uintptr_t m_flScale               = 0X01F0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bKillNewest           = 0X0360; // bool
+            static constexpr std::uintptr_t m_nParticlesToMaintain  = 0X01D8; // int32
+            static constexpr std::uintptr_t m_flDecayDelay          = 0X01DC; // float32
+            static constexpr std::uintptr_t m_nSnapshotControlPoint = 0X01E0; // int32
+            static constexpr std::uintptr_t m_strSnapshotSubset     = 0X01E8; // CUtlString
+            static constexpr std::uintptr_t m_bLifespanDecay        = 0X01F0; // bool
+            static constexpr std::uintptr_t m_flScale               = 0X01F8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bKillNewest           = 0X0368; // bool
         };
 
         // Has VTable
@@ -18206,6 +19267,11 @@ namespace offsets {
             static constexpr std::uintptr_t m_hGraph      = 0X0008; // CStrongHandle<InfoForResourceTypeCNmGraphDefinition>
         };
 
+        struct SceneInterestTags_t {
+        public:
+            static constexpr std::uintptr_t m_Tags = 0X0000; // CUtlVector<CUtlString>
+        };
+
         // Has VTable
         // Construct Allowed
         class C_INIT_RandomNamedModelSequence : public C_INIT_RandomNamedModelElement {
@@ -18216,26 +19282,26 @@ namespace offsets {
         // Construct Allowed
         class C_OP_PlayEndCapWhenFinished : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_bFireOnEmissionEnd = 0X01D8; // bool
-            static constexpr std::uintptr_t m_bIncludeChildren   = 0X01D9; // bool
+            static constexpr std::uintptr_t m_bFireOnEmissionEnd = 0X01E0; // bool
+            static constexpr std::uintptr_t m_bIncludeChildren   = 0X01E1; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RandomSecondSequence : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nSequenceMin = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nSequenceMax = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nSequenceMin = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nSequenceMax = 0X01E4; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LagCompensation : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nDesiredVelocityCP      = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nLatencyCP              = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nLatencyCPField         = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nDesiredVelocityCPField = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nDesiredVelocityCP      = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nLatencyCP              = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nLatencyCPField         = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nDesiredVelocityCPField = 0X01E4; // int32
         };
 
         // Has VTable
@@ -18269,20 +19335,20 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_CreateOnModelAtHeight : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_bUseBones             = 0X01D8; // bool
-            static constexpr std::uintptr_t m_bForceZ               = 0X01D9; // bool
-            static constexpr std::uintptr_t m_nControlPointNumber   = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nHeightCP             = 0X01E0; // int32
-            static constexpr std::uintptr_t m_bUseWaterHeight       = 0X01E4; // bool
-            static constexpr std::uintptr_t m_flDesiredHeight       = 0X01E8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_vecHitBoxScale        = 0X0358; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_vecDirectionBias      = 0X0A10; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_nBiasType             = 0X10C8; // ParticleHitboxBiasType_t
-            static constexpr std::uintptr_t m_bLocalCoords          = 0X10CC; // bool
-            static constexpr std::uintptr_t m_bPreferMovingBoxes    = 0X10CD; // bool
-            static constexpr std::uintptr_t m_HitboxSetName         = 0X10CE; // char[128]
-            static constexpr std::uintptr_t m_flHitboxVelocityScale = 0X1150; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flMaxBoneVelocity     = 0X12C0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bUseBones             = 0X01E0; // bool
+            static constexpr std::uintptr_t m_bForceZ               = 0X01E1; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber   = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nHeightCP             = 0X01E8; // int32
+            static constexpr std::uintptr_t m_bUseWaterHeight       = 0X01EC; // bool
+            static constexpr std::uintptr_t m_flDesiredHeight       = 0X01F0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_vecHitBoxScale        = 0X0360; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_vecDirectionBias      = 0X0A18; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_nBiasType             = 0X10D0; // ParticleHitboxBiasType_t
+            static constexpr std::uintptr_t m_bLocalCoords          = 0X10D4; // bool
+            static constexpr std::uintptr_t m_bPreferMovingBoxes    = 0X10D5; // bool
+            static constexpr std::uintptr_t m_HitboxSetName         = 0X10D6; // char[128]
+            static constexpr std::uintptr_t m_flHitboxVelocityScale = 0X1158; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flMaxBoneVelocity     = 0X12C8; // CParticleCollectionFloatInput
         };
 
         // Has VTable
@@ -18308,29 +19374,29 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_MoveBetweenPoints : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flSpeedMin             = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flSpeedMax             = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flEndSpread            = 0X04B8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flStartOffset          = 0X0628; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flEndOffset            = 0X0798; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nEndControlPointNumber = 0X0908; // int32
-            static constexpr std::uintptr_t m_bTrailBias             = 0X090C; // bool
+            static constexpr std::uintptr_t m_flSpeedMin             = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flSpeedMax             = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flEndSpread            = 0X04C0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flStartOffset          = 0X0630; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flEndOffset            = 0X07A0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nEndControlPointNumber = 0X0910; // int32
+            static constexpr std::uintptr_t m_bTrailBias             = 0X0914; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_SetHitboxToModel : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nForceInModel       = 0X01DC; // int32
-            static constexpr std::uintptr_t m_bEvenDistribution   = 0X01E0; // bool
-            static constexpr std::uintptr_t m_nDesiredHitbox      = 0X01E4; // int32
-            static constexpr std::uintptr_t m_vecHitBoxScale      = 0X01E8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_vecDirectionBias    = 0X08A0; // Vector
-            static constexpr std::uintptr_t m_bMaintainHitbox     = 0X08AC; // bool
-            static constexpr std::uintptr_t m_bUseBones           = 0X08AD; // bool
-            static constexpr std::uintptr_t m_HitboxSetName       = 0X08AE; // char[128]
-            static constexpr std::uintptr_t m_flShellSize         = 0X0930; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nForceInModel       = 0X01E4; // int32
+            static constexpr std::uintptr_t m_bEvenDistribution   = 0X01E8; // bool
+            static constexpr std::uintptr_t m_nDesiredHitbox      = 0X01EC; // int32
+            static constexpr std::uintptr_t m_vecHitBoxScale      = 0X01F0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_vecDirectionBias    = 0X08A8; // Vector
+            static constexpr std::uintptr_t m_bMaintainHitbox     = 0X08B4; // bool
+            static constexpr std::uintptr_t m_bUseBones           = 0X08B5; // bool
+            static constexpr std::uintptr_t m_HitboxSetName       = 0X08B6; // char[128]
+            static constexpr std::uintptr_t m_flShellSize         = 0X0938; // CParticleCollectionFloatInput
         };
 
         class CAnimGraphControllerManager {
@@ -18350,21 +19416,21 @@ namespace offsets {
         // Construct Allowed
         class C_OP_DistanceBetweenCPsToCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nStartCP           = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nEndCP             = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nOutputCP          = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nOutputCPField     = 0X01E4; // int32
-            static constexpr std::uintptr_t m_bSetOnce           = 0X01E8; // bool
-            static constexpr std::uintptr_t m_flInputMin         = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flInputMax         = 0X01F0; // float32
-            static constexpr std::uintptr_t m_flOutputMin        = 0X01F4; // float32
-            static constexpr std::uintptr_t m_flOutputMax        = 0X01F8; // float32
-            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X01FC; // float32
-            static constexpr std::uintptr_t m_flLOSScale         = 0X0200; // float32
-            static constexpr std::uintptr_t m_bLOS               = 0X0204; // bool
-            static constexpr std::uintptr_t m_CollisionGroupName = 0X0205; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet          = 0X0288; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_nSetParent         = 0X028C; // ParticleParentSetMode_t
+            static constexpr std::uintptr_t m_nStartCP           = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nEndCP             = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nOutputCP          = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nOutputCPField     = 0X01EC; // int32
+            static constexpr std::uintptr_t m_bSetOnce           = 0X01F0; // bool
+            static constexpr std::uintptr_t m_flInputMin         = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flInputMax         = 0X01F8; // float32
+            static constexpr std::uintptr_t m_flOutputMin        = 0X01FC; // float32
+            static constexpr std::uintptr_t m_flOutputMax        = 0X0200; // float32
+            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X0204; // float32
+            static constexpr std::uintptr_t m_flLOSScale         = 0X0208; // float32
+            static constexpr std::uintptr_t m_bLOS               = 0X020C; // bool
+            static constexpr std::uintptr_t m_CollisionGroupName = 0X020D; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet          = 0X0290; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_nSetParent         = 0X0294; // ParticleParentSetMode_t
         };
 
         // Has VTable
@@ -18389,21 +19455,40 @@ namespace offsets {
             static constexpr std::uintptr_t m_bakedShadows               = 0X0030; // CUtlVector<BakedLightingInfo_t::BakedShadowAssignment_t>
         };
 
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        struct KeyGroup_t {
+        public:
+            static constexpr std::uintptr_t nCenterNote       = 0X0000; // uint8
+            static constexpr std::uintptr_t nMinNote          = 0X0001; // uint8
+            static constexpr std::uintptr_t nMaxNote          = 0X0002; // uint8
+            static constexpr std::uintptr_t nNumVelocityZones = 0X0003; // uint8
+            static constexpr std::uintptr_t pVelocityZones    = 0X0008; // VelocityZone_t*
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct TargetSelectorInstanceData_t {
+        public:
+            static constexpr std::uintptr_t m_currentIndex               = 0X0000; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_vMSRootMotionAnlyzerTarget = 0X001C; // CAnimNetVar<Vector>
+        };
+
         // Has VTable
         // Construct Allowed
         class CNmIDEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_ID          = 0X0020; // CGlobalSymbol
-            static constexpr std::uintptr_t m_secondaryID = 0X0028; // CGlobalSymbol
+            static constexpr std::uintptr_t m_ID          = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_secondaryID = 0X0020; // CGlobalSymbol
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapDistanceToLineSegmentToScalar : public C_OP_RemapDistanceToLineSegmentBase {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput     = 0X01E8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flMinOutputValue = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flMaxOutputValue = 0X01F0; // float32
+            static constexpr std::uintptr_t m_nFieldOutput     = 0X01F0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flMinOutputValue = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flMaxOutputValue = 0X01F8; // float32
         };
 
         // Has VTable
@@ -18451,12 +19536,6 @@ namespace offsets {
         struct PulseRuntimeEntrypointIndex_t {
         public:
             static constexpr std::uintptr_t m_Value = 0X0000; // int32
-        };
-
-        // Has VTable
-        // Construct Allowed
-        class CNmEventConsumerHudModelArmsAttributes : public CNmEventConsumerAttributes {
-        public:
         };
 
         // Has VTable
@@ -18513,30 +19592,30 @@ namespace offsets {
         // Construct Allowed
         class C_OP_PinRopeSegmentParticleToParent : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nParticleSelection = 0X01D0; // ParticleSelection_t
-            static constexpr std::uintptr_t m_nParticleNumber    = 0X01D8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flInterpolation    = 0X0348; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nParticleSelection = 0X01D8; // ParticleSelection_t
+            static constexpr std::uintptr_t m_nParticleNumber    = 0X01E0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flInterpolation    = 0X0350; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ColorInterpolateRandom : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_ColorFadeMin    = 0X01D0; // Color
-            static constexpr std::uintptr_t m_ColorFadeMax    = 0X01EC; // Color
-            static constexpr std::uintptr_t m_flFadeStartTime = 0X01FC; // float32
-            static constexpr std::uintptr_t m_flFadeEndTime   = 0X0200; // float32
-            static constexpr std::uintptr_t m_nFieldOutput    = 0X0204; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bEaseInOut      = 0X0208; // bool
+            static constexpr std::uintptr_t m_ColorFadeMin    = 0X01D8; // Color
+            static constexpr std::uintptr_t m_ColorFadeMax    = 0X01F4; // Color
+            static constexpr std::uintptr_t m_flFadeStartTime = 0X0204; // float32
+            static constexpr std::uintptr_t m_flFadeEndTime   = 0X0208; // float32
+            static constexpr std::uintptr_t m_nFieldOutput    = 0X020C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bEaseInOut      = 0X0210; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderFlattenGrass : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flFlattenStrength      = 0X0220; // float32
-            static constexpr std::uintptr_t m_nStrengthFieldOverride = 0X0224; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flRadiusScale          = 0X0228; // float32
+            static constexpr std::uintptr_t m_flFlattenStrength      = 0X0228; // float32
+            static constexpr std::uintptr_t m_nStrengthFieldOverride = 0X022C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flRadiusScale          = 0X0230; // float32
         };
 
         // Construct Allowed
@@ -18556,25 +19635,25 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_StatusEffectCitadel : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flSFXColorWarpAmount = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flSFXNormalAmount    = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flSFXMetalnessAmount = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flSFXRoughnessAmount = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flSFXSelfIllumAmount = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flSFXSScale          = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flSFXSScrollX        = 0X01F0; // float32
-            static constexpr std::uintptr_t m_flSFXSScrollY        = 0X01F4; // float32
-            static constexpr std::uintptr_t m_flSFXSScrollZ        = 0X01F8; // float32
-            static constexpr std::uintptr_t m_flSFXSOffsetX        = 0X01FC; // float32
-            static constexpr std::uintptr_t m_flSFXSOffsetY        = 0X0200; // float32
-            static constexpr std::uintptr_t m_flSFXSOffsetZ        = 0X0204; // float32
-            static constexpr std::uintptr_t m_nDetailCombo         = 0X0208; // DetailCombo_t
-            static constexpr std::uintptr_t m_flSFXSDetailAmount   = 0X020C; // float32
-            static constexpr std::uintptr_t m_flSFXSDetailScale    = 0X0210; // float32
-            static constexpr std::uintptr_t m_flSFXSDetailScrollX  = 0X0214; // float32
-            static constexpr std::uintptr_t m_flSFXSDetailScrollY  = 0X0218; // float32
-            static constexpr std::uintptr_t m_flSFXSDetailScrollZ  = 0X021C; // float32
-            static constexpr std::uintptr_t m_flSFXSUseModelUVs    = 0X0220; // float32
+            static constexpr std::uintptr_t m_flSFXColorWarpAmount = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flSFXNormalAmount    = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flSFXMetalnessAmount = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flSFXRoughnessAmount = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flSFXSelfIllumAmount = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flSFXSScale          = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flSFXSScrollX        = 0X01F8; // float32
+            static constexpr std::uintptr_t m_flSFXSScrollY        = 0X01FC; // float32
+            static constexpr std::uintptr_t m_flSFXSScrollZ        = 0X0200; // float32
+            static constexpr std::uintptr_t m_flSFXSOffsetX        = 0X0204; // float32
+            static constexpr std::uintptr_t m_flSFXSOffsetY        = 0X0208; // float32
+            static constexpr std::uintptr_t m_flSFXSOffsetZ        = 0X020C; // float32
+            static constexpr std::uintptr_t m_nDetailCombo         = 0X0210; // DetailCombo_t
+            static constexpr std::uintptr_t m_flSFXSDetailAmount   = 0X0214; // float32
+            static constexpr std::uintptr_t m_flSFXSDetailScale    = 0X0218; // float32
+            static constexpr std::uintptr_t m_flSFXSDetailScrollX  = 0X021C; // float32
+            static constexpr std::uintptr_t m_flSFXSDetailScrollY  = 0X0220; // float32
+            static constexpr std::uintptr_t m_flSFXSDetailScrollZ  = 0X0224; // float32
+            static constexpr std::uintptr_t m_flSFXSUseModelUVs    = 0X0228; // float32
         };
 
         // Has VTable
@@ -18597,34 +19676,34 @@ namespace offsets {
         // Construct Allowed
         class C_OP_DistanceToTransform : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput       = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin         = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInputMax         = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMin        = 0X04B8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputMax        = 0X0628; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_TransformStart     = 0X0798; // CParticleTransformInput
-            static constexpr std::uintptr_t m_bLOS               = 0X0800; // bool
-            static constexpr std::uintptr_t m_CollisionGroupName = 0X0801; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet          = 0X0884; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X0888; // float32
-            static constexpr std::uintptr_t m_flLOSScale         = 0X088C; // float32
-            static constexpr std::uintptr_t m_nSetMethod         = 0X0890; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bActiveRange       = 0X0894; // bool
-            static constexpr std::uintptr_t m_bAdditive          = 0X0895; // bool
-            static constexpr std::uintptr_t m_vecComponentScale  = 0X0898; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nFieldOutput       = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin         = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInputMax         = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMin        = 0X04C0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputMax        = 0X0630; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_TransformStart     = 0X07A0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_bLOS               = 0X0808; // bool
+            static constexpr std::uintptr_t m_CollisionGroupName = 0X0809; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet          = 0X088C; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_flMaxTraceLength   = 0X0890; // float32
+            static constexpr std::uintptr_t m_flLOSScale         = 0X0894; // float32
+            static constexpr std::uintptr_t m_nSetMethod         = 0X0898; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bActiveRange       = 0X089C; // bool
+            static constexpr std::uintptr_t m_bAdditive          = 0X089D; // bool
+            static constexpr std::uintptr_t m_vecComponentScale  = 0X08A0; // CPerParticleVecInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_CurlNoiseForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_nNoiseType     = 0X01E0; // ParticleDirectionNoiseType_t
-            static constexpr std::uintptr_t m_vecNoiseFreq   = 0X01E8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecNoiseScale  = 0X08A0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecOffset      = 0X0F58; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecOffsetRate  = 0X1610; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flWorleySeed   = 0X1CC8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flWorleyJitter = 0X1E38; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nNoiseType     = 0X01E8; // ParticleDirectionNoiseType_t
+            static constexpr std::uintptr_t m_vecNoiseFreq   = 0X01F0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecNoiseScale  = 0X08A8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecOffset      = 0X0F60; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecOffsetRate  = 0X1618; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flWorleySeed   = 0X1CD0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flWorleyJitter = 0X1E40; // CPerParticleFloatInput
         };
 
         // Construct Allowed
@@ -18655,18 +19734,36 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        class C_OP_RenderVolumetricEmitter : public CParticleFunctionRenderer {
+        public:
+            static constexpr std::uintptr_t m_strChannelType = 0X0228; // CUtlString
+            static constexpr std::uintptr_t m_nType          = 0X0230; // ParticleVolumetricSmokeType_t
+            static constexpr std::uintptr_t m_nCreationType  = 0X0234; // ParticleVolumetricSmokeCreationType_t
+            static constexpr std::uintptr_t m_nEventType     = 0X0238; // EventTypeSelection_t
+            static constexpr std::uintptr_t m_vecPos         = 0X0240; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecVelocity    = 0X08F8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flRadius       = 0X0FB0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flDensity      = 0X1120; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flTemperature  = 0X1290; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMagnitude    = 0X1400; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flKillRadius   = 0X1570; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flFalloff      = 0X16E0; // CPerParticleFloatInput
+        };
+
+        // Has VTable
+        // Construct Allowed
         class C_OP_PercentageBetweenTransformsVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin     = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flInputMax     = 0X01D8; // float32
-            static constexpr std::uintptr_t m_vecOutputMin   = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_vecOutputMax   = 0X01E8; // Vector
-            static constexpr std::uintptr_t m_TransformStart = 0X01F8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_TransformEnd   = 0X0260; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nSetMethod     = 0X02C8; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bActiveRange   = 0X02CC; // bool
-            static constexpr std::uintptr_t m_bRadialCheck   = 0X02CD; // bool
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin     = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flInputMax     = 0X01E0; // float32
+            static constexpr std::uintptr_t m_vecOutputMin   = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_vecOutputMax   = 0X01F0; // Vector
+            static constexpr std::uintptr_t m_TransformStart = 0X0200; // CParticleTransformInput
+            static constexpr std::uintptr_t m_TransformEnd   = 0X0268; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nSetMethod     = 0X02D0; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bActiveRange   = 0X02D4; // bool
+            static constexpr std::uintptr_t m_bRadialCheck   = 0X02D5; // bool
         };
 
         // Has VTable
@@ -18703,25 +19800,25 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetControlPointToWaterSurface : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nSourceCP          = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nDestCP            = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nFlowCP            = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nActiveCP          = 0X01E4; // int32
-            static constexpr std::uintptr_t m_nActiveCPField     = 0X01E8; // int32
-            static constexpr std::uintptr_t m_flRetestRate       = 0X01F0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bAdaptiveThreshold = 0X0360; // bool
+            static constexpr std::uintptr_t m_nSourceCP          = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nDestCP            = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nFlowCP            = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nActiveCP          = 0X01EC; // int32
+            static constexpr std::uintptr_t m_nActiveCPField     = 0X01F0; // int32
+            static constexpr std::uintptr_t m_flRetestRate       = 0X01F8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bAdaptiveThreshold = 0X0368; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetAttributeToScalarExpression : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nExpression   = 0X01D0; // ScalarExpressionType_t
-            static constexpr std::uintptr_t m_flInput1      = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flInput2      = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputRemap = 0X04B8; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nOutputField  = 0X0628; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod    = 0X062C; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nExpression   = 0X01D8; // ScalarExpressionType_t
+            static constexpr std::uintptr_t m_flInput1      = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flInput2      = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputRemap = 0X04C0; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nOutputField  = 0X0630; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod    = 0X0634; // ParticleSetMethod_t
         };
 
         // Has Trivial Destructor
@@ -18780,27 +19877,27 @@ namespace offsets {
         // Construct Allowed
         class C_OP_WaterImpulseRenderer : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_vecPos        = 0X0220; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flRadius      = 0X08D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flMagnitude   = 0X0A48; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flShape       = 0X0BB8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flWindSpeed   = 0X0D28; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flWobble      = 0X0E98; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bIsRadialWind = 0X1008; // bool
-            static constexpr std::uintptr_t m_nEventType    = 0X100C; // EventTypeSelection_t
+            static constexpr std::uintptr_t m_vecPos        = 0X0228; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flRadius      = 0X08E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMagnitude   = 0X0A50; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flShape       = 0X0BC0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flWindSpeed   = 0X0D30; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flWobble      = 0X0EA0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bIsRadialWind = 0X1010; // bool
+            static constexpr std::uintptr_t m_nEventType    = 0X1014; // EventTypeSelection_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetChildControlPoints : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nChildGroupID      = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFirstControlPoint = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nNumControlPoints  = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nFirstSourcePoint  = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bReverse           = 0X0350; // bool
-            static constexpr std::uintptr_t m_bSetOrientation    = 0X0351; // bool
-            static constexpr std::uintptr_t m_nOrientation       = 0X0354; // ParticleOrientationType_t
+            static constexpr std::uintptr_t m_nChildGroupID      = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFirstControlPoint = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nNumControlPoints  = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nFirstSourcePoint  = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bReverse           = 0X0358; // bool
+            static constexpr std::uintptr_t m_bSetOrientation    = 0X0359; // bool
+            static constexpr std::uintptr_t m_nOrientation       = 0X035C; // ParticleOrientationType_t
         };
 
         // Construct Allowed
@@ -18853,31 +19950,31 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_RandomTrailLength : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flMinLength          = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flMaxLength          = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flLengthRandExponent = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flMinLength          = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flMaxLength          = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flLengthRandExponent = 0X01E8; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapVectorComponentToScalar : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldInput  = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nComponent   = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldInput  = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nComponent   = 0X01E0; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RtEnvCull : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_vecTestDir          = 0X01D0; // Vector
-            static constexpr std::uintptr_t m_vecTestNormal       = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_bCullOnMiss         = 0X01E8; // bool
-            static constexpr std::uintptr_t m_bStickInsteadOfCull = 0X01E9; // bool
-            static constexpr std::uintptr_t m_RtEnvName           = 0X01EA; // char[128]
-            static constexpr std::uintptr_t m_nRTEnvCP            = 0X026C; // int32
-            static constexpr std::uintptr_t m_nComponent          = 0X0270; // int32
+            static constexpr std::uintptr_t m_vecTestDir          = 0X01D8; // Vector
+            static constexpr std::uintptr_t m_vecTestNormal       = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_bCullOnMiss         = 0X01F0; // bool
+            static constexpr std::uintptr_t m_bStickInsteadOfCull = 0X01F1; // bool
+            static constexpr std::uintptr_t m_RtEnvName           = 0X01F2; // char[128]
+            static constexpr std::uintptr_t m_nRTEnvCP            = 0X0274; // int32
+            static constexpr std::uintptr_t m_nComponent          = 0X0278; // int32
         };
 
         // Has VTable
@@ -18890,12 +19987,12 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RampScalarLinear : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_RateMin         = 0X01D0; // float32
-            static constexpr std::uintptr_t m_RateMax         = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flStartTime_min = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flStartTime_max = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flEndTime_min   = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flEndTime_max   = 0X01E4; // float32
+            static constexpr std::uintptr_t m_RateMin         = 0X01D8; // float32
+            static constexpr std::uintptr_t m_RateMax         = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flStartTime_min = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flStartTime_max = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flEndTime_min   = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flEndTime_max   = 0X01EC; // float32
             static constexpr std::uintptr_t m_nField          = 0X0210; // ParticleAttributeIndex_t
             static constexpr std::uintptr_t m_bProportionalOp = 0X0214; // bool
         };
@@ -18930,6 +20027,20 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        class CNmFootIKNode__CDefinition : public CNmPassthroughNode__CDefinition {
+        public:
+            static constexpr std::uintptr_t m_leftEffectorBoneID    = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_rightEffectorBoneID   = 0X0020; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nLeftTargetNodeIdx    = 0X0028; // int16
+            static constexpr std::uintptr_t m_nRightTargetNodeIdx   = 0X002A; // int16
+            static constexpr std::uintptr_t m_nEnabledNodeIdx       = 0X002C; // int16
+            static constexpr std::uintptr_t m_flBlendTimeSeconds    = 0X0030; // float32
+            static constexpr std::uintptr_t m_blendMode             = 0X0034; // NmIKBlendMode_t
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace = 0X0035; // bool
+        };
+
+        // Has VTable
+        // Construct Allowed
         class CNmOrientationWarpNode__CDefinition : public CNmPoseNode__CDefinition {
         public:
             static constexpr std::uintptr_t m_nClipReferenceNodeIdx        = 0X0010; // int16
@@ -18952,25 +20063,25 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetControlPointFromObjectScale : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCPInput  = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nCPOutput = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nCPInput  = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nCPOutput = 0X01E4; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_CPOffsetToPercentageBetweenCPs : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flInputMin   = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flInputMax   = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flInputBias  = 0X01D8; // float32
-            static constexpr std::uintptr_t m_nStartCP     = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nEndCP       = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nOffsetCP    = 0X01E4; // int32
-            static constexpr std::uintptr_t m_nOuputCP     = 0X01E8; // int32
-            static constexpr std::uintptr_t m_nInputCP     = 0X01EC; // int32
-            static constexpr std::uintptr_t m_bRadialCheck = 0X01F0; // bool
-            static constexpr std::uintptr_t m_bScaleOffset = 0X01F1; // bool
-            static constexpr std::uintptr_t m_vecOffset    = 0X01F4; // Vector
+            static constexpr std::uintptr_t m_flInputMin   = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flInputMax   = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flInputBias  = 0X01E0; // float32
+            static constexpr std::uintptr_t m_nStartCP     = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nEndCP       = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nOffsetCP    = 0X01EC; // int32
+            static constexpr std::uintptr_t m_nOuputCP     = 0X01F0; // int32
+            static constexpr std::uintptr_t m_nInputCP     = 0X01F4; // int32
+            static constexpr std::uintptr_t m_bRadialCheck = 0X01F8; // bool
+            static constexpr std::uintptr_t m_bScaleOffset = 0X01F9; // bool
+            static constexpr std::uintptr_t m_vecOffset    = 0X01FC; // Vector
         };
 
         // Has VTable
@@ -18990,6 +20101,7 @@ namespace offsets {
         };
 
         // Has Trivial Destructor
+        // Construct Allowed
         class CSoundEnvelope {
         public:
             static constexpr std::uintptr_t m_current     = 0X0000; // float32
@@ -19015,10 +20127,10 @@ namespace offsets {
         // Construct Allowed
         class C_OP_FadeIn : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flFadeInTimeMin = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flFadeInTimeMax = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flFadeInTimeExp = 0X01D8; // float32
-            static constexpr std::uintptr_t m_bProportional   = 0X01DC; // bool
+            static constexpr std::uintptr_t m_flFadeInTimeMin = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flFadeInTimeMax = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flFadeInTimeExp = 0X01E0; // float32
+            static constexpr std::uintptr_t m_bProportional   = 0X01E4; // bool
         };
 
         // Has Trivial Destructor
@@ -19031,50 +20143,51 @@ namespace offsets {
         // Construct Allowed
         struct ModelMeshBufferData_t {
         public:
-            static constexpr std::uintptr_t m_nBlockIndex           = 0X0000; // int32
-            static constexpr std::uintptr_t m_nElementCount         = 0X0004; // uint32
-            static constexpr std::uintptr_t m_nElementSizeInBytes   = 0X0008; // uint32
-            static constexpr std::uintptr_t m_bMeshoptCompressed    = 0X000C; // bool
-            static constexpr std::uintptr_t m_bMeshoptIndexSequence = 0X000D; // bool
-            static constexpr std::uintptr_t m_bCompressedZSTD       = 0X000E; // bool
-            static constexpr std::uintptr_t m_bCreateBufferSRV      = 0X000F; // bool
-            static constexpr std::uintptr_t m_bCreateBufferUAV      = 0X0010; // bool
-            static constexpr std::uintptr_t m_bCreateRawBuffer      = 0X0011; // bool
-            static constexpr std::uintptr_t m_bCreatePooledBuffer   = 0X0012; // bool
-            static constexpr std::uintptr_t m_nBufferUsage          = 0X0013; // uint8
-            static constexpr std::uintptr_t m_inputLayoutFields     = 0X0018; // CUtlVector<RenderInputLayoutField_t>
+            static constexpr std::uintptr_t m_nBlockIndex                  = 0X0000; // int32
+            static constexpr std::uintptr_t m_nElementCount                = 0X0004; // uint32
+            static constexpr std::uintptr_t m_nElementSizeInBytes          = 0X0008; // uint32
+            static constexpr std::uintptr_t m_bMeshoptCompressed           = 0X000C; // bool
+            static constexpr std::uintptr_t m_bMeshoptIndexSequence        = 0X000D; // bool
+            static constexpr std::uintptr_t m_nMeshoptMeshletEncodeVersion = 0X000E; // int8
+            static constexpr std::uintptr_t m_bCompressedZSTD              = 0X000F; // bool
+            static constexpr std::uintptr_t m_bCreateBufferSRV             = 0X0010; // bool
+            static constexpr std::uintptr_t m_bCreateBufferUAV             = 0X0011; // bool
+            static constexpr std::uintptr_t m_bCreateRawBuffer             = 0X0012; // bool
+            static constexpr std::uintptr_t m_bCreatePooledBuffer          = 0X0013; // bool
+            static constexpr std::uintptr_t m_nBufferUsage                 = 0X0014; // uint8
+            static constexpr std::uintptr_t m_inputLayoutFields            = 0X0018; // CUtlVector<RenderInputLayoutField_t>
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RandomAlpha : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nAlphaMin           = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nAlphaMax           = 0X01E0; // int32
-            static constexpr std::uintptr_t m_flAlphaRandExponent = 0X01EC; // float32
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nAlphaMin           = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nAlphaMax           = 0X01E8; // int32
+            static constexpr std::uintptr_t m_flAlphaRandExponent = 0X01F4; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderVRHapticEvent : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_nHand         = 0X0220; // ParticleVRHandChoiceList_t
-            static constexpr std::uintptr_t m_nOutputHandCP = 0X0224; // int32
-            static constexpr std::uintptr_t m_nOutputField  = 0X0228; // int32
-            static constexpr std::uintptr_t m_flAmplitude   = 0X0230; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nHand         = 0X0228; // ParticleVRHandChoiceList_t
+            static constexpr std::uintptr_t m_nOutputHandCP = 0X022C; // int32
+            static constexpr std::uintptr_t m_nOutputField  = 0X0230; // int32
+            static constexpr std::uintptr_t m_flAmplitude   = 0X0238; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CreateSequentialPathV2 : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_fMaxDistance  = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flNumToAssign = 0X0348; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bLoop         = 0X04B8; // bool
-            static constexpr std::uintptr_t m_bCPPairs      = 0X04B9; // bool
-            static constexpr std::uintptr_t m_bSaveOffset   = 0X04BA; // bool
-            static constexpr std::uintptr_t m_PathParams    = 0X04C0; // CPathParameters
+            static constexpr std::uintptr_t m_fMaxDistance  = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flNumToAssign = 0X0350; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bLoop         = 0X04C0; // bool
+            static constexpr std::uintptr_t m_bCPPairs      = 0X04C1; // bool
+            static constexpr std::uintptr_t m_bSaveOffset   = 0X04C2; // bool
+            static constexpr std::uintptr_t m_PathParams    = 0X04D0; // CPathParameters
         };
 
         // Has Trivial Destructor
@@ -19091,19 +20204,19 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderPostProcessing : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_flPostProcessStrength = 0X0220; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_hPostTexture          = 0X0390; // CStrongHandle<InfoForResourceTypeCPostProcessingResource>
-            static constexpr std::uintptr_t m_nPriority             = 0X0398; // ParticlePostProcessPriorityGroup_t
+            static constexpr std::uintptr_t m_flPostProcessStrength = 0X0228; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_hPostTexture          = 0X0398; // CStrongHandle<InfoForResourceTypeCPostProcessingResource>
+            static constexpr std::uintptr_t m_nPriority             = 0X03A0; // ParticlePostProcessPriorityGroup_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LockToSavedSequentialPath : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flFadeStart = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flFadeEnd   = 0X01D8; // float32
-            static constexpr std::uintptr_t m_bCPPairs    = 0X01DC; // bool
-            static constexpr std::uintptr_t m_PathParams  = 0X01E0; // CPathParameters
+            static constexpr std::uintptr_t m_flFadeStart = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flFadeEnd   = 0X01E0; // float32
+            static constexpr std::uintptr_t m_bCPPairs    = 0X01E4; // bool
+            static constexpr std::uintptr_t m_PathParams  = 0X01F0; // CPathParameters
         };
 
         // Has Trivial Destructor
@@ -19131,6 +20244,23 @@ namespace offsets {
         class CNmIsExternalPoseSetNode__CDefinition : public CNmBoolValueNode__CDefinition {
         public:
             static constexpr std::uintptr_t m_nExternalPoseNodeIdx = 0X0010; // int16
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PlayerInputMotorInstanceData_t {
+        public:
+            static constexpr std::uintptr_t m_vInputVectorWS  = 0X0000; // Vector
+            static constexpr std::uintptr_t m_vVelocityWS     = 0X000C; // Vector
+            static constexpr std::uintptr_t m_vAccelerationWS = 0X0018; // Vector
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CCycleClipInstanceData {
+        public:
+            static constexpr std::uintptr_t m_flCycle     = 0X0000; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flPrevCycle = 0X000C; // CAnimNetVar<float32>
         };
 
         // Has Trivial Destructor
@@ -19200,25 +20330,25 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_ChaoticAttractor : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flAParm       = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flBParm       = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flCParm       = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flDParm       = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flScale       = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flSpeedMin    = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flSpeedMax    = 0X01F0; // float32
-            static constexpr std::uintptr_t m_nBaseCP       = 0X01F4; // int32
-            static constexpr std::uintptr_t m_bUniformSpeed = 0X01F8; // bool
+            static constexpr std::uintptr_t m_flAParm       = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flBParm       = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flCParm       = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flDParm       = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flScale       = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flSpeedMin    = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flSpeedMax    = 0X01F8; // float32
+            static constexpr std::uintptr_t m_nBaseCP       = 0X01FC; // int32
+            static constexpr std::uintptr_t m_bUniformSpeed = 0X0200; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_SequenceFromCP : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_bKillUnused  = 0X01D8; // bool
-            static constexpr std::uintptr_t m_bRadiusScale = 0X01D9; // bool
-            static constexpr std::uintptr_t m_nCP          = 0X01DC; // int32
-            static constexpr std::uintptr_t m_vecOffset    = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_bKillUnused  = 0X01E0; // bool
+            static constexpr std::uintptr_t m_bRadiusScale = 0X01E1; // bool
+            static constexpr std::uintptr_t m_nCP          = 0X01E4; // int32
+            static constexpr std::uintptr_t m_vecOffset    = 0X01E8; // Vector
         };
 
         // Has Trivial Constructor
@@ -19249,11 +20379,11 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SpringToVectorConstraint : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_flRestLength    = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flMinDistance   = 0X0340; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flMaxDistance   = 0X04B0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRestingLength = 0X0620; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vecAnchorVector = 0X0790; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flRestLength    = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMinDistance   = 0X0348; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMaxDistance   = 0X04B8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRestingLength = 0X0628; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecAnchorVector = 0X0798; // CPerParticleVecInput
         };
 
         // Has VTable
@@ -19270,6 +20400,17 @@ namespace offsets {
             static constexpr std::uintptr_t m_bIgnoreSlope = 0X0068; // bool
         };
 
+        // Has VTable
+        // Construct Allowed
+        class CNmIDBasedSelectorNode__CDefinition : public CNmPoseNode__CDefinition {
+        public:
+            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionIDs             = 0X0028; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,5>
+            static constexpr std::uintptr_t m_nParameterNodeIdx     = 0X0058; // int16
+            static constexpr std::uintptr_t m_nFallbackNodeIdx      = 0X005A; // int16
+            static constexpr std::uintptr_t m_bIgnoreInvalidOptions = 0X005C; // bool
+        };
+
         // Construct Allowed
         class CFootStride {
         public:
@@ -19281,32 +20422,32 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_InitialVelocityNoise : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_vecAbsVal       = 0X01D8; // Vector
-            static constexpr std::uintptr_t m_vecAbsValInv    = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_vecOffsetLoc    = 0X01F0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flOffset        = 0X08A8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vecOutputMin    = 0X0A18; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecOutputMax    = 0X10D0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flNoiseScale    = 0X1788; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flNoiseScaleLoc = 0X18F8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_TransformInput  = 0X1A68; // CParticleTransformInput
-            static constexpr std::uintptr_t m_bIgnoreDt       = 0X1AD0; // bool
+            static constexpr std::uintptr_t m_vecAbsVal       = 0X01E0; // Vector
+            static constexpr std::uintptr_t m_vecAbsValInv    = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_vecOffsetLoc    = 0X01F8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flOffset        = 0X08B0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecOutputMin    = 0X0A20; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecOutputMax    = 0X10D8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flNoiseScale    = 0X1790; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flNoiseScaleLoc = 0X1900; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_TransformInput  = 0X1A70; // CParticleTransformInput
+            static constexpr std::uintptr_t m_bIgnoreDt       = 0X1AD8; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_EndCapTimedDecay : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flDecayTime = 0X01D0; // float32
+            static constexpr std::uintptr_t m_flDecayTime = 0X01D8; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_MovementMaintainOffset : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_vecOffset    = 0X01D0; // Vector
-            static constexpr std::uintptr_t m_nCP          = 0X01DC; // int32
-            static constexpr std::uintptr_t m_bRadiusScale = 0X01E0; // bool
+            static constexpr std::uintptr_t m_vecOffset    = 0X01D8; // Vector
+            static constexpr std::uintptr_t m_nCP          = 0X01E4; // int32
+            static constexpr std::uintptr_t m_bRadiusScale = 0X01E8; // bool
         };
 
         // Has VTable
@@ -19364,6 +20505,10 @@ namespace offsets {
             static constexpr std::uintptr_t m_flGroundBoxWidth  = 0X0030; // float32
         };
 
+        class CNmGraphInstance {
+        public:
+        };
+
         // Construct Allowed
         struct VariableInfo_t {
         public:
@@ -19379,7 +20524,7 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RadiusDecay : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flMinRadius = 0X01D0; // float32
+            static constexpr std::uintptr_t m_flMinRadius = 0X01D8; // float32
         };
 
         // Has Trivial Destructor
@@ -19438,24 +20583,24 @@ namespace offsets {
         // Construct Allowed
         class C_OP_SetControlPointFieldFromVectorExpression : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nExpression     = 0X01D8; // VectorFloatExpressionType_t
-            static constexpr std::uintptr_t m_vecInput1       = 0X01E0; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_vecInput2       = 0X0898; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_flLerp          = 0X0F50; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputRemap   = 0X10C0; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nOutputCP       = 0X1230; // int32
-            static constexpr std::uintptr_t m_nOutVectorField = 0X1234; // int32
+            static constexpr std::uintptr_t m_nExpression     = 0X01E0; // VectorFloatExpressionType_t
+            static constexpr std::uintptr_t m_vecInput1       = 0X01E8; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_vecInput2       = 0X08A0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_flLerp          = 0X0F58; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputRemap   = 0X10C8; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nOutputCP       = 0X1238; // int32
+            static constexpr std::uintptr_t m_nOutVectorField = 0X123C; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_PointList : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_pointList           = 0X01E0; // CUtlVector<PointDefinition_t>
-            static constexpr std::uintptr_t m_bPlaceAlongPath     = 0X01F8; // bool
-            static constexpr std::uintptr_t m_bClosedLoop         = 0X01F9; // bool
-            static constexpr std::uintptr_t m_nNumPointsAlongPath = 0X01FC; // int32
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_pointList           = 0X01E8; // CUtlVector<PointDefinition_t>
+            static constexpr std::uintptr_t m_bPlaceAlongPath     = 0X0200; // bool
+            static constexpr std::uintptr_t m_bClosedLoop         = 0X0201; // bool
+            static constexpr std::uintptr_t m_nNumPointsAlongPath = 0X0204; // int32
         };
 
         // Construct Allowed
@@ -19463,6 +20608,24 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_viewId   = 0X0000; // SceneViewId_t
             static constexpr std::uintptr_t m_ViewName = 0X0010; // CUtlString
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CNmFootIKTask : public CNmPoseTask {
+        public:
+            static constexpr std::uintptr_t m_nLeftEffectorBoneIdx           = 0X0048; // int32
+            static constexpr std::uintptr_t m_nRightEffectorBoneIdx          = 0X004C; // int32
+            static constexpr std::uintptr_t m_leftTargetTransform            = 0X0050; // CTransform
+            static constexpr std::uintptr_t m_rightTargetTransform           = 0X0070; // CTransform
+            static constexpr std::uintptr_t m_nLeftTargetBoneIdx             = 0X0090; // int32
+            static constexpr std::uintptr_t m_nRightTargetBoneIdx            = 0X0094; // int32
+            static constexpr std::uintptr_t m_leftTarget                     = 0X00A0; // CNmTarget
+            static constexpr std::uintptr_t m_rightTarget                    = 0X00D0; // CNmTarget
+            static constexpr std::uintptr_t m_blendMode                      = 0X0100; // NmIKBlendMode_t
+            static constexpr std::uintptr_t m_flBlendWeight                  = 0X0104; // float32
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X0108; // bool
+            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X0109; // bool
         };
 
         // Has Trivial Destructor
@@ -19486,35 +20649,28 @@ namespace offsets {
         // Construct Allowed
         class C_OP_DistanceCull : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPoint  = 0X01D0; // int32
-            static constexpr std::uintptr_t m_vecPointOffset = 0X01D4; // Vector
-            static constexpr std::uintptr_t m_flDistance     = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bCullInside    = 0X0350; // bool
-            static constexpr std::uintptr_t m_nAttribute     = 0X0354; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nControlPoint  = 0X01D8; // int32
+            static constexpr std::uintptr_t m_vecPointOffset = 0X01DC; // Vector
+            static constexpr std::uintptr_t m_flDistance     = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bCullInside    = 0X0358; // bool
+            static constexpr std::uintptr_t m_nAttribute     = 0X035C; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetVec : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_InputValue        = 0X01D0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_nOutputField      = 0X0888; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod        = 0X088C; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_Lerp              = 0X0890; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_bNormalizedOutput = 0X0A00; // bool
+            static constexpr std::uintptr_t m_InputValue        = 0X01D8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_nOutputField      = 0X0890; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod        = 0X0894; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_Lerp              = 0X0898; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_bNormalizedOutput = 0X0A08; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class CZeroPoseUpdateNode : public CLeafUpdateNode {
         public:
-        };
-
-        // Has Trivial Destructor
-        // Construct Allowed
-        struct MovementGaitId_t {
-        public:
-            static constexpr std::uintptr_t m_sId = 0X0000; // CGlobalSymbol
         };
 
         // Has Trivial Destructor
@@ -19592,16 +20748,26 @@ namespace offsets {
             static constexpr std::uintptr_t m_bPassWhenTrue                        = 0X0020; // bool
         };
 
+        struct SceneOpportunityActor_t {
+        public:
+            static constexpr std::uintptr_t m_hActor        = 0X0000; // CHandle<CBaseModelEntity>
+            static constexpr std::uintptr_t m_bDynamicActor = 0X0004; // bool
+            static constexpr std::uintptr_t m_bAnchor       = 0X0005; // bool
+            static constexpr std::uintptr_t m_strActorName  = 0X0008; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_strEntityName = 0X0010; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_InterestTags  = 0X0018; // SceneInterestTags_t
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_MaintainSequentialPath : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_fMaxDistance       = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flNumToAssign      = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flCohesionStrength = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flTolerance        = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bLoop              = 0X01E0; // bool
-            static constexpr std::uintptr_t m_bUseParticleCount  = 0X01E1; // bool
+            static constexpr std::uintptr_t m_fMaxDistance       = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flNumToAssign      = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flCohesionStrength = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flTolerance        = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bLoop              = 0X01E8; // bool
+            static constexpr std::uintptr_t m_bUseParticleCount  = 0X01E9; // bool
             static constexpr std::uintptr_t m_PathParams         = 0X01F0; // CPathParameters
         };
 
@@ -19667,12 +20833,12 @@ namespace offsets {
         // Construct Allowed
         class C_OP_FadeOut : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flFadeOutTimeMin = 0X01D0; // float32
-            static constexpr std::uintptr_t m_flFadeOutTimeMax = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flFadeOutTimeExp = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flFadeBias       = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bProportional    = 0X0210; // bool
-            static constexpr std::uintptr_t m_bEaseInAndOut    = 0X0211; // bool
+            static constexpr std::uintptr_t m_flFadeOutTimeMin = 0X01D8; // float32
+            static constexpr std::uintptr_t m_flFadeOutTimeMax = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flFadeOutTimeExp = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flFadeBias       = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bProportional    = 0X0220; // bool
+            static constexpr std::uintptr_t m_bEaseInAndOut    = 0X0221; // bool
         };
 
         // Has Trivial Destructor
@@ -19680,6 +20846,22 @@ namespace offsets {
         struct VMixEQ8Desc_t {
         public:
             static constexpr std::uintptr_t m_stages = 0X0000; // VMixFilterDesc_t[8]
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        struct VelocityZone_t {
+        public:
+            static constexpr std::uintptr_t nMaxVel        = 0X0000; // uint8
+            static constexpr std::uintptr_t nNextSelection = 0X0001; // uint8
+            static constexpr std::uintptr_t nNumSamples    = 0X0002; // uint8
+            static constexpr std::uintptr_t pSamples       = 0X0004; // uint32[4]
+        };
+
+        // Has VTable
+        // Is Absract
+        class IPhysicsBody {
+        public:
         };
 
         // Has VTable
@@ -19721,45 +20903,45 @@ namespace offsets {
         // Construct Allowed
         class C_OP_TwistAroundAxis : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_fForceAmount        = 0X01E0; // float32
-            static constexpr std::uintptr_t m_TwistAxis           = 0X01E4; // Vector
-            static constexpr std::uintptr_t m_bLocalSpace         = 0X01F0; // bool
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01F4; // int32
+            static constexpr std::uintptr_t m_fForceAmount        = 0X01E8; // float32
+            static constexpr std::uintptr_t m_TwistAxis           = 0X01EC; // Vector
+            static constexpr std::uintptr_t m_bLocalSpace         = 0X01F8; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01FC; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_PositionPlaceOnGround : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flOffset                 = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flMaxTraceLength         = 0X0348; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_CollisionGroupName       = 0X04B8; // char[128]
-            static constexpr std::uintptr_t m_nTraceSet                = 0X0538; // ParticleTraceSet_t
-            static constexpr std::uintptr_t m_nTraceMissBehavior       = 0X0548; // ParticleTraceMissBehavior_t
-            static constexpr std::uintptr_t m_bIncludeWater            = 0X054C; // bool
-            static constexpr std::uintptr_t m_bSetNormal               = 0X054D; // bool
-            static constexpr std::uintptr_t m_nAttribute               = 0X0550; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bSetPXYZOnly             = 0X0554; // bool
-            static constexpr std::uintptr_t m_bTraceAlongNormal        = 0X0555; // bool
-            static constexpr std::uintptr_t m_nTraceDirectionAttribute = 0X0558; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bOffsetonColOnly         = 0X055C; // bool
-            static constexpr std::uintptr_t m_flOffsetByRadiusFactor   = 0X0560; // float32
-            static constexpr std::uintptr_t m_nPreserveOffsetCP        = 0X0564; // int32
-            static constexpr std::uintptr_t m_nIgnoreCP                = 0X0568; // int32
+            static constexpr std::uintptr_t m_flOffset               = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMaxTraceLength       = 0X0350; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecTraceDir            = 0X04C0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_CollisionGroupName     = 0X0B78; // char[128]
+            static constexpr std::uintptr_t m_nTraceSet              = 0X0BF8; // ParticleTraceSet_t
+            static constexpr std::uintptr_t m_nTraceMissBehavior     = 0X0C08; // ParticleTraceMissBehavior_t
+            static constexpr std::uintptr_t m_bIncludeWater          = 0X0C0C; // bool
+            static constexpr std::uintptr_t m_nAttribute             = 0X0C10; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bSetPXYZOnly           = 0X0C14; // bool
+            static constexpr std::uintptr_t m_bSetNormal             = 0X0C15; // bool
+            static constexpr std::uintptr_t m_nGroundNormalAttribute = 0X0C18; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bOffsetonColOnly       = 0X0C1C; // bool
+            static constexpr std::uintptr_t m_flOffsetByRadiusFactor = 0X0C20; // float32
+            static constexpr std::uintptr_t m_nPreserveOffsetCP      = 0X0C24; // int32
+            static constexpr std::uintptr_t m_nIgnoreCP              = 0X0C28; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_AgeNoise : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_bAbsVal         = 0X01D8; // bool
-            static constexpr std::uintptr_t m_bAbsValInv      = 0X01D9; // bool
-            static constexpr std::uintptr_t m_flOffset        = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flAgeMin        = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flAgeMax        = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flNoiseScale    = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flNoiseScaleLoc = 0X01EC; // float32
-            static constexpr std::uintptr_t m_vecOffsetLoc    = 0X01F0; // Vector
+            static constexpr std::uintptr_t m_bAbsVal         = 0X01E0; // bool
+            static constexpr std::uintptr_t m_bAbsValInv      = 0X01E1; // bool
+            static constexpr std::uintptr_t m_flOffset        = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flAgeMin        = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flAgeMax        = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flNoiseScale    = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flNoiseScaleLoc = 0X01F4; // float32
+            static constexpr std::uintptr_t m_vecOffsetLoc    = 0X01F8; // Vector
         };
 
         // Has VTable
@@ -19773,16 +20955,16 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RampScalarSpline : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_RateMin         = 0X01D0; // float32
-            static constexpr std::uintptr_t m_RateMax         = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flStartTime_min = 0X01D8; // float32
-            static constexpr std::uintptr_t m_flStartTime_max = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flEndTime_min   = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flEndTime_max   = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flBias          = 0X01E8; // float32
-            static constexpr std::uintptr_t m_nField          = 0X0210; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bProportionalOp = 0X0214; // bool
-            static constexpr std::uintptr_t m_bEaseOut        = 0X0215; // bool
+            static constexpr std::uintptr_t m_RateMin         = 0X01D8; // float32
+            static constexpr std::uintptr_t m_RateMax         = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flStartTime_min = 0X01E0; // float32
+            static constexpr std::uintptr_t m_flStartTime_max = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flEndTime_min   = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flEndTime_max   = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flBias          = 0X01F0; // float32
+            static constexpr std::uintptr_t m_nField          = 0X0220; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bProportionalOp = 0X0224; // bool
+            static constexpr std::uintptr_t m_bEaseOut        = 0X0225; // bool
         };
 
         // Construct Allowed
@@ -19839,7 +21021,7 @@ namespace offsets {
         // Has VTable
         class CNavVolumeBreadthFirstSearch : public CNavVolumeCalculatedVector {
         public:
-            static constexpr std::uintptr_t m_vStartPos    = 0X00A8; // Vector
+            static constexpr std::uintptr_t m_vStartPos    = 0X00A8; // VectorWS
             static constexpr std::uintptr_t m_flSearchDist = 0X00B4; // float32
         };
 
@@ -19901,24 +21083,24 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapSpeedtoCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nInControlPointNumber  = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nField                 = 0X01E0; // int32
-            static constexpr std::uintptr_t m_flInputMin             = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flInputMax             = 0X01E8; // float32
-            static constexpr std::uintptr_t m_flOutputMin            = 0X01EC; // float32
-            static constexpr std::uintptr_t m_flOutputMax            = 0X01F0; // float32
-            static constexpr std::uintptr_t m_bUseDeltaV             = 0X01F4; // bool
+            static constexpr std::uintptr_t m_nInControlPointNumber  = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nField                 = 0X01E8; // int32
+            static constexpr std::uintptr_t m_flInputMin             = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flInputMax             = 0X01F0; // float32
+            static constexpr std::uintptr_t m_flOutputMin            = 0X01F4; // float32
+            static constexpr std::uintptr_t m_flOutputMax            = 0X01F8; // float32
+            static constexpr std::uintptr_t m_bUseDeltaV             = 0X01FC; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_CheckParticleForWater : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flRadius      = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nFieldOutput  = 0X0348; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOutputRemap = 0X0350; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nSetMethod    = 0X04C0; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_flRadius      = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nFieldOutput  = 0X0350; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOutputRemap = 0X0358; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nSetMethod    = 0X04C8; // ParticleSetMethod_t
         };
 
         // Construct Allowed
@@ -19955,103 +21137,105 @@ namespace offsets {
         // Construct Allowed
         class CNmAimCSNode__CDefinition : public CNmPassthroughNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_nVerticalAngleNodeIdx        = 0X0018; // int16
-            static constexpr std::uintptr_t m_nHorizontalAngleNodeIdx      = 0X001A; // int16
-            static constexpr std::uintptr_t m_nWeaponCategoryNodeIdx       = 0X001C; // int16
-            static constexpr std::uintptr_t m_nWeaponTypeNodeIdx           = 0X001E; // int16
-            static constexpr std::uintptr_t m_nIsWeaponActionActiveNodeIdx = 0X0020; // int16
-            static constexpr std::uintptr_t m_nWeaponDropNodeIdx           = 0X0022; // int16
-            static constexpr std::uintptr_t m_nEnabledNodeIdx              = 0X0024; // int16
-            static constexpr std::uintptr_t m_flBlendTimeSeconds           = 0X0028; // float32
-            static constexpr std::uintptr_t m_flReduceRangeTimeSeconds     = 0X002C; // float32
+            static constexpr std::uintptr_t m_nVerticalAngleNodeIdx      = 0X0018; // int16
+            static constexpr std::uintptr_t m_nHorizontalAngleNodeIdx    = 0X001A; // int16
+            static constexpr std::uintptr_t m_nWeaponCategoryNodeIdx     = 0X001C; // int16
+            static constexpr std::uintptr_t m_nWeaponTypeNodeIdx         = 0X001E; // int16
+            static constexpr std::uintptr_t m_nWeaponActionNodeIdx       = 0X0020; // int16
+            static constexpr std::uintptr_t m_nWeaponDropNodeIdx         = 0X0022; // int16
+            static constexpr std::uintptr_t m_nIsDefusingNodeIdx         = 0X0024; // int16
+            static constexpr std::uintptr_t m_nCrouchWeightNodeIdx       = 0X0026; // int16
+            static constexpr std::uintptr_t m_flHandIKBlendInTimeSeconds = 0X0028; // float32
+            static constexpr std::uintptr_t m_flActionBlendTimeSeconds   = 0X002C; // float32
+            static constexpr std::uintptr_t m_flPlantingBlendTimeSeconds = 0X0030; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_OscillateScalarSimple : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_Rate      = 0X01D0; // float32
-            static constexpr std::uintptr_t m_Frequency = 0X01D4; // float32
-            static constexpr std::uintptr_t m_nField    = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOscMult = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flOscAdd  = 0X01E0; // float32
+            static constexpr std::uintptr_t m_Rate      = 0X01D8; // float32
+            static constexpr std::uintptr_t m_Frequency = 0X01DC; // float32
+            static constexpr std::uintptr_t m_nField    = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOscMult = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flOscAdd  = 0X01E8; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetParentControlPointsToChildCP : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nChildGroupID      = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nChildControlPoint = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nNumControlPoints  = 0X01E0; // int32
-            static constexpr std::uintptr_t m_nFirstSourcePoint  = 0X01E4; // int32
-            static constexpr std::uintptr_t m_bSetOrientation    = 0X01E8; // bool
+            static constexpr std::uintptr_t m_nChildGroupID      = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nChildControlPoint = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nNumControlPoints  = 0X01E8; // int32
+            static constexpr std::uintptr_t m_nFirstSourcePoint  = 0X01EC; // int32
+            static constexpr std::uintptr_t m_bSetOrientation    = 0X01F0; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_RandomLifeTime : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_fLifetimeMin          = 0X01D8; // float32
-            static constexpr std::uintptr_t m_fLifetimeMax          = 0X01DC; // float32
-            static constexpr std::uintptr_t m_fLifetimeRandExponent = 0X01E0; // float32
+            static constexpr std::uintptr_t m_fLifetimeMin          = 0X01E0; // float32
+            static constexpr std::uintptr_t m_fLifetimeMax          = 0X01E4; // float32
+            static constexpr std::uintptr_t m_fLifetimeRandExponent = 0X01E8; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetRandomControlPointPosition : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_bUseWorldLocation = 0X01D8; // bool
-            static constexpr std::uintptr_t m_bOrient           = 0X01D9; // bool
-            static constexpr std::uintptr_t m_nCP1              = 0X01DC; // int32
-            static constexpr std::uintptr_t m_nHeadLocation     = 0X01E0; // int32
-            static constexpr std::uintptr_t m_flReRandomRate    = 0X01E8; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_vecCPMinPos       = 0X0358; // Vector
-            static constexpr std::uintptr_t m_vecCPMaxPos       = 0X0364; // Vector
-            static constexpr std::uintptr_t m_flInterpolation   = 0X0370; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bUseWorldLocation = 0X01E0; // bool
+            static constexpr std::uintptr_t m_bOrient           = 0X01E1; // bool
+            static constexpr std::uintptr_t m_nCP1              = 0X01E4; // int32
+            static constexpr std::uintptr_t m_nHeadLocation     = 0X01E8; // int32
+            static constexpr std::uintptr_t m_flReRandomRate    = 0X01F0; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_vecCPMinPos       = 0X0360; // Vector
+            static constexpr std::uintptr_t m_vecCPMaxPos       = 0X036C; // Vector
+            static constexpr std::uintptr_t m_flInterpolation   = 0X0378; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ScreenSpaceDistanceToEdge : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput      = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flMaxDistFromEdge = 0X01D8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOutputRemap     = 0X0348; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nSetMethod        = 0X04B8; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nFieldOutput      = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flMaxDistFromEdge = 0X01E0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOutputRemap     = 0X0350; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nSetMethod        = 0X04C0; // ParticleSetMethod_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetFloatCollection : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_InputValue   = 0X01D0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_nOutputField = 0X0340; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod   = 0X0344; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_Lerp         = 0X0348; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_InputValue   = 0X01D8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nOutputField = 0X0348; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod   = 0X034C; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_Lerp         = 0X0350; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_ColorAdjustHSL : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flHueAdjust        = 0X01D0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flSaturationAdjust = 0X0340; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flLightnessAdjust  = 0X04B0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flHueAdjust        = 0X01D8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flSaturationAdjust = 0X0348; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flLightnessAdjust  = 0X04B8; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SequenceFromModel : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutputAnim    = 0X01D8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin          = 0X01DC; // float32
-            static constexpr std::uintptr_t m_flInputMax          = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flOutputMin         = 0X01E4; // float32
-            static constexpr std::uintptr_t m_flOutputMax         = 0X01E8; // float32
-            static constexpr std::uintptr_t m_nSetMethod          = 0X01EC; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutputAnim    = 0X01E0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin          = 0X01E4; // float32
+            static constexpr std::uintptr_t m_flInputMax          = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flOutputMin         = 0X01EC; // float32
+            static constexpr std::uintptr_t m_flOutputMax         = 0X01F0; // float32
+            static constexpr std::uintptr_t m_nSetMethod          = 0X01F4; // ParticleSetMethod_t
         };
 
         // Has Trivial Constructor
@@ -20097,12 +21281,12 @@ namespace offsets {
         // Construct Allowed
         class C_OP_Noise : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput              = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flOutputMin               = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flOutputMax               = 0X01D8; // float32
-            static constexpr std::uintptr_t m_fl4NoiseScale             = 0X01DC; // float32
-            static constexpr std::uintptr_t m_bAdditive                 = 0X01E0; // bool
-            static constexpr std::uintptr_t m_flNoiseAnimationTimeScale = 0X01E4; // float32
+            static constexpr std::uintptr_t m_nFieldOutput              = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flOutputMin               = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flOutputMax               = 0X01E0; // float32
+            static constexpr std::uintptr_t m_fl4NoiseScale             = 0X01E4; // float32
+            static constexpr std::uintptr_t m_bAdditive                 = 0X01E8; // bool
+            static constexpr std::uintptr_t m_flNoiseAnimationTimeScale = 0X01EC; // float32
         };
 
         // Has VTable
@@ -20113,6 +21297,7 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
         class CSoundPatch {
         public:
             static constexpr std::uintptr_t m_pitch                  = 0X0008; // CSoundEnvelope
@@ -20122,7 +21307,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_iszSoundScriptName     = 0X0048; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_hEnt                   = 0X0050; // CHandle<CBaseEntity>
             static constexpr std::uintptr_t m_soundEntityIndex       = 0X0054; // CEntityIndex
-            static constexpr std::uintptr_t m_soundOrigin            = 0X0058; // Vector
+            static constexpr std::uintptr_t m_soundOrigin            = 0X0058; // VectorWS
             static constexpr std::uintptr_t m_isPlaying              = 0X0064; // int32
             static constexpr std::uintptr_t m_Filter                 = 0X0068; // CCopyRecipientFilter
             static constexpr std::uintptr_t m_flCloseCaptionDuration = 0X00A0; // float32
@@ -20134,30 +21319,30 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_VelocityFromCP : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_velocityInput   = 0X01D8; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_transformInput  = 0X0890; // CParticleTransformInput
-            static constexpr std::uintptr_t m_flVelocityScale = 0X08F8; // float32
-            static constexpr std::uintptr_t m_bDirectionOnly  = 0X08FC; // bool
+            static constexpr std::uintptr_t m_velocityInput   = 0X01E0; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_transformInput  = 0X0898; // CParticleTransformInput
+            static constexpr std::uintptr_t m_flVelocityScale = 0X0900; // float32
+            static constexpr std::uintptr_t m_bDirectionOnly  = 0X0904; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RemapVectortoCP : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nFieldInput            = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nParticleNumber        = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nOutControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nFieldInput            = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nParticleNumber        = 0X01E0; // int32
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_ModelCull : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
-            static constexpr std::uintptr_t m_bBoundBox           = 0X01DC; // bool
-            static constexpr std::uintptr_t m_bCullOutside        = 0X01DD; // bool
-            static constexpr std::uintptr_t m_bUseBones           = 0X01DE; // bool
-            static constexpr std::uintptr_t m_HitboxSetName       = 0X01DF; // char[128]
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E0; // int32
+            static constexpr std::uintptr_t m_bBoundBox           = 0X01E4; // bool
+            static constexpr std::uintptr_t m_bCullOutside        = 0X01E5; // bool
+            static constexpr std::uintptr_t m_bUseBones           = 0X01E6; // bool
+            static constexpr std::uintptr_t m_HitboxSetName       = 0X01E7; // char[128]
         };
 
         // Construct Allowed
@@ -20196,6 +21381,17 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct AI_DefaultNPC_DebugSnapshotData_t__PathQuery_t {
+        public:
+            static constexpr std::uintptr_t m_sInitialQueryName = 0X0000; // CGlobalSymbol
+            static constexpr std::uintptr_t m_sCurrentQueryName = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nMode             = 0X0010; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nType             = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nState            = 0X0020; // CGlobalSymbol
+        };
+
         // Has VTable
         // Construct Allowed
         class C_INIT_RandomRotationSpeed : public CGeneralRandomRotation {
@@ -20217,17 +21413,17 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ExternalWindForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_vecSamplePosition        = 0X01E0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vecScale                 = 0X0898; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_bSampleWind              = 0X0F50; // bool
-            static constexpr std::uintptr_t m_bSampleWater             = 0X0F51; // bool
-            static constexpr std::uintptr_t m_bDampenNearWaterPlane    = 0X0F52; // bool
-            static constexpr std::uintptr_t m_bSampleGravity           = 0X0F53; // bool
-            static constexpr std::uintptr_t m_vecGravityForce          = 0X0F58; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_bUseBasicMovementGravity = 0X1610; // bool
-            static constexpr std::uintptr_t m_flLocalGravityScale      = 0X1618; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flLocalBuoyancyScale     = 0X1788; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vecBuoyancyForce         = 0X18F8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecSamplePosition        = 0X01E8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vecScale                 = 0X08A0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_bSampleWind              = 0X0F58; // bool
+            static constexpr std::uintptr_t m_bSampleWater             = 0X0F59; // bool
+            static constexpr std::uintptr_t m_bDampenNearWaterPlane    = 0X0F5A; // bool
+            static constexpr std::uintptr_t m_bSampleGravity           = 0X0F5B; // bool
+            static constexpr std::uintptr_t m_vecGravityForce          = 0X0F60; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_bUseBasicMovementGravity = 0X1618; // bool
+            static constexpr std::uintptr_t m_flLocalGravityScale      = 0X1620; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flLocalBuoyancyScale     = 0X1790; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecBuoyancyForce         = 0X1900; // CPerParticleVecInput
         };
 
         // Construct Allowed
@@ -20251,6 +21447,13 @@ namespace offsets {
             static constexpr std::uintptr_t nTargetNode = 0X000E; // uint16
         };
 
+        // Has VTable
+        // Construct Allowed
+        class CAnimationGraphInstance {
+        public:
+            static constexpr std::uintptr_t m_bTagDispatchDirty = 0X0329; // bool
+        };
+
         // Construct Allowed
         struct ParticleNamedValueConfiguration_t {
         public:
@@ -20260,6 +21463,20 @@ namespace offsets {
             static constexpr std::uintptr_t m_iAttachType       = 0X0020; // ParticleAttachment_t
             static constexpr std::uintptr_t m_strEntityScope    = 0X0028; // CUtlString
             static constexpr std::uintptr_t m_strAttachmentName = 0X0030; // CUtlString
+        };
+
+        // Construct Allowed
+        class CDebugDrawHistoryData {
+        public:
+            static constexpr std::uintptr_t m_hEntity    = 0X0000; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_etype      = 0X0004; // ESceneViewDebugOverlaysListenerDataType_t
+            static constexpr std::uintptr_t m_vectors    = 0X0008; // CUtlLeanVector<Vector4D>
+            static constexpr std::uintptr_t m_colors     = 0X0018; // CUtlLeanVector<Color>
+            static constexpr std::uintptr_t m_dimensions = 0X0028; // CUtlLeanVector<float32>
+            static constexpr std::uintptr_t m_times      = 0X0038; // CUtlLeanVector<float64>
+            static constexpr std::uintptr_t m_uint64s    = 0X0048; // CUtlLeanVector<uint64>
+            static constexpr std::uintptr_t m_bools      = 0X0058; // CUtlLeanVector<bool>
+            static constexpr std::uintptr_t m_strings    = 0X0068; // CUtlLeanVector<CUtlString>
         };
 
         // Has Trivial Destructor
@@ -20279,12 +21496,18 @@ namespace offsets {
         // Construct Allowed
         class C_OP_MovementRigidAttachToCP : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nScaleControlPoint  = 0X01D4; // int32
-            static constexpr std::uintptr_t m_nScaleCPField       = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nFieldInput         = 0X01DC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bOffsetLocal        = 0X01E4; // bool
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nScaleControlPoint  = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nScaleCPField       = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nFieldInput         = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bOffsetLocal        = 0X01EC; // bool
+        };
+
+        // Has Trivial Destructor
+        struct SamplerVoice_t {
+        public:
+            static constexpr std::uintptr_t nNoteNum = 0X0000; // uint8
         };
 
         // Construct Allowed
@@ -20304,23 +21527,18 @@ namespace offsets {
             static constexpr std::uintptr_t m_bIsAttachment = 0X0059; // bool
         };
 
-        // Has VTable
         // Construct Allowed
-        class CNmChainSolverTask : public CNmPoseTask {
+        struct EntityIOQueuePrioritizedEvent_t {
         public:
-            static constexpr std::uintptr_t m_nEffectorBoneIdx                = 0X0058; // int32
-            static constexpr std::uintptr_t m_nEffectorTargetBoneIdx          = 0X005C; // int32
-            static constexpr std::uintptr_t m_targetTransform                 = 0X0060; // CTransform
-            static constexpr std::uintptr_t m_nNumBonesInChain                = 0X0080; // int32
-            static constexpr std::uintptr_t m_effectorTarget                  = 0X0090; // CNmTarget
-            static constexpr std::uintptr_t m_blendMode                       = 0X00C0; // NmIKBlendMode_t
-            static constexpr std::uintptr_t m_flBlendWeight                   = 0X00C4; // float32
-            static constexpr std::uintptr_t m_bIsTargetInWorldSpace           = 0X00C8; // bool
-            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData  = 0X00C9; // bool
-            static constexpr std::uintptr_t m_debugEffectorBoneID             = 0X00D0; // CGlobalSymbol
-            static constexpr std::uintptr_t m_chainStartTransformMS           = 0X00E0; // CTransform
-            static constexpr std::uintptr_t m_debugRequestedTargetTransformMS = 0X0100; // CTransform
-            static constexpr std::uintptr_t m_debugTotalChainLength           = 0X0120; // float32
+            static constexpr std::uintptr_t m_flFireTime   = 0X0004; // GameTime_t
+            static constexpr std::uintptr_t m_targetType   = 0X0008; // EntityIOTargetType_t
+            static constexpr std::uintptr_t m_pTarget      = 0X0010; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_pTargetInput = 0X0018; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hActivator   = 0X0020; // CEntityHandle
+            static constexpr std::uintptr_t m_hCaller      = 0X0024; // CEntityHandle
+            static constexpr std::uintptr_t m_nOutputID    = 0X0028; // int32
+            static constexpr std::uintptr_t m_hEntTarget   = 0X002C; // CEntityHandle
+            static constexpr std::uintptr_t m_variantValue = 0X0030; // CVariantBase<CVariantDefaultAllocator>
         };
 
         // Has Trivial Constructor
@@ -20354,19 +21572,19 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ClientPhysics : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_strPhysicsType            = 0X0220; // CUtlString
-            static constexpr std::uintptr_t m_bStartAsleep              = 0X0228; // bool
-            static constexpr std::uintptr_t m_flPlayerWakeRadius        = 0X0230; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flVehicleWakeRadius       = 0X03A0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bUseHighQualitySimulation = 0X0510; // bool
-            static constexpr std::uintptr_t m_nMaxParticleCount         = 0X0514; // int32
-            static constexpr std::uintptr_t m_bRespectExclusionVolumes  = 0X0518; // bool
-            static constexpr std::uintptr_t m_bKillParticles            = 0X0519; // bool
-            static constexpr std::uintptr_t m_bDeleteSim                = 0X051A; // bool
-            static constexpr std::uintptr_t m_nControlPoint             = 0X051C; // int32
-            static constexpr std::uintptr_t m_nForcedSimId              = 0X0520; // int32
-            static constexpr std::uintptr_t m_nColorBlendType           = 0X0524; // ParticleColorBlendType_t
-            static constexpr std::uintptr_t m_nForcedStatusEffects      = 0X0528; // ParticleAttrBoxFlags_t
+            static constexpr std::uintptr_t m_strPhysicsType            = 0X0228; // CUtlString
+            static constexpr std::uintptr_t m_bStartAsleep              = 0X0230; // bool
+            static constexpr std::uintptr_t m_flPlayerWakeRadius        = 0X0238; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flVehicleWakeRadius       = 0X03A8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bUseHighQualitySimulation = 0X0518; // bool
+            static constexpr std::uintptr_t m_nMaxParticleCount         = 0X051C; // int32
+            static constexpr std::uintptr_t m_bRespectExclusionVolumes  = 0X0520; // bool
+            static constexpr std::uintptr_t m_bKillParticles            = 0X0521; // bool
+            static constexpr std::uintptr_t m_bDeleteSim                = 0X0522; // bool
+            static constexpr std::uintptr_t m_nControlPoint             = 0X0524; // int32
+            static constexpr std::uintptr_t m_nForcedSimId              = 0X0528; // int32
+            static constexpr std::uintptr_t m_nColorBlendType           = 0X052C; // ParticleColorBlendType_t
+            static constexpr std::uintptr_t m_nForcedStatusEffects      = 0X0530; // ParticleAttrBoxFlags_t
         };
 
         // Has Trivial Destructor
@@ -20381,58 +21599,58 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_SetVectorAttributeToVectorExpression : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_nExpression       = 0X01D8; // VectorExpressionType_t
-            static constexpr std::uintptr_t m_vInput1           = 0X01E0; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vInput2           = 0X0898; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flLerp            = 0X0F50; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nOutputField      = 0X10C0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod        = 0X10C4; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_bNormalizedOutput = 0X10C8; // bool
+            static constexpr std::uintptr_t m_nExpression       = 0X01E0; // VectorExpressionType_t
+            static constexpr std::uintptr_t m_vInput1           = 0X01E8; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vInput2           = 0X08A0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flLerp            = 0X0F58; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nOutputField      = 0X10C8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod        = 0X10CC; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_bNormalizedOutput = 0X10D0; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_OscillateVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_RateMin         = 0X01D0; // Vector
-            static constexpr std::uintptr_t m_RateMax         = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_FrequencyMin    = 0X01E8; // Vector
-            static constexpr std::uintptr_t m_FrequencyMax    = 0X01F4; // Vector
-            static constexpr std::uintptr_t m_nField          = 0X0200; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bProportional   = 0X0204; // bool
-            static constexpr std::uintptr_t m_bProportionalOp = 0X0205; // bool
-            static constexpr std::uintptr_t m_bOffset         = 0X0206; // bool
-            static constexpr std::uintptr_t m_flStartTime_min = 0X0208; // float32
-            static constexpr std::uintptr_t m_flStartTime_max = 0X020C; // float32
-            static constexpr std::uintptr_t m_flEndTime_min   = 0X0210; // float32
-            static constexpr std::uintptr_t m_flEndTime_max   = 0X0214; // float32
-            static constexpr std::uintptr_t m_flOscMult       = 0X0218; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flOscAdd        = 0X0388; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRateScale     = 0X04F8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_RateMin         = 0X01D8; // Vector
+            static constexpr std::uintptr_t m_RateMax         = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_FrequencyMin    = 0X01F0; // Vector
+            static constexpr std::uintptr_t m_FrequencyMax    = 0X01FC; // Vector
+            static constexpr std::uintptr_t m_nField          = 0X0208; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bProportional   = 0X020C; // bool
+            static constexpr std::uintptr_t m_bProportionalOp = 0X020D; // bool
+            static constexpr std::uintptr_t m_bOffset         = 0X020E; // bool
+            static constexpr std::uintptr_t m_flStartTime_min = 0X0210; // float32
+            static constexpr std::uintptr_t m_flStartTime_max = 0X0214; // float32
+            static constexpr std::uintptr_t m_flEndTime_min   = 0X0218; // float32
+            static constexpr std::uintptr_t m_flEndTime_max   = 0X021C; // float32
+            static constexpr std::uintptr_t m_flOscMult       = 0X0220; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flOscAdd        = 0X0390; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRateScale     = 0X0500; // CPerParticleFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetControlPointToCenter : public CParticleFunctionPreEmission {
         public:
-            static constexpr std::uintptr_t m_nCP1               = 0X01D8; // int32
-            static constexpr std::uintptr_t m_vecCP1Pos          = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_bUseAvgParticlePos = 0X01E8; // bool
-            static constexpr std::uintptr_t m_nSetParent         = 0X01EC; // ParticleParentSetMode_t
+            static constexpr std::uintptr_t m_nCP1               = 0X01E0; // int32
+            static constexpr std::uintptr_t m_vecCP1Pos          = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_bUseAvgParticlePos = 0X01F0; // bool
+            static constexpr std::uintptr_t m_nSetParent         = 0X01F4; // ParticleParentSetMode_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_PlanarConstraint : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_PointOnPlane          = 0X01D0; // Vector
-            static constexpr std::uintptr_t m_PlaneNormal           = 0X01DC; // Vector
-            static constexpr std::uintptr_t m_nControlPointNumber   = 0X01E8; // int32
-            static constexpr std::uintptr_t m_bGlobalOrigin         = 0X01EC; // bool
-            static constexpr std::uintptr_t m_bGlobalNormal         = 0X01ED; // bool
-            static constexpr std::uintptr_t m_flRadiusScale         = 0X01F0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flMaximumDistanceToCP = 0X0360; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_bUseOldCode           = 0X04D0; // bool
+            static constexpr std::uintptr_t m_PointOnPlane          = 0X01D8; // Vector
+            static constexpr std::uintptr_t m_PlaneNormal           = 0X01E4; // Vector
+            static constexpr std::uintptr_t m_nControlPointNumber   = 0X01F0; // int32
+            static constexpr std::uintptr_t m_bGlobalOrigin         = 0X01F4; // bool
+            static constexpr std::uintptr_t m_bGlobalNormal         = 0X01F5; // bool
+            static constexpr std::uintptr_t m_flRadiusScale         = 0X01F8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flMaximumDistanceToCP = 0X0368; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_bUseOldCode           = 0X04D8; // bool
         };
 
         // Construct Allowed
@@ -20441,6 +21659,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_harmonics      = 0X0000; // CUtlVector<CVoiceContainerStaticAdditiveSynth::CHarmonic>
             static constexpr std::uintptr_t m_curve          = 0X0018; // CPiecewiseCurve
             static constexpr std::uintptr_t m_bSyncInstances = 0X0058; // bool
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class LookData {
+        public:
+            static constexpr std::uintptr_t m_vLookTarget = 0X0000; // CAnimNetVar<Vector>
         };
 
         // Construct Allowed
@@ -20473,26 +21698,26 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RenderTrails : public CBaseTrailRenderer {
         public:
-            static constexpr std::uintptr_t m_bEnableFadingAndClamping       = 0X30E0; // bool
-            static constexpr std::uintptr_t m_flStartFadeDot                 = 0X30E4; // float32
-            static constexpr std::uintptr_t m_flEndFadeDot                   = 0X30E8; // float32
-            static constexpr std::uintptr_t m_nPrevPntSource                 = 0X30EC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flMaxLength                    = 0X30F0; // float32
-            static constexpr std::uintptr_t m_flMinLength                    = 0X30F4; // float32
-            static constexpr std::uintptr_t m_bIgnoreDT                      = 0X30F8; // bool
-            static constexpr std::uintptr_t m_flConstrainRadiusToLengthRatio = 0X30FC; // float32
-            static constexpr std::uintptr_t m_flLengthScale                  = 0X3100; // float32
-            static constexpr std::uintptr_t m_flLengthFadeInTime             = 0X3104; // float32
-            static constexpr std::uintptr_t m_flRadiusHeadTaper              = 0X3108; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vecHeadColorScale              = 0X3278; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_flHeadAlphaScale               = 0X3930; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_flRadiusTaper                  = 0X3AA0; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_vecTailColorScale              = 0X3C10; // CParticleCollectionVecInput
-            static constexpr std::uintptr_t m_flTailAlphaScale               = 0X42C8; // CPerParticleFloatInput
-            static constexpr std::uintptr_t m_nHorizCropField                = 0X4438; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nVertCropField                 = 0X443C; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flForwardShift                 = 0X4440; // float32
-            static constexpr std::uintptr_t m_bFlipUVBasedOnPitchYaw         = 0X4444; // bool
+            static constexpr std::uintptr_t m_bEnableFadingAndClamping       = 0X30E8; // bool
+            static constexpr std::uintptr_t m_flStartFadeDot                 = 0X30EC; // float32
+            static constexpr std::uintptr_t m_flEndFadeDot                   = 0X30F0; // float32
+            static constexpr std::uintptr_t m_nPrevPntSource                 = 0X30F4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flMaxLength                    = 0X30F8; // float32
+            static constexpr std::uintptr_t m_flMinLength                    = 0X30FC; // float32
+            static constexpr std::uintptr_t m_bIgnoreDT                      = 0X3100; // bool
+            static constexpr std::uintptr_t m_flConstrainRadiusToLengthRatio = 0X3104; // float32
+            static constexpr std::uintptr_t m_flLengthScale                  = 0X3108; // float32
+            static constexpr std::uintptr_t m_flLengthFadeInTime             = 0X310C; // float32
+            static constexpr std::uintptr_t m_flRadiusHeadTaper              = 0X3110; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecHeadColorScale              = 0X3280; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_flHeadAlphaScale               = 0X3938; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_flRadiusTaper                  = 0X3AA8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_vecTailColorScale              = 0X3C18; // CParticleCollectionVecInput
+            static constexpr std::uintptr_t m_flTailAlphaScale               = 0X42D0; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nHorizCropField                = 0X4440; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nVertCropField                 = 0X4444; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flForwardShift                 = 0X4448; // float32
+            static constexpr std::uintptr_t m_bFlipUVBasedOnPitchYaw         = 0X444C; // bool
         };
 
         // Construct Allowed
@@ -20562,32 +21787,32 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapTransformOrientationToRotations : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_TransformInput = 0X01D0; // CParticleTransformInput
-            static constexpr std::uintptr_t m_vecRotation    = 0X0238; // Vector
-            static constexpr std::uintptr_t m_bUseQuat       = 0X0244; // bool
-            static constexpr std::uintptr_t m_bWriteNormal   = 0X0245; // bool
+            static constexpr std::uintptr_t m_TransformInput = 0X01D8; // CParticleTransformInput
+            static constexpr std::uintptr_t m_vecRotation    = 0X0240; // Vector
+            static constexpr std::uintptr_t m_bUseQuat       = 0X024C; // bool
+            static constexpr std::uintptr_t m_bWriteNormal   = 0X024D; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_SetFloatAttributeToVectorExpression : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nExpression   = 0X01D0; // VectorFloatExpressionType_t
-            static constexpr std::uintptr_t m_vInput1       = 0X01D8; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_vInput2       = 0X0890; // CPerParticleVecInput
-            static constexpr std::uintptr_t m_flOutputRemap = 0X0F48; // CParticleRemapFloatInput
-            static constexpr std::uintptr_t m_nOutputField  = 0X10B8; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nSetMethod    = 0X10BC; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nExpression   = 0X01D8; // VectorFloatExpressionType_t
+            static constexpr std::uintptr_t m_vInput1       = 0X01E0; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_vInput2       = 0X0898; // CPerParticleVecInput
+            static constexpr std::uintptr_t m_flOutputRemap = 0X0F50; // CParticleRemapFloatInput
+            static constexpr std::uintptr_t m_nOutputField  = 0X10C0; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nSetMethod    = 0X10C4; // ParticleSetMethod_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_InheritFromPeerSystem : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nFieldInput  = 0X01D4; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nIncrement   = 0X01D8; // int32
-            static constexpr std::uintptr_t m_nGroupID     = 0X01DC; // int32
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nFieldInput  = 0X01DC; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nIncrement   = 0X01E0; // int32
+            static constexpr std::uintptr_t m_nGroupID     = 0X01E4; // int32
         };
 
         // Has Trivial Constructor
@@ -20640,22 +21865,22 @@ namespace offsets {
         // Construct Allowed
         class C_OP_ConnectParentParticleToNearest : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFirstControlPoint  = 0X01D0; // int32
-            static constexpr std::uintptr_t m_nSecondControlPoint = 0X01D4; // int32
-            static constexpr std::uintptr_t m_bUseRadius          = 0X01D8; // bool
-            static constexpr std::uintptr_t m_flRadiusScale       = 0X01E0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flParentRadiusScale = 0X0350; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_nFirstControlPoint  = 0X01D8; // int32
+            static constexpr std::uintptr_t m_nSecondControlPoint = 0X01DC; // int32
+            static constexpr std::uintptr_t m_bUseRadius          = 0X01E0; // bool
+            static constexpr std::uintptr_t m_flRadiusScale       = 0X01E8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flParentRadiusScale = 0X0358; // CParticleCollectionFloatInput
         };
 
         // Has VTable
         // Construct Allowed
         class C_INIT_InheritFromParentParticles : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_flScale             = 0X01D8; // float32
-            static constexpr std::uintptr_t m_nFieldOutput        = 0X01DC; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_nIncrement          = 0X01E0; // int32
-            static constexpr std::uintptr_t m_bRandomDistribution = 0X01E4; // bool
-            static constexpr std::uintptr_t m_nRandomSeed         = 0X01E8; // int32
+            static constexpr std::uintptr_t m_flScale             = 0X01E0; // float32
+            static constexpr std::uintptr_t m_nFieldOutput        = 0X01E4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_nIncrement          = 0X01E8; // int32
+            static constexpr std::uintptr_t m_bRandomDistribution = 0X01EC; // bool
+            static constexpr std::uintptr_t m_nRandomSeed         = 0X01F0; // int32
         };
 
         // Has VTable
@@ -20704,6 +21929,17 @@ namespace offsets {
         };
 
         // Has Trivial Destructor
+        class CInfoChoreoAnchorPosition {
+        public:
+            static constexpr std::uintptr_t m_vOrigin     = 0X0000; // Vector
+            static constexpr std::uintptr_t m_qAngles     = 0X000C; // QAngle
+            static constexpr std::uintptr_t m_vExtentsMin = 0X0018; // Vector
+            static constexpr std::uintptr_t m_vExtentsMax = 0X0024; // Vector
+            static constexpr std::uintptr_t m_flRadius    = 0X0030; // float32
+            static constexpr std::uintptr_t m_nShapeType  = 0X0034; // CInfoChoreoLocatorShapeType_t
+        };
+
+        // Has Trivial Destructor
         class CSkillInt {
         public:
             static constexpr std::uintptr_t m_pValue = 0X0000; // int32[4]
@@ -20716,10 +21952,24 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        struct AI_DefaultNPC_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t s_npc_current_ability       = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t s_npc_tactic_current        = 0X0010; // CGlobalSymbol
+            static constexpr std::uintptr_t s_npc_tactic_phase          = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t tactic_interrupt_conditions = 0X0020; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t s_npc_current_movement      = 0X0038; // CUtlString
+            static constexpr std::uintptr_t path_query_schedule         = 0X0040; // AI_DefaultNPC_DebugSnapshotData_t::PathQuery_t
+            static constexpr std::uintptr_t path_query_tactic           = 0X0068; // AI_DefaultNPC_DebugSnapshotData_t::PathQuery_t
+            static constexpr std::uintptr_t path_queries_speculative    = 0X0090; // CUtlVector<AI_DefaultNPC_DebugSnapshotData_t::PathQuery_t>
+        };
+
+        // Has VTable
+        // Construct Allowed
         class C_OP_CPVelocityForce : public CParticleFunctionForce {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E0; // int32
-            static constexpr std::uintptr_t m_flScale             = 0X01E8; // CPerParticleFloatInput
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01E8; // int32
+            static constexpr std::uintptr_t m_flScale             = 0X01F0; // CPerParticleFloatInput
         };
 
         // Has Trivial Destructor
@@ -20835,27 +22085,27 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapTransformVisibilityToVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nSetMethod     = 0X01D0; // ParticleSetMethod_t
-            static constexpr std::uintptr_t m_TransformInput = 0X01D8; // CParticleTransformInput
-            static constexpr std::uintptr_t m_nFieldOutput   = 0X0240; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flInputMin     = 0X0244; // float32
-            static constexpr std::uintptr_t m_flInputMax     = 0X0248; // float32
-            static constexpr std::uintptr_t m_vecOutputMin   = 0X024C; // Vector
-            static constexpr std::uintptr_t m_vecOutputMax   = 0X0258; // Vector
-            static constexpr std::uintptr_t m_flRadius       = 0X0264; // float32
+            static constexpr std::uintptr_t m_nSetMethod     = 0X01D8; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_TransformInput = 0X01E0; // CParticleTransformInput
+            static constexpr std::uintptr_t m_nFieldOutput   = 0X0248; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flInputMin     = 0X024C; // float32
+            static constexpr std::uintptr_t m_flInputMax     = 0X0250; // float32
+            static constexpr std::uintptr_t m_vecOutputMin   = 0X0254; // Vector
+            static constexpr std::uintptr_t m_vecOutputMax   = 0X0260; // Vector
+            static constexpr std::uintptr_t m_flRadius       = 0X026C; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RenderStatusEffect : public CParticleFunctionRenderer {
         public:
-            static constexpr std::uintptr_t m_pTextureColorWarp        = 0X0220; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureDetail2          = 0X0228; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureDiffuseWarp      = 0X0230; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureFresnelColorWarp = 0X0238; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureFresnelWarp      = 0X0240; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureSpecularWarp     = 0X0248; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_pTextureEnvMap           = 0X0250; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureColorWarp        = 0X0228; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureDetail2          = 0X0230; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureDiffuseWarp      = 0X0238; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureFresnelColorWarp = 0X0240; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureFresnelWarp      = 0X0248; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureSpecularWarp     = 0X0250; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_pTextureEnvMap           = 0X0258; // CStrongHandle<InfoForResourceTypeCTextureBase>
         };
 
         // Has Trivial Destructor
@@ -20896,6 +22146,18 @@ namespace offsets {
             static constexpr std::uintptr_t m_Value = 0X0000; // int32
         };
 
+        // Construct Allowed
+        class SAVE_HEADER {
+        public:
+            static constexpr std::uintptr_t m_saveId           = 0X0000; // int32
+            static constexpr std::uintptr_t m_version          = 0X0004; // int32
+            static constexpr std::uintptr_t m_nConnectionCount = 0X0008; // int32
+            static constexpr std::uintptr_t m_nMapVersion      = 0X000C; // int32
+            static constexpr std::uintptr_t m_sSpawnGroupName  = 0X0010; // CUtlString
+            static constexpr std::uintptr_t m_vecWorldOffset   = 0X0020; // matrix3x4a_t
+            static constexpr std::uintptr_t m_flSaveTime       = 0X0050; // float32
+        };
+
         // Has VTable
         // Construct Allowed
         struct GameAmmoTypeInfo_t : public AmmoTypeInfo_t {
@@ -20908,33 +22170,33 @@ namespace offsets {
         // Construct Allowed
         class C_INIT_ColorLitPerParticle : public CParticleFunctionInitializer {
         public:
-            static constexpr std::uintptr_t m_ColorMin             = 0X01F0; // Color
-            static constexpr std::uintptr_t m_ColorMax             = 0X01F4; // Color
-            static constexpr std::uintptr_t m_TintMin              = 0X01F8; // Color
-            static constexpr std::uintptr_t m_TintMax              = 0X01FC; // Color
-            static constexpr std::uintptr_t m_flTintPerc           = 0X0200; // float32
-            static constexpr std::uintptr_t m_nTintBlendMode       = 0X0204; // ParticleColorBlendMode_t
-            static constexpr std::uintptr_t m_flLightAmplification = 0X0208; // float32
+            static constexpr std::uintptr_t m_ColorMin             = 0X01F8; // Color
+            static constexpr std::uintptr_t m_ColorMax             = 0X01FC; // Color
+            static constexpr std::uintptr_t m_TintMin              = 0X0200; // Color
+            static constexpr std::uintptr_t m_TintMax              = 0X0204; // Color
+            static constexpr std::uintptr_t m_flTintPerc           = 0X0208; // float32
+            static constexpr std::uintptr_t m_nTintBlendMode       = 0X020C; // ParticleColorBlendMode_t
+            static constexpr std::uintptr_t m_flLightAmplification = 0X0210; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_DampenToCP : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D0; // int32
-            static constexpr std::uintptr_t m_flRange             = 0X01D4; // float32
-            static constexpr std::uintptr_t m_flScale             = 0X01D8; // float32
+            static constexpr std::uintptr_t m_nControlPointNumber = 0X01D8; // int32
+            static constexpr std::uintptr_t m_flRange             = 0X01DC; // float32
+            static constexpr std::uintptr_t m_flScale             = 0X01E0; // float32
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_LerpVector : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_nFieldOutput = 0X01D0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_vecOutput    = 0X01D4; // Vector
-            static constexpr std::uintptr_t m_flStartTime  = 0X01E0; // float32
-            static constexpr std::uintptr_t m_flEndTime    = 0X01E4; // float32
-            static constexpr std::uintptr_t m_nSetMethod   = 0X01E8; // ParticleSetMethod_t
+            static constexpr std::uintptr_t m_nFieldOutput = 0X01D8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_vecOutput    = 0X01DC; // Vector
+            static constexpr std::uintptr_t m_flStartTime  = 0X01E8; // float32
+            static constexpr std::uintptr_t m_flEndTime    = 0X01EC; // float32
+            static constexpr std::uintptr_t m_nSetMethod   = 0X01F0; // ParticleSetMethod_t
         };
 
         // Has Trivial Destructor
@@ -20966,42 +22228,49 @@ namespace offsets {
             static constexpr std::uintptr_t m_profileName = 0X0058; // CGlobalSymbol
         };
 
+        // Construct Allowed
+        struct AI_MotorGroundAnimgraph_DebugSnapshotData_t__Event_t {
+        public:
+            static constexpr std::uintptr_t description = 0X0000; // CUtlString
+            static constexpr std::uintptr_t location    = 0X0008; // VectorWS
+        };
+
         // Has VTable
         // Construct Allowed
         class C_OP_RenderRopes : public CBaseRendererSource2 {
         public:
-            static constexpr std::uintptr_t m_bEnableFadingAndClamping             = 0X2DE8; // bool
-            static constexpr std::uintptr_t m_flMinSize                            = 0X2DEC; // float32
-            static constexpr std::uintptr_t m_flMaxSize                            = 0X2DF0; // float32
-            static constexpr std::uintptr_t m_flStartFadeSize                      = 0X2DF4; // float32
-            static constexpr std::uintptr_t m_flEndFadeSize                        = 0X2DF8; // float32
-            static constexpr std::uintptr_t m_flStartFadeDot                       = 0X2DFC; // float32
-            static constexpr std::uintptr_t m_flEndFadeDot                         = 0X2E00; // float32
-            static constexpr std::uintptr_t m_flRadiusTaper                        = 0X2E04; // float32
-            static constexpr std::uintptr_t m_nMinTesselation                      = 0X2E08; // int32
-            static constexpr std::uintptr_t m_nMaxTesselation                      = 0X2E0C; // int32
-            static constexpr std::uintptr_t m_flTessScale                          = 0X2E10; // float32
-            static constexpr std::uintptr_t m_flTextureVWorldSize                  = 0X2E18; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flTextureVScrollRate                 = 0X2F88; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_flTextureVOffset                     = 0X30F8; // CParticleCollectionRendererFloatInput
-            static constexpr std::uintptr_t m_nTextureVParamsCP                    = 0X3268; // int32
-            static constexpr std::uintptr_t m_bClampV                              = 0X326C; // bool
-            static constexpr std::uintptr_t m_nScaleCP1                            = 0X3270; // int32
-            static constexpr std::uintptr_t m_nScaleCP2                            = 0X3274; // int32
-            static constexpr std::uintptr_t m_flScaleVSizeByControlPointDistance   = 0X3278; // float32
-            static constexpr std::uintptr_t m_flScaleVScrollByControlPointDistance = 0X327C; // float32
-            static constexpr std::uintptr_t m_flScaleVOffsetByControlPointDistance = 0X3280; // float32
-            static constexpr std::uintptr_t m_bUseScalarForTextureCoordinate       = 0X3285; // bool
-            static constexpr std::uintptr_t m_nScalarFieldForTextureCoordinate     = 0X3288; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_flScalarAttributeTextureCoordScale   = 0X328C; // float32
-            static constexpr std::uintptr_t m_bReverseOrder                        = 0X3290; // bool
-            static constexpr std::uintptr_t m_bClosedLoop                          = 0X3291; // bool
-            static constexpr std::uintptr_t m_nSplitField                          = 0X3294; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bSortBySegmentID                     = 0X3298; // bool
-            static constexpr std::uintptr_t m_nOrientationType                     = 0X329C; // ParticleOrientationChoiceList_t
-            static constexpr std::uintptr_t m_nVectorFieldForOrientation           = 0X32A0; // ParticleAttributeIndex_t
-            static constexpr std::uintptr_t m_bDrawAsOpaque                        = 0X32A4; // bool
-            static constexpr std::uintptr_t m_bGenerateNormals                     = 0X32A5; // bool
+            static constexpr std::uintptr_t m_bEnableFadingAndClamping             = 0X2DF0; // bool
+            static constexpr std::uintptr_t m_flMinSize                            = 0X2DF4; // float32
+            static constexpr std::uintptr_t m_flMaxSize                            = 0X2DF8; // float32
+            static constexpr std::uintptr_t m_flStartFadeSize                      = 0X2DFC; // float32
+            static constexpr std::uintptr_t m_flEndFadeSize                        = 0X2E00; // float32
+            static constexpr std::uintptr_t m_flStartFadeDot                       = 0X2E04; // float32
+            static constexpr std::uintptr_t m_flEndFadeDot                         = 0X2E08; // float32
+            static constexpr std::uintptr_t m_flRadiusTaper                        = 0X2E0C; // float32
+            static constexpr std::uintptr_t m_nMinTesselation                      = 0X2E10; // int32
+            static constexpr std::uintptr_t m_nMaxTesselation                      = 0X2E14; // int32
+            static constexpr std::uintptr_t m_flTessScale                          = 0X2E18; // float32
+            static constexpr std::uintptr_t m_flTextureVWorldSize                  = 0X2E20; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flTextureVScrollRate                 = 0X2F90; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_flTextureVOffset                     = 0X3100; // CParticleCollectionRendererFloatInput
+            static constexpr std::uintptr_t m_nTextureVParamsCP                    = 0X3270; // int32
+            static constexpr std::uintptr_t m_bClampV                              = 0X3274; // bool
+            static constexpr std::uintptr_t m_nScaleCP1                            = 0X3278; // int32
+            static constexpr std::uintptr_t m_nScaleCP2                            = 0X327C; // int32
+            static constexpr std::uintptr_t m_flScaleVSizeByControlPointDistance   = 0X3280; // float32
+            static constexpr std::uintptr_t m_flScaleVScrollByControlPointDistance = 0X3284; // float32
+            static constexpr std::uintptr_t m_flScaleVOffsetByControlPointDistance = 0X3288; // float32
+            static constexpr std::uintptr_t m_bUseScalarForTextureCoordinate       = 0X328D; // bool
+            static constexpr std::uintptr_t m_nScalarFieldForTextureCoordinate     = 0X3290; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flScalarAttributeTextureCoordScale   = 0X3294; // float32
+            static constexpr std::uintptr_t m_bReverseOrder                        = 0X3298; // bool
+            static constexpr std::uintptr_t m_bClosedLoop                          = 0X3299; // bool
+            static constexpr std::uintptr_t m_nSplitField                          = 0X329C; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bSortBySegmentID                     = 0X32A0; // bool
+            static constexpr std::uintptr_t m_nOrientationType                     = 0X32A4; // ParticleOrientationChoiceList_t
+            static constexpr std::uintptr_t m_nVectorFieldForOrientation           = 0X32A8; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_bDrawAsOpaque                        = 0X32AC; // bool
+            static constexpr std::uintptr_t m_bGenerateNormals                     = 0X32AD; // bool
         };
 
         // Has Trivial Destructor
@@ -21116,8 +22385,8 @@ namespace offsets {
         class CVoiceContainerBlender : public CVoiceContainerBase {
         public:
             static constexpr std::uintptr_t m_firstSound    = 0X00A8; // CSoundContainerReference
-            static constexpr std::uintptr_t m_secondSound   = 0X00C0; // CSoundContainerReference
-            static constexpr std::uintptr_t m_flBlendFactor = 0X00D8; // float32
+            static constexpr std::uintptr_t m_secondSound   = 0X00C8; // CSoundContainerReference
+            static constexpr std::uintptr_t m_flBlendFactor = 0X00E8; // float32
         };
 
         // Has VTable
@@ -21207,6 +22476,17 @@ namespace offsets {
             static constexpr std::uintptr_t m_vecPropertyMutators         = 0X0048; // CUtlVector<CompMatPropertyMutator_t>
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct screenfade_t {
+        public:
+            static constexpr std::uintptr_t Speed   = 0X0000; // float32
+            static constexpr std::uintptr_t End     = 0X0004; // float32
+            static constexpr std::uintptr_t Reset   = 0X0008; // float32
+            static constexpr std::uintptr_t m_Color = 0X000C; // Color
+            static constexpr std::uintptr_t Flags   = 0X0010; // int32
+        };
+
         class CVectorMovingAverage {
         public:
         };
@@ -21215,19 +22495,25 @@ namespace offsets {
         // Construct Allowed
         class C_OP_RemapDensityGradientToVectorAttribute : public CParticleFunctionOperator {
         public:
-            static constexpr std::uintptr_t m_flRadiusScale = 0X01D0; // float32
-            static constexpr std::uintptr_t m_nFieldOutput  = 0X01D4; // ParticleAttributeIndex_t
+            static constexpr std::uintptr_t m_flRadiusScale = 0X01D8; // float32
+            static constexpr std::uintptr_t m_nFieldOutput  = 0X01DC; // ParticleAttributeIndex_t
         };
 
         // Has VTable
         // Construct Allowed
         class C_OP_RopeSpringConstraint : public CParticleFunctionConstraint {
         public:
-            static constexpr std::uintptr_t m_flRestLength           = 0X01D0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flMinDistance          = 0X0340; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flMaxDistance          = 0X04B0; // CParticleCollectionFloatInput
-            static constexpr std::uintptr_t m_flAdjustmentScale      = 0X0620; // float32
-            static constexpr std::uintptr_t m_flInitialRestingLength = 0X0628; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flRestLength           = 0X01D8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flMinDistance          = 0X0348; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flMaxDistance          = 0X04B8; // CParticleCollectionFloatInput
+            static constexpr std::uintptr_t m_flAdjustmentScale      = 0X0628; // float32
+            static constexpr std::uintptr_t m_flInitialRestingLength = 0X0630; // CParticleCollectionFloatInput
+        };
+
+        // Has VTable
+        // Is Absract
+        class IPhysicsJoint {
+        public:
         };
 
         // Has Trivial Destructor
@@ -21239,6 +22525,31 @@ namespace offsets {
             static constexpr std::uintptr_t flSpringConstant   = 0X0008; // float32
             static constexpr std::uintptr_t flSpringDamping    = 0X000C; // float32
             static constexpr std::uintptr_t flNodeWeight0      = 0X0010; // float32
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PerTickSettings_t {
+        public:
+            static constexpr std::uintptr_t m_startingLocalToWorld = 0X0000; // CTransform
+            static constexpr std::uintptr_t m_prevLocalToWorld     = 0X0020; // CTransform
+            static constexpr std::uintptr_t m_finalLocalToWorld    = 0X0040; // CTransform
+            static constexpr std::uintptr_t m_rootMotion           = 0X0060; // CRootMotion
+            static constexpr std::uintptr_t m_updateID             = 0X069C; // int32
+            static constexpr std::uintptr_t m_flLastTimeStep       = 0X06A4; // float32
+            static constexpr std::uintptr_t m_flPrevAnimTime       = 0X06A8; // float32
+            static constexpr std::uintptr_t m_flNextAnimTime       = 0X06AC; // float32
+            static constexpr std::uintptr_t m_bAwaken              = 0X06B4; // bool
+            static constexpr std::uintptr_t m_bTeleported          = 0X06B5; // bool
+            static constexpr std::uintptr_t m_bIsClient            = 0X06B6; // bool
+            static constexpr std::uintptr_t m_bIsPredicted         = 0X06B7; // bool
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CChoreoInstanceData {
+        public:
+            static constexpr std::uintptr_t m_AnimOverlay = 0X0000; // CAnimationLayer[12]
         };
 
         // Has VTable

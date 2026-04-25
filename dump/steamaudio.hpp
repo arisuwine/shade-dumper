@@ -50,7 +50,6 @@ namespace offsets {
             static constexpr std::uintptr_t m_movables = 0X0010; // CSteamAudioMovableBakedData<CSteamAudioBakedPathingData>
         };
 
-        // Has Trivial Constructor
         // Has Trivial Destructor
         // Construct Allowed
         struct SteamAudioReverbSettings_t {
@@ -59,6 +58,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_nNumBounces      = 0X0004; // int32
             static constexpr std::uintptr_t m_flIRDuration     = 0X0008; // float32
             static constexpr std::uintptr_t m_nAmbisonicsOrder = 0X000C; // int32
+            static constexpr std::uintptr_t m_bExportScene     = 0X0010; // bool
         };
 
         // Has Trivial Destructor
@@ -98,16 +98,17 @@ namespace offsets {
         class CSteamAudioBakedReverbData {
         public:
             static constexpr std::uintptr_t m_nBands                    = 0X0000; // int32
-            static constexpr std::uintptr_t m_probes                    = 0X0008; // CSteamAudioProbeData
-            static constexpr std::uintptr_t m_grid                      = 0X0010; // CSteamAudioProbeGrid
-            static constexpr std::uintptr_t m_reverbSettings            = 0X0068; // SteamAudioReverbSettings_t
-            static constexpr std::uintptr_t m_reverbClusteringSettings  = 0X0078; // SteamAudioReverbClusteringSettings_t
-            static constexpr std::uintptr_t m_reverbCompressionSettings = 0X0084; // SteamAudioReverbCompressionSettings_t
-            static constexpr std::uintptr_t m_clusteredProbes           = 0X0090; // CSteamAudioProbeData
-            static constexpr std::uintptr_t m_vecClusterForProbe        = 0X0098; // CUtlVector<int16>
-            static constexpr std::uintptr_t m_compressedData            = 0X00B0; // CSteamAudioCompressedReverb
-            static constexpr std::uintptr_t m_compressedClusteredData   = 0X0110; // CSteamAudioCompressedReverb
-            static constexpr std::uintptr_t m_movables                  = 0X0170; // CSteamAudioMovableBakedData<CSteamAudioBakedReverbData>
+            static constexpr std::uintptr_t m_scene                     = 0X0008; // CSteamAudioSceneData
+            static constexpr std::uintptr_t m_probes                    = 0X0018; // CSteamAudioProbeData
+            static constexpr std::uintptr_t m_grid                      = 0X0020; // CSteamAudioProbeGrid
+            static constexpr std::uintptr_t m_reverbSettings            = 0X0078; // SteamAudioReverbSettings_t
+            static constexpr std::uintptr_t m_reverbClusteringSettings  = 0X008C; // SteamAudioReverbClusteringSettings_t
+            static constexpr std::uintptr_t m_reverbCompressionSettings = 0X0098; // SteamAudioReverbCompressionSettings_t
+            static constexpr std::uintptr_t m_clusteredProbes           = 0X00A0; // CSteamAudioProbeData
+            static constexpr std::uintptr_t m_vecClusterForProbe        = 0X00A8; // CUtlVector<int16>
+            static constexpr std::uintptr_t m_compressedData            = 0X00C0; // CSteamAudioCompressedReverb
+            static constexpr std::uintptr_t m_compressedClusteredData   = 0X0120; // CSteamAudioCompressedReverb
+            static constexpr std::uintptr_t m_movables                  = 0X0180; // CSteamAudioMovableBakedData<CSteamAudioBakedReverbData>
         };
 
         // Construct Allowed
@@ -140,6 +141,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_vecOutsideField         = 0X0050; // CUtlVector<CSteamAudioAmbisonicsField>
             static constexpr std::uintptr_t m_vecInsideSmallSizeField = 0X0068; // CUtlVector<CSteamAudioAmbisonicsField>
             static constexpr std::uintptr_t m_movables                = 0X0080; // CSteamAudioMovableBakedData<CSteamAudioBakedDimensionsData>
+        };
+
+        // Construct Allowed
+        class CSteamAudioSceneData {
+        public:
+            static constexpr std::uintptr_t m_pScene      = 0X0000; // IPLScene
+            static constexpr std::uintptr_t m_pStaticMesh = 0X0008; // IPLStaticMesh
         };
 
         // Construct Allowed

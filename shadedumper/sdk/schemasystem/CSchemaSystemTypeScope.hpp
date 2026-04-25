@@ -190,6 +190,7 @@ struct SchemaClassInfoData_t
 
 	const char* m_pszName;
 	const char* m_pszProjectName;
+	const char* m_pszName2;
 
 	int m_nSize;
 

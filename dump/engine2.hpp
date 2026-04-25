@@ -22,7 +22,7 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_iszPrivateVScripts = 0X0008; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_pEntity            = 0X0010; // CEntityIdentity*
-            static constexpr std::uintptr_t m_CScriptComponent   = 0X0030; // CScriptComponent*
+            static constexpr std::uintptr_t m_CScriptComponent   = 0X0028; // CScriptComponent*
         };
 
         // Has VTable
@@ -43,18 +43,18 @@ namespace offsets {
         // Local Type Scope
         class CEntityIdentity {
         public:
-            static constexpr std::uintptr_t m_nameStringableIndex = 0X0014; // int32
-            static constexpr std::uintptr_t m_name                = 0X0018; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_designerName        = 0X0020; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flags               = 0X0030; // uint32
-            static constexpr std::uintptr_t m_worldGroupId        = 0X0038; // WorldGroupId_t
-            static constexpr std::uintptr_t m_fDataObjectTypes    = 0X003C; // uint32
-            static constexpr std::uintptr_t m_PathIndex           = 0X0040; // ChangeAccessorFieldPathIndex_t
-            static constexpr std::uintptr_t m_pAttributes         = 0X0048; // CEntityAttributeTable*
-            static constexpr std::uintptr_t m_pPrev               = 0X0050; // CEntityIdentity*
-            static constexpr std::uintptr_t m_pNext               = 0X0058; // CEntityIdentity*
-            static constexpr std::uintptr_t m_pPrevByClass        = 0X0060; // CEntityIdentity*
-            static constexpr std::uintptr_t m_pNextByClass        = 0X0068; // CEntityIdentity*
+            static constexpr std::uintptr_t m_nameStringTableIndex = 0X0014; // int32
+            static constexpr std::uintptr_t m_name                 = 0X0018; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_designerName         = 0X0020; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flags                = 0X0030; // uint32
+            static constexpr std::uintptr_t m_worldGroupId         = 0X0038; // WorldGroupId_t
+            static constexpr std::uintptr_t m_fDataObjectTypes     = 0X003C; // uint32
+            static constexpr std::uintptr_t m_PathIndex            = 0X0040; // ChangeAccessorFieldPathIndex_t
+            static constexpr std::uintptr_t m_pAttributes          = 0X0048; // CEntityAttributeTable*
+            static constexpr std::uintptr_t m_pPrev                = 0X0050; // CEntityIdentity*
+            static constexpr std::uintptr_t m_pNext                = 0X0058; // CEntityIdentity*
+            static constexpr std::uintptr_t m_pPrevByClass         = 0X0060; // CEntityIdentity*
+            static constexpr std::uintptr_t m_pNextByClass         = 0X0068; // CEntityIdentity*
         };
 
         // Has Trivial Destructor
@@ -143,6 +143,20 @@ namespace offsets {
         // Global Type Scope
         struct EventServerBeginSimulate_t : public EventSimulate_t {
         public:
+        };
+
+        // Construct Allowed
+        struct EntityIOQueuePrioritizedEvent_t {
+        public:
+            static constexpr std::uintptr_t m_flFireTime   = 0X0004; // GameTime_t
+            static constexpr std::uintptr_t m_targetType   = 0X0008; // EntityIOTargetType_t
+            static constexpr std::uintptr_t m_pTarget      = 0X0010; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_pTargetInput = 0X0018; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hActivator   = 0X0020; // CEntityHandle
+            static constexpr std::uintptr_t m_hCaller      = 0X0024; // CEntityHandle
+            static constexpr std::uintptr_t m_nOutputID    = 0X0028; // int32
+            static constexpr std::uintptr_t m_hEntTarget   = 0X002C; // CEntityHandle
+            static constexpr std::uintptr_t m_variantValue = 0X0030; // CVariantBase<CVariantDefaultAllocator>
         };
 
         // Has Trivial Constructor
@@ -364,8 +378,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_flTickRemainder            = 0X0058; // float64
         };
 
-        // Has Trivial Destructor
-        struct EntOutput_t {
+        class CEntityKeyValues {
         public:
         };
 

@@ -3,6 +3,16 @@
 
 namespace offsets {
     namespace scenesystem {
+        enum class ESceneViewDebugOverlaysListenerDataType_t : std::uint32_t {
+            k_ESceneViewDebugOverlaysListenerDataType_Unknown        = 0x0,
+            k_ESceneViewDebugOverlaysListenerDataType_Sphere         = 0x1,
+            k_ESceneViewDebugOverlaysListenerDataType_Capsule        = 0x2,
+            k_ESceneViewDebugOverlaysListenerDataType_BoxAngles      = 0x3,
+            k_ESceneViewDebugOverlaysListenerDataType_Line           = 0x4,
+            k_ESceneViewDebugOverlaysListenerDataType_SolidBoxAngles = 0x5,
+            k_ESceneViewDebugOverlaysListenerDataType_Text3D         = 0x6
+        };
+
         enum class ESilhouetteType_t : std::uint32_t {
             SILHOUETTE_NONE   = 0x0,
             SILHOUETTE_LIGHT  = 0x1,
@@ -11,10 +21,11 @@ namespace offsets {
         };
 
         enum class DisableShadows_t : std::uint8_t {
-            kDisableShadows_None     = 0x0,
-            kDisableShadows_All      = 0x1,
-            kDisableShadows_Baked    = 0x2,
-            kDisableShadows_Realtime = 0x3
+            kDisableShadows_None       = 0x0,
+            kDisableShadows_All        = 0x1,
+            kDisableShadows_Baked      = 0x2,
+            kDisableShadows_Realtime   = 0x3,
+            kDisableShadows_ReallyNone = 0x4
         };
 
         enum class DecalRtEncoding_t : std::uint8_t {

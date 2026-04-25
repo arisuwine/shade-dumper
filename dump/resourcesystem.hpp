@@ -23,13 +23,6 @@ namespace offsets {
         // Has Trivial Constructor
         // Has Trivial Destructor
         // Global Type Scope
-        class InfoForResourceTypeCNmIKRig {
-        public:
-        };
-
-        // Has Trivial Constructor
-        // Has Trivial Destructor
-        // Global Type Scope
         class InfoForResourceTypeCResponseRulesList {
         public:
         };
@@ -362,6 +355,13 @@ namespace offsets {
         // Has Trivial Destructor
         // Global Type Scope
         class InfoForResourceTypeIPulseGraphDef {
+        public:
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Global Type Scope
+        class InfoForResourceTypeCVDataItemDefs {
         public:
         };
 

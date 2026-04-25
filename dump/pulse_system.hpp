@@ -131,8 +131,8 @@ namespace offsets {
         // Local Type Scope
         class CTestDomainDerived_Cursor : public CPulseExecCursor {
         public:
-            static constexpr std::uintptr_t m_nCursorValueA = 0X00D0; // int32
-            static constexpr std::uintptr_t m_nCursorValueB = 0X00D4; // int32
+            static constexpr std::uintptr_t m_nCursorValueA = 0X00D8; // int32
+            static constexpr std::uintptr_t m_nCursorValueB = 0X00DC; // int32
         };
 
         // Has VTable
@@ -338,10 +338,10 @@ namespace offsets {
         // Local Type Scope
         class CPulseTurtleGraphicsCursor : public CPulseExecCursor {
         public:
-            static constexpr std::uintptr_t m_Color        = 0X00D0; // Color
-            static constexpr std::uintptr_t m_vPos         = 0X00D4; // Vector2D
-            static constexpr std::uintptr_t m_flHeadingDeg = 0X00DC; // float32
-            static constexpr std::uintptr_t m_bPenUp       = 0X00E0; // bool
+            static constexpr std::uintptr_t m_Color        = 0X00D8; // Color
+            static constexpr std::uintptr_t m_vPos         = 0X00DC; // Vector2D
+            static constexpr std::uintptr_t m_flHeadingDeg = 0X00E4; // float32
+            static constexpr std::uintptr_t m_bPenUp       = 0X00E8; // bool
         };
 
         // Has Trivial Constructor
@@ -414,6 +414,12 @@ namespace offsets {
             static constexpr std::uintptr_t m_AsyncChild2  = 0X00D8; // SignatureOutflow_Continue
             static constexpr std::uintptr_t m_YieldResume1 = 0X0120; // SignatureOutflow_Resume
             static constexpr std::uintptr_t m_YieldResume2 = 0X0168; // SignatureOutflow_Resume
+        };
+
+        // Has Trivial Destructor
+        // Local Type Scope
+        class TestComponent_tAPI {
+        public:
         };
 
         // Has VTable
@@ -651,7 +657,7 @@ namespace offsets {
         class CPulseCell_BooleanSwitchState : public CPulseCell_BaseState {
         public:
             static constexpr std::uintptr_t m_Condition = 0X0048; // PulseObservableBoolExpression_t
-            static constexpr std::uintptr_t m_SubGraph  = 0X00C0; // CPulse_OutflowConnection
+            static constexpr std::uintptr_t m_Always    = 0X00C0; // CPulse_OutflowConnection
             static constexpr std::uintptr_t m_WhenTrue  = 0X0108; // CPulse_OutflowConnection
             static constexpr std::uintptr_t m_WhenFalse = 0X0150; // CPulse_OutflowConnection
         };
@@ -799,11 +805,11 @@ namespace offsets {
         // Local Type Scope
         class CPulseCell_Step_CallExternalMethod : public CPulseCell_BaseYieldingInflow {
         public:
-            static constexpr std::uintptr_t m_MethodName     = 0X0048; // PulseSymbol_t
-            static constexpr std::uintptr_t m_GameBlackboard = 0X0058; // PulseSymbol_t
-            static constexpr std::uintptr_t m_ExpectedArgs   = 0X0068; // CUtlLeanVector<CPulseRuntimeMethodArg>
-            static constexpr std::uintptr_t m_nAsyncCallMode = 0X0078; // PulseMethodCallMode_t
-            static constexpr std::uintptr_t m_OnFinished     = 0X0080; // CPulse_ResumePoint
+            static constexpr std::uintptr_t m_MethodName       = 0X0048; // PulseSymbol_t
+            static constexpr std::uintptr_t m_nBlackboardIndex = 0X0058; // PulseRuntimeBlackboardReferenceIndex_t
+            static constexpr std::uintptr_t m_ExpectedArgs     = 0X0060; // CUtlLeanVector<CPulseRuntimeMethodArg>
+            static constexpr std::uintptr_t m_nAsyncCallMode   = 0X0070; // PulseMethodCallMode_t
+            static constexpr std::uintptr_t m_OnFinished       = 0X0078; // CPulse_ResumePoint
         };
 
         // Construct Allowed
@@ -842,6 +848,12 @@ namespace offsets {
         // Local Type Scope
         class CPulseCell_Value_RandomFloat : public CPulseCell_BaseValue {
         public:
+        };
+
+        // Has VTable
+        struct TestComponent_t {
+        public:
+            static constexpr std::uintptr_t m_ComponentData = 0X0008; // CUtlString
         };
     }
 }

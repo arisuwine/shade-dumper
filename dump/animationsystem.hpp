@@ -23,6 +23,15 @@ namespace offsets {
             ASYNC_FIRE_AND_FORGET    = 0x1
         };
 
+        enum class ParticleSetMethod_t : std::uint32_t {
+            PARTICLE_SET_REPLACE_VALUE        = 0x0,
+            PARTICLE_SET_SCALE_INITIAL_VALUE  = 0x1,
+            PARTICLE_SET_ADD_TO_INITIAL_VALUE = 0x2,
+            PARTICLE_SET_RAMP_CURRENT_VALUE   = 0x3,
+            PARTICLE_SET_SCALE_CURRENT_VALUE  = 0x4,
+            PARTICLE_SET_ADD_TO_CURRENT_VALUE = 0x5
+        };
+
         enum class SeqCmd_t : std::uint32_t {
             SeqCmd_Nop             = 0x0,
             SeqCmd_LinearDelta     = 0x1,
@@ -105,6 +114,13 @@ namespace offsets {
             PF_BIAS_TYPE_COUNT       = 0x3
         };
 
+        enum class CNmTargetWarpNode__TargetUpdateRule_t : std::uint8_t {
+            None                = 0x0,
+            Recalculate         = 0x1,
+            Offset              = 0x2,
+            RecalculateOrOffset = 0x3
+        };
+
         enum class SharedMovementGait_t : std::uint8_t {
             eInvalid  = 0xFF,
             eSlow     = 0x0,
@@ -150,23 +166,24 @@ namespace offsets {
             PF_TYPE_CONCURRENT_DEF_COUNT                    = 0xA,
             PF_TYPE_CLOSEST_CAMERA_DISTANCE                 = 0xB,
             PF_TYPE_SNAPSHOT_COUNT                          = 0xC,
-            PF_TYPE_RENDERER_CAMERA_DISTANCE                = 0xD,
-            PF_TYPE_RENDERER_CAMERA_DOT_PRODUCT             = 0xE,
-            PF_TYPE_PARTICLE_NOISE                          = 0xF,
-            PF_TYPE_PARTICLE_AGE                            = 0x10,
-            PF_TYPE_PARTICLE_AGE_NORMALIZED                 = 0x11,
-            PF_TYPE_PARTICLE_FLOAT                          = 0x12,
-            PF_TYPE_PARTICLE_INITIAL_FLOAT                  = 0x13,
-            PF_TYPE_PARTICLE_VECTOR_COMPONENT               = 0x14,
-            PF_TYPE_PARTICLE_INITIAL_VECTOR_COMPONENT       = 0x15,
-            PF_TYPE_PARTICLE_SPEED                          = 0x16,
-            PF_TYPE_PARTICLE_NUMBER                         = 0x17,
-            PF_TYPE_PARTICLE_NUMBER_NORMALIZED              = 0x18,
-            PF_TYPE_PARTICLE_ROPE_SEGMENT                   = 0x19,
-            PF_TYPE_PARTICLE_ROPE_SEGMENT_NORMALIZED        = 0x1A,
-            PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DISTANCE    = 0x1B,
-            PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DOT_PRODUCT = 0x1C,
-            PF_TYPE_COUNT                                   = 0x1D
+            PF_TYPE_SNAPSHOT_CHANGED                        = 0xD,
+            PF_TYPE_RENDERER_CAMERA_DISTANCE                = 0xE,
+            PF_TYPE_RENDERER_CAMERA_DOT_PRODUCT             = 0xF,
+            PF_TYPE_PARTICLE_NOISE                          = 0x10,
+            PF_TYPE_PARTICLE_AGE                            = 0x11,
+            PF_TYPE_PARTICLE_AGE_NORMALIZED                 = 0x12,
+            PF_TYPE_PARTICLE_FLOAT                          = 0x13,
+            PF_TYPE_PARTICLE_INITIAL_FLOAT                  = 0x14,
+            PF_TYPE_PARTICLE_VECTOR_COMPONENT               = 0x15,
+            PF_TYPE_PARTICLE_INITIAL_VECTOR_COMPONENT       = 0x16,
+            PF_TYPE_PARTICLE_SPEED                          = 0x17,
+            PF_TYPE_PARTICLE_NUMBER                         = 0x18,
+            PF_TYPE_PARTICLE_NUMBER_NORMALIZED              = 0x19,
+            PF_TYPE_PARTICLE_ROPE_SEGMENT                   = 0x1A,
+            PF_TYPE_PARTICLE_ROPE_SEGMENT_NORMALIZED        = 0x1B,
+            PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DISTANCE    = 0x1C,
+            PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DOT_PRODUCT = 0x1D,
+            PF_TYPE_COUNT                                   = 0x1E
         };
 
         enum class CNmFloatAngleMathNode__Operation_t : std::uint8_t {
@@ -245,6 +262,30 @@ namespace offsets {
             Bezier                   = 0x3
         };
 
+        enum class ParticleColorBlendMode_t : std::uint32_t {
+            PARTICLEBLEND_DEFAULT  = 0x0,
+            PARTICLEBLEND_OVERLAY  = 0x1,
+            PARTICLEBLEND_DARKEN   = 0x2,
+            PARTICLEBLEND_LIGHTEN  = 0x3,
+            PARTICLEBLEND_MULTIPLY = 0x4
+        };
+
+        enum class ParticleColorBlendType_t : std::uint32_t {
+            PARTICLE_COLOR_BLEND_MULTIPLY   = 0x0,
+            PARTICLE_COLOR_BLEND_MULTIPLY2X = 0x1,
+            PARTICLE_COLOR_BLEND_DIVIDE     = 0x2,
+            PARTICLE_COLOR_BLEND_ADD        = 0x3,
+            PARTICLE_COLOR_BLEND_SUBTRACT   = 0x4,
+            PARTICLE_COLOR_BLEND_MOD2X      = 0x5,
+            PARTICLE_COLOR_BLEND_SCREEN     = 0x6,
+            PARTICLE_COLOR_BLEND_MAX        = 0x7,
+            PARTICLE_COLOR_BLEND_MIN        = 0x8,
+            PARTICLE_COLOR_BLEND_REPLACE    = 0x9,
+            PARTICLE_COLOR_BLEND_AVERAGE    = 0xA,
+            PARTICLE_COLOR_BLEND_NEGATE     = 0xB,
+            PARTICLE_COLOR_BLEND_LUMINANCE  = 0xC
+        };
+
         enum class NmTransitionRuleCondition_t : std::uint8_t {
             AnyAllowed           = 0x0,
             FullyAllowed         = 0x1,
@@ -260,6 +301,11 @@ namespace offsets {
             MESH_BUFFER_USAGE_MESHLET_TRIS  = 0x8,
             MESH_BUFFER_USAGE_RT_PROXY      = 0x10,
             MESH_BUFFER_USAGE_VERTEX_ALBEDO = 0x20
+        };
+
+        enum class NmGraphDebugMode_t : std::uint32_t {
+            Off = 0x0,
+            On  = 0x1
         };
 
         enum class TargetWarpTimingMethod : std::uint32_t {
@@ -434,6 +480,12 @@ namespace offsets {
             PF_NOISE_TYPE_CURL    = 0x3
         };
 
+        enum class ParticleDirectionNoiseType_t : std::uint32_t {
+            PARTICLE_DIR_NOISE_PERLIN       = 0x0,
+            PARTICLE_DIR_NOISE_CURL         = 0x1,
+            PARTICLE_DIR_NOISE_WORLEY_BASIC = 0x2
+        };
+
         enum class AnimParamNetworkSetting : std::uint32_t {
             Auto          = 0x0,
             AlwaysNetwork = 0x1,
@@ -502,6 +554,12 @@ namespace offsets {
             SearchOnlyGraphEvents        = 0x6,
             SearchOnlyAnimEvents         = 0x7,
             SearchBothGraphAndAnimEvents = 0x8
+        };
+
+        enum class AnimationType_t : std::uint32_t {
+            ANIMATION_TYPE_FIXED_RATE    = 0x0,
+            ANIMATION_TYPE_FIT_LIFETIME  = 0x1,
+            ANIMATION_TYPE_MANUAL_FRAMES = 0x2
         };
 
         enum class AnimValueSource : std::uint32_t {
@@ -699,6 +757,12 @@ namespace offsets {
             FLAG_PROCEDURAL               = 0x400000
         };
 
+        enum class GPUParticleCollisionMode_t : std::uint32_t {
+            PARTICLE_GPU_COLLISION_MODE_RT     = 0x0,
+            PARTICLE_GPU_COLLISION_MODE_DEPTH  = 0x1,
+            PARTICLE_GPU_COLLISION_MODE_HYBRID = 0x2
+        };
+
         enum class MorphBundleType_t : std::uint32_t {
             MORPH_BUNDLE_TYPE_NONE           = 0x0,
             MORPH_BUNDLE_TYPE_POSITION_SPEED = 0x1,
@@ -818,19 +882,20 @@ namespace offsets {
             PVEC_TYPE_PARTICLE_VECTOR         = 0x3,
             PVEC_TYPE_PARTICLE_INITIAL_VECTOR = 0x4,
             PVEC_TYPE_PARTICLE_VELOCITY       = 0x5,
-            PVEC_TYPE_CP_VALUE                = 0x6,
-            PVEC_TYPE_CP_RELATIVE_POSITION    = 0x7,
-            PVEC_TYPE_CP_RELATIVE_DIR         = 0x8,
-            PVEC_TYPE_CP_RELATIVE_RANDOM_DIR  = 0x9,
-            PVEC_TYPE_FLOAT_COMPONENTS        = 0xA,
-            PVEC_TYPE_FLOAT_INTERP_CLAMPED    = 0xB,
-            PVEC_TYPE_FLOAT_INTERP_OPEN       = 0xC,
-            PVEC_TYPE_FLOAT_INTERP_GRADIENT   = 0xD,
-            PVEC_TYPE_RANDOM_UNIFORM          = 0xE,
-            PVEC_TYPE_RANDOM_UNIFORM_OFFSET   = 0xF,
-            PVEC_TYPE_CP_DELTA                = 0x10,
-            PVEC_TYPE_CLOSEST_CAMERA_POSITION = 0x11,
-            PVEC_TYPE_COUNT                   = 0x12
+            PVEC_TYPE_PARTICLE_GRAVITY        = 0x6,
+            PVEC_TYPE_CP_VALUE                = 0x7,
+            PVEC_TYPE_CP_RELATIVE_POSITION    = 0x8,
+            PVEC_TYPE_CP_RELATIVE_DIR         = 0x9,
+            PVEC_TYPE_CP_RELATIVE_RANDOM_DIR  = 0xA,
+            PVEC_TYPE_FLOAT_COMPONENTS        = 0xB,
+            PVEC_TYPE_FLOAT_INTERP_CLAMPED    = 0xC,
+            PVEC_TYPE_FLOAT_INTERP_OPEN       = 0xD,
+            PVEC_TYPE_FLOAT_INTERP_GRADIENT   = 0xE,
+            PVEC_TYPE_RANDOM_UNIFORM          = 0xF,
+            PVEC_TYPE_RANDOM_UNIFORM_OFFSET   = 0x10,
+            PVEC_TYPE_CP_DELTA                = 0x11,
+            PVEC_TYPE_CLOSEST_CAMERA_POSITION = 0x12,
+            PVEC_TYPE_COUNT                   = 0x13
         };
 
         enum class NmFootPhase_t : std::uint8_t {
@@ -1149,6 +1214,13 @@ namespace offsets {
             MAX_PATTACH_TYPES           = 0x10
         };
 
+        enum class CNmEventTargetEntity_t : std::uint32_t {
+            Self     = 0x0,
+            Weapon   = 0x1,
+            HeldItem = 0x2,
+            Custom   = 0x3
+        };
+
         enum class FieldNetworkOption : std::uint32_t {
             Auto         = 0x0,
             ForceEnable  = 0x1,
@@ -1299,14 +1371,16 @@ namespace offsets {
         };
 
         enum class MovementCapability_t : std::uint32_t {
-            eStrafe      = 0x0,
-            eIdleTurn    = 0x1,
-            eStart       = 0x2,
-            eStop        = 0x3,
-            eInstantStop = 0x4,
-            eShuffle     = 0x5,
-            ePlantedTurn = 0x6,
-            eCount       = 0x7
+            eStrafe                = 0x0,
+            eIdleTurn              = 0x1,
+            eStart                 = 0x2,
+            eStop                  = 0x3,
+            eInstantStop           = 0x4,
+            eShuffle               = 0x5,
+            ePlantedTurn           = 0x6,
+            eUseStartAsPlantedTurn = 0x7,
+            eLean                  = 0x8,
+            eCount                 = 0x9
         };
 
         enum class ModelConfigAttachmentType_t : std::uint32_t {
@@ -1778,7 +1852,7 @@ namespace offsets {
         class CPulseCell_BooleanSwitchState : public CPulseCell_BaseState {
         public:
             static constexpr std::uintptr_t m_Condition = 0X0048; // PulseObservableBoolExpression_t
-            static constexpr std::uintptr_t m_SubGraph  = 0X00C0; // CPulse_OutflowConnection
+            static constexpr std::uintptr_t m_Always    = 0X00C0; // CPulse_OutflowConnection
             static constexpr std::uintptr_t m_WhenTrue  = 0X0108; // CPulse_OutflowConnection
             static constexpr std::uintptr_t m_WhenFalse = 0X0150; // CPulse_OutflowConnection
         };
@@ -1839,6 +1913,24 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        // Local Type Scope
+        class CAnimationLayer {
+        public:
+            static constexpr std::uintptr_t m_hSequence         = 0X0000; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_flPrevCycle       = 0X000C; // float32
+            static constexpr std::uintptr_t m_flCycle           = 0X0010; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flWeight          = 0X001C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_nOrder            = 0X0028; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_bLooping          = 0X0034; // bool
+            static constexpr std::uintptr_t m_nFlags            = 0X0038; // int32
+            static constexpr std::uintptr_t m_bSequenceFinished = 0X003C; // bool
+            static constexpr std::uintptr_t m_flKillRate        = 0X0040; // float32
+            static constexpr std::uintptr_t m_flKillDelay       = 0X0044; // float32
+            static constexpr std::uintptr_t m_nPriority         = 0X0048; // int32
+        };
+
         // Construct Allowed
         // Local Type Scope
         class CPulse_CallInfo {
@@ -1875,11 +1967,11 @@ namespace offsets {
         // Local Type Scope
         class CPulseCell_Step_CallExternalMethod : public CPulseCell_BaseYieldingInflow {
         public:
-            static constexpr std::uintptr_t m_MethodName     = 0X0048; // PulseSymbol_t
-            static constexpr std::uintptr_t m_GameBlackboard = 0X0058; // PulseSymbol_t
-            static constexpr std::uintptr_t m_ExpectedArgs   = 0X0068; // CUtlLeanVector<CPulseRuntimeMethodArg>
-            static constexpr std::uintptr_t m_nAsyncCallMode = 0X0078; // PulseMethodCallMode_t
-            static constexpr std::uintptr_t m_OnFinished     = 0X0080; // CPulse_ResumePoint
+            static constexpr std::uintptr_t m_MethodName       = 0X0048; // PulseSymbol_t
+            static constexpr std::uintptr_t m_nBlackboardIndex = 0X0058; // PulseRuntimeBlackboardReferenceIndex_t
+            static constexpr std::uintptr_t m_ExpectedArgs     = 0X0060; // CUtlLeanVector<CPulseRuntimeMethodArg>
+            static constexpr std::uintptr_t m_nAsyncCallMode   = 0X0070; // PulseMethodCallMode_t
+            static constexpr std::uintptr_t m_OnFinished       = 0X0078; // CPulse_ResumePoint
         };
 
         // Construct Allowed
@@ -2064,6 +2156,30 @@ namespace offsets {
 
         // Has VTable
         // Is Absract
+        class CNmPoseTask {
+        public:
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CNmFootIKTask : public CNmPoseTask {
+        public:
+            static constexpr std::uintptr_t m_nLeftEffectorBoneIdx           = 0X0048; // int32
+            static constexpr std::uintptr_t m_nRightEffectorBoneIdx          = 0X004C; // int32
+            static constexpr std::uintptr_t m_leftTargetTransform            = 0X0050; // CTransform
+            static constexpr std::uintptr_t m_rightTargetTransform           = 0X0070; // CTransform
+            static constexpr std::uintptr_t m_nLeftTargetBoneIdx             = 0X0090; // int32
+            static constexpr std::uintptr_t m_nRightTargetBoneIdx            = 0X0094; // int32
+            static constexpr std::uintptr_t m_leftTarget                     = 0X00A0; // CNmTarget
+            static constexpr std::uintptr_t m_rightTarget                    = 0X00D0; // CNmTarget
+            static constexpr std::uintptr_t m_blendMode                      = 0X0100; // NmIKBlendMode_t
+            static constexpr std::uintptr_t m_flBlendWeight                  = 0X0104; // float32
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X0108; // bool
+            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X0109; // bool
+        };
+
+        // Has VTable
+        // Is Absract
         // Construct Allowed
         class CConcreteAnimParameter : public CAnimParameterBase {
         public:
@@ -2102,21 +2218,33 @@ namespace offsets {
         // Construct Allowed
         class CNmParameterizedBlendNode__CDefinition : public CNmPoseNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_sourceNodeIndices           = 0X0010; // CUtlVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_nInputParameterValueNodeIdx = 0X0038; // int16
-            static constexpr std::uintptr_t m_bAllowLooping               = 0X003A; // bool
-        };
-
-        // Has VTable
-        // Is Absract
-        class CNmPoseTask {
-        public:
+            static constexpr std::uintptr_t m_sourceNodeIndices           = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_nInputParameterValueNodeIdx = 0X0028; // int16
+            static constexpr std::uintptr_t m_bAllowLooping               = 0X002A; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class CNmScaleTask : public CNmPoseTask {
         public:
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PerTickSettings_t {
+        public:
+            static constexpr std::uintptr_t m_startingLocalToWorld = 0X0000; // CTransform
+            static constexpr std::uintptr_t m_prevLocalToWorld     = 0X0020; // CTransform
+            static constexpr std::uintptr_t m_finalLocalToWorld    = 0X0040; // CTransform
+            static constexpr std::uintptr_t m_rootMotion           = 0X0060; // CRootMotion
+            static constexpr std::uintptr_t m_updateID             = 0X069C; // int32
+            static constexpr std::uintptr_t m_flLastTimeStep       = 0X06A4; // float32
+            static constexpr std::uintptr_t m_flPrevAnimTime       = 0X06A8; // float32
+            static constexpr std::uintptr_t m_flNextAnimTime       = 0X06AC; // float32
+            static constexpr std::uintptr_t m_bAwaken              = 0X06B4; // bool
+            static constexpr std::uintptr_t m_bTeleported          = 0X06B5; // bool
+            static constexpr std::uintptr_t m_bIsClient            = 0X06B6; // bool
+            static constexpr std::uintptr_t m_bIsPredicted         = 0X06B7; // bool
         };
 
         // Has VTable
@@ -2127,14 +2255,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_flStartTime = 0X0008; // NmPercent_t
             static constexpr std::uintptr_t m_flDuration  = 0X000C; // NmPercent_t
             static constexpr std::uintptr_t m_syncID      = 0X0010; // CGlobalSymbol
-            static constexpr std::uintptr_t m_bClientOnly = 0X0018; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class CNmFrameSnapEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_frameSnapMode = 0X0020; // NmFrameSnapEventMode_t
+            static constexpr std::uintptr_t m_frameSnapMode = 0X0018; // NmFrameSnapEventMode_t
         };
 
         // Has Trivial Destructor
@@ -2227,6 +2354,16 @@ namespace offsets {
 
         // Has Trivial Destructor
         // Construct Allowed
+        class CStateNodeInstanceData {
+        public:
+            static constexpr std::uintptr_t m_stateWeights               = 0X0000; // CRelativeArray<float32>
+            static constexpr std::uintptr_t m_vTransitionVelocityDeltaWS = 0X0008; // Vector
+            static constexpr std::uintptr_t m_currentStateStartTime      = 0X0020; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_resetCount                 = 0X003C; // CAnimNetVar<uint8>
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
         class CMotionGraphConfig {
         public:
             static constexpr std::uintptr_t m_paramValues  = 0X0000; // float32[4]
@@ -2275,9 +2412,9 @@ namespace offsets {
 
         // Has Trivial Destructor
         // Construct Allowed
-        struct MovementGaitId_t {
+        class CChoreoInstanceData {
         public:
-            static constexpr std::uintptr_t m_sId = 0X0000; // CGlobalSymbol
+            static constexpr std::uintptr_t m_AnimOverlay = 0X0000; // CAnimationLayer[12]
         };
 
         // Has Trivial Destructor
@@ -2330,6 +2467,16 @@ namespace offsets {
             static constexpr std::uintptr_t m_tags       = 0X0098; // CUtlVector<TagSpan_t>
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CStateMachineInstanceData {
+        public:
+            static constexpr std::uintptr_t m_flTimeInState            = 0X0000; // float32
+            static constexpr std::uintptr_t m_currentTransitionIndex   = 0X0004; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_prevStateIndex           = 0X0010; // int32
+            static constexpr std::uintptr_t m_scheduledTransitionIndex = 0X0014; // int32
+        };
+
         // Has VTable
         // Construct Allowed
         class CNmPassthroughNode__CDefinition : public CNmPoseNode__CDefinition {
@@ -2378,6 +2525,13 @@ namespace offsets {
         struct PulseRuntimeDomainValueIndex_t {
         public:
             static constexpr std::uintptr_t m_Value = 0X0000; // int16
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class LookData {
+        public:
+            static constexpr std::uintptr_t m_vLookTarget = 0X0000; // CAnimNetVar<Vector>
         };
 
         // Has Trivial Destructor
@@ -2693,10 +2847,37 @@ namespace offsets {
 
         // Has Trivial Destructor
         // Construct Allowed
+        class CBlend2DInstanceData {
+        public:
+            static constexpr std::uintptr_t m_dampedValue = 0X0008; // Vector2D
+            static constexpr std::uintptr_t m_flCycle     = 0X0044; // float32
+            static constexpr std::uintptr_t m_flPrevCycle = 0X0048; // float32
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
         struct LookAtBone_t {
         public:
             static constexpr std::uintptr_t m_index  = 0X0000; // int32
             static constexpr std::uintptr_t m_weight = 0X0004; // float32
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CDirectPlaybackInstanceData {
+        public:
+            static constexpr std::uintptr_t m_vTargetPosition       = 0X0000; // Vector
+            static constexpr std::uintptr_t m_flTargetFacing        = 0X000C; // float32
+            static constexpr std::uintptr_t m_flInterpEndTime       = 0X0010; // float32
+            static constexpr std::uintptr_t m_weights               = 0X0014; // float32[4]
+            static constexpr std::uintptr_t m_sequences             = 0X0024; // SequenceData[4]
+            static constexpr std::uintptr_t m_currentSequenceIndex  = 0X0104; // uint32
+            static constexpr std::uintptr_t m_currentSequenceData   = 0X0108; // CAnimNetVar<uint64>
+            static constexpr std::uintptr_t m_flFadeInTime          = 0X0118; // float32
+            static constexpr std::uintptr_t m_flFadeOutTime         = 0X011C; // float32
+            static constexpr std::uintptr_t m_flForcedCycle         = 0X0120; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_bResetPending         = 0X0130; // bool
+            static constexpr std::uintptr_t m_SequenceCycleZeroTime = 0X0138; // CAnimNetVar<float32>
         };
 
         // Has VTable
@@ -2734,6 +2915,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_bUseStartValue     = 0X001B; // bool
         };
 
+        // Has VTable
+        // Construct Allowed
+        class CAnimationGraphInstance {
+        public:
+            static constexpr std::uintptr_t m_bTagDispatchDirty = 0X0329; // bool
+        };
+
         // Construct Allowed
         class CAnimEncodeDifference {
         public:
@@ -2760,6 +2948,14 @@ namespace offsets {
             static constexpr std::uintptr_t m_bIsBoneSpaceOffset = 0X0012; // bool
             static constexpr std::uintptr_t m_rotationOffset     = 0X0020; // Quaternion
             static constexpr std::uintptr_t m_translationOffset  = 0X0030; // Vector
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class MotionMatchingInstanceData {
+        public:
+            static constexpr std::uintptr_t m_currentSelection  = 0X002C; // MotionSelection
+            static constexpr std::uintptr_t m_previousSelection = 0X0084; // MotionSelection
         };
 
         // Has VTable
@@ -2837,8 +3033,8 @@ namespace offsets {
         // Construct Allowed
         class CNmClipSelectorNode__CDefinition : public CNmClipReferenceNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices    = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0028; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionNodeIndices    = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0028; // CUtlLeanVectorFixedGrowable<int16,8>
         };
 
         // Has VTable
@@ -2931,6 +3127,30 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class MovementData {
+        public:
+            static constexpr std::uintptr_t m_goalWayPointPos        = 0X0000; // Vector
+            static constexpr std::uintptr_t m_vMoveDir               = 0X000C; // CAnimNetVar<Vector>
+            static constexpr std::uintptr_t m_vAcceleration          = 0X0020; // CAnimNetVar<Vector>
+            static constexpr std::uintptr_t m_flCurrentMoveSpeed     = 0X0034; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flTargetMoveSpeed      = 0X0040; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flGoalDistance         = 0X004C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flBoundaryRadius       = 0X0058; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_bGoalChanged           = 0X0064; // bool
+            static constexpr std::uintptr_t m_bHasPath               = 0X0068; // CAnimNetVar<bool>
+            static constexpr std::uintptr_t m_flFacingHeading        = 0X0074; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_vManualFacingDirection = 0X0080; // Vector
+            static constexpr std::uintptr_t m_vManualFacingTarget    = 0X008C; // VectorWS
+            static constexpr std::uintptr_t m_nFacingMode            = 0X0098; // CAnimNetVar<uint8>
+            static constexpr std::uintptr_t m_bForceFacing           = 0X00A4; // CAnimNetVar<bool>
+            static constexpr std::uintptr_t m_nActiveMotorIndex      = 0X00B0; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_bOnGround              = 0X00BC; // CAnimNetVar<bool>
+            static constexpr std::uintptr_t m_vFacingPosition        = 0X00C8; // CAnimNetVar<Vector>
+            static constexpr std::uintptr_t m_vPrevFacingPosition    = 0X00DC; // Vector
+        };
+
         // Has VTable
         // Construct Allowed
         class CRemapValueComponentUpdater : public CAnimComponentUpdater {
@@ -3017,11 +3237,12 @@ namespace offsets {
         // Construct Allowed
         struct PulseGraphExecutionHistoryCursorDesc_t {
         public:
-            static constexpr std::uintptr_t vecAncestorCursorIDs = 0X0000; // CUtlVector<PulseCursorID_t>
-            static constexpr std::uintptr_t nSpawnNodeID         = 0X0018; // PulseDocNodeID_t
-            static constexpr std::uintptr_t nRetiredAtNodeID     = 0X001C; // PulseDocNodeID_t
-            static constexpr std::uintptr_t flLastReferenced     = 0X0020; // float32
-            static constexpr std::uintptr_t nLastValidEntryIdx   = 0X0024; // int32
+            static constexpr std::uintptr_t vecAncestorCursorIDs        = 0X0000; // CUtlVector<PulseCursorID_t>
+            static constexpr std::uintptr_t nSpawnNodeID                = 0X0018; // PulseDocNodeID_t
+            static constexpr std::uintptr_t nRetiredAtNodeID            = 0X001C; // PulseDocNodeID_t
+            static constexpr std::uintptr_t flLastReferenced            = 0X0020; // float32
+            static constexpr std::uintptr_t nLastValidEntryIdx          = 0X0024; // int32
+            static constexpr std::uintptr_t bWasAnObservableComputation = 0X0028; // bool
         };
 
         // Has VTable
@@ -3194,25 +3415,26 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_variationID                 = 0X0000; // CGlobalSymbol
             static constexpr std::uintptr_t m_skeleton                    = 0X0008; // CStrongHandle<InfoForResourceTypeCNmSkeleton>
-            static constexpr std::uintptr_t m_pUserData                   = 0X0010; // CNmGraphVariationUserData*
-            static constexpr std::uintptr_t m_persistentNodeIndices       = 0X0018; // CUtlVector<int16>
-            static constexpr std::uintptr_t m_nRootNodeIdx                = 0X0030; // int16
-            static constexpr std::uintptr_t m_controlParameterIDs         = 0X0038; // CUtlVector<CGlobalSymbol>
-            static constexpr std::uintptr_t m_virtualParameterIDs         = 0X0050; // CUtlVector<CGlobalSymbol>
-            static constexpr std::uintptr_t m_virtualParameterNodeIndices = 0X0068; // CUtlVector<int16>
-            static constexpr std::uintptr_t m_referencedGraphSlots        = 0X0080; // CUtlVector<CNmGraphDefinition::ReferencedGraphSlot_t>
-            static constexpr std::uintptr_t m_externalGraphSlots          = 0X0098; // CUtlVector<CNmGraphDefinition::ExternalGraphSlot_t>
-            static constexpr std::uintptr_t m_externalPoseSlots           = 0X00B0; // CUtlVector<CNmGraphDefinition::ExternalPoseSlot_t>
-            static constexpr std::uintptr_t m_nodePaths                   = 0X0138; // CUtlVector<CUtlString>
-            static constexpr std::uintptr_t m_resources                   = 0X0150; // CUtlVector<CStrongHandleVoid>
+            static constexpr std::uintptr_t m_supportedSecondarySkeletons = 0X0010; // CUtlVector<CStrongHandle<InfoForResourceTypeCNmSkeleton>>
+            static constexpr std::uintptr_t m_pUserData                   = 0X0028; // CNmGraphVariationUserData*
+            static constexpr std::uintptr_t m_persistentNodeIndices       = 0X0030; // CUtlVector<int16>
+            static constexpr std::uintptr_t m_nRootNodeIdx                = 0X0048; // int16
+            static constexpr std::uintptr_t m_controlParameterIDs         = 0X0050; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t m_virtualParameterIDs         = 0X0068; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t m_virtualParameterNodeIndices = 0X0080; // CUtlVector<int16>
+            static constexpr std::uintptr_t m_referencedGraphSlots        = 0X0098; // CUtlVector<CNmGraphDefinition::ReferencedGraphSlot_t>
+            static constexpr std::uintptr_t m_externalGraphSlots          = 0X00B0; // CUtlVector<CNmGraphDefinition::ExternalGraphSlot_t>
+            static constexpr std::uintptr_t m_externalPoseSlots           = 0X00C8; // CUtlVector<CNmGraphDefinition::ExternalPoseSlot_t>
+            static constexpr std::uintptr_t m_nodePaths                   = 0X0150; // CUtlVector<CUtlString>
+            static constexpr std::uintptr_t m_resources                   = 0X0168; // CUtlVector<CStrongHandleVoid>
         };
 
         // Has VTable
         // Construct Allowed
         class CNmSelectorNode__CDefinition : public CNmPoseNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices    = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0028; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionNodeIndices    = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0028; // CUtlLeanVectorFixedGrowable<int16,8>
         };
 
         // Construct Allowed
@@ -3324,6 +3546,19 @@ namespace offsets {
             static constexpr std::uintptr_t m_actions = 0X0030; // CUtlVector<CSmartPtr<CAnimActionUpdater>>
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CDirectionalBlendInstanceData {
+        public:
+            static constexpr std::uintptr_t m_dampedValue     = 0X0000; // float32
+            static constexpr std::uintptr_t m_flCycle         = 0X0014; // float32
+            static constexpr std::uintptr_t m_flPrevCycle     = 0X0018; // float32
+            static constexpr std::uintptr_t m_flPlaybackRate  = 0X001C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flCycleZeroTime = 0X0028; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_resetCycleValue = 0X0034; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_resetCount      = 0X0040; // CAnimNetVar<float32>
+        };
+
         // Has VTable
         // Is Absract
         // Construct Allowed
@@ -3384,6 +3619,7 @@ namespace offsets {
         // Construct Allowed
         class CNmEntityAttributeEventBase : public CNmEvent {
         public:
+            static constexpr std::uintptr_t m_target        = 0X0018; // CNmEventTargetEntity_t
             static constexpr std::uintptr_t m_attributeName = 0X0020; // CUtlString
         };
 
@@ -3392,6 +3628,14 @@ namespace offsets {
         class CNmVirtualParameterBoneMaskNode__CDefinition : public CNmBoneMaskValueNode__CDefinition {
         public:
             static constexpr std::uintptr_t m_nChildNodeIdx = 0X0010; // int16
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class SequenceData {
+        public:
+            static constexpr std::uintptr_t m_hSequence = 0X0000; // HSequence
+            static constexpr std::uintptr_t m_cycle     = 0X0004; // CNetworkedCycle
         };
 
         // Has VTable
@@ -3613,9 +3857,9 @@ namespace offsets {
             static constexpr std::uintptr_t m_defaultMaskNodeIdx    = 0X0010; // int16
             static constexpr std::uintptr_t m_parameterValueNodeIdx = 0X0012; // int16
             static constexpr std::uintptr_t m_bSwitchDynamically    = 0X0014; // bool
-            static constexpr std::uintptr_t m_maskNodeIndices       = 0X0018; // CUtlVectorFixedGrowable<int16,7>
-            static constexpr std::uintptr_t m_parameterValues       = 0X0040; // CUtlVectorFixedGrowable<CGlobalSymbol,7>
-            static constexpr std::uintptr_t m_flBlendTimeSeconds    = 0X0090; // float32
+            static constexpr std::uintptr_t m_maskNodeIndices       = 0X0018; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_parameterValues       = 0X0030; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,7>
+            static constexpr std::uintptr_t m_flBlendTimeSeconds    = 0X0070; // float32
         };
 
         // Has VTable
@@ -3661,8 +3905,8 @@ namespace offsets {
         // Construct Allowed
         class CNmParameterizedSelectorNode__CDefinition : public CNmPoseNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_optionWeights         = 0X0028; // CUtlLeanVectorFixedGrowable<uint8,5>
+            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_optionWeights         = 0X0028; // CUtlLeanVectorFixedGrowable<uint8,8>
             static constexpr std::uintptr_t m_parameterNodeIdx      = 0X0038; // int16
             static constexpr std::uintptr_t m_bIgnoreInvalidOptions = 0X003A; // bool
             static constexpr std::uintptr_t m_bHasWeightsSet        = 0X003B; // bool
@@ -3851,6 +4095,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_bUseCustomDuration = 0X0038; // bool
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct DampedPathMotorInstanceData_t {
+        public:
+            static constexpr std::uintptr_t m_vVelocity     = 0X0000; // Vector
+            static constexpr std::uintptr_t m_vAcceleration = 0X000C; // Vector
+            static constexpr std::uintptr_t m_bStopping     = 0X0024; // bool
+        };
+
         // Has VTable
         // Construct Allowed
         class CNmIsExternalGraphSlotFilledNode__CDefinition : public CNmBoolValueNode__CDefinition {
@@ -3920,6 +4173,7 @@ namespace offsets {
         // Construct Allowed
         class CNmMaterialAttributeEvent : public CNmEvent {
         public:
+            static constexpr std::uintptr_t m_target             = 0X0018; // CNmEventTargetEntity_t
             static constexpr std::uintptr_t m_attributeName      = 0X0020; // CUtlString
             static constexpr std::uintptr_t m_attributeNameToken = 0X0028; // CUtlStringToken
             static constexpr std::uintptr_t m_x                  = 0X0030; // CPiecewiseCurve
@@ -3932,7 +4186,7 @@ namespace offsets {
         // Construct Allowed
         class CNmBlend1DNode__CDefinition : public CNmParameterizedBlendNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_parameterization = 0X0040; // CNmParameterizedBlendNode::Parameterization_t
+            static constexpr std::uintptr_t m_parameterization = 0X0030; // CNmParameterizedBlendNode::Parameterization_t
         };
 
         // Construct Allowed
@@ -4198,11 +4452,11 @@ namespace offsets {
         // Construct Allowed
         class CNmFloatSelectorNode__CDefinition : public CNmFloatValueNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0010; // CUtlVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_values               = 0X0038; // CUtlVectorFixedGrowable<float32,5>
-            static constexpr std::uintptr_t m_flDefaultValue       = 0X0068; // float32
-            static constexpr std::uintptr_t m_flEaseTime           = 0X006C; // float32
-            static constexpr std::uintptr_t m_easingOp             = 0X0070; // NmEasingOperation_t
+            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_values               = 0X0028; // CUtlLeanVectorFixedGrowable<float32,5>
+            static constexpr std::uintptr_t m_flDefaultValue       = 0X0048; // float32
+            static constexpr std::uintptr_t m_flEaseTime           = 0X004C; // float32
+            static constexpr std::uintptr_t m_easingOp             = 0X0050; // NmEasingOperation_t
         };
 
         // Has VTable
@@ -4219,6 +4473,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_bTargetFacePositionIsWorldSpace  = 0X008D; // bool
             static constexpr std::uintptr_t m_bEnablePhaseMatching             = 0X008E; // bool
             static constexpr std::uintptr_t m_flPhaseMatchingMaxRootMotionSkip = 0X0090; // float32
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class SlopeData {
+        public:
+            static constexpr std::uintptr_t m_vSlopeNormal = 0X0000; // Vector
         };
 
         // Construct Allowed
@@ -4289,8 +4550,8 @@ namespace offsets {
         // Construct Allowed
         class CNmTargetWarpEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_rule      = 0X0020; // NmTargetWarpRule_t
-            static constexpr std::uintptr_t m_algorithm = 0X0021; // NmTargetWarpAlgorithm_t
+            static constexpr std::uintptr_t m_rule      = 0X0018; // NmTargetWarpRule_t
+            static constexpr std::uintptr_t m_algorithm = 0X0019; // NmTargetWarpAlgorithm_t
         };
 
         // Construct Allowed
@@ -4342,7 +4603,7 @@ namespace offsets {
         // Construct Allowed
         class CNmRootMotionEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_flBlendTimeSeconds = 0X0020; // float32
+            static constexpr std::uintptr_t m_flBlendTimeSeconds = 0X0018; // float32
         };
 
         // Construct Allowed
@@ -4355,13 +4616,12 @@ namespace offsets {
 
         // Has Trivial Destructor
         // Construct Allowed
-        class CNmIKEffector {
+        class CChoiceInstanceData {
         public:
-            static constexpr std::uintptr_t m_nBodyIndex         = 0X0000; // int32
-            static constexpr std::uintptr_t m_bEnabled           = 0X0004; // bool
-            static constexpr std::uintptr_t m_vTargetPosition    = 0X0008; // Vector
-            static constexpr std::uintptr_t m_qTargetOrientation = 0X0020; // Quaternion
-            static constexpr std::uintptr_t m_flWeight           = 0X0030; // float32
+            static constexpr std::uintptr_t m_currentChoice       = 0X0010; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_previousChoice      = 0X001C; // int32
+            static constexpr std::uintptr_t m_flClipStartTime     = 0X0020; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_choicePreviousCycle = 0X002C; // float32
         };
 
         // Has VTable
@@ -4421,6 +4681,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_defaultValue       = 0X0014; // float32
             static constexpr std::uintptr_t m_IDs                = 0X0018; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,5>
             static constexpr std::uintptr_t m_values             = 0X0048; // CUtlLeanVectorFixedGrowable<float32,5>
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PlayerInputMotorInstanceData_t {
+        public:
+            static constexpr std::uintptr_t m_vInputVectorWS  = 0X0000; // Vector
+            static constexpr std::uintptr_t m_vVelocityWS     = 0X000C; // Vector
+            static constexpr std::uintptr_t m_vAccelerationWS = 0X0018; // Vector
         };
 
         class CCompressorGroup {
@@ -4708,17 +4977,17 @@ namespace offsets {
         // Construct Allowed
         class CNmChainLookatTask : public CNmPoseTask {
         public:
-            static constexpr std::uintptr_t m_nChainEndBoneIdx               = 0X0058; // int32
-            static constexpr std::uintptr_t m_nNumBonesInChain               = 0X005C; // int32
-            static constexpr std::uintptr_t m_chainForwardDir                = 0X0060; // Vector
-            static constexpr std::uintptr_t m_flBlendWeight                  = 0X006C; // float32
-            static constexpr std::uintptr_t m_flHorizontalAngleLimitDegrees  = 0X0070; // float32
-            static constexpr std::uintptr_t m_flVerticalAngleLimitDegrees    = 0X0074; // float32
-            static constexpr std::uintptr_t m_lookatTarget                   = 0X0078; // Vector
-            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X0084; // bool
-            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X0085; // bool
-            static constexpr std::uintptr_t m_flHorizontalAngleDegrees       = 0X0088; // float32
-            static constexpr std::uintptr_t m_flVerticalAngleDegrees         = 0X008C; // float32
+            static constexpr std::uintptr_t m_nChainEndBoneIdx               = 0X0048; // int32
+            static constexpr std::uintptr_t m_nNumBonesInChain               = 0X004C; // int32
+            static constexpr std::uintptr_t m_chainForwardDir                = 0X0050; // Vector
+            static constexpr std::uintptr_t m_flBlendWeight                  = 0X005C; // float32
+            static constexpr std::uintptr_t m_flHorizontalAngleLimitDegrees  = 0X0060; // float32
+            static constexpr std::uintptr_t m_flVerticalAngleLimitDegrees    = 0X0064; // float32
+            static constexpr std::uintptr_t m_lookatTarget                   = 0X0068; // Vector
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X0074; // bool
+            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X0075; // bool
+            static constexpr std::uintptr_t m_flHorizontalAngleDegrees       = 0X0078; // float32
+            static constexpr std::uintptr_t m_flVerticalAngleDegrees         = 0X007C; // float32
         };
 
         // Construct Allowed
@@ -4763,6 +5032,16 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_bWarpPosition    = 0X0050; // bool
             static constexpr std::uintptr_t m_bWarpOrientation = 0X0051; // bool
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct SelectorInstanceData_t {
+        public:
+            static constexpr std::uintptr_t m_weights               = 0X0000; // CRelativeArray<float32>
+            static constexpr std::uintptr_t m_currentIndexStartTime = 0X0008; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_currentIndex          = 0X0014; // int32
+            static constexpr std::uintptr_t m_previousIndex         = 0X0018; // int32
         };
 
         // Has VTable
@@ -4847,8 +5126,9 @@ namespace offsets {
         // Construct Allowed
         class CNmParticleEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_relevance        = 0X0020; // CNmEventRelevance_t
-            static constexpr std::uintptr_t m_type             = 0X0024; // CNmParticleEvent::Type_t
+            static constexpr std::uintptr_t m_relevance        = 0X0018; // CNmEventRelevance_t
+            static constexpr std::uintptr_t m_type             = 0X001C; // CNmParticleEvent::Type_t
+            static constexpr std::uintptr_t m_target           = 0X0020; // CNmEventTargetEntity_t
             static constexpr std::uintptr_t m_hParticleSystem  = 0X0028; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
             static constexpr std::uintptr_t m_tags             = 0X0030; // CUtlString
             static constexpr std::uintptr_t m_bStopImmediately = 0X0038; // bool
@@ -4860,6 +5140,17 @@ namespace offsets {
             static constexpr std::uintptr_t m_attachmentType1  = 0X0058; // ParticleAttachment_t
             static constexpr std::uintptr_t m_config           = 0X0060; // CUtlString
             static constexpr std::uintptr_t m_effectForConfig  = 0X0068; // CUtlString
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class MotionSelection {
+        public:
+            static constexpr std::uintptr_t m_nConfigIndex    = 0X0024; // NetVarConfigIndex
+            static constexpr std::uintptr_t m_flCycleZeroTime = 0X0030; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flPlaybackSpeed = 0X003C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flStartTime     = 0X0048; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_nSample         = 0X0054; // int32
         };
 
         // Construct Allowed
@@ -4918,6 +5209,16 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_variableName = 0X0000; // CKV3MemberNameWithStorage
             static constexpr std::uintptr_t m_variableType = 0X0038; // CPulseValueFullType
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CMoverInstanceData {
+        public:
+            static constexpr std::uintptr_t m_flDampedValue     = 0X0000; // float32
+            static constexpr std::uintptr_t m_vMovement         = 0X0004; // Vector
+            static constexpr std::uintptr_t m_Rotation          = 0X001C; // CRotation
+            static constexpr std::uintptr_t m_TargetOrientation = 0X0020; // CRotation
         };
 
         // Has Trivial Destructor
@@ -5028,6 +5329,17 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CFollowPathInstanceData {
+        public:
+            static constexpr std::uintptr_t m_xLastPredictedTransformsDeltas = 0X0000; // CRelativeArray<CMotionTransform>
+            static constexpr std::uintptr_t m_dampedTurnValue                = 0X0008; // float32
+            static constexpr std::uintptr_t m_flTurnAmount                   = 0X000C; // float32
+            static constexpr std::uintptr_t m_flPredictionScale              = 0X0010; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flLastPathTime                 = 0X001C; // float32
+        };
+
         // Has VTable
         // Construct Allowed
         class CStaticPoseCache {
@@ -5046,18 +5358,19 @@ namespace offsets {
         // Construct Allowed
         struct ModelMeshBufferData_t {
         public:
-            static constexpr std::uintptr_t m_nBlockIndex           = 0X0000; // int32
-            static constexpr std::uintptr_t m_nElementCount         = 0X0004; // uint32
-            static constexpr std::uintptr_t m_nElementSizeInBytes   = 0X0008; // uint32
-            static constexpr std::uintptr_t m_bMeshoptCompressed    = 0X000C; // bool
-            static constexpr std::uintptr_t m_bMeshoptIndexSequence = 0X000D; // bool
-            static constexpr std::uintptr_t m_bCompressedZSTD       = 0X000E; // bool
-            static constexpr std::uintptr_t m_bCreateBufferSRV      = 0X000F; // bool
-            static constexpr std::uintptr_t m_bCreateBufferUAV      = 0X0010; // bool
-            static constexpr std::uintptr_t m_bCreateRawBuffer      = 0X0011; // bool
-            static constexpr std::uintptr_t m_bCreatePooledBuffer   = 0X0012; // bool
-            static constexpr std::uintptr_t m_nBufferUsage          = 0X0013; // uint8
-            static constexpr std::uintptr_t m_inputLayoutFields     = 0X0018; // CUtlVector<RenderInputLayoutField_t>
+            static constexpr std::uintptr_t m_nBlockIndex                  = 0X0000; // int32
+            static constexpr std::uintptr_t m_nElementCount                = 0X0004; // uint32
+            static constexpr std::uintptr_t m_nElementSizeInBytes          = 0X0008; // uint32
+            static constexpr std::uintptr_t m_bMeshoptCompressed           = 0X000C; // bool
+            static constexpr std::uintptr_t m_bMeshoptIndexSequence        = 0X000D; // bool
+            static constexpr std::uintptr_t m_nMeshoptMeshletEncodeVersion = 0X000E; // int8
+            static constexpr std::uintptr_t m_bCompressedZSTD              = 0X000F; // bool
+            static constexpr std::uintptr_t m_bCreateBufferSRV             = 0X0010; // bool
+            static constexpr std::uintptr_t m_bCreateBufferUAV             = 0X0011; // bool
+            static constexpr std::uintptr_t m_bCreateRawBuffer             = 0X0012; // bool
+            static constexpr std::uintptr_t m_bCreatePooledBuffer          = 0X0013; // bool
+            static constexpr std::uintptr_t m_nBufferUsage                 = 0X0014; // uint8
+            static constexpr std::uintptr_t m_inputLayoutFields            = 0X0018; // CUtlVector<RenderInputLayoutField_t>
         };
 
         // Has VTable
@@ -5094,6 +5407,17 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        class CNmIDBasedSelectorNode__CDefinition : public CNmPoseNode__CDefinition {
+        public:
+            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionIDs             = 0X0028; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,5>
+            static constexpr std::uintptr_t m_nParameterNodeIdx     = 0X0058; // int16
+            static constexpr std::uintptr_t m_nFallbackNodeIdx      = 0X005A; // int16
+            static constexpr std::uintptr_t m_bIgnoreInvalidOptions = 0X005C; // bool
+        };
+
+        // Has VTable
+        // Construct Allowed
         class CAimMatrixUpdateNode : public CUnaryUpdateNode {
         public:
             static constexpr std::uintptr_t m_opFixedSettings = 0X0070; // AimMatrixOpFixedSettings_t
@@ -5124,6 +5448,14 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_Command = 0X0048; // CUtlString
             static constexpr std::uintptr_t m_Args    = 0X0050; // KeyValues3
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct TargetSelectorInstanceData_t {
+        public:
+            static constexpr std::uintptr_t m_currentIndex               = 0X0000; // CAnimNetVar<int32>
+            static constexpr std::uintptr_t m_vMSRootMotionAnlyzerTarget = 0X001C; // CAnimNetVar<Vector>
         };
 
         // Construct Allowed
@@ -5236,6 +5568,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_flErrorQuantizationScaleMax       = 0X001C; // float32
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class PairedSequenceData {
+        public:
+            static constexpr std::uintptr_t m_vecPairedSequences = 0X0000; // PairedSequence_t[8]
+        };
+
         struct CBoneConstraintPoseSpaceMorph__Input_t {
         public:
             static constexpr std::uintptr_t m_inputValue       = 0X0000; // Vector
@@ -5302,24 +5641,16 @@ namespace offsets {
         // Construct Allowed
         class CNmTransitionEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_rule = 0X0020; // NmTransitionRule_t
-            static constexpr std::uintptr_t m_ID   = 0X0028; // CGlobalSymbol
-        };
-
-        // Construct Allowed
-        class CNmIKRig {
-        public:
-            static constexpr std::uintptr_t m_skeleton  = 0X0000; // CStrongHandle<InfoForResourceTypeCNmSkeleton>
-            static constexpr std::uintptr_t m_vecBodies = 0X0008; // CUtlVector<CNmIKBody>
-            static constexpr std::uintptr_t m_vecJoints = 0X0020; // CUtlVector<CNmIKJoint>
+            static constexpr std::uintptr_t m_rule = 0X0018; // NmTransitionRule_t
+            static constexpr std::uintptr_t m_ID   = 0X0020; // CGlobalSymbol
         };
 
         // Has VTable
         // Construct Allowed
         class CNmFloatCurveEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_ID    = 0X0020; // CGlobalSymbol
-            static constexpr std::uintptr_t m_curve = 0X0028; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_ID    = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_curve = 0X0020; // CPiecewiseCurve
         };
 
         // Has VTable
@@ -5420,25 +5751,31 @@ namespace offsets {
             static constexpr std::uintptr_t m_MaterialGroupName = 0X0048; // CUtlString
         };
 
-        // Has Trivial Destructor
-        // Construct Allowed
-        class CNmIKJoint {
-        public:
-            static constexpr std::uintptr_t m_nParentIndex    = 0X0000; // int32
-            static constexpr std::uintptr_t m_nBodyIndex      = 0X0004; // int32
-            static constexpr std::uintptr_t m_xLocalFrame     = 0X0010; // CTransform
-            static constexpr std::uintptr_t m_flSwingLimit    = 0X0030; // float32
-            static constexpr std::uintptr_t m_flMinTwistLimit = 0X0034; // float32
-            static constexpr std::uintptr_t m_flMaxTwistLimit = 0X0038; // float32
-            static constexpr std::uintptr_t m_flWeight        = 0X003C; // float32
-        };
-
         // Has VTable
         // Construct Allowed
         class CFutureFacingMetricEvaluator : public CMotionMetricEvaluator {
         public:
             static constexpr std::uintptr_t m_flDistance = 0X0050; // float32
             static constexpr std::uintptr_t m_flTime     = 0X0054; // float32
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CNmIDBasedClipSelectorNode__CDefinition : public CNmClipReferenceNode__CDefinition {
+        public:
+            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionIDs             = 0X0028; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,5>
+            static constexpr std::uintptr_t m_nParameterNodeIdx     = 0X0058; // int16
+            static constexpr std::uintptr_t m_nFallbackNodeIdx      = 0X005A; // int16
+            static constexpr std::uintptr_t m_bIgnoreInvalidOptions = 0X005C; // bool
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CLeanMatrixInstanceData {
+        public:
+            static constexpr std::uintptr_t m_flValueY = 0X0000; // float32
+            static constexpr std::uintptr_t m_flValueX = 0X0004; // float32
         };
 
         // Has Trivial Destructor
@@ -5449,10 +5786,11 @@ namespace offsets {
             static constexpr std::uintptr_t m_translationRangeY    = 0X0008; // NmCompressionSettings_t::QuantizationRange_t
             static constexpr std::uintptr_t m_translationRangeZ    = 0X0010; // NmCompressionSettings_t::QuantizationRange_t
             static constexpr std::uintptr_t m_scaleRange           = 0X0018; // NmCompressionSettings_t::QuantizationRange_t
-            static constexpr std::uintptr_t m_constantRotation     = 0X0020; // Quaternion
-            static constexpr std::uintptr_t m_bIsRotationStatic    = 0X0030; // bool
-            static constexpr std::uintptr_t m_bIsTranslationStatic = 0X0031; // bool
-            static constexpr std::uintptr_t m_bIsScaleStatic       = 0X0032; // bool
+            static constexpr std::uintptr_t m_nTrackReadOffset     = 0X0020; // int32
+            static constexpr std::uintptr_t m_constantRotation     = 0X0030; // Quaternion
+            static constexpr std::uintptr_t m_bIsRotationStatic    = 0X0040; // bool
+            static constexpr std::uintptr_t m_bIsTranslationStatic = 0X0041; // bool
+            static constexpr std::uintptr_t m_bIsScaleStatic       = 0X0042; // bool
         };
 
         // Construct Allowed
@@ -5570,8 +5908,8 @@ namespace offsets {
         // Construct Allowed
         class CNmLegacyEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_animEventClassName = 0X0020; // CUtlString
-            static constexpr std::uintptr_t m_KV                 = 0X0028; // KeyValues3
+            static constexpr std::uintptr_t m_animEventClassName = 0X0018; // CUtlString
+            static constexpr std::uintptr_t m_KV                 = 0X0020; // KeyValues3
         };
 
         // Has Trivial Destructor
@@ -5617,6 +5955,16 @@ namespace offsets {
             static constexpr std::uintptr_t m_id = 0X0000; // uint32
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CWayPointHelperInstanceData {
+        public:
+            static constexpr std::uintptr_t m_vMovement                = 0X0000; // Vector
+            static constexpr std::uintptr_t m_vRotation                = 0X000C; // QAngle
+            static constexpr std::uintptr_t m_vWaypointPosWS           = 0X0018; // Vector
+            static constexpr std::uintptr_t m_bStopUpdatingWaypointPos = 0X0024; // bool
+        };
+
         // Construct Allowed
         class CAnimFrameSegment {
         public:
@@ -5647,16 +5995,6 @@ namespace offsets {
             static constexpr std::uintptr_t m_speedFunction      = 0X0008; // DampingSpeedFunction
             static constexpr std::uintptr_t m_fSpeedScale        = 0X000C; // float32
             static constexpr std::uintptr_t m_fFallingSpeedScale = 0X0010; // float32
-        };
-
-        // Has Trivial Destructor
-        // Construct Allowed
-        class CNmIKBody {
-        public:
-            static constexpr std::uintptr_t m_flMass           = 0X0000; // float32
-            static constexpr std::uintptr_t m_vLocalMassCenter = 0X0004; // Vector
-            static constexpr std::uintptr_t m_vRadius          = 0X0010; // Vector
-            static constexpr std::uintptr_t m_flResistance     = 0X001C; // float32
         };
 
         // Construct Allowed
@@ -5892,13 +6230,13 @@ namespace offsets {
         // Construct Allowed
         class CNmBlend2DNode__CDefinition : public CNmPoseNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_sourceNodeIndices       = 0X0010; // CUtlVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_nInputParameterNodeIdx0 = 0X0038; // int16
-            static constexpr std::uintptr_t m_nInputParameterNodeIdx1 = 0X003A; // int16
-            static constexpr std::uintptr_t m_values                  = 0X0040; // CUtlVectorFixedGrowable<Vector2D,10>
-            static constexpr std::uintptr_t m_indices                 = 0X00A8; // CUtlVectorFixedGrowable<uint8,30>
-            static constexpr std::uintptr_t m_hullIndices             = 0X00E0; // CUtlVectorFixedGrowable<uint8,10>
-            static constexpr std::uintptr_t m_bAllowLooping           = 0X0108; // bool
+            static constexpr std::uintptr_t m_sourceNodeIndices       = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_values                  = 0X0028; // CUtlLeanVectorFixedGrowable<Vector2D,10>
+            static constexpr std::uintptr_t m_indices                 = 0X0080; // CUtlLeanVectorFixedGrowable<uint8,30>
+            static constexpr std::uintptr_t m_hullIndices             = 0X00A8; // CUtlLeanVectorFixedGrowable<uint8,10>
+            static constexpr std::uintptr_t m_nInputParameterNodeIdx0 = 0X00C0; // int16
+            static constexpr std::uintptr_t m_nInputParameterNodeIdx1 = 0X00C2; // int16
+            static constexpr std::uintptr_t m_bAllowLooping           = 0X00C4; // bool
         };
 
         // Has Trivial Destructor
@@ -6225,13 +6563,17 @@ namespace offsets {
         // Construct Allowed
         class CNmTwoBoneIKNode__CDefinition : public CNmPassthroughNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_effectorBoneID             = 0X0018; // CGlobalSymbol
-            static constexpr std::uintptr_t m_nEffectorTargetNodeIdx     = 0X0020; // int16
-            static constexpr std::uintptr_t m_nEnabledNodeIdx            = 0X0022; // int16
-            static constexpr std::uintptr_t m_flBlendTimeSeconds         = 0X0024; // float32
-            static constexpr std::uintptr_t m_blendMode                  = 0X0028; // NmIKBlendMode_t
-            static constexpr std::uintptr_t m_bIsTargetInWorldSpace      = 0X0029; // bool
-            static constexpr std::uintptr_t m_flReferencePoseTwistWeight = 0X002C; // float32
+            static constexpr std::uintptr_t m_effectorBoneID         = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nEffectorTargetNodeIdx = 0X0020; // int16
+            static constexpr std::uintptr_t m_nEnabledNodeIdx        = 0X0022; // int16
+            static constexpr std::uintptr_t m_flBlendTimeSeconds     = 0X0024; // float32
+            static constexpr std::uintptr_t m_blendMode              = 0X0028; // NmIKBlendMode_t
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace  = 0X0029; // bool
+            static constexpr std::uintptr_t m_flChainRotationWeight  = 0X002C; // float32
+        };
+
+        class CNmGraphInstance {
+        public:
         };
 
         // Construct Allowed
@@ -6272,6 +6614,15 @@ namespace offsets {
         struct PulseRuntimeConstantIndex_t {
         public:
             static constexpr std::uintptr_t m_Value = 0X0000; // int16
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CFootAdjustmentInstanceData {
+        public:
+            static constexpr std::uintptr_t m_flStartTime      = 0X000C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flDuration       = 0X0018; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flStartHeadingWS = 0X003C; // float32
         };
 
         // Construct Allowed
@@ -6390,8 +6741,8 @@ namespace offsets {
         // Construct Allowed
         class CNmIDEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_ID          = 0X0020; // CGlobalSymbol
-            static constexpr std::uintptr_t m_secondaryID = 0X0028; // CGlobalSymbol
+            static constexpr std::uintptr_t m_ID          = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_secondaryID = 0X0020; // CGlobalSymbol
         };
 
         // Construct Allowed
@@ -6419,17 +6770,28 @@ namespace offsets {
             static constexpr std::uintptr_t m_outputBones = 0X0038; // CUtlVector<std::pair<CUtlString,uint32>>
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CNetworkedCycle {
+        public:
+            static constexpr std::uintptr_t m_flCycleUnclamped     = 0X0000; // float32
+            static constexpr std::uintptr_t m_flPrevCycleUnclamped = 0X0004; // float32
+            static constexpr std::uintptr_t m_flCyclesPerSecond    = 0X0010; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flCycleZeroTime      = 0X001C; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_resetCount           = 0X0028; // CAnimNetVar<uint8>
+        };
+
         // Has VTable
         // Construct Allowed
         class CNmSoundEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_relevance                          = 0X0020; // CNmEventRelevance_t
-            static constexpr std::uintptr_t m_name                               = 0X0028; // CUtlString
-            static constexpr std::uintptr_t m_position                           = 0X0030; // CNmSoundEvent::Position_t
-            static constexpr std::uintptr_t m_attachmentName                     = 0X0038; // CUtlString
-            static constexpr std::uintptr_t m_tags                               = 0X0040; // CUtlString
-            static constexpr std::uintptr_t m_bContinuePlayingSoundAtDurationEnd = 0X0048; // bool
-            static constexpr std::uintptr_t m_flDurationInterruptionThreshold    = 0X004C; // float32
+            static constexpr std::uintptr_t m_relevance                          = 0X0018; // CNmEventRelevance_t
+            static constexpr std::uintptr_t m_name                               = 0X0020; // CUtlString
+            static constexpr std::uintptr_t m_position                           = 0X0028; // CNmSoundEvent::Position_t
+            static constexpr std::uintptr_t m_attachmentName                     = 0X0030; // CUtlString
+            static constexpr std::uintptr_t m_tags                               = 0X0038; // CUtlString
+            static constexpr std::uintptr_t m_bContinuePlayingSoundAtDurationEnd = 0X0040; // bool
+            static constexpr std::uintptr_t m_flDurationInterruptionThreshold    = 0X0044; // float32
         };
 
         // Construct Allowed
@@ -6448,15 +6810,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_nAttachBoneIdx            = 0X0090; // int32
             static constexpr std::uintptr_t m_nAttachMeshIdx            = 0X0094; // int32
             static constexpr std::uintptr_t m_nAttachMeshDrawCallIdx    = 0X0098; // int32
-            static constexpr std::uintptr_t m_bEnableSimulation         = 0X009C; // bool
+            static constexpr std::uintptr_t m_bEnableSimulation         = 0X00AC; // bool
         };
 
         // Has VTable
         // Construct Allowed
         class CNmParameterizedClipSelectorNode__CDefinition : public CNmClipReferenceNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_optionWeights         = 0X0028; // CUtlLeanVectorFixedGrowable<uint8,5>
+            static constexpr std::uintptr_t m_optionNodeIndices     = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
+            static constexpr std::uintptr_t m_optionWeights         = 0X0028; // CUtlLeanVectorFixedGrowable<uint8,8>
             static constexpr std::uintptr_t m_parameterNodeIdx      = 0X0038; // int16
             static constexpr std::uintptr_t m_bIgnoreInvalidOptions = 0X003A; // bool
             static constexpr std::uintptr_t m_bHasWeightsSet        = 0X003B; // bool
@@ -6480,6 +6842,17 @@ namespace offsets {
         class CVPhysXSurfacePropertiesList {
         public:
             static constexpr std::uintptr_t m_surfacePropertiesList = 0X0000; // CUtlVector<CPhysSurfaceProperties*>
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CNmFloatSpringNode__CDefinition : public CNmFloatValueNode__CDefinition {
+        public:
+            static constexpr std::uintptr_t m_flStartValue       = 0X0010; // float32
+            static constexpr std::uintptr_t m_flHertz            = 0X0014; // float32
+            static constexpr std::uintptr_t m_flDampingRatio     = 0X0018; // float32
+            static constexpr std::uintptr_t m_nInputValueNodeIdx = 0X001C; // int16
+            static constexpr std::uintptr_t m_bUseStartValue     = 0X001E; // bool
         };
 
         // Has Trivial Constructor
@@ -6520,7 +6893,7 @@ namespace offsets {
         // Construct Allowed
         class CNmTargetSelectorNode__CDefinition : public CNmClipReferenceNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_optionNodeIndices        = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_optionNodeIndices        = 0X0010; // CUtlLeanVectorFixedGrowable<int16,8>
             static constexpr std::uintptr_t m_flOrientationScoreWeight = 0X0028; // float32
             static constexpr std::uintptr_t m_flPositionScoreWeight    = 0X002C; // float32
             static constexpr std::uintptr_t m_parameterNodeIdx         = 0X0030; // int16
@@ -6560,6 +6933,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_bUseHysteresis         = 0X00C3; // bool
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CRootMotion {
+        public:
+            static constexpr std::uintptr_t m_deltaTransform = 0X0000; // CMotionTransform
+            static constexpr std::uintptr_t m_vVelocityMS    = 0X0010; // Vector
+            static constexpr std::uintptr_t m_vUpOverride    = 0X001C; // Vector
+        };
+
         // Has VTable
         // Construct Allowed
         class CAnimGraphSettingsManager {
@@ -6586,16 +6968,16 @@ namespace offsets {
         // Construct Allowed
         class CNmTwoBoneIKTask : public CNmPoseTask {
         public:
-            static constexpr std::uintptr_t m_nEffectorBoneIdx               = 0X0058; // int32
-            static constexpr std::uintptr_t m_nEffectorTargetBoneIdx         = 0X005C; // int32
-            static constexpr std::uintptr_t m_targetTransform                = 0X0060; // CTransform
-            static constexpr std::uintptr_t m_effectorTarget                 = 0X0080; // CNmTarget
-            static constexpr std::uintptr_t m_blendMode                      = 0X00B0; // NmIKBlendMode_t
-            static constexpr std::uintptr_t m_flBlendWeight                  = 0X00B4; // float32
-            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X00B8; // bool
-            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X00B9; // bool
-            static constexpr std::uintptr_t m_flReferencePoseTwistWeight     = 0X00BC; // float32
-            static constexpr std::uintptr_t m_debugEffectorBoneID            = 0X00C0; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nEffectorBoneIdx               = 0X0048; // int32
+            static constexpr std::uintptr_t m_nEffectorTargetBoneIdx         = 0X004C; // int32
+            static constexpr std::uintptr_t m_targetTransform                = 0X0050; // CTransform
+            static constexpr std::uintptr_t m_effectorTarget                 = 0X0070; // CNmTarget
+            static constexpr std::uintptr_t m_blendMode                      = 0X00A0; // NmIKBlendMode_t
+            static constexpr std::uintptr_t m_flBlendWeight                  = 0X00A4; // float32
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace          = 0X00A8; // bool
+            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData = 0X00A9; // bool
+            static constexpr std::uintptr_t m_flChainRotationWeight          = 0X00AC; // float32
+            static constexpr std::uintptr_t m_debugEffectorBoneID            = 0X00B0; // CGlobalSymbol
         };
 
         // Construct Allowed
@@ -6731,13 +7113,14 @@ namespace offsets {
             static constexpr std::uintptr_t m_nClipReferenceNodeIdx               = 0X0010; // int16
             static constexpr std::uintptr_t m_nTargetValueNodeIdx                 = 0X0012; // int16
             static constexpr std::uintptr_t m_samplingMode                        = 0X0014; // CNmRootMotionData::SamplingMode_t
-            static constexpr std::uintptr_t m_bAllowTargetUpdate                  = 0X0015; // bool
+            static constexpr std::uintptr_t m_targetUpdateRule                    = 0X0015; // CNmTargetWarpNode::TargetUpdateRule_t
             static constexpr std::uintptr_t m_bAlignWithTargetAtLastWarpEvent     = 0X0016; // bool
             static constexpr std::uintptr_t m_flSamplingPositionErrorThresholdSq  = 0X0018; // float32
             static constexpr std::uintptr_t m_flMaxTangentLength                  = 0X001C; // float32
             static constexpr std::uintptr_t m_flLerpFallbackDistanceThreshold     = 0X0020; // float32
             static constexpr std::uintptr_t m_flTargetUpdateDistanceThreshold     = 0X0024; // float32
             static constexpr std::uintptr_t m_flTargetUpdateAngleThresholdRadians = 0X0028; // float32
+            static constexpr std::uintptr_t m_alignmentBoneID                     = 0X0030; // CGlobalSymbol
         };
 
         // Has Trivial Destructor
@@ -6878,25 +7261,6 @@ namespace offsets {
             static constexpr std::uintptr_t m_flComparisonValue      = 0X001C; // float32
         };
 
-        // Has VTable
-        // Construct Allowed
-        class CNmChainSolverTask : public CNmPoseTask {
-        public:
-            static constexpr std::uintptr_t m_nEffectorBoneIdx                = 0X0058; // int32
-            static constexpr std::uintptr_t m_nEffectorTargetBoneIdx          = 0X005C; // int32
-            static constexpr std::uintptr_t m_targetTransform                 = 0X0060; // CTransform
-            static constexpr std::uintptr_t m_nNumBonesInChain                = 0X0080; // int32
-            static constexpr std::uintptr_t m_effectorTarget                  = 0X0090; // CNmTarget
-            static constexpr std::uintptr_t m_blendMode                       = 0X00C0; // NmIKBlendMode_t
-            static constexpr std::uintptr_t m_flBlendWeight                   = 0X00C4; // float32
-            static constexpr std::uintptr_t m_bIsTargetInWorldSpace           = 0X00C8; // bool
-            static constexpr std::uintptr_t m_bIsRunningFromDeserializedData  = 0X00C9; // bool
-            static constexpr std::uintptr_t m_debugEffectorBoneID             = 0X00D0; // CGlobalSymbol
-            static constexpr std::uintptr_t m_chainStartTransformMS           = 0X00E0; // CTransform
-            static constexpr std::uintptr_t m_debugRequestedTargetTransformMS = 0X0100; // CTransform
-            static constexpr std::uintptr_t m_debugTotalChainLength           = 0X0120; // float32
-        };
-
         // Construct Allowed
         class CStateUpdateData {
         public:
@@ -6912,10 +7276,27 @@ namespace offsets {
             static constexpr std::uintptr_t m_bPreEvaluatePassthroughTransitionPath = 0X0000; // bitfield:1
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CTurnHelperInstanceData {
+        public:
+            static constexpr std::uintptr_t m_turnAmount    = 0X0000; // float32
+            static constexpr std::uintptr_t m_turnStartTime = 0X0004; // float32
+            static constexpr std::uintptr_t m_duration      = 0X0008; // float32
+        };
+
         // Has VTable
         // Construct Allowed
         class COrientConstraint : public CBaseConstraint {
         public:
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CCycleClipInstanceData {
+        public:
+            static constexpr std::uintptr_t m_flCycle     = 0X0000; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flPrevCycle = 0X000C; // CAnimNetVar<float32>
         };
 
         // Has VTable
@@ -6943,6 +7324,20 @@ namespace offsets {
             static constexpr std::uintptr_t m_nBaseNodeIdx              = 0X0010; // int16
             static constexpr std::uintptr_t m_bOnlySampleBaseRootMotion = 0X0012; // bool
             static constexpr std::uintptr_t m_layerDefinition           = 0X0018; // CUtlLeanVectorFixedGrowable<CNmLayerBlendNode::LayerDefinition_t,3>
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CNmFootIKNode__CDefinition : public CNmPassthroughNode__CDefinition {
+        public:
+            static constexpr std::uintptr_t m_leftEffectorBoneID    = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_rightEffectorBoneID   = 0X0020; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nLeftTargetNodeIdx    = 0X0028; // int16
+            static constexpr std::uintptr_t m_nRightTargetNodeIdx   = 0X002A; // int16
+            static constexpr std::uintptr_t m_nEnabledNodeIdx       = 0X002C; // int16
+            static constexpr std::uintptr_t m_flBlendTimeSeconds    = 0X0030; // float32
+            static constexpr std::uintptr_t m_blendMode             = 0X0034; // NmIKBlendMode_t
+            static constexpr std::uintptr_t m_bIsTargetInWorldSpace = 0X0035; // bool
         };
 
         // Construct Allowed
@@ -7062,9 +7457,9 @@ namespace offsets {
         // Construct Allowed
         class CNmIDSelectorNode__CDefinition : public CNmIDValueNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0010; // CUtlVectorFixedGrowable<int16,5>
-            static constexpr std::uintptr_t m_values               = 0X0038; // CUtlVectorFixedGrowable<CGlobalSymbol,5>
-            static constexpr std::uintptr_t m_defaultValue         = 0X0078; // CGlobalSymbol
+            static constexpr std::uintptr_t m_conditionNodeIndices = 0X0010; // CUtlLeanVectorFixedGrowable<int16,5>
+            static constexpr std::uintptr_t m_values               = 0X0028; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,5>
+            static constexpr std::uintptr_t m_defaultValue         = 0X0058; // CGlobalSymbol
         };
 
         // Has Trivial Destructor
@@ -7134,6 +7529,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_nInputValueNodeIdx = 0X0010; // int16
             static constexpr std::uintptr_t m_comparison         = 0X0012; // CNmIDComparisonNode::Comparison_t
             static constexpr std::uintptr_t m_comparisionIDs     = 0X0018; // CUtlLeanVectorFixedGrowable<CGlobalSymbol,4>
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PairedSequence_t {
+        public:
+            static constexpr std::uintptr_t m_sRole         = 0X0000; // CGlobalSymbol
+            static constexpr std::uintptr_t m_sSequenceName = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t m_hSequence     = 0X0010; // CAnimNetVar<uint32>
         };
 
         // Has VTable
@@ -7491,7 +7895,7 @@ namespace offsets {
         // Construct Allowed
         class CNmFootEvent : public CNmEvent {
         public:
-            static constexpr std::uintptr_t m_phase = 0X0020; // NmFootPhase_t
+            static constexpr std::uintptr_t m_phase = 0X0018; // NmFootPhase_t
         };
 
         // Has Trivial Destructor
@@ -7612,6 +8016,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_scriptsToRun = 0X0030; // CUtlVector<CGlobalSymbol>
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        class NetVarConfigIndex {
+        public:
+            static constexpr std::uintptr_t m_index = 0X0000; // CAnimNetVar<uint32>
+        };
+
         // Has VTable
         // Construct Allowed
         class CAnimData {
@@ -7629,6 +8040,19 @@ namespace offsets {
             static constexpr std::uintptr_t m_SolverType                   = 0X0000; // IKSolverType
             static constexpr std::uintptr_t m_nNumIterations               = 0X0004; // int32
             static constexpr std::uintptr_t m_EndEffectorRotationFixUpMode = 0X0008; // EIKEndEffectorRotationFixUpMode
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        class CBlendNodeInstanceData {
+        public:
+            static constexpr std::uintptr_t m_dampedValue     = 0X0000; // float32
+            static constexpr std::uintptr_t m_flCycle         = 0X0004; // float32
+            static constexpr std::uintptr_t m_flCycleZeroTime = 0X0008; // float32
+            static constexpr std::uintptr_t m_flPlaybackRate  = 0X000C; // float32
+            static constexpr std::uintptr_t m_flBlendValue    = 0X0010; // CAnimNetVar<float32>
+            static constexpr std::uintptr_t m_flDuration      = 0X001C; // float32
+            static constexpr std::uintptr_t m_resetCount      = 0X0020; // CAnimNetVar<uint8>
         };
 
         // Has Trivial Destructor
@@ -7744,6 +8168,7 @@ namespace offsets {
         // Construct Allowed
         class CNmBodyGroupEvent : public CNmEvent {
         public:
+            static constexpr std::uintptr_t m_target      = 0X0018; // CNmEventTargetEntity_t
             static constexpr std::uintptr_t m_groupName   = 0X0020; // CUtlString
             static constexpr std::uintptr_t m_nGroupValue = 0X0028; // int32
         };

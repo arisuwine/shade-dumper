@@ -15,7 +15,6 @@ namespace offsets {
             OBJECT_TYPE_NO_SHADOWS              = 0x20,
             OBJECT_TYPE_WORLDSPACE_TEXURE_BLEND = 0x40,
             OBJECT_TYPE_DISABLED_IN_LOW_QUALITY = 0x80,
-            OBJECT_TYPE_NO_SUN_SHADOWS          = 0x100,
             OBJECT_TYPE_RENDER_WITH_DYNAMIC     = 0x200,
             OBJECT_TYPE_RENDER_TO_CUBEMAPS      = 0x400,
             OBJECT_TYPE_MODEL_HAS_LODS          = 0x800,
@@ -23,7 +22,9 @@ namespace offsets {
             OBJECT_TYPE_PRECOMPUTED_VISMEMBERS  = 0x4000,
             OBJECT_TYPE_STATIC_CUBE_MAP         = 0x8000,
             OBJECT_TYPE_DISABLE_VIS_CULLING     = 0x10000,
-            OBJECT_TYPE_BAKED_GEOMETRY          = 0x20000
+            OBJECT_TYPE_BAKED_GEOMETRY          = 0x20000,
+            OBJECT_TYPE_NEEDS_DYNAMIC_SHADOWS   = 0x40000,
+            OBJECT_TYPE_HAS_AGGREGATE_RTPROXY   = 0x80000
         };
 
         enum class AggregateInstanceStream_t : std::uint8_t {
@@ -39,7 +40,7 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_iszPrivateVScripts = 0X0008; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_pEntity            = 0X0010; // CEntityIdentity*
-            static constexpr std::uintptr_t m_CScriptComponent   = 0X0030; // CScriptComponent*
+            static constexpr std::uintptr_t m_CScriptComponent   = 0X0028; // CScriptComponent*
         };
 
         // Has VTable
@@ -60,18 +61,18 @@ namespace offsets {
         // Local Type Scope
         class CEntityIdentity {
         public:
-            static constexpr std::uintptr_t m_nameStringableIndex = 0X0014; // int32
-            static constexpr std::uintptr_t m_name                = 0X0018; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_designerName        = 0X0020; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flags               = 0X0030; // uint32
-            static constexpr std::uintptr_t m_worldGroupId        = 0X0038; // WorldGroupId_t
-            static constexpr std::uintptr_t m_fDataObjectTypes    = 0X003C; // uint32
-            static constexpr std::uintptr_t m_PathIndex           = 0X0040; // ChangeAccessorFieldPathIndex_t
-            static constexpr std::uintptr_t m_pAttributes         = 0X0048; // CEntityAttributeTable*
-            static constexpr std::uintptr_t m_pPrev               = 0X0050; // CEntityIdentity*
-            static constexpr std::uintptr_t m_pNext               = 0X0058; // CEntityIdentity*
-            static constexpr std::uintptr_t m_pPrevByClass        = 0X0060; // CEntityIdentity*
-            static constexpr std::uintptr_t m_pNextByClass        = 0X0068; // CEntityIdentity*
+            static constexpr std::uintptr_t m_nameStringTableIndex = 0X0014; // int32
+            static constexpr std::uintptr_t m_name                 = 0X0018; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_designerName         = 0X0020; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flags                = 0X0030; // uint32
+            static constexpr std::uintptr_t m_worldGroupId         = 0X0038; // WorldGroupId_t
+            static constexpr std::uintptr_t m_fDataObjectTypes     = 0X003C; // uint32
+            static constexpr std::uintptr_t m_PathIndex            = 0X0040; // ChangeAccessorFieldPathIndex_t
+            static constexpr std::uintptr_t m_pAttributes          = 0X0048; // CEntityAttributeTable*
+            static constexpr std::uintptr_t m_pPrev                = 0X0050; // CEntityIdentity*
+            static constexpr std::uintptr_t m_pNext                = 0X0058; // CEntityIdentity*
+            static constexpr std::uintptr_t m_pPrevByClass         = 0X0060; // CEntityIdentity*
+            static constexpr std::uintptr_t m_pNextByClass         = 0X0068; // CEntityIdentity*
         };
 
         // Has Trivial Destructor

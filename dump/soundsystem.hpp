@@ -3,6 +3,12 @@
 
 namespace offsets {
     namespace soundsystem {
+        enum class SndSeqInstrumentType_t : std::uint32_t {
+            eSndSeqInstNull        = 0x0,
+            eSndSeqInstSndEvt      = 0x1,
+            eSndSeqInstMidiSampler = 0x2
+        };
+
         enum class EMode_t : std::uint32_t {
             Peak = 0x0,
             RMS  = 0x1
@@ -85,6 +91,11 @@ namespace offsets {
             SOS_STOPTYPE_OPVAR = 0x2
         };
 
+        enum class SndSeqTrackPlaybackType_t : std::uint32_t {
+            eSndSeqTrackPlaybackTypeStep = 0x0,
+            eSndSeqTrackPlaybackTypeFwd  = 0x1
+        };
+
         enum class SosEditItemType_t : std::uint32_t {
             SOS_EDIT_ITEM_TYPE_SOUNDEVENTS   = 0x0,
             SOS_EDIT_ITEM_TYPE_SOUNDEVENT    = 0x1,
@@ -92,6 +103,16 @@ namespace offsets {
             SOS_EDIT_ITEM_TYPE_STACK         = 0x3,
             SOS_EDIT_ITEM_TYPE_OPERATOR      = 0x4,
             SOS_EDIT_ITEM_TYPE_FIELD         = 0x5
+        };
+
+        enum class SndSeqQuantizeType_t : std::uint32_t {
+            eSndSeqQuantizeInvalid  = 0xFFFFFFFF,
+            eSndSeqQuantizeNone     = 0x0,
+            eSndSeqQuantizeBeat     = 0x1,
+            eSndSeqQuantizeBar      = 0x2,
+            eSndSeqQuantizeSequence = 0x3,
+            eSndSeqQuantizeSeek     = 0x4,
+            eSndSeqQuantizeReset    = 0x5
         };
 
         enum class PlayBackMode_t : std::uint32_t {
@@ -106,6 +127,12 @@ namespace offsets {
             kIgnore = 0x0,
             kBranch = 0x1,
             kMatch  = 0x2
+        };
+
+        enum class SndSeqSyncType_t : std::uint32_t {
+            eSndSeqSyncTypeNone = 0x0,
+            eSndSeqSyncTypeWait = 0x1,
+            eSndSeqSyncTypeSeek = 0x2
         };
 
         // Global Type Scope
@@ -172,6 +199,12 @@ namespace offsets {
             Count   = 0xC
         };
 
+        enum class SndSeqRegionType_t : std::uint32_t {
+            eSndSeqRegionTypeNull    = 0x0,
+            eSndSeqRegionTypeSndEvt  = 0x1,
+            eSndSeqRegionTypeMidiSeq = 0x2
+        };
+
         enum class CVSoundFormat_t : std::uint8_t {
             PCM16 = 0x0,
             PCM8  = 0x1,
@@ -189,6 +222,12 @@ namespace offsets {
             FILTER_SLOPE_36dB       = 0x6,
             FILTER_SLOPE_48dB       = 0x7,
             FILTER_SLOPE_MAX        = 0x7
+        };
+
+        enum class SndSeqPlayerType_t : std::uint32_t {
+            eSndSeqPlayerNull    = 0x0,
+            eSndSeqPlayerSndEvt  = 0x1,
+            eSndSeqPlayerMidiSeq = 0x2
         };
 
         enum class SosActionLimitSortType_t : std::uint32_t {
@@ -212,6 +251,16 @@ namespace offsets {
             SOS_SETPARAM_SORTTYPE_LOWEST  = 0x1
         };
 
+        enum class SndSeqMidiStatusType_t : std::uint32_t {
+            SndSeqMidiStatusNoteOff         = 0x8,
+            SndSeqMidiStatusNoteOn          = 0x9,
+            SndSeqMidiStatusKeyPressure     = 0xA,
+            SndSeqMidiStatusCtrlChange      = 0xB,
+            SndSeqMidiStatusProgramChange   = 0xC,
+            SndSeqMidiStatusChannelPressure = 0xD,
+            SndSeqMidiStatusPitchBend       = 0xE
+        };
+
         // Construct Allowed
         class CVMixInputBase {
         public:
@@ -232,8 +281,8 @@ namespace offsets {
         class CVoiceContainerBlender : public CVoiceContainerBase {
         public:
             static constexpr std::uintptr_t m_firstSound    = 0X00A8; // CSoundContainerReference
-            static constexpr std::uintptr_t m_secondSound   = 0X00C0; // CSoundContainerReference
-            static constexpr std::uintptr_t m_flBlendFactor = 0X00D8; // float32
+            static constexpr std::uintptr_t m_secondSound   = 0X00C8; // CSoundContainerReference
+            static constexpr std::uintptr_t m_flBlendFactor = 0X00E8; // float32
         };
 
         // Has VTable
@@ -282,6 +331,25 @@ namespace offsets {
             static constexpr std::uintptr_t m_harmonics      = 0X0000; // CUtlVector<CVoiceContainerStaticAdditiveSynth::CHarmonic>
             static constexpr std::uintptr_t m_curve          = 0X0018; // CPiecewiseCurve
             static constexpr std::uintptr_t m_bSyncInstances = 0X0058; // bool
+        };
+
+        // Has VTable
+        // Is Absract
+        // Construct Allowed
+        class CSosGroupActionSchema {
+        public:
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CSosGroupActionOcclusionSchema : public CSosGroupActionSchema {
+        public:
+            static constexpr std::uintptr_t m_flCalculationInterval = 0X0008; // float32
+            static constexpr std::uintptr_t m_flRadius              = 0X000C; // float32
+            static constexpr std::uintptr_t m_flOcclusionScale      = 0X0010; // float32
+            static constexpr std::uintptr_t m_flOcclusionMin        = 0X0014; // float32
+            static constexpr std::uintptr_t m_flOcclusionMax        = 0X0018; // float32
+            static constexpr std::uintptr_t m_flTestDepth           = 0X001C; // float32
         };
 
         // Has VTable
@@ -351,13 +419,6 @@ namespace offsets {
         };
 
         // Has VTable
-        // Is Absract
-        // Construct Allowed
-        class CSosGroupActionSchema {
-        public:
-        };
-
-        // Has VTable
         // Construct Allowed
         class CSosGroupActionSoundeventClusterSchema : public CSosGroupActionSchema {
         public:
@@ -384,9 +445,10 @@ namespace offsets {
         // Construct Allowed
         class CSoundContainerReference {
         public:
-            static constexpr std::uintptr_t m_bUseReference = 0X0000; // bool
-            static constexpr std::uintptr_t m_sound         = 0X0008; // CStrongHandle<InfoForResourceTypeCVoiceContainerBase>
-            static constexpr std::uintptr_t m_pSound        = 0X0010; // CVoiceContainerBase*
+            static constexpr std::uintptr_t m_namespace     = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_bUseReference = 0X0008; // bool
+            static constexpr std::uintptr_t m_sound         = 0X0010; // CStrongHandle<InfoForResourceTypeCVoiceContainerBase>
+            static constexpr std::uintptr_t m_pSound        = 0X0018; // CVoiceContainerBase*
         };
 
         // Has VTable
@@ -449,6 +511,12 @@ namespace offsets {
             static constexpr std::uintptr_t m_nProcessor         = 0X0014; // int32
             static constexpr std::uintptr_t m_nInputValue0       = 0X0018; // int32
             static constexpr std::uintptr_t m_nInputValue1       = 0X001C; // int32
+        };
+
+        // Has Trivial Destructor
+        struct SamplerVoice_t {
+        public:
+            static constexpr std::uintptr_t nNoteNum = 0X0000; // uint8
         };
 
         // Construct Allowed
@@ -520,10 +588,41 @@ namespace offsets {
             static constexpr std::uintptr_t m_bApplyAntialiasing = 0X002C; // bool
         };
 
+        // Has VTable
+        // Is Absract
+        // Construct Allowed
+        class CSndSeqInstBaseSchema {
+        public:
+            static constexpr std::uintptr_t m_nType              = 0X0008; // SndSeqInstrumentType_t
+            static constexpr std::uintptr_t m_nPlayerType        = 0X000C; // SndSeqPlayerType_t
+            static constexpr std::uintptr_t m_bStopCurrentEvents = 0X0012; // bool
+            static constexpr std::uintptr_t m_flBPM              = 0X0014; // float32
+            static constexpr std::uintptr_t m_flBPMFactor        = 0X0018; // float32
+            static constexpr std::uintptr_t m_flBPMInvFactor     = 0X001C; // float32
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CSndSeqInstSndEvtSchema : public CSndSeqInstBaseSchema {
+        public:
+        };
+
         // Construct Allowed
         class CVMixNameInputMeter : public CVMixInputBase {
         public:
             static constexpr std::uintptr_t m_nValueIndex = 0X0010; // int32
+        };
+
+        // Has VTable
+        // Is Absract
+        // Has Trivial Destructor
+        class ISndSeqInstruments {
+        public:
+        };
+
+        // Has VTable
+        class CSndSeqInstruments : public ISndSeqInstruments {
+        public:
         };
 
         // Has VTable
@@ -575,6 +674,23 @@ namespace offsets {
             static constexpr std::uintptr_t m_Behavior_String          = 0X0048; // SosGroupFieldBehavior_t
             static constexpr std::uintptr_t m_opvarString              = 0X0050; // CUtlString
             static constexpr std::uintptr_t m_vActions                 = 0X0058; // CUtlVector<CSosGroupActionSchema*>
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CSndSeqInstMidiSampler : public CSndSeqInstBaseSchema {
+        public:
+            static constexpr std::uintptr_t m_bIsSoundEvent      = 0X0020; // bool
+            static constexpr std::uintptr_t m_bStopPrevious      = 0X0021; // bool
+            static constexpr std::uintptr_t m_nMinNote           = 0X0022; // uint8
+            static constexpr std::uintptr_t m_nMaxNote           = 0X0023; // uint8
+            static constexpr std::uintptr_t m_flMinVelocityAtten = 0X0024; // float32
+            static constexpr std::uintptr_t m_flMaxVelocityAtten = 0X0028; // float32
+            static constexpr std::uintptr_t m_flAttack           = 0X002C; // float32
+            static constexpr std::uintptr_t m_flRelease          = 0X0030; // float32
+            static constexpr std::uintptr_t m_bBeatEnvelopes     = 0X0034; // bool
+            static constexpr std::uintptr_t m_nNextVoiceSlot     = 0X00D4; // uint8
+            static constexpr std::uintptr_t m_hSoundEventHash    = 0X00D8; // uint32
         };
 
         // Has Trivial Destructor
@@ -735,13 +851,13 @@ namespace offsets {
         class CVoiceContainerLoopXFade : public CVoiceContainerBase {
         public:
             static constexpr std::uintptr_t m_sound       = 0X00A8; // CSoundContainerReference
-            static constexpr std::uintptr_t m_flLoopEnd   = 0X00C0; // float32
-            static constexpr std::uintptr_t m_flLoopStart = 0X00C4; // float32
-            static constexpr std::uintptr_t m_flFadeOut   = 0X00C8; // float32
-            static constexpr std::uintptr_t m_flFadeIn    = 0X00CC; // float32
-            static constexpr std::uintptr_t m_bPlayHead   = 0X00D0; // bool
-            static constexpr std::uintptr_t m_bPlayTail   = 0X00D1; // bool
-            static constexpr std::uintptr_t m_bEqualPow   = 0X00D2; // bool
+            static constexpr std::uintptr_t m_flLoopEnd   = 0X00C8; // float32
+            static constexpr std::uintptr_t m_flLoopStart = 0X00CC; // float32
+            static constexpr std::uintptr_t m_flFadeOut   = 0X00D0; // float32
+            static constexpr std::uintptr_t m_flFadeIn    = 0X00D4; // float32
+            static constexpr std::uintptr_t m_bPlayHead   = 0X00D8; // bool
+            static constexpr std::uintptr_t m_bPlayTail   = 0X00D9; // bool
+            static constexpr std::uintptr_t m_bEqualPow   = 0X00DA; // bool
         };
 
         // Construct Allowed
@@ -894,7 +1010,7 @@ namespace offsets {
         class CVoiceContainerSetElement {
         public:
             static constexpr std::uintptr_t m_sound      = 0X0000; // CSoundContainerReference
-            static constexpr std::uintptr_t m_flVolumeDB = 0X0018; // float32
+            static constexpr std::uintptr_t m_flVolumeDB = 0X0020; // float32
         };
 
         // Has Trivial Constructor
@@ -926,6 +1042,17 @@ namespace offsets {
         class CVMixEffectChainProcessorDesc : public CVMixBaseProcessorDesc {
         public:
             static constexpr std::uintptr_t m_desc = 0X0020; // VMixEffectChainDesc_t
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        struct KeyGroup_t {
+        public:
+            static constexpr std::uintptr_t nCenterNote       = 0X0000; // uint8
+            static constexpr std::uintptr_t nMinNote          = 0X0001; // uint8
+            static constexpr std::uintptr_t nMaxNote          = 0X0002; // uint8
+            static constexpr std::uintptr_t nNumVelocityZones = 0X0003; // uint8
+            static constexpr std::uintptr_t pVelocityZones    = 0X0008; // VelocityZone_t*
         };
 
         // Has VTable
@@ -1074,13 +1201,13 @@ namespace offsets {
         class CVoiceContainerParameterBlender : public CVoiceContainerBase {
         public:
             static constexpr std::uintptr_t m_firstSound            = 0X00A8; // CSoundContainerReference
-            static constexpr std::uintptr_t m_secondSound           = 0X00C0; // CSoundContainerReference
-            static constexpr std::uintptr_t m_bEnableOcclusionBlend = 0X00D8; // bool
-            static constexpr std::uintptr_t m_curve1                = 0X00E0; // CPiecewiseCurve
-            static constexpr std::uintptr_t m_curve2                = 0X0120; // CPiecewiseCurve
-            static constexpr std::uintptr_t m_bEnableDistanceBlend  = 0X0160; // bool
-            static constexpr std::uintptr_t m_curve3                = 0X0168; // CPiecewiseCurve
-            static constexpr std::uintptr_t m_curve4                = 0X01A8; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_secondSound           = 0X00C8; // CSoundContainerReference
+            static constexpr std::uintptr_t m_bEnableOcclusionBlend = 0X00E8; // bool
+            static constexpr std::uintptr_t m_curve1                = 0X00F0; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_curve2                = 0X0130; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_bEnableDistanceBlend  = 0X0170; // bool
+            static constexpr std::uintptr_t m_curve3                = 0X0178; // CPiecewiseCurve
+            static constexpr std::uintptr_t m_curve4                = 0X01B8; // CPiecewiseCurve
         };
 
         // Construct Allowed
@@ -1200,6 +1327,16 @@ namespace offsets {
             static constexpr std::uintptr_t m_nInstancesAtMaxVolume = 0X000C; // int32
         };
 
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        struct VelocityZone_t {
+        public:
+            static constexpr std::uintptr_t nMaxVel        = 0X0000; // uint8
+            static constexpr std::uintptr_t nNextSelection = 0X0001; // uint8
+            static constexpr std::uintptr_t nNumSamples    = 0X0002; // uint8
+            static constexpr std::uintptr_t pSamples       = 0X0004; // uint32[4]
+        };
+
         // Has VTable
         // Construct Allowed
         class CVoiceContainerSelector : public CVoiceContainerBase {
@@ -1301,10 +1438,10 @@ namespace offsets {
         class CVoiceContainerLoopTrigger : public CVoiceContainerBase {
         public:
             static constexpr std::uintptr_t m_sound              = 0X00A8; // CSoundContainerReference
-            static constexpr std::uintptr_t m_flRetriggerTimeMin = 0X00C0; // float32
-            static constexpr std::uintptr_t m_flRetriggerTimeMax = 0X00C4; // float32
-            static constexpr std::uintptr_t m_flFadeTime         = 0X00C8; // float32
-            static constexpr std::uintptr_t m_bCrossFade         = 0X00CC; // bool
+            static constexpr std::uintptr_t m_flRetriggerTimeMin = 0X00C8; // float32
+            static constexpr std::uintptr_t m_flRetriggerTimeMax = 0X00CC; // float32
+            static constexpr std::uintptr_t m_flFadeTime         = 0X00D0; // float32
+            static constexpr std::uintptr_t m_bCrossFade         = 0X00D4; // bool
         };
 
         // Has VTable

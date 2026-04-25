@@ -57,7 +57,8 @@ namespace offsets {
         // Local Type Scope
         enum class CFuncMover__FollowConstraint_t : std::uint32_t {
             FOLLOW_CONSTRAINT_DISTANCE = 0x0,
-            FOLLOW_CONSTRAINT_SPRING   = 0x1
+            FOLLOW_CONSTRAINT_SPRING   = 0x1,
+            FOLLOW_CONSTRAINT_RATIO    = 0x2
         };
 
         // Local Type Scope
@@ -199,6 +200,14 @@ namespace offsets {
             SOUNDEVENT_START_ENTITY = 0x2
         };
 
+        enum class soundcommands_t : std::uint32_t {
+            SOUNDCTRL_CHANGE_VOLUME = 0x0,
+            SOUNDCTRL_CHANGE_PITCH  = 0x1,
+            SOUNDCTRL_STOP          = 0x2,
+            SOUNDCTRL_DESTROY       = 0x3,
+            SOUNDCTRL_FADEOUT       = 0x4
+        };
+
         enum class AnimGraphDebugDrawType_t : std::uint32_t {
             None        = 0x0,
             WsPosition  = 0x1,
@@ -212,6 +221,13 @@ namespace offsets {
             TrainOrientation_AtPathTracks  = 0x1,
             TrainOrientation_LinearBlend   = 0x2,
             TrainOrientation_EaseInEaseOut = 0x3
+        };
+
+        enum class CInfoChoreoLocatorShapeType_t : std::uint32_t {
+            POINT = 0x0,
+            LINE  = 0x1,
+            COUNT = 0x2,
+            NONE  = 0x3
         };
 
         enum class CSWeaponCategory : std::uint32_t {
@@ -284,14 +300,19 @@ namespace offsets {
             Sidekick     = 0x6
         };
 
+        enum class GLOBALESTATE : std::uint8_t {
+            GLOBAL_OFF  = 0x0,
+            GLOBAL_ON   = 0x1,
+            GLOBAL_DEAD = 0x2
+        };
+
         enum class AnimationAlgorithm_t : std::uint8_t {
             eInvalid             = 0xFF,
             eNone                = 0x0,
             eSequence            = 0x1,
             eAnimGraph2          = 0x2,
             eAnimGraph2Secondary = 0x3,
-            eAnimGraph1          = 0x4,
-            eCount               = 0x5
+            eCount               = 0x4
         };
 
         enum class CSWeaponMode : std::uint32_t {
@@ -389,26 +410,6 @@ namespace offsets {
             BoneAndChildren = 0x1
         };
 
-        enum class BaseExplosionTypes_t : std::uint32_t {
-            EXPLOSION_TYPE_DEFAULT         = 0x0,
-            EXPLOSION_TYPE_GRENADE         = 0x1,
-            EXPLOSION_TYPE_MOLOTOV         = 0x2,
-            EXPLOSION_TYPE_FIREWORKS       = 0x3,
-            EXPLOSION_TYPE_GASCAN          = 0x4,
-            EXPLOSION_TYPE_GASCYLINDER     = 0x5,
-            EXPLOSION_TYPE_EXPLOSIVEBARREL = 0x6,
-            EXPLOSION_TYPE_ELECTRICAL      = 0x7,
-            EXPLOSION_TYPE_EMP             = 0x8,
-            EXPLOSION_TYPE_SHRAPNEL        = 0x9,
-            EXPLOSION_TYPE_SMOKEGRENADE    = 0xA,
-            EXPLOSION_TYPE_FLASHBANG       = 0xB,
-            EXPLOSION_TYPE_TRIPMINE        = 0xC,
-            EXPLOSION_TYPE_ICE             = 0xD,
-            EXPLOSION_TYPE_NONE            = 0xE,
-            EXPLOSION_TYPE_CUSTOM          = 0xF,
-            EXPLOSION_TYPE_COUNT           = 0x10
-        };
-
         enum class GameAnimEventIndex_t : std::uint32_t {
             AE_EMPTY                              = 0x0,
             AE_CL_PLAYSOUND                       = 0x1,
@@ -471,6 +472,13 @@ namespace offsets {
             touch_player_or_npc_or_physicsprop = 0x4
         };
 
+        enum class CCSPlayerAnimationState__MoveType_t : std::uint8_t {
+            None   = 0x0,
+            Ground = 0x1,
+            Air    = 0x2,
+            Ladder = 0x3
+        };
+
         enum class TrainVelocityType_t : std::uint32_t {
             TrainVelocity_Instantaneous = 0x0,
             TrainVelocity_LinearBlend   = 0x1,
@@ -510,6 +518,15 @@ namespace offsets {
             ZERO = 0x0,
             ONE  = 0x1,
             TWO  = 0x2
+        };
+
+        enum class FuncMoverMovementSummaryFlags_t : std::uint32_t {
+            eNone             = 0x0,
+            eMovementBegin    = 0x1,
+            eStopBegin        = 0x2,
+            eStopComplete     = 0x4,
+            eReversing        = 0x8,
+            eEventsDispatched = 0x10
         };
 
         enum class PropDoorRotatingSpawnPos_t : std::uint32_t {
@@ -680,6 +697,12 @@ namespace offsets {
             MOVELINEAR_AUTHORED_AT_CLOSED_POSITION = 0x2
         };
 
+        enum class InteractionPassive_t : std::uint32_t {
+            INTERACT_PASSIVE_NONE   = 0x0,
+            INTERACT_PASSIVE_LOOKAT = 0x1,
+            INTERACT_PASSIVE_SPEAK  = 0x2
+        };
+
         enum class ValueRemapperMomentumType_t : std::uint32_t {
             MomentumType_None                    = 0x0,
             MomentumType_Friction                = 0x1,
@@ -717,7 +740,19 @@ namespace offsets {
 
         enum class ESceneRequestState_t : std::uint32_t {
             INACTIVE = 0x0,
-            ACTIVE   = 0x1
+            ACTIVE   = 0x1,
+            FINISHED = 0x2,
+            FAILED   = 0x3
+        };
+
+        enum class CCSPlayerAnimationState__GroundMoveState_t : std::uint8_t {
+            None           = 0x0,
+            Idle           = 0x1,
+            Start          = 0x2,
+            Move           = 0x3,
+            TurnOnSpot     = 0x4,
+            TurnOnSpotLoop = 0x5,
+            PlantAndTurn   = 0x6
         };
 
         enum class PreviewWeaponState : std::uint32_t {
@@ -946,6 +981,11 @@ namespace offsets {
             COMBINED              = 0xFFFFFFFF
         };
 
+        enum class ENPCBehaviorOverride_t : std::uint32_t {
+            eKeepExisting = 0x0,
+            eTakeOver     = 0x1
+        };
+
         enum class PreviewEOMCelebration : std::uint32_t {
             INVALID             = 0xFFFFFFFF,
             WALKUP              = 0x0,
@@ -979,6 +1019,31 @@ namespace offsets {
             ENTITY_DISSOLVE_ELECTRICAL       = 0x1,
             ENTITY_DISSOLVE_ELECTRICAL_LIGHT = 0x2,
             ENTITY_DISSOLVE_CORE             = 0x3
+        };
+
+        enum class SaveRestoreTableFlags_t : std::uint32_t {
+            FENTTABLE_NONE        = 0x0,
+            FENTTABLE_PLAYER      = 0x80000000,
+            FENTTABLE_REMOVED     = 0x40000000,
+            FENTTABLE_MOVEABLE    = 0x20000000,
+            FENTTABLE_GLOBAL      = 0x10000000,
+            FENTTABLE_PLAYERCHILD = 0x8000000,
+            LEVELMASK_BIT_0       = 0x1,
+            LEVELMASK_BIT_1       = 0x2,
+            LEVELMASK_BIT_2       = 0x4,
+            LEVELMASK_BIT_3       = 0x8,
+            LEVELMASK_BIT_4       = 0x10,
+            LEVELMASK_BIT_5       = 0x20,
+            LEVELMASK_BIT_6       = 0x40,
+            LEVELMASK_BIT_7       = 0x80,
+            LEVELMASK_BIT_8       = 0x100,
+            LEVELMASK_BIT_9       = 0x200,
+            LEVELMASK_BIT_10      = 0x400,
+            LEVELMASK_BIT_11      = 0x800,
+            LEVELMASK_BIT_12      = 0x1000,
+            LEVELMASK_BIT_13      = 0x2000,
+            LEVELMASK_BIT_14      = 0x4000,
+            LEVELMASK_BIT_15      = 0x8000
         };
 
         enum class InputBitMask_t : std::uint64_t {
@@ -1313,13 +1378,45 @@ namespace offsets {
         };
 
         enum class PlayerConnectedState : std::uint32_t {
-            PlayerNeverConnected = 0xFFFFFFFF,
-            PlayerConnected      = 0x0,
-            PlayerConnecting     = 0x1,
-            PlayerReconnecting   = 0x2,
-            PlayerDisconnecting  = 0x3,
-            PlayerDisconnected   = 0x4,
-            PlayerReserved       = 0x5
+            NeverConnected = 0xFFFFFFFF,
+            Connected      = 0x0,
+            Connecting     = 0x1,
+            Reconnecting   = 0x2,
+            Disconnecting  = 0x3,
+            Disconnected   = 0x4,
+            Reserved       = 0x5
+        };
+
+        enum class PreviewCharacterBannerAnimation : std::uint32_t {
+            INVALID                        = 0xFFFFFFFF,
+            IDLE_OFFSCREEN                 = 0x0,
+            BANNER_AWP_ACE_GUN             = 0x1,
+            BANNER_AWP_ACE_A               = 0x2,
+            BANNER_AWP_ACE_B               = 0x3,
+            BANNER_AWP_ACE_C               = 0x4,
+            BANNER_AWP_ACE_D               = 0x5,
+            BANNER_AWP_ACE_E               = 0x6,
+            BANNER_PISTOL3SHOT             = 0x7,
+            BANNER_3SHOT_A                 = 0x8,
+            BANNER_3SHOT_B                 = 0x9,
+            BANNER_3SHOT_C                 = 0xA,
+            BANNER_PISTOL4SHOT             = 0xB,
+            BANNER_4SHOT_A                 = 0xC,
+            BANNER_4SHOT_B                 = 0xD,
+            BANNER_4SHOT_C                 = 0xE,
+            BANNER_4SHOT_D                 = 0xF,
+            CELEBRATE_STRETCH_NOWEAP_IDLE0 = 0x10,
+            BANNER_BOMB_PLANT              = 0x11,
+            BANNER_BOMB_DEFUSAL_VER        = 0x12,
+            BANNER_FIRE                    = 0x13,
+            BANNER_BOMB_BLAST_TOSS         = 0x14,
+            BANNER_BOMB_BLAST01            = 0x15,
+            BANNER_BOMB_BLAST02            = 0x16,
+            BANNER_BOMB_BLAST03            = 0x17,
+            BANNER_CELEBRATE_01            = 0x18,
+            BANNER_CELEBRATE_02            = 0x19,
+            BANNER_CELEBRATE_03            = 0x1A,
+            BANNER_CELEBRATE_04            = 0x1B
         };
 
         enum class navproperties_t : std::uint32_t {
@@ -1334,6 +1431,15 @@ namespace offsets {
             EF_PARENT_ANIMATES     = 0x200,
             EF_NODRAW_BUT_TRANSMIT = 0x400,
             EF_MAX_BITS            = 0xA
+        };
+
+        enum class ChoreoExternalAnimgraphControlState_t : std::uint32_t {
+            eNone    = 0x0,
+            eBegin   = 0x1,
+            eLooping = 0x2,
+            eExit    = 0x3,
+            eAbort   = 0x4,
+            eCount   = 0x5
         };
 
         enum class SolidType_t : std::uint8_t {
@@ -1410,6 +1516,14 @@ namespace offsets {
             OutputType_RotationZ      = 0x3
         };
 
+        enum class INavObstacle__NavObstacleType_t : std::uint32_t {
+            NAV_OBSTACLE_TYPE_INVALID = 0xFFFFFFFF,
+            NAV_OBSTACLE_TYPE_NONE    = 0x0,
+            NAV_OBSTACLE_TYPE_AVOID   = 0x1,
+            NAV_OBSTACLE_TYPE_CONN    = 0x2,
+            NAV_OBSTACLE_TYPE_BLOCK   = 0x3
+        };
+
         enum class PointTemplateOwnerSpawnGroupType_t : std::uint32_t {
             INSERT_INTO_POINT_TEMPLATE_SPAWN_GROUP   = 0x0,
             INSERT_INTO_CURRENTLY_ACTIVE_SPAWN_GROUP = 0x1,
@@ -1420,6 +1534,18 @@ namespace offsets {
             k_EContributionScoreFlag_Default   = 0x0,
             k_EContributionScoreFlag_Objective = 0x1,
             k_EContributionScoreFlag_Bullets   = 0x2
+        };
+
+        enum class CCSPlayerAnimationState__Direction_t : std::uint8_t {
+            None = 0x0,
+            N    = 0x1,
+            NE   = 0x2,
+            E    = 0x3,
+            SE   = 0x4,
+            S    = 0x5,
+            SW   = 0x6,
+            W    = 0x7,
+            NW   = 0x8
         };
 
         enum class eSplinePushType : std::uint32_t {
@@ -1457,8 +1583,7 @@ namespace offsets {
             WPN_ANIMSTATE_INSPECT_OUTRO               = 0x3E9,
             WPN_ANIMSTATE_INVENTORY_UI_TUMBLE         = 0x5DC,
             WPN_ANIMSTATE_INVENTORY_UI_KEYCHAIN_APPLY = 0x5DD,
-            WPN_ANIMSTATE_END_VALID                   = 0x7D0,
-            WEAPON_LEGACY_STATE_CLEAR_FIRING          = 0x7D1
+            WPN_ANIMSTATE_END_VALID                   = 0x7D0
         };
 
         enum class EDestructiblePartRadiusDamageApplyType : std::uint32_t {
@@ -1489,7 +1614,8 @@ namespace offsets {
             SHAKE_AMPLITUDE        = 0x2,
             SHAKE_FREQUENCY        = 0x3,
             SHAKE_START_RUMBLEONLY = 0x4,
-            SHAKE_START_NORUMBLE   = 0x5
+            SHAKE_START_NORUMBLE   = 0x5,
+            SHAKE_DURATION         = 0x6
         };
 
         enum class Flags_t : std::uint32_t {
@@ -1535,6 +1661,14 @@ namespace offsets {
             BRUSHSOLID_TOGGLE = 0x0,
             BRUSHSOLID_NEVER  = 0x1,
             BRUSHSOLID_ALWAYS = 0x2
+        };
+
+        enum class InteractionPriority_t : std::uint32_t {
+            INTERACT_PRIORITY_NONE    = 0x0,
+            INTERACT_PRIORITY_PASSIVE = 0x1,
+            INTERACT_PRIORITY_LOW     = 0x2,
+            INTERACT_PRIORITY_MED     = 0x3,
+            INTERACT_PRIORITY_HIGH    = 0x4
         };
 
         enum class QuestProgress__Reason : std::uint32_t {
@@ -1670,6 +1804,13 @@ namespace offsets {
             CAN_PLAY_ENQUEUED = 0x2
         };
 
+        enum class CCSPlayerAnimationState__AirAction_t : std::uint8_t {
+            None      = 0x0,
+            Jump      = 0x1,
+            StartFall = 0x2,
+            Land      = 0x3
+        };
+
         enum class MedalRank_t : std::uint32_t {
             MEDAL_RANK_NONE   = 0x0,
             MEDAL_RANK_BRONZE = 0x1,
@@ -1740,7 +1881,7 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_iszPrivateVScripts = 0X0008; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_pEntity            = 0X0010; // CEntityIdentity*
-            static constexpr std::uintptr_t m_CScriptComponent   = 0X0030; // CScriptComponent*
+            static constexpr std::uintptr_t m_CScriptComponent   = 0X0028; // CScriptComponent*
         };
 
         // Has VTable
@@ -1748,29 +1889,35 @@ namespace offsets {
         // Local Type Scope
         class CBaseEntity : public CEntityInstance {
         public:
-            static constexpr std::uintptr_t m_CBodyComponent                  = 0X0038; // CBodyComponent*
-            static constexpr std::uintptr_t m_NetworkTransmitComponent        = 0X0040; // CNetworkTransmitComponent
-            static constexpr std::uintptr_t m_aThinkFunctions                 = 0X0250; // CUtlVector<thinkfunc_t>
-            static constexpr std::uintptr_t m_iCurrentThinkContext            = 0X0268; // int32
-            static constexpr std::uintptr_t m_nLastThinkTick                  = 0X026C; // GameTick_t
-            static constexpr std::uintptr_t m_bDisabledContextThinks          = 0X0270; // bool
-            static constexpr std::uintptr_t m_isSteadyState                   = 0X0280; // CTypedBitVec<64>
-            static constexpr std::uintptr_t m_lastNetworkChange               = 0X0288; // float32
-            static constexpr std::uintptr_t m_ResponseContexts                = 0X0298; // CUtlVector<ResponseContext_t>
-            static constexpr std::uintptr_t m_iszResponseContext              = 0X02B0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iHealth                         = 0X02D8; // int32
-            static constexpr std::uintptr_t m_iMaxHealth                      = 0X02DC; // int32
-            static constexpr std::uintptr_t m_lifeState                       = 0X02E0; // uint8
-            static constexpr std::uintptr_t m_flDamageAccumulator             = 0X02E4; // float32
-            static constexpr std::uintptr_t m_bTakesDamage                    = 0X02E8; // bool
-            static constexpr std::uintptr_t m_nTakeDamageFlags                = 0X02F0; // TakeDamageFlags_t
-            static constexpr std::uintptr_t m_nPlatformType                   = 0X02F8; // EntityPlatformTypes_t
-            static constexpr std::uintptr_t m_MoveCollide                     = 0X02FA; // MoveCollide_t
-            static constexpr std::uintptr_t m_MoveType                        = 0X02FB; // MoveType_t
-            static constexpr std::uintptr_t m_nActualMoveType                 = 0X02FC; // MoveType_t
-            static constexpr std::uintptr_t m_nWaterTouch                     = 0X02FD; // uint8
-            static constexpr std::uintptr_t m_nSlimeTouch                     = 0X02FE; // uint8
-            static constexpr std::uintptr_t m_bRestoreInHierarchy             = 0X02FF; // bool
+            static constexpr std::uintptr_t m_CBodyComponent                  = 0X0030; // CBodyComponent*
+            static constexpr std::uintptr_t m_NetworkTransmitComponent        = 0X0038; // CNetworkTransmitComponent
+            static constexpr std::uintptr_t m_aThinkFunctions                 = 0X0248; // CUtlVector<thinkfunc_t>
+            static constexpr std::uintptr_t m_iCurrentThinkContext            = 0X0260; // int32
+            static constexpr std::uintptr_t m_nLastThinkTick                  = 0X0264; // GameTick_t
+            static constexpr std::uintptr_t m_bDisabledContextThinks          = 0X0268; // bool
+            static constexpr std::uintptr_t m_isSteadyState                   = 0X0278; // CTypedBitVec<64>
+            static constexpr std::uintptr_t m_lastNetworkChange               = 0X0280; // float32
+            static constexpr std::uintptr_t m_think                           = 0X0288; // BASEPTR
+            static constexpr std::uintptr_t m_ResponseContexts                = 0X0290; // CUtlVector<ResponseContext_t>
+            static constexpr std::uintptr_t m_iszResponseContext              = 0X02A8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_pfnTouch                        = 0X02B0; // ENTITYFUNCPTR
+            static constexpr std::uintptr_t m_pfnUse                          = 0X02B8; // USEPTR
+            static constexpr std::uintptr_t m_pfnBlocked                      = 0X02C0; // ENTITYFUNCPTR
+            static constexpr std::uintptr_t m_pfnMoveDone                     = 0X02C8; // BASEPTR
+            static constexpr std::uintptr_t m_iHealth                         = 0X02D0; // int32
+            static constexpr std::uintptr_t m_iMaxHealth                      = 0X02D4; // int32
+            static constexpr std::uintptr_t m_lifeState                       = 0X02D8; // uint8
+            static constexpr std::uintptr_t m_flDamageAccumulator             = 0X02DC; // float32
+            static constexpr std::uintptr_t m_bTakesDamage                    = 0X02E0; // bool
+            static constexpr std::uintptr_t m_nTakeDamageFlags                = 0X02E8; // TakeDamageFlags_t
+            static constexpr std::uintptr_t m_nPlatformType                   = 0X02F0; // EntityPlatformTypes_t
+            static constexpr std::uintptr_t m_MoveCollide                     = 0X02F2; // MoveCollide_t
+            static constexpr std::uintptr_t m_MoveType                        = 0X02F3; // MoveType_t
+            static constexpr std::uintptr_t m_nPreviouslySetMoveType          = 0X02F4; // MoveType_t
+            static constexpr std::uintptr_t m_nActualMoveType                 = 0X02F5; // MoveType_t
+            static constexpr std::uintptr_t m_nWaterTouch                     = 0X02F6; // uint8
+            static constexpr std::uintptr_t m_nSlimeTouch                     = 0X02F7; // uint8
+            static constexpr std::uintptr_t m_bRestoreInHierarchy             = 0X02F8; // bool
             static constexpr std::uintptr_t m_target                          = 0X0300; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_hDamageFilter                   = 0X0308; // CHandle<CBaseFilter>
             static constexpr std::uintptr_t m_iszDamageFilterName             = 0X0310; // CUtlSymbolLarge
@@ -1781,7 +1928,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_flCreateTime                    = 0X0330; // GameTime_t
             static constexpr std::uintptr_t m_bClientSideRagdoll              = 0X0334; // bool
             static constexpr std::uintptr_t m_ubInterpolationFrame            = 0X0335; // uint8
-            static constexpr std::uintptr_t m_vPrevVPhysicsUpdatePos          = 0X0338; // Vector
+            static constexpr std::uintptr_t m_vPrevVPhysicsUpdatePos          = 0X0338; // VectorWS
             static constexpr std::uintptr_t m_iTeamNum                        = 0X0344; // uint8
             static constexpr std::uintptr_t m_iGlobalname                     = 0X0348; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_iSentToClients                  = 0X0350; // int32
@@ -1835,38 +1982,46 @@ namespace offsets {
         // Local Type Scope
         class CBaseModelEntity : public CBaseEntity {
         public:
-            static constexpr std::uintptr_t m_CRenderComponent                                   = 0X04A8; // CRenderComponent*
-            static constexpr std::uintptr_t m_CHitboxComponent                                   = 0X04B0; // CHitboxComponent
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed0           = 0X04C8; // HitGroup_t
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed1           = 0X04CC; // HitGroup_t
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed2           = 0X04D0; // HitGroup_t
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed3           = 0X04D4; // HitGroup_t
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed4           = 0X04D8; // HitGroup_t
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed0_PartIndex = 0X04DC; // int32
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed1_PartIndex = 0X04E0; // int32
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed2_PartIndex = 0X04E4; // int32
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed3_PartIndex = 0X04E8; // int32
-            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed4_PartIndex = 0X04EC; // int32
-            static constexpr std::uintptr_t m_pDestructiblePartsSystemComponent                  = 0X04F0; // CDestructiblePartsComponent*
-            static constexpr std::uintptr_t m_flDissolveStartTime                                = 0X04F8; // GameTime_t
-            static constexpr std::uintptr_t m_OnIgnite                                           = 0X0500; // CEntityIOOutput
-            static constexpr std::uintptr_t m_nRenderMode                                        = 0X0518; // RenderMode_t
-            static constexpr std::uintptr_t m_nRenderFX                                          = 0X0519; // RenderFx_t
-            static constexpr std::uintptr_t m_bAllowFadeInView                                   = 0X051A; // bool
-            static constexpr std::uintptr_t m_clrRender                                          = 0X0538; // Color
-            static constexpr std::uintptr_t m_vecRenderAttributes                                = 0X0540; // CUtlVectorEmbeddedNetworkVar<EntityRenderAttribute_t>
-            static constexpr std::uintptr_t m_bRenderToCubemaps                                  = 0X05A8; // bool
-            static constexpr std::uintptr_t m_bNoInterpolate                                     = 0X05A9; // bool
-            static constexpr std::uintptr_t m_Collision                                          = 0X05B0; // CCollisionProperty
-            static constexpr std::uintptr_t m_Glow                                               = 0X0660; // CGlowProperty
-            static constexpr std::uintptr_t m_flGlowBackfaceMult                                 = 0X06B8; // float32
-            static constexpr std::uintptr_t m_fadeMinDist                                        = 0X06BC; // float32
-            static constexpr std::uintptr_t m_fadeMaxDist                                        = 0X06C0; // float32
-            static constexpr std::uintptr_t m_flFadeScale                                        = 0X06C4; // float32
-            static constexpr std::uintptr_t m_flShadowStrength                                   = 0X06C8; // float32
-            static constexpr std::uintptr_t m_nObjectCulling                                     = 0X06CC; // uint8
-            static constexpr std::uintptr_t m_vecViewOffset                                      = 0X06F8; // CNetworkViewOffsetVector
-            static constexpr std::uintptr_t m_bvDisabledHitGroups                                = 0X0728; // uint32[1]
+            static constexpr std::uintptr_t m_CRenderComponent                                             = 0X04A8; // CRenderComponent*
+            static constexpr std::uintptr_t m_CHitboxComponent                                             = 0X04B0; // CHitboxComponent
+            static constexpr std::uintptr_t m_pChoreoComponent                                             = 0X04C8; // CChoreoComponent*
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed0                     = 0X04D0; // HitGroup_t
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed1                     = 0X04D4; // HitGroup_t
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed2                     = 0X04D8; // HitGroup_t
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed3                     = 0X04DC; // HitGroup_t
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed4                     = 0X04E0; // HitGroup_t
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed0_PartIndex           = 0X04E4; // int32
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed1_PartIndex           = 0X04E8; // int32
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed2_PartIndex           = 0X04EC; // int32
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed3_PartIndex           = 0X04F0; // int32
+            static constexpr std::uintptr_t m_nDestructiblePartInitialStateDestructed4_PartIndex           = 0X04F4; // int32
+            static constexpr std::uintptr_t m_bDestructiblePartInitialStateDestructed0_GenerateBreakpieces = 0X04F8; // bool
+            static constexpr std::uintptr_t m_bDestructiblePartInitialStateDestructed1_GenerateBreakpieces = 0X04F9; // bool
+            static constexpr std::uintptr_t m_bDestructiblePartInitialStateDestructed2_GenerateBreakpieces = 0X04FA; // bool
+            static constexpr std::uintptr_t m_bDestructiblePartInitialStateDestructed3_GenerateBreakpieces = 0X04FB; // bool
+            static constexpr std::uintptr_t m_bDestructiblePartInitialStateDestructed4_GenerateBreakpieces = 0X04FC; // bool
+            static constexpr std::uintptr_t m_pDestructiblePartsSystemComponent                            = 0X0500; // CDestructiblePartsComponent*
+            static constexpr std::uintptr_t m_OnDestructibleHitGroupDamageLevelChanged                     = 0X0508; // CEntityOutputTemplate<CBaseModelEntity::OnDamageLevelChangedArgs_t>
+            static constexpr std::uintptr_t m_flDissolveStartTime                                          = 0X0530; // GameTime_t
+            static constexpr std::uintptr_t m_OnIgnite                                                     = 0X0538; // CEntityIOOutput
+            static constexpr std::uintptr_t m_nRenderMode                                                  = 0X0550; // RenderMode_t
+            static constexpr std::uintptr_t m_nRenderFX                                                    = 0X0551; // RenderFx_t
+            static constexpr std::uintptr_t m_bAllowFadeInView                                             = 0X0552; // bool
+            static constexpr std::uintptr_t m_clrRender                                                    = 0X0570; // Color
+            static constexpr std::uintptr_t m_vecRenderAttributes                                          = 0X0578; // CUtlVectorEmbeddedNetworkVar<EntityRenderAttribute_t>
+            static constexpr std::uintptr_t m_bRenderToCubemaps                                            = 0X05E0; // bool
+            static constexpr std::uintptr_t m_bNoInterpolate                                               = 0X05E1; // bool
+            static constexpr std::uintptr_t m_Collision                                                    = 0X05E8; // CCollisionProperty
+            static constexpr std::uintptr_t m_Glow                                                         = 0X0698; // CGlowProperty
+            static constexpr std::uintptr_t m_flGlowBackfaceMult                                           = 0X06F0; // float32
+            static constexpr std::uintptr_t m_fadeMinDist                                                  = 0X06F4; // float32
+            static constexpr std::uintptr_t m_fadeMaxDist                                                  = 0X06F8; // float32
+            static constexpr std::uintptr_t m_flFadeScale                                                  = 0X06FC; // float32
+            static constexpr std::uintptr_t m_flShadowStrength                                             = 0X0700; // float32
+            static constexpr std::uintptr_t m_nObjectCulling                                               = 0X0704; // uint8
+            static constexpr std::uintptr_t m_bodyGroupChoices                                             = 0X0708; // CUtlOrderedMap<CGlobalSymbol,int32>
+            static constexpr std::uintptr_t m_vecViewOffset                                                = 0X0730; // CNetworkViewOffsetVector
+            static constexpr std::uintptr_t m_bvDisabledHitGroups                                          = 0X0760; // uint32[1]
         };
 
         // Has VTable
@@ -1874,50 +2029,35 @@ namespace offsets {
         // Local Type Scope
         class CBaseAnimGraph : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_graphControllerManager            = 0X0730; // CAnimGraphControllerManager
-            static constexpr std::uintptr_t m_pMainGraphController              = 0X07E0; // CAnimGraphControllerBase*
-            static constexpr std::uintptr_t m_bInitiallyPopulateInterpHistory   = 0X07E8; // bool
-            static constexpr std::uintptr_t m_pChoreoServices                   = 0X07F0; // IChoreoServices*
-            static constexpr std::uintptr_t m_bAnimGraphUpdateEnabled           = 0X07F8; // bool
-            static constexpr std::uintptr_t m_flMaxSlopeDistance                = 0X07FC; // float32
-            static constexpr std::uintptr_t m_vLastSlopeCheckPos                = 0X0800; // VectorWS
-            static constexpr std::uintptr_t m_nAnimGraphUpdateId                = 0X080C; // uint32
-            static constexpr std::uintptr_t m_bAnimationUpdateScheduled         = 0X0810; // bool
-            static constexpr std::uintptr_t m_vecForce                          = 0X0814; // Vector
-            static constexpr std::uintptr_t m_nForceBone                        = 0X0820; // int32
-            static constexpr std::uintptr_t m_RagdollPose                       = 0X0838; // PhysicsRagdollPose_t
-            static constexpr std::uintptr_t m_bRagdollEnabled                   = 0X0860; // bool
-            static constexpr std::uintptr_t m_bRagdollClientSide                = 0X0861; // bool
-            static constexpr std::uintptr_t m_xParentedRagdollRootInEntitySpace = 0X0870; // CTransform
+            static constexpr std::uintptr_t m_graphControllerManager            = 0X0768; // CAnimGraphControllerManager
+            static constexpr std::uintptr_t m_pMainGraphController              = 0X0818; // CAnimGraphControllerBase*
+            static constexpr std::uintptr_t m_bInitiallyPopulateInterpHistory   = 0X0820; // bool
+            static constexpr std::uintptr_t m_pChoreoServices                   = 0X0828; // IChoreoServices*
+            static constexpr std::uintptr_t m_bAnimGraphUpdateEnabled           = 0X0830; // bool
+            static constexpr std::uintptr_t m_bAnimationUpdateScheduled         = 0X0831; // bool
+            static constexpr std::uintptr_t m_vecForce                          = 0X0834; // Vector
+            static constexpr std::uintptr_t m_nForceBone                        = 0X0840; // int32
+            static constexpr std::uintptr_t m_pRagdollControl                   = 0X0850; // IPhysicsRagdollControl*
+            static constexpr std::uintptr_t m_RagdollPose                       = 0X0858; // PhysicsRagdollPose_t
+            static constexpr std::uintptr_t m_bRagdollEnabled                   = 0X0880; // bool
+            static constexpr std::uintptr_t m_bRagdollClientSide                = 0X0881; // bool
+            static constexpr std::uintptr_t m_xParentedRagdollRootInEntitySpace = 0X0890; // CTransform
         };
 
         // Has VTable
         // Construct Allowed
         // Local Type Scope
-        class CBaseFlex : public CBaseAnimGraph {
+        class CEconEntity : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_flexWeight              = 0X0A20; // CNetworkUtlVectorBase<float32>
-            static constexpr std::uintptr_t m_vLookTargetPosition     = 0X0A38; // VectorWS
-            static constexpr std::uintptr_t m_flAllowResponsesEndTime = 0X0A98; // GameTime_t
-            static constexpr std::uintptr_t m_flLastFlexAnimationTime = 0X0A9C; // GameTime_t
-            static constexpr std::uintptr_t m_nNextSceneEventId       = 0X0AA0; // SceneEventId_t
-            static constexpr std::uintptr_t m_bUpdateLayerPriorities  = 0X0AA4; // bool
-        };
-
-        // Has VTable
-        // Construct Allowed
-        // Local Type Scope
-        class CEconEntity : public CBaseFlex {
-        public:
-            static constexpr std::uintptr_t m_AttributeManager      = 0X0AC0; // CAttributeContainer
-            static constexpr std::uintptr_t m_OriginalOwnerXuidLow  = 0X0DB8; // uint32
-            static constexpr std::uintptr_t m_OriginalOwnerXuidHigh = 0X0DBC; // uint32
-            static constexpr std::uintptr_t m_nFallbackPaintKit     = 0X0DC0; // int32
-            static constexpr std::uintptr_t m_nFallbackSeed         = 0X0DC4; // int32
-            static constexpr std::uintptr_t m_flFallbackWear        = 0X0DC8; // float32
-            static constexpr std::uintptr_t m_nFallbackStatTrak     = 0X0DCC; // int32
-            static constexpr std::uintptr_t m_hOldProvidee          = 0X0DD0; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_iOldOwnerClass        = 0X0DD4; // int32
+            static constexpr std::uintptr_t m_AttributeManager      = 0X0958; // CAttributeContainer
+            static constexpr std::uintptr_t m_OriginalOwnerXuidLow  = 0X0C50; // uint32
+            static constexpr std::uintptr_t m_OriginalOwnerXuidHigh = 0X0C54; // uint32
+            static constexpr std::uintptr_t m_nFallbackPaintKit     = 0X0C58; // int32
+            static constexpr std::uintptr_t m_nFallbackSeed         = 0X0C5C; // int32
+            static constexpr std::uintptr_t m_flFallbackWear        = 0X0C60; // float32
+            static constexpr std::uintptr_t m_nFallbackStatTrak     = 0X0C64; // int32
+            static constexpr std::uintptr_t m_hOldProvidee          = 0X0C68; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_iOldOwnerClass        = 0X0C6C; // int32
         };
 
         // Has VTable
@@ -1925,71 +2065,72 @@ namespace offsets {
         // Local Type Scope
         class CBasePlayerWeapon : public CEconEntity {
         public:
-            static constexpr std::uintptr_t m_nNextPrimaryAttackTick         = 0X0DE0; // GameTick_t
-            static constexpr std::uintptr_t m_flNextPrimaryAttackTickRatio   = 0X0DE4; // float32
-            static constexpr std::uintptr_t m_nNextSecondaryAttackTick       = 0X0DE8; // GameTick_t
-            static constexpr std::uintptr_t m_flNextSecondaryAttackTickRatio = 0X0DEC; // float32
-            static constexpr std::uintptr_t m_iClip1                         = 0X0DF0; // int32
-            static constexpr std::uintptr_t m_iClip2                         = 0X0DF4; // int32
-            static constexpr std::uintptr_t m_pReserveAmmo                   = 0X0DF8; // int32[2]
-            static constexpr std::uintptr_t m_OnPlayerUse                    = 0X0E00; // CEntityIOOutput
+            static constexpr std::uintptr_t m_nNextPrimaryAttackTick         = 0X0C70; // GameTick_t
+            static constexpr std::uintptr_t m_flNextPrimaryAttackTickRatio   = 0X0C74; // float32
+            static constexpr std::uintptr_t m_nNextSecondaryAttackTick       = 0X0C78; // GameTick_t
+            static constexpr std::uintptr_t m_flNextSecondaryAttackTickRatio = 0X0C7C; // float32
+            static constexpr std::uintptr_t m_iClip1                         = 0X0C80; // int32
+            static constexpr std::uintptr_t m_iClip2                         = 0X0C84; // int32
+            static constexpr std::uintptr_t m_pReserveAmmo                   = 0X0C88; // int32[2]
+            static constexpr std::uintptr_t m_OnPlayerUse                    = 0X0C90; // CEntityIOOutput
         };
 
         // Has VTable
         // Local Type Scope
         class CCSWeaponBase : public CBasePlayerWeapon {
         public:
-            static constexpr std::uintptr_t m_bRemoveable                        = 0X0E20; // bool
-            static constexpr std::uintptr_t m_bPlayerAmmoStockOnPickup           = 0X0E21; // bool
-            static constexpr std::uintptr_t m_bRequireUseToTouch                 = 0X0E22; // bool
-            static constexpr std::uintptr_t m_iWeaponGameplayAnimState           = 0X0E24; // WeaponGameplayAnimState
-            static constexpr std::uintptr_t m_flWeaponGameplayAnimStateTimestamp = 0X0E28; // GameTime_t
-            static constexpr std::uintptr_t m_flInspectCancelCompleteTime        = 0X0E2C; // GameTime_t
-            static constexpr std::uintptr_t m_bInspectPending                    = 0X0E30; // bool
-            static constexpr std::uintptr_t m_bInspectShouldLoop                 = 0X0E31; // bool
-            static constexpr std::uintptr_t m_nLastEmptySoundCmdNum              = 0X0E5C; // int32
-            static constexpr std::uintptr_t m_bFireOnEmpty                       = 0X0E78; // bool
-            static constexpr std::uintptr_t m_OnPlayerPickup                     = 0X0E80; // CEntityIOOutput
-            static constexpr std::uintptr_t m_weaponMode                         = 0X0E98; // CSWeaponMode
-            static constexpr std::uintptr_t m_flTurningInaccuracyDelta           = 0X0E9C; // float32
-            static constexpr std::uintptr_t m_vecTurningInaccuracyEyeDirLast     = 0X0EA0; // Vector
-            static constexpr std::uintptr_t m_flTurningInaccuracy                = 0X0EAC; // float32
-            static constexpr std::uintptr_t m_fAccuracyPenalty                   = 0X0EB0; // float32
-            static constexpr std::uintptr_t m_flLastAccuracyUpdateTime           = 0X0EB4; // GameTime_t
-            static constexpr std::uintptr_t m_fAccuracySmoothedForZoom           = 0X0EB8; // float32
-            static constexpr std::uintptr_t m_iRecoilIndex                       = 0X0EBC; // int32
-            static constexpr std::uintptr_t m_flRecoilIndex                      = 0X0EC0; // float32
-            static constexpr std::uintptr_t m_bBurstMode                         = 0X0EC4; // bool
-            static constexpr std::uintptr_t m_nPostponeFireReadyTicks            = 0X0EC8; // GameTick_t
-            static constexpr std::uintptr_t m_flPostponeFireReadyFrac            = 0X0ECC; // float32
-            static constexpr std::uintptr_t m_bInReload                          = 0X0ED0; // bool
-            static constexpr std::uintptr_t m_flDroppedAtTime                    = 0X0ED4; // GameTime_t
-            static constexpr std::uintptr_t m_bIsHauledBack                      = 0X0ED8; // bool
-            static constexpr std::uintptr_t m_bSilencerOn                        = 0X0ED9; // bool
-            static constexpr std::uintptr_t m_flTimeSilencerSwitchComplete       = 0X0EDC; // GameTime_t
-            static constexpr std::uintptr_t m_flWeaponActionPlaybackRate         = 0X0EE0; // float32
-            static constexpr std::uintptr_t m_iOriginalTeamNumber                = 0X0EE4; // int32
-            static constexpr std::uintptr_t m_iMostRecentTeamNumber              = 0X0EE8; // int32
-            static constexpr std::uintptr_t m_bDroppedNearBuyZone                = 0X0EEC; // bool
-            static constexpr std::uintptr_t m_flNextAttackRenderTimeOffset       = 0X0EF0; // float32
-            static constexpr std::uintptr_t m_bCanBePickedUp                     = 0X0F08; // bool
-            static constexpr std::uintptr_t m_bUseCanOverrideNextOwnerTouchTime  = 0X0F09; // bool
-            static constexpr std::uintptr_t m_nextOwnerTouchTime                 = 0X0F0C; // GameTime_t
-            static constexpr std::uintptr_t m_nextPrevOwnerTouchTime             = 0X0F10; // GameTime_t
-            static constexpr std::uintptr_t m_nextPrevOwnerUseTime               = 0X0F18; // GameTime_t
-            static constexpr std::uintptr_t m_hPrevOwner                         = 0X0F1C; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_nDropTick                          = 0X0F20; // GameTick_t
-            static constexpr std::uintptr_t m_bWasActiveWeaponWhenDropped        = 0X0F24; // bool
-            static constexpr std::uintptr_t m_donated                            = 0X0F44; // bool
-            static constexpr std::uintptr_t m_fLastShotTime                      = 0X0F48; // GameTime_t
-            static constexpr std::uintptr_t m_bWasOwnedByCT                      = 0X0F4C; // bool
-            static constexpr std::uintptr_t m_bWasOwnedByTerrorist               = 0X0F4D; // bool
-            static constexpr std::uintptr_t m_numRemoveUnownedWeaponThink        = 0X0F50; // int32
-            static constexpr std::uintptr_t m_IronSightController                = 0X0F58; // CIronSightController
-            static constexpr std::uintptr_t m_iIronSightMode                     = 0X0F70; // int32
-            static constexpr std::uintptr_t m_flLastLOSTraceFailureTime          = 0X0F74; // GameTime_t
-            static constexpr std::uintptr_t m_flWatTickOffset                    = 0X0F78; // float32
-            static constexpr std::uintptr_t m_flLastShakeTime                    = 0X0F88; // GameTime_t
+            static constexpr std::uintptr_t m_bRemoveable                        = 0X0CB8; // bool
+            static constexpr std::uintptr_t m_bPlayerAmmoStockOnPickup           = 0X0CB9; // bool
+            static constexpr std::uintptr_t m_bRequireUseToTouch                 = 0X0CBA; // bool
+            static constexpr std::uintptr_t m_iWeaponGameplayAnimState           = 0X0CBC; // WeaponGameplayAnimState
+            static constexpr std::uintptr_t m_flWeaponGameplayAnimStateTimestamp = 0X0CC0; // GameTime_t
+            static constexpr std::uintptr_t m_flInspectCancelCompleteTime        = 0X0CC4; // GameTime_t
+            static constexpr std::uintptr_t m_bInspectPending                    = 0X0CC8; // bool
+            static constexpr std::uintptr_t m_bInspectShouldLoop                 = 0X0CC9; // bool
+            static constexpr std::uintptr_t m_nLastEmptySoundCmdNum              = 0X0CF4; // int32
+            static constexpr std::uintptr_t m_bFireOnEmpty                       = 0X0D10; // bool
+            static constexpr std::uintptr_t m_OnPlayerPickup                     = 0X0D18; // CEntityIOOutput
+            static constexpr std::uintptr_t m_weaponMode                         = 0X0D30; // CSWeaponMode
+            static constexpr std::uintptr_t m_flTurningInaccuracyDelta           = 0X0D34; // float32
+            static constexpr std::uintptr_t m_vecTurningInaccuracyEyeDirLast     = 0X0D38; // Vector
+            static constexpr std::uintptr_t m_flTurningInaccuracy                = 0X0D44; // float32
+            static constexpr std::uintptr_t m_fAccuracyPenalty                   = 0X0D48; // float32
+            static constexpr std::uintptr_t m_flLastAccuracyUpdateTime           = 0X0D4C; // GameTime_t
+            static constexpr std::uintptr_t m_fAccuracySmoothedForZoom           = 0X0D50; // float32
+            static constexpr std::uintptr_t m_iRecoilIndex                       = 0X0D54; // int32
+            static constexpr std::uintptr_t m_flRecoilIndex                      = 0X0D58; // float32
+            static constexpr std::uintptr_t m_bBurstMode                         = 0X0D5C; // bool
+            static constexpr std::uintptr_t m_nPostponeFireReadyTicks            = 0X0D60; // GameTick_t
+            static constexpr std::uintptr_t m_flPostponeFireReadyFrac            = 0X0D64; // float32
+            static constexpr std::uintptr_t m_bInReload                          = 0X0D68; // bool
+            static constexpr std::uintptr_t m_nDeployTick                        = 0X0D6C; // GameTick_t
+            static constexpr std::uintptr_t m_flDroppedAtTime                    = 0X0D70; // GameTime_t
+            static constexpr std::uintptr_t m_bIsHauledBack                      = 0X0D78; // bool
+            static constexpr std::uintptr_t m_bSilencerOn                        = 0X0D79; // bool
+            static constexpr std::uintptr_t m_flTimeSilencerSwitchComplete       = 0X0D7C; // GameTime_t
+            static constexpr std::uintptr_t m_flWeaponActionPlaybackRate         = 0X0D80; // float32
+            static constexpr std::uintptr_t m_iOriginalTeamNumber                = 0X0D84; // int32
+            static constexpr std::uintptr_t m_iMostRecentTeamNumber              = 0X0D88; // int32
+            static constexpr std::uintptr_t m_bDroppedNearBuyZone                = 0X0D8C; // bool
+            static constexpr std::uintptr_t m_flNextAttackRenderTimeOffset       = 0X0D90; // float32
+            static constexpr std::uintptr_t m_bCanBePickedUp                     = 0X0DA8; // bool
+            static constexpr std::uintptr_t m_bUseCanOverrideNextOwnerTouchTime  = 0X0DA9; // bool
+            static constexpr std::uintptr_t m_nextOwnerTouchTime                 = 0X0DAC; // GameTime_t
+            static constexpr std::uintptr_t m_nextPrevOwnerTouchTime             = 0X0DB0; // GameTime_t
+            static constexpr std::uintptr_t m_nextPrevOwnerUseTime               = 0X0DB8; // GameTime_t
+            static constexpr std::uintptr_t m_hPrevOwner                         = 0X0DBC; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_nDropTick                          = 0X0DC0; // GameTick_t
+            static constexpr std::uintptr_t m_bWasActiveWeaponWhenDropped        = 0X0DC4; // bool
+            static constexpr std::uintptr_t m_donated                            = 0X0DE4; // bool
+            static constexpr std::uintptr_t m_fLastShotTime                      = 0X0DE8; // GameTime_t
+            static constexpr std::uintptr_t m_bWasOwnedByCT                      = 0X0DEC; // bool
+            static constexpr std::uintptr_t m_bWasOwnedByTerrorist               = 0X0DED; // bool
+            static constexpr std::uintptr_t m_numRemoveUnownedWeaponThink        = 0X0DF0; // int32
+            static constexpr std::uintptr_t m_IronSightController                = 0X0E50; // CIronSightController
+            static constexpr std::uintptr_t m_iIronSightMode                     = 0X0E68; // int32
+            static constexpr std::uintptr_t m_flLastLOSTraceFailureTime          = 0X0E6C; // GameTime_t
+            static constexpr std::uintptr_t m_flWatTickOffset                    = 0X0E70; // float32
+            static constexpr std::uintptr_t m_flLastShakeTime                    = 0X0E80; // GameTime_t
         };
 
         // Has VTable
@@ -2018,22 +2159,22 @@ namespace offsets {
         // Local Type Scope
         class CPointWorldText : public CModelPointEntity {
         public:
-            static constexpr std::uintptr_t m_messageText              = 0X0730; // char[512]
-            static constexpr std::uintptr_t m_FontName                 = 0X0930; // char[64]
-            static constexpr std::uintptr_t m_BackgroundMaterialName   = 0X0970; // char[64]
-            static constexpr std::uintptr_t m_bEnabled                 = 0X09B0; // bool
-            static constexpr std::uintptr_t m_bFullbright              = 0X09B1; // bool
-            static constexpr std::uintptr_t m_flWorldUnitsPerPx        = 0X09B4; // float32
-            static constexpr std::uintptr_t m_flFontSize               = 0X09B8; // float32
-            static constexpr std::uintptr_t m_flDepthOffset            = 0X09BC; // float32
-            static constexpr std::uintptr_t m_bDrawBackground          = 0X09C0; // bool
-            static constexpr std::uintptr_t m_flBackgroundBorderWidth  = 0X09C4; // float32
-            static constexpr std::uintptr_t m_flBackgroundBorderHeight = 0X09C8; // float32
-            static constexpr std::uintptr_t m_flBackgroundWorldToUV    = 0X09CC; // float32
-            static constexpr std::uintptr_t m_Color                    = 0X09D0; // Color
-            static constexpr std::uintptr_t m_nJustifyHorizontal       = 0X09D4; // PointWorldTextJustifyHorizontal_t
-            static constexpr std::uintptr_t m_nJustifyVertical         = 0X09D8; // PointWorldTextJustifyVertical_t
-            static constexpr std::uintptr_t m_nReorientMode            = 0X09DC; // PointWorldTextReorientMode_t
+            static constexpr std::uintptr_t m_messageText              = 0X0768; // char[512]
+            static constexpr std::uintptr_t m_FontName                 = 0X0968; // char[64]
+            static constexpr std::uintptr_t m_BackgroundMaterialName   = 0X09A8; // char[64]
+            static constexpr std::uintptr_t m_bEnabled                 = 0X09E8; // bool
+            static constexpr std::uintptr_t m_bFullbright              = 0X09E9; // bool
+            static constexpr std::uintptr_t m_flWorldUnitsPerPx        = 0X09EC; // float32
+            static constexpr std::uintptr_t m_flFontSize               = 0X09F0; // float32
+            static constexpr std::uintptr_t m_flDepthOffset            = 0X09F4; // float32
+            static constexpr std::uintptr_t m_bDrawBackground          = 0X09F8; // bool
+            static constexpr std::uintptr_t m_flBackgroundBorderWidth  = 0X09FC; // float32
+            static constexpr std::uintptr_t m_flBackgroundBorderHeight = 0X0A00; // float32
+            static constexpr std::uintptr_t m_flBackgroundWorldToUV    = 0X0A04; // float32
+            static constexpr std::uintptr_t m_Color                    = 0X0A08; // Color
+            static constexpr std::uintptr_t m_nJustifyHorizontal       = 0X0A0C; // PointWorldTextJustifyHorizontal_t
+            static constexpr std::uintptr_t m_nJustifyVertical         = 0X0A10; // PointWorldTextJustifyVertical_t
+            static constexpr std::uintptr_t m_nReorientMode            = 0X0A14; // PointWorldTextReorientMode_t
         };
 
         // Has VTable
@@ -2090,12 +2231,12 @@ namespace offsets {
         // Local Type Scope
         class CPulseGraphInstance_ServerEntity : public CBasePulseGraphInstance {
         public:
-            static constexpr std::uintptr_t m_hOwner                        = 0X0190; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_bActivated                    = 0X0194; // bool
-            static constexpr std::uintptr_t m_sNameFixupStaticPrefix        = 0X0198; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_sNameFixupParent              = 0X01A0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_sNameFixupLocal               = 0X01A8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_sProceduralWorldNameForRelays = 0X01B0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hOwner                        = 0X01A8; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_bActivated                    = 0X01AC; // bool
+            static constexpr std::uintptr_t m_sNameFixupStaticPrefix        = 0X01B0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_sNameFixupParent              = 0X01B8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_sNameFixupLocal               = 0X01C0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_sProceduralWorldNameForRelays = 0X01C8; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -2220,22 +2361,22 @@ namespace offsets {
         // Local Type Scope
         class CBaseToggle : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_toggle_state              = 0X0730; // TOGGLE_STATE
-            static constexpr std::uintptr_t m_flMoveDistance            = 0X0734; // float32
-            static constexpr std::uintptr_t m_flWait                    = 0X0738; // float32
-            static constexpr std::uintptr_t m_flLip                     = 0X073C; // float32
-            static constexpr std::uintptr_t m_bAlwaysFireBlockedOutputs = 0X0740; // bool
-            static constexpr std::uintptr_t m_vecPosition1              = 0X0744; // Vector
-            static constexpr std::uintptr_t m_vecPosition2              = 0X0750; // Vector
-            static constexpr std::uintptr_t m_vecMoveAng                = 0X075C; // QAngle
-            static constexpr std::uintptr_t m_vecAngle1                 = 0X0768; // QAngle
-            static constexpr std::uintptr_t m_vecAngle2                 = 0X0774; // QAngle
-            static constexpr std::uintptr_t m_flHeight                  = 0X0780; // float32
-            static constexpr std::uintptr_t m_hActivator                = 0X0784; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_vecFinalDest              = 0X0788; // Vector
-            static constexpr std::uintptr_t m_vecFinalAngle             = 0X0794; // QAngle
-            static constexpr std::uintptr_t m_movementType              = 0X07A0; // int32
-            static constexpr std::uintptr_t m_sMaster                   = 0X07A8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_toggle_state              = 0X0768; // TOGGLE_STATE
+            static constexpr std::uintptr_t m_flMoveDistance            = 0X076C; // float32
+            static constexpr std::uintptr_t m_flWait                    = 0X0770; // float32
+            static constexpr std::uintptr_t m_flLip                     = 0X0774; // float32
+            static constexpr std::uintptr_t m_bAlwaysFireBlockedOutputs = 0X0778; // bool
+            static constexpr std::uintptr_t m_vecPosition1              = 0X077C; // Vector
+            static constexpr std::uintptr_t m_vecPosition2              = 0X0788; // Vector
+            static constexpr std::uintptr_t m_vecMoveAng                = 0X0794; // QAngle
+            static constexpr std::uintptr_t m_vecAngle1                 = 0X07A0; // QAngle
+            static constexpr std::uintptr_t m_vecAngle2                 = 0X07AC; // QAngle
+            static constexpr std::uintptr_t m_flHeight                  = 0X07B8; // float32
+            static constexpr std::uintptr_t m_hActivator                = 0X07BC; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_vecFinalDest              = 0X07C0; // Vector
+            static constexpr std::uintptr_t m_vecFinalAngle             = 0X07CC; // QAngle
+            static constexpr std::uintptr_t m_movementType              = 0X07D8; // int32
+            static constexpr std::uintptr_t m_sMaster                   = 0X07E0; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -2243,11 +2384,11 @@ namespace offsets {
         // Local Type Scope
         class CBasePlatTrain : public CBaseToggle {
         public:
-            static constexpr std::uintptr_t m_NoiseMoving  = 0X07B0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_NoiseArrived = 0X07B8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_volume       = 0X07C8; // float32
-            static constexpr std::uintptr_t m_flTWidth     = 0X07CC; // float32
-            static constexpr std::uintptr_t m_flTLength    = 0X07D0; // float32
+            static constexpr std::uintptr_t m_NoiseMoving  = 0X07E8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_NoiseArrived = 0X07F0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_volume       = 0X0800; // float32
+            static constexpr std::uintptr_t m_flTWidth     = 0X0804; // float32
+            static constexpr std::uintptr_t m_flTLength    = 0X0808; // float32
         };
 
         // Has VTable
@@ -2255,7 +2396,7 @@ namespace offsets {
         // Local Type Scope
         class CFuncPlat : public CBasePlatTrain {
         public:
-            static constexpr std::uintptr_t m_sNoise = 0X07D8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_sNoise = 0X0810; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -2263,8 +2404,8 @@ namespace offsets {
         // Local Type Scope
         class CFuncPlatRot : public CFuncPlat {
         public:
-            static constexpr std::uintptr_t m_end   = 0X07E0; // QAngle
-            static constexpr std::uintptr_t m_start = 0X07EC; // QAngle
+            static constexpr std::uintptr_t m_end   = 0X0818; // QAngle
+            static constexpr std::uintptr_t m_start = 0X0824; // QAngle
         };
 
         // Has VTable
@@ -2272,15 +2413,15 @@ namespace offsets {
         // Local Type Scope
         class CFuncTrackChange : public CFuncPlatRot {
         public:
-            static constexpr std::uintptr_t m_trackTop        = 0X07F8; // CPathTrack*
-            static constexpr std::uintptr_t m_trackBottom     = 0X0800; // CPathTrack*
-            static constexpr std::uintptr_t m_train           = 0X0808; // CFuncTrackTrain*
-            static constexpr std::uintptr_t m_trackTopName    = 0X0810; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_trackBottomName = 0X0818; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_trainName       = 0X0820; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_code            = 0X0828; // TRAIN_CODE
-            static constexpr std::uintptr_t m_targetState     = 0X082C; // int32
-            static constexpr std::uintptr_t m_use             = 0X0830; // int32
+            static constexpr std::uintptr_t m_trackTop        = 0X0830; // CHandle<CPathTrack>
+            static constexpr std::uintptr_t m_trackBottom     = 0X0834; // CHandle<CPathTrack>
+            static constexpr std::uintptr_t m_train           = 0X0838; // CHandle<CFuncTrackTrain>
+            static constexpr std::uintptr_t m_trackTopName    = 0X0840; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_trackBottomName = 0X0848; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_trainName       = 0X0850; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_code            = 0X0858; // TRAIN_CODE
+            static constexpr std::uintptr_t m_targetState     = 0X085C; // int32
+            static constexpr std::uintptr_t m_use             = 0X0860; // int32
         };
 
         // Has VTable
@@ -2379,18 +2520,18 @@ namespace offsets {
         // Local Type Scope
         class CBaseTrigger : public CBaseToggle {
         public:
-            static constexpr std::uintptr_t m_OnStartTouch         = 0X07B0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnStartTouchAll      = 0X07C8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnEndTouch           = 0X07E0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnEndTouchAll        = 0X07F8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnTouching           = 0X0810; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnTouchingEachEntity = 0X0828; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnNotTouching        = 0X0840; // CEntityIOOutput
-            static constexpr std::uintptr_t m_hTouchingEntities    = 0X0858; // CUtlVector<CHandle<CBaseEntity>>
-            static constexpr std::uintptr_t m_iFilterName          = 0X0870; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hFilter              = 0X0878; // CHandle<CBaseFilter>
-            static constexpr std::uintptr_t m_bDisabled            = 0X087C; // bool
-            static constexpr std::uintptr_t m_bUseAsyncQueries     = 0X0888; // bool
+            static constexpr std::uintptr_t m_OnStartTouch         = 0X07E8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnStartTouchAll      = 0X0800; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnEndTouch           = 0X0818; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnEndTouchAll        = 0X0830; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnTouching           = 0X0848; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnTouchingEachEntity = 0X0860; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnNotTouching        = 0X0878; // CEntityIOOutput
+            static constexpr std::uintptr_t m_hTouchingEntities    = 0X0890; // CUtlVector<CHandle<CBaseEntity>>
+            static constexpr std::uintptr_t m_iFilterName          = 0X08A8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hFilter              = 0X08B0; // CHandle<CBaseFilter>
+            static constexpr std::uintptr_t m_bDisabled            = 0X08B4; // bool
+            static constexpr std::uintptr_t m_bUseAsyncQueries     = 0X08C0; // bool
         };
 
         // Has VTable
@@ -2398,7 +2539,7 @@ namespace offsets {
         // Local Type Scope
         class CFogTrigger : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_fog = 0X0890; // fogparams_t
+            static constexpr std::uintptr_t m_fog = 0X08C8; // fogparams_t
         };
 
         // Has VTable
@@ -2433,19 +2574,19 @@ namespace offsets {
         // Local Type Scope
         class CBaseCSGrenade : public CCSWeaponBase {
         public:
-            static constexpr std::uintptr_t m_bRedraw                   = 0X1130; // bool
-            static constexpr std::uintptr_t m_bIsHeldByPlayer           = 0X1131; // bool
-            static constexpr std::uintptr_t m_bPinPulled                = 0X1132; // bool
-            static constexpr std::uintptr_t m_bJumpThrow                = 0X1133; // bool
-            static constexpr std::uintptr_t m_bThrowAnimating           = 0X1134; // bool
-            static constexpr std::uintptr_t m_fThrowTime                = 0X1138; // GameTime_t
-            static constexpr std::uintptr_t m_flThrowStrength           = 0X113C; // float32
-            static constexpr std::uintptr_t m_fDropTime                 = 0X1140; // GameTime_t
-            static constexpr std::uintptr_t m_fPinPullTime              = 0X1144; // GameTime_t
-            static constexpr std::uintptr_t m_bJustPulledPin            = 0X1148; // bool
-            static constexpr std::uintptr_t m_nNextHoldTick             = 0X114C; // GameTick_t
-            static constexpr std::uintptr_t m_flNextHoldFrac            = 0X1150; // float32
-            static constexpr std::uintptr_t m_hSwitchToWeaponAfterThrow = 0X1154; // CHandle<CCSWeaponBase>
+            static constexpr std::uintptr_t m_bRedraw                   = 0X1030; // bool
+            static constexpr std::uintptr_t m_bIsHeldByPlayer           = 0X1031; // bool
+            static constexpr std::uintptr_t m_bPinPulled                = 0X1032; // bool
+            static constexpr std::uintptr_t m_bJumpThrow                = 0X1033; // bool
+            static constexpr std::uintptr_t m_bThrowAnimating           = 0X1034; // bool
+            static constexpr std::uintptr_t m_fThrowTime                = 0X1038; // GameTime_t
+            static constexpr std::uintptr_t m_flThrowStrength           = 0X103C; // float32
+            static constexpr std::uintptr_t m_fDropTime                 = 0X1040; // GameTime_t
+            static constexpr std::uintptr_t m_fPinPullTime              = 0X1044; // GameTime_t
+            static constexpr std::uintptr_t m_bJustPulledPin            = 0X1048; // bool
+            static constexpr std::uintptr_t m_nNextHoldTick             = 0X104C; // GameTick_t
+            static constexpr std::uintptr_t m_flNextHoldFrac            = 0X1050; // float32
+            static constexpr std::uintptr_t m_hSwitchToWeaponAfterThrow = 0X1054; // CHandle<CCSWeaponBase>
         };
 
         // Has VTable
@@ -2460,6 +2601,7 @@ namespace offsets {
         // Local Type Scope
         class CPhysicsSpring : public CBaseEntity {
         public:
+            static constexpr std::uintptr_t m_pSpringJoint    = 0X04A8; // IPhysicsJoint*
             static constexpr std::uintptr_t m_flFrequency     = 0X04B0; // float32
             static constexpr std::uintptr_t m_flDampingRatio  = 0X04B4; // float32
             static constexpr std::uintptr_t m_flRestLength    = 0X04B8; // float32
@@ -2501,16 +2643,16 @@ namespace offsets {
         // Local Type Scope
         class CCSWeaponBaseGun : public CCSWeaponBase {
         public:
-            static constexpr std::uintptr_t m_zoomLevel                    = 0X1130; // int32
-            static constexpr std::uintptr_t m_iBurstShotsRemaining         = 0X1134; // int32
-            static constexpr std::uintptr_t m_silencedModelIndex           = 0X1140; // int32
-            static constexpr std::uintptr_t m_inPrecache                   = 0X1144; // bool
-            static constexpr std::uintptr_t m_bNeedsBoltAction             = 0X1145; // bool
-            static constexpr std::uintptr_t m_nRevolverCylinderIdx         = 0X1148; // int32
-            static constexpr std::uintptr_t m_bSkillReloadAvailable        = 0X114C; // bool
-            static constexpr std::uintptr_t m_bSkillReloadLiftedReloadKey  = 0X114D; // bool
-            static constexpr std::uintptr_t m_bSkillBoltInterruptAvailable = 0X114E; // bool
-            static constexpr std::uintptr_t m_bSkillBoltLiftedFireKey      = 0X114F; // bool
+            static constexpr std::uintptr_t m_zoomLevel                    = 0X1030; // int32
+            static constexpr std::uintptr_t m_iBurstShotsRemaining         = 0X1034; // int32
+            static constexpr std::uintptr_t m_silencedModelIndex           = 0X1040; // int32
+            static constexpr std::uintptr_t m_inPrecache                   = 0X1044; // bool
+            static constexpr std::uintptr_t m_bNeedsBoltAction             = 0X1045; // bool
+            static constexpr std::uintptr_t m_nRevolverCylinderIdx         = 0X1048; // int32
+            static constexpr std::uintptr_t m_bSkillReloadAvailable        = 0X104C; // bool
+            static constexpr std::uintptr_t m_bSkillReloadLiftedReloadKey  = 0X104D; // bool
+            static constexpr std::uintptr_t m_bSkillBoltInterruptAvailable = 0X104E; // bool
+            static constexpr std::uintptr_t m_bSkillBoltLiftedFireKey      = 0X104F; // bool
         };
 
         // Has VTable
@@ -2544,24 +2686,14 @@ namespace offsets {
         };
 
         // Has VTable
-        // Local Type Scope
-        struct PredictedDamageTag_t {
-        public:
-            static constexpr std::uintptr_t nTagTick                           = 0X0030; // GameTick_t
-            static constexpr std::uintptr_t flFlinchModSmall                   = 0X0034; // float32
-            static constexpr std::uintptr_t flFlinchModLarge                   = 0X0038; // float32
-            static constexpr std::uintptr_t flFriendlyFireDamageReductionRatio = 0X003C; // float32
-        };
-
-        // Has VTable
         // Construct Allowed
         // Local Type Scope
         class CBaseProp : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_bModelOverrodeBlockLOS    = 0X0A20; // bool
-            static constexpr std::uintptr_t m_iShapeType                = 0X0A24; // int32
-            static constexpr std::uintptr_t m_bConformToCollisionBounds = 0X0A28; // bool
-            static constexpr std::uintptr_t m_mPreferredCatchTransform  = 0X0A30; // CTransform
+            static constexpr std::uintptr_t m_bModelOverrodeBlockLOS    = 0X0940; // bool
+            static constexpr std::uintptr_t m_iShapeType                = 0X0944; // int32
+            static constexpr std::uintptr_t m_bConformToCollisionBounds = 0X0948; // bool
+            static constexpr std::uintptr_t m_mPreferredCatchTransform  = 0X0950; // CTransform
         };
 
         // Has VTable
@@ -2569,39 +2701,39 @@ namespace offsets {
         // Local Type Scope
         class CBreakableProp : public CBaseProp {
         public:
-            static constexpr std::uintptr_t m_CPropDataComponent                    = 0X0A58; // CPropDataComponent
-            static constexpr std::uintptr_t m_OnStartDeath                          = 0X0A98; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnBreak                               = 0X0AB0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnHealthChanged                       = 0X0AC8; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnTakeDamage                          = 0X0AE8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_impactEnergyScale                     = 0X0B00; // float32
-            static constexpr std::uintptr_t m_iMinHealthDmg                         = 0X0B04; // int32
-            static constexpr std::uintptr_t m_preferredCarryAngles                  = 0X0B08; // QAngle
-            static constexpr std::uintptr_t m_flPressureDelay                       = 0X0B14; // float32
-            static constexpr std::uintptr_t m_flDefBurstScale                       = 0X0B18; // float32
-            static constexpr std::uintptr_t m_vDefBurstOffset                       = 0X0B1C; // Vector
-            static constexpr std::uintptr_t m_hBreaker                              = 0X0B28; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_PerformanceMode                       = 0X0B2C; // PerformanceMode_t
-            static constexpr std::uintptr_t m_flPreventDamageBeforeTime             = 0X0B30; // GameTime_t
-            static constexpr std::uintptr_t m_BreakableContentsType                 = 0X0B34; // BreakableContentsType_t
-            static constexpr std::uintptr_t m_strBreakableContentsPropGroupOverride = 0X0B38; // CUtlString
-            static constexpr std::uintptr_t m_strBreakableContentsParticleOverride  = 0X0B40; // CUtlString
-            static constexpr std::uintptr_t m_bHasBreakPiecesOrCommands             = 0X0B48; // bool
-            static constexpr std::uintptr_t m_explodeDamage                         = 0X0B4C; // float32
-            static constexpr std::uintptr_t m_explodeRadius                         = 0X0B50; // float32
-            static constexpr std::uintptr_t m_nExplosionType                        = 0X0B54; // BaseExplosionTypes_t
-            static constexpr std::uintptr_t m_explosionDelay                        = 0X0B58; // float32
-            static constexpr std::uintptr_t m_explosionBuildupSound                 = 0X0B60; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_explosionCustomEffect                 = 0X0B68; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_explosionCustomSound                  = 0X0B70; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_explosionModifier                     = 0X0B78; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hPhysicsAttacker                      = 0X0B80; // CHandle<CBasePlayerPawn>
-            static constexpr std::uintptr_t m_flLastPhysicsInfluenceTime            = 0X0B84; // GameTime_t
-            static constexpr std::uintptr_t m_flDefaultFadeScale                    = 0X0B88; // float32
-            static constexpr std::uintptr_t m_hLastAttacker                         = 0X0B8C; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_iszPuntSound                          = 0X0B90; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bUsePuntSound                         = 0X0B98; // bool
-            static constexpr std::uintptr_t m_bOriginalBlockLOS                     = 0X0B99; // bool
+            static constexpr std::uintptr_t m_CPropDataComponent                    = 0X0978; // CPropDataComponent
+            static constexpr std::uintptr_t m_OnStartDeath                          = 0X09B8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnBreak                               = 0X09D0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnHealthChanged                       = 0X09E8; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnTakeDamage                          = 0X0A08; // CEntityIOOutput
+            static constexpr std::uintptr_t m_impactEnergyScale                     = 0X0A20; // float32
+            static constexpr std::uintptr_t m_iMinHealthDmg                         = 0X0A24; // int32
+            static constexpr std::uintptr_t m_preferredCarryAngles                  = 0X0A28; // QAngle
+            static constexpr std::uintptr_t m_flPressureDelay                       = 0X0A34; // float32
+            static constexpr std::uintptr_t m_flDefBurstScale                       = 0X0A38; // float32
+            static constexpr std::uintptr_t m_vDefBurstOffset                       = 0X0A3C; // Vector
+            static constexpr std::uintptr_t m_hBreaker                              = 0X0A48; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_PerformanceMode                       = 0X0A4C; // PerformanceMode_t
+            static constexpr std::uintptr_t m_flPreventDamageBeforeTime             = 0X0A50; // GameTime_t
+            static constexpr std::uintptr_t m_BreakableContentsType                 = 0X0A54; // BreakableContentsType_t
+            static constexpr std::uintptr_t m_strBreakableContentsPropGroupOverride = 0X0A58; // CUtlString
+            static constexpr std::uintptr_t m_strBreakableContentsParticleOverride  = 0X0A60; // CUtlString
+            static constexpr std::uintptr_t m_bHasBreakPiecesOrCommands             = 0X0A68; // bool
+            static constexpr std::uintptr_t m_explodeDamage                         = 0X0A6C; // float32
+            static constexpr std::uintptr_t m_explodeRadius                         = 0X0A70; // float32
+            static constexpr std::uintptr_t m_sExplosionType                        = 0X0A78; // CGlobalSymbol
+            static constexpr std::uintptr_t m_explosionDelay                        = 0X0A80; // float32
+            static constexpr std::uintptr_t m_explosionBuildupSound                 = 0X0A88; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_explosionCustomEffect                 = 0X0A90; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_explosionCustomSound                  = 0X0A98; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_explosionModifier                     = 0X0AA0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hPhysicsAttacker                      = 0X0AA8; // CHandle<CBasePlayerPawn>
+            static constexpr std::uintptr_t m_flLastPhysicsInfluenceTime            = 0X0AAC; // GameTime_t
+            static constexpr std::uintptr_t m_flDefaultFadeScale                    = 0X0AB0; // float32
+            static constexpr std::uintptr_t m_hLastAttacker                         = 0X0AB4; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_iszPuntSound                          = 0X0AB8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bUsePuntSound                         = 0X0AC0; // bool
+            static constexpr std::uintptr_t m_bOriginalBlockLOS                     = 0X0AC1; // bool
         };
 
         // Has VTable
@@ -2609,28 +2741,28 @@ namespace offsets {
         // Local Type Scope
         class CDynamicProp : public CBreakableProp {
         public:
-            static constexpr std::uintptr_t m_bCreateNavObstacle            = 0X0BA8; // bool
-            static constexpr std::uintptr_t m_bNavObstacleUpdatesOverridden = 0X0BA9; // bool
-            static constexpr std::uintptr_t m_bUseHitboxesForRenderBox      = 0X0BAA; // bool
-            static constexpr std::uintptr_t m_bUseAnimGraph                 = 0X0BAB; // bool
-            static constexpr std::uintptr_t m_pOutputAnimBegun              = 0X0BB0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_pOutputAnimOver               = 0X0BC8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_pOutputAnimLoopCycleOver      = 0X0BE0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnAnimReachedStart            = 0X0BF8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnAnimReachedEnd              = 0X0C10; // CEntityIOOutput
-            static constexpr std::uintptr_t m_iszIdleAnim                   = 0X0C28; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_nIdleAnimLoopMode             = 0X0C30; // AnimLoopMode_t
-            static constexpr std::uintptr_t m_bRandomizeCycle               = 0X0C34; // bool
-            static constexpr std::uintptr_t m_bStartDisabled                = 0X0C35; // bool
-            static constexpr std::uintptr_t m_bFiredStartEndOutput          = 0X0C36; // bool
-            static constexpr std::uintptr_t m_bForceNpcExclude              = 0X0C37; // bool
-            static constexpr std::uintptr_t m_bCreateNonSolid               = 0X0C38; // bool
-            static constexpr std::uintptr_t m_bIsOverrideProp               = 0X0C39; // bool
-            static constexpr std::uintptr_t m_iInitialGlowState             = 0X0C3C; // int32
-            static constexpr std::uintptr_t m_nGlowRange                    = 0X0C40; // int32
-            static constexpr std::uintptr_t m_nGlowRangeMin                 = 0X0C44; // int32
-            static constexpr std::uintptr_t m_glowColor                     = 0X0C48; // Color
-            static constexpr std::uintptr_t m_nGlowTeam                     = 0X0C4C; // int32
+            static constexpr std::uintptr_t m_bCreateNavObstacle            = 0X0AD8; // bool
+            static constexpr std::uintptr_t m_bNavObstacleUpdatesOverridden = 0X0AD9; // bool
+            static constexpr std::uintptr_t m_bUseHitboxesForRenderBox      = 0X0ADA; // bool
+            static constexpr std::uintptr_t m_bUseAnimGraph                 = 0X0ADB; // bool
+            static constexpr std::uintptr_t m_pOutputAnimBegun              = 0X0AE0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_pOutputAnimOver               = 0X0AF8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_pOutputAnimLoopCycleOver      = 0X0B10; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnAnimReachedStart            = 0X0B28; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnAnimReachedEnd              = 0X0B40; // CEntityIOOutput
+            static constexpr std::uintptr_t m_iszIdleAnim                   = 0X0B58; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_nIdleAnimLoopMode             = 0X0B60; // AnimLoopMode_t
+            static constexpr std::uintptr_t m_bRandomizeCycle               = 0X0B64; // bool
+            static constexpr std::uintptr_t m_bStartDisabled                = 0X0B65; // bool
+            static constexpr std::uintptr_t m_bFiredStartEndOutput          = 0X0B66; // bool
+            static constexpr std::uintptr_t m_bForceNpcExclude              = 0X0B67; // bool
+            static constexpr std::uintptr_t m_bCreateNonSolid               = 0X0B68; // bool
+            static constexpr std::uintptr_t m_bIsOverrideProp               = 0X0B69; // bool
+            static constexpr std::uintptr_t m_iInitialGlowState             = 0X0B6C; // int32
+            static constexpr std::uintptr_t m_nGlowRange                    = 0X0B70; // int32
+            static constexpr std::uintptr_t m_nGlowRangeMin                 = 0X0B74; // int32
+            static constexpr std::uintptr_t m_glowColor                     = 0X0B78; // Color
+            static constexpr std::uintptr_t m_nGlowTeam                     = 0X0B7C; // int32
         };
 
         // Has VTable
@@ -2645,8 +2777,8 @@ namespace offsets {
         // Local Type Scope
         class CTriggerBuoyancy : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_BuoyancyHelper = 0X0890; // CBuoyancyHelper
-            static constexpr std::uintptr_t m_flFluidDensity = 0X09A8; // float32
+            static constexpr std::uintptr_t m_BuoyancyHelper = 0X08C8; // CBuoyancyHelper
+            static constexpr std::uintptr_t m_flFluidDensity = 0X09E0; // float32
         };
 
         // Has VTable
@@ -2673,15 +2805,21 @@ namespace offsets {
         // Local Type Scope
         class CPathTrack : public CPointEntity {
         public:
-            static constexpr std::uintptr_t m_pnext            = 0X04A8; // CPathTrack*
-            static constexpr std::uintptr_t m_pprevious        = 0X04B0; // CPathTrack*
-            static constexpr std::uintptr_t m_paltpath         = 0X04B8; // CPathTrack*
-            static constexpr std::uintptr_t m_flRadius         = 0X04C0; // float32
-            static constexpr std::uintptr_t m_length           = 0X04C4; // float32
-            static constexpr std::uintptr_t m_altName          = 0X04C8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_nIterVal         = 0X04D0; // int32
-            static constexpr std::uintptr_t m_eOrientationType = 0X04D4; // TrackOrientationType_t
-            static constexpr std::uintptr_t m_OnPass           = 0X04D8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_pnext            = 0X04A8; // CHandle<CPathTrack>
+            static constexpr std::uintptr_t m_pprevious        = 0X04AC; // CHandle<CPathTrack>
+            static constexpr std::uintptr_t m_paltpath         = 0X04B0; // CHandle<CPathTrack>
+            static constexpr std::uintptr_t m_flRadius         = 0X04B4; // float32
+            static constexpr std::uintptr_t m_length           = 0X04B8; // float32
+            static constexpr std::uintptr_t m_altName          = 0X04C0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_nIterVal         = 0X04C8; // int32
+            static constexpr std::uintptr_t m_eOrientationType = 0X04CC; // TrackOrientationType_t
+            static constexpr std::uintptr_t m_OnPass           = 0X04D0; // CEntityIOOutput
+        };
+
+        // Has VTable
+        // Local Type Scope
+        class CCSGO_EndOfMatchLineupEndpoint : public CBaseEntity {
+        public:
         };
 
         // Has VTable
@@ -2689,11 +2827,11 @@ namespace offsets {
         // Local Type Scope
         class CTriggerProximity : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_hMeasureTarget        = 0X0890; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_iszMeasureTarget      = 0X0898; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_fRadius               = 0X08A0; // float32
-            static constexpr std::uintptr_t m_nTouchers             = 0X08A4; // int32
-            static constexpr std::uintptr_t m_NearestEntityDistance = 0X08A8; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_hMeasureTarget        = 0X08C8; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_iszMeasureTarget      = 0X08D0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_fRadius               = 0X08D8; // float32
+            static constexpr std::uintptr_t m_nTouchers             = 0X08DC; // int32
+            static constexpr std::uintptr_t m_NearestEntityDistance = 0X08E0; // CEntityOutputTemplate<float32>
         };
 
         // Has VTable
@@ -2715,7 +2853,7 @@ namespace offsets {
         // Local Type Scope
         class CRuleEntity : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_iszMaster = 0X0730; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszMaster = 0X0768; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -2723,7 +2861,7 @@ namespace offsets {
         // Local Type Scope
         class CRulePointEntity : public CRuleEntity {
         public:
-            static constexpr std::uintptr_t m_Score = 0X0738; // int32
+            static constexpr std::uintptr_t m_Score = 0X0770; // int32
         };
 
         // Has VTable
@@ -2731,8 +2869,8 @@ namespace offsets {
         // Local Type Scope
         class CGameText : public CRulePointEntity {
         public:
-            static constexpr std::uintptr_t m_iszMessage = 0X0740; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_textParms  = 0X0748; // hudtextparms_t
+            static constexpr std::uintptr_t m_iszMessage = 0X0778; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_textParms  = 0X0780; // hudtextparms_t
         };
 
         // Has VTable
@@ -2823,31 +2961,31 @@ namespace offsets {
         // Local Type Scope
         class CTriggerFan : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_vFanOriginOffset        = 0X0890; // Vector
-            static constexpr std::uintptr_t m_vDirection              = 0X089C; // Vector
-            static constexpr std::uintptr_t m_bPushTowardsInfoTarget  = 0X08A8; // bool
-            static constexpr std::uintptr_t m_bPushAwayFromInfoTarget = 0X08A9; // bool
-            static constexpr std::uintptr_t m_qNoiseDelta             = 0X08B0; // Quaternion
-            static constexpr std::uintptr_t m_hInfoFan                = 0X08C0; // CHandle<CInfoFan>
-            static constexpr std::uintptr_t m_flForce                 = 0X08C4; // float32
-            static constexpr std::uintptr_t m_bFalloff                = 0X08C8; // bool
-            static constexpr std::uintptr_t m_RampTimer               = 0X08D0; // CountdownTimer
-            static constexpr std::uintptr_t m_vFanOriginWS            = 0X08E8; // VectorWS
-            static constexpr std::uintptr_t m_vFanOriginLS            = 0X08F4; // Vector
-            static constexpr std::uintptr_t m_vFanEndLS               = 0X0900; // Vector
-            static constexpr std::uintptr_t m_vNoiseDirectionTarget   = 0X090C; // Vector
-            static constexpr std::uintptr_t m_iszInfoFan              = 0X0918; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flRopeForceScale        = 0X0920; // float32
-            static constexpr std::uintptr_t m_flParticleForceScale    = 0X0924; // float32
-            static constexpr std::uintptr_t m_flPlayerForce           = 0X0928; // float32
-            static constexpr std::uintptr_t m_bPlayerWindblock        = 0X092C; // bool
-            static constexpr std::uintptr_t m_flNPCForce              = 0X0930; // float32
-            static constexpr std::uintptr_t m_flRampTime              = 0X0934; // float32
-            static constexpr std::uintptr_t m_fNoiseDegrees           = 0X0938; // float32
-            static constexpr std::uintptr_t m_fNoiseSpeed             = 0X093C; // float32
-            static constexpr std::uintptr_t m_bPushPlayer             = 0X0940; // bool
-            static constexpr std::uintptr_t m_bRampDown               = 0X0941; // bool
-            static constexpr std::uintptr_t m_nManagerFanIdx          = 0X0944; // int32
+            static constexpr std::uintptr_t m_vFanOriginOffset        = 0X08C8; // Vector
+            static constexpr std::uintptr_t m_vDirection              = 0X08D4; // Vector
+            static constexpr std::uintptr_t m_bPushTowardsInfoTarget  = 0X08E0; // bool
+            static constexpr std::uintptr_t m_bPushAwayFromInfoTarget = 0X08E1; // bool
+            static constexpr std::uintptr_t m_qNoiseDelta             = 0X08F0; // Quaternion
+            static constexpr std::uintptr_t m_hInfoFan                = 0X0900; // CHandle<CInfoFan>
+            static constexpr std::uintptr_t m_flForce                 = 0X0904; // float32
+            static constexpr std::uintptr_t m_bFalloff                = 0X0908; // bool
+            static constexpr std::uintptr_t m_RampTimer               = 0X0910; // CountdownTimer
+            static constexpr std::uintptr_t m_vFanOriginWS            = 0X0928; // VectorWS
+            static constexpr std::uintptr_t m_vFanOriginLS            = 0X0934; // Vector
+            static constexpr std::uintptr_t m_vFanEndLS               = 0X0940; // Vector
+            static constexpr std::uintptr_t m_vNoiseDirectionTarget   = 0X094C; // Vector
+            static constexpr std::uintptr_t m_iszInfoFan              = 0X0958; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flRopeForceScale        = 0X0960; // float32
+            static constexpr std::uintptr_t m_flParticleForceScale    = 0X0964; // float32
+            static constexpr std::uintptr_t m_flPlayerForce           = 0X0968; // float32
+            static constexpr std::uintptr_t m_bPlayerWindblock        = 0X096C; // bool
+            static constexpr std::uintptr_t m_flNPCForce              = 0X0970; // float32
+            static constexpr std::uintptr_t m_flRampTime              = 0X0974; // float32
+            static constexpr std::uintptr_t m_fNoiseDegrees           = 0X0978; // float32
+            static constexpr std::uintptr_t m_fNoiseSpeed             = 0X097C; // float32
+            static constexpr std::uintptr_t m_bPushPlayer             = 0X0980; // bool
+            static constexpr std::uintptr_t m_bRampDown               = 0X0981; // bool
+            static constexpr std::uintptr_t m_nManagerFanIdx          = 0X0984; // int32
         };
 
         // Has VTable
@@ -2855,6 +2993,7 @@ namespace offsets {
         // Local Type Scope
         class CPhysConstraint : public CLogicalEntity {
         public:
+            static constexpr std::uintptr_t m_hJoint                      = 0X04A8; // IPhysicsJoint*
             static constexpr std::uintptr_t m_nameAttach1                 = 0X04B0; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_nameAttach2                 = 0X04B8; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_hAttach1                    = 0X04C0; // CHandle<CBaseEntity>
@@ -2913,7 +3052,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_nLastShuffleCase  = 0X05AC; // int32
             static constexpr std::uintptr_t m_uchShuffleCaseMap = 0X05B0; // uint8[32]
             static constexpr std::uintptr_t m_OnCase            = 0X05D0; // CEntityIOOutput[32]
-            static constexpr std::uintptr_t m_OnDefault         = 0X08D0; // CEntityOutputTemplate<CUtlString,char*>
+            static constexpr std::uintptr_t m_OnDefault         = 0X08D0; // CEntityOutputTemplate<CUtlString>
+        };
+
+        // Has VTable
+        // Construct Allowed
+        // Local Type Scope
+        class CPulseCell_Outflow_PlayVOLine : public CPulseCell_BaseYieldingInflow {
+        public:
+            static constexpr std::uintptr_t m_OnFinished = 0X0048; // CPulse_ResumePoint
         };
 
         // Has VTable
@@ -2923,6 +3070,12 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_iszEventName = 0X04A8; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_flRange      = 0X04B0; // float32
+        };
+
+        // Has Trivial Destructor
+        // Local Type Scope
+        class CTestPulseIOComponent_DerivedAPI {
+        public:
         };
 
         // Has VTable
@@ -2944,10 +3097,10 @@ namespace offsets {
         // Local Type Scope
         class CGamePlayerZone : public CRuleBrushEntity {
         public:
-            static constexpr std::uintptr_t m_OnPlayerInZone  = 0X0738; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnPlayerOutZone = 0X0750; // CEntityIOOutput
-            static constexpr std::uintptr_t m_PlayersInCount  = 0X0768; // CEntityOutputTemplate<int32,int32>
-            static constexpr std::uintptr_t m_PlayersOutCount = 0X0788; // CEntityOutputTemplate<int32,int32>
+            static constexpr std::uintptr_t m_OnPlayerInZone  = 0X0770; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnPlayerOutZone = 0X0788; // CEntityIOOutput
+            static constexpr std::uintptr_t m_PlayersInCount  = 0X07A0; // CEntityOutputTemplate<int32>
+            static constexpr std::uintptr_t m_PlayersOutCount = 0X07C0; // CEntityOutputTemplate<int32>
         };
 
         // Has VTable
@@ -2960,8 +3113,8 @@ namespace offsets {
         // Local Type Scope
         class CPulseServerCursor : public CPulseExecCursor {
         public:
-            static constexpr std::uintptr_t m_hActivator = 0X00D8; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hCaller    = 0X00DC; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hActivator = 0X00E8; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hCaller    = 0X00EC; // CHandle<CBaseEntity>
         };
 
         // Has VTable
@@ -2980,30 +3133,30 @@ namespace offsets {
         // Local Type Scope
         class CInferno : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_firePositions            = 0X0730; // Vector[64]
-            static constexpr std::uintptr_t m_fireParentPositions      = 0X0A30; // Vector[64]
-            static constexpr std::uintptr_t m_bFireIsBurning           = 0X0D30; // bool[64]
-            static constexpr std::uintptr_t m_BurnNormal               = 0X0D70; // Vector[64]
-            static constexpr std::uintptr_t m_fireCount                = 0X1070; // int32
-            static constexpr std::uintptr_t m_nInfernoType             = 0X1074; // int32
-            static constexpr std::uintptr_t m_nFireEffectTickBegin     = 0X1078; // int32
-            static constexpr std::uintptr_t m_nFireLifetime            = 0X107C; // float32
-            static constexpr std::uintptr_t m_bInPostEffectTime        = 0X1080; // bool
-            static constexpr std::uintptr_t m_bWasCreatedInSmoke       = 0X1081; // bool
-            static constexpr std::uintptr_t m_extent                   = 0X1288; // Extent
-            static constexpr std::uintptr_t m_damageTimer              = 0X12A0; // CountdownTimer
-            static constexpr std::uintptr_t m_damageRampTimer          = 0X12B8; // CountdownTimer
-            static constexpr std::uintptr_t m_splashVelocity           = 0X12D0; // Vector
-            static constexpr std::uintptr_t m_InitialSplashVelocity    = 0X12DC; // Vector
-            static constexpr std::uintptr_t m_startPos                 = 0X12E8; // Vector
-            static constexpr std::uintptr_t m_vecOriginalSpawnLocation = 0X12F4; // Vector
-            static constexpr std::uintptr_t m_activeTimer              = 0X1300; // IntervalTimer
-            static constexpr std::uintptr_t m_fireSpawnOffset          = 0X1310; // int32
-            static constexpr std::uintptr_t m_nMaxFlames               = 0X1314; // int32
-            static constexpr std::uintptr_t m_nSpreadCount             = 0X1318; // int32
-            static constexpr std::uintptr_t m_BookkeepingTimer         = 0X1320; // CountdownTimer
-            static constexpr std::uintptr_t m_NextSpreadTimer          = 0X1338; // CountdownTimer
-            static constexpr std::uintptr_t m_nSourceItemDefIndex      = 0X1350; // uint16
+            static constexpr std::uintptr_t m_firePositions            = 0X0768; // Vector[64]
+            static constexpr std::uintptr_t m_fireParentPositions      = 0X0A68; // Vector[64]
+            static constexpr std::uintptr_t m_bFireIsBurning           = 0X0D68; // bool[64]
+            static constexpr std::uintptr_t m_BurnNormal               = 0X0DA8; // Vector[64]
+            static constexpr std::uintptr_t m_fireCount                = 0X10A8; // int32
+            static constexpr std::uintptr_t m_nInfernoType             = 0X10AC; // int32
+            static constexpr std::uintptr_t m_nFireEffectTickBegin     = 0X10B0; // int32
+            static constexpr std::uintptr_t m_nFireLifetime            = 0X10B4; // float32
+            static constexpr std::uintptr_t m_bInPostEffectTime        = 0X10B8; // bool
+            static constexpr std::uintptr_t m_bWasCreatedInSmoke       = 0X10B9; // bool
+            static constexpr std::uintptr_t m_extent                   = 0X12C0; // Extent
+            static constexpr std::uintptr_t m_damageTimer              = 0X12D8; // CountdownTimer
+            static constexpr std::uintptr_t m_damageRampTimer          = 0X12F0; // CountdownTimer
+            static constexpr std::uintptr_t m_splashVelocity           = 0X1308; // Vector
+            static constexpr std::uintptr_t m_InitialSplashVelocity    = 0X1314; // Vector
+            static constexpr std::uintptr_t m_startPos                 = 0X1320; // Vector
+            static constexpr std::uintptr_t m_vecOriginalSpawnLocation = 0X132C; // Vector
+            static constexpr std::uintptr_t m_activeTimer              = 0X1338; // IntervalTimer
+            static constexpr std::uintptr_t m_fireSpawnOffset          = 0X1348; // int32
+            static constexpr std::uintptr_t m_nMaxFlames               = 0X134C; // int32
+            static constexpr std::uintptr_t m_nSpreadCount             = 0X1350; // int32
+            static constexpr std::uintptr_t m_BookkeepingTimer         = 0X1358; // CountdownTimer
+            static constexpr std::uintptr_t m_NextSpreadTimer          = 0X1370; // CountdownTimer
+            static constexpr std::uintptr_t m_nSourceItemDefIndex      = 0X1388; // uint16
         };
 
         // Has VTable
@@ -3061,9 +3214,9 @@ namespace offsets {
         // Local Type Scope
         class CFuncInteractionLayerClip : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_bDisabled        = 0X0730; // bool
-            static constexpr std::uintptr_t m_iszInteractsAs   = 0X0738; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszInteractsWith = 0X0740; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bDisabled        = 0X0768; // bool
+            static constexpr std::uintptr_t m_iszInteractsAs   = 0X0770; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszInteractsWith = 0X0778; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -3083,8 +3236,8 @@ namespace offsets {
         // Local Type Scope
         class CTriggerDetectBulletFire : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_bPlayerFireOnly      = 0X0890; // bool
-            static constexpr std::uintptr_t m_OnDetectedBulletFire = 0X0898; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bPlayerFireOnly      = 0X08C8; // bool
+            static constexpr std::uintptr_t m_OnDetectedBulletFire = 0X08D0; // CEntityIOOutput
         };
 
         // Has VTable
@@ -3143,30 +3296,30 @@ namespace offsets {
         // Local Type Scope
         class CFish : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_pool           = 0X0A20; // CHandle<CFishPool>
-            static constexpr std::uintptr_t m_id             = 0X0A24; // uint32
-            static constexpr std::uintptr_t m_x              = 0X0A28; // float32
-            static constexpr std::uintptr_t m_y              = 0X0A2C; // float32
-            static constexpr std::uintptr_t m_z              = 0X0A30; // float32
-            static constexpr std::uintptr_t m_angle          = 0X0A34; // float32
-            static constexpr std::uintptr_t m_angleChange    = 0X0A38; // float32
-            static constexpr std::uintptr_t m_forward        = 0X0A3C; // Vector
-            static constexpr std::uintptr_t m_perp           = 0X0A48; // Vector
-            static constexpr std::uintptr_t m_poolOrigin     = 0X0A54; // Vector
-            static constexpr std::uintptr_t m_waterLevel     = 0X0A60; // float32
-            static constexpr std::uintptr_t m_speed          = 0X0A64; // float32
-            static constexpr std::uintptr_t m_desiredSpeed   = 0X0A68; // float32
-            static constexpr std::uintptr_t m_calmSpeed      = 0X0A6C; // float32
-            static constexpr std::uintptr_t m_panicSpeed     = 0X0A70; // float32
-            static constexpr std::uintptr_t m_avoidRange     = 0X0A74; // float32
-            static constexpr std::uintptr_t m_turnTimer      = 0X0A78; // CountdownTimer
-            static constexpr std::uintptr_t m_turnClockwise  = 0X0A90; // bool
-            static constexpr std::uintptr_t m_goTimer        = 0X0A98; // CountdownTimer
-            static constexpr std::uintptr_t m_moveTimer      = 0X0AB0; // CountdownTimer
-            static constexpr std::uintptr_t m_panicTimer     = 0X0AC8; // CountdownTimer
-            static constexpr std::uintptr_t m_disperseTimer  = 0X0AE0; // CountdownTimer
-            static constexpr std::uintptr_t m_proximityTimer = 0X0AF8; // CountdownTimer
-            static constexpr std::uintptr_t m_visible        = 0X0B10; // CUtlVector<CFish*>
+            static constexpr std::uintptr_t m_pool           = 0X0940; // CHandle<CFishPool>
+            static constexpr std::uintptr_t m_id             = 0X0944; // uint32
+            static constexpr std::uintptr_t m_x              = 0X0948; // float32
+            static constexpr std::uintptr_t m_y              = 0X094C; // float32
+            static constexpr std::uintptr_t m_z              = 0X0950; // float32
+            static constexpr std::uintptr_t m_angle          = 0X0954; // float32
+            static constexpr std::uintptr_t m_angleChange    = 0X0958; // float32
+            static constexpr std::uintptr_t m_forward        = 0X095C; // Vector
+            static constexpr std::uintptr_t m_perp           = 0X0968; // Vector
+            static constexpr std::uintptr_t m_poolOrigin     = 0X0974; // Vector
+            static constexpr std::uintptr_t m_waterLevel     = 0X0980; // float32
+            static constexpr std::uintptr_t m_speed          = 0X0984; // float32
+            static constexpr std::uintptr_t m_desiredSpeed   = 0X0988; // float32
+            static constexpr std::uintptr_t m_calmSpeed      = 0X098C; // float32
+            static constexpr std::uintptr_t m_panicSpeed     = 0X0990; // float32
+            static constexpr std::uintptr_t m_avoidRange     = 0X0994; // float32
+            static constexpr std::uintptr_t m_turnTimer      = 0X0998; // CountdownTimer
+            static constexpr std::uintptr_t m_turnClockwise  = 0X09B0; // bool
+            static constexpr std::uintptr_t m_goTimer        = 0X09B8; // CountdownTimer
+            static constexpr std::uintptr_t m_moveTimer      = 0X09D0; // CountdownTimer
+            static constexpr std::uintptr_t m_panicTimer     = 0X09E8; // CountdownTimer
+            static constexpr std::uintptr_t m_disperseTimer  = 0X0A00; // CountdownTimer
+            static constexpr std::uintptr_t m_proximityTimer = 0X0A18; // CountdownTimer
+            static constexpr std::uintptr_t m_visible        = 0X0A30; // CUtlVector<CFish*>
         };
 
         // Has VTable
@@ -3212,126 +3365,127 @@ namespace offsets {
             static constexpr std::uintptr_t m_alertTimer                       = 0X01D0; // CountdownTimer
             static constexpr std::uintptr_t m_sneakTimer                       = 0X01E8; // CountdownTimer
             static constexpr std::uintptr_t m_panicTimer                       = 0X0200; // CountdownTimer
-            static constexpr std::uintptr_t m_stateTimestamp                   = 0X0598; // float32
-            static constexpr std::uintptr_t m_isAttacking                      = 0X059C; // bool
-            static constexpr std::uintptr_t m_isOpeningDoor                    = 0X059D; // bool
-            static constexpr std::uintptr_t m_taskEntity                       = 0X05A4; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_goalPosition                     = 0X05B4; // VectorWS
-            static constexpr std::uintptr_t m_goalEntity                       = 0X05C0; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_avoid                            = 0X05C4; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_avoidTimestamp                   = 0X05C8; // float32
-            static constexpr std::uintptr_t m_isStopping                       = 0X05CC; // bool
-            static constexpr std::uintptr_t m_hasVisitedEnemySpawn             = 0X05CD; // bool
-            static constexpr std::uintptr_t m_stillTimer                       = 0X05D0; // IntervalTimer
-            static constexpr std::uintptr_t m_bEyeAnglesUnderPathFinderControl = 0X05E0; // bool
-            static constexpr std::uintptr_t m_pathIndex                        = 0X5EE0; // int32
-            static constexpr std::uintptr_t m_areaEnteredTimestamp             = 0X5EE4; // GameTime_t
-            static constexpr std::uintptr_t m_repathTimer                      = 0X5EE8; // CountdownTimer
-            static constexpr std::uintptr_t m_avoidFriendTimer                 = 0X5F00; // CountdownTimer
-            static constexpr std::uintptr_t m_isFriendInTheWay                 = 0X5F18; // bool
-            static constexpr std::uintptr_t m_politeTimer                      = 0X5F20; // CountdownTimer
-            static constexpr std::uintptr_t m_isWaitingBehindFriend            = 0X5F38; // bool
-            static constexpr std::uintptr_t m_pathLadderEnd                    = 0X5F64; // float32
-            static constexpr std::uintptr_t m_mustRunTimer                     = 0X5FB0; // CountdownTimer
-            static constexpr std::uintptr_t m_waitTimer                        = 0X5FC8; // CountdownTimer
-            static constexpr std::uintptr_t m_updateTravelDistanceTimer        = 0X5FE0; // CountdownTimer
-            static constexpr std::uintptr_t m_playerTravelDistance             = 0X5FF8; // float32[64]
-            static constexpr std::uintptr_t m_travelDistancePhase              = 0X60F8; // uint8
-            static constexpr std::uintptr_t m_hostageEscortCount               = 0X6290; // uint8
-            static constexpr std::uintptr_t m_hostageEscortCountTimestamp      = 0X6294; // float32
-            static constexpr std::uintptr_t m_desiredTeam                      = 0X6298; // int32
-            static constexpr std::uintptr_t m_hasJoined                        = 0X629C; // bool
-            static constexpr std::uintptr_t m_isWaitingForHostage              = 0X629D; // bool
-            static constexpr std::uintptr_t m_inhibitWaitingForHostageTimer    = 0X62A0; // CountdownTimer
-            static constexpr std::uintptr_t m_waitForHostageTimer              = 0X62B8; // CountdownTimer
-            static constexpr std::uintptr_t m_noisePosition                    = 0X62D0; // Vector
-            static constexpr std::uintptr_t m_noiseTravelDistance              = 0X62DC; // float32
-            static constexpr std::uintptr_t m_noiseTimestamp                   = 0X62E0; // float32
-            static constexpr std::uintptr_t m_noiseSource                      = 0X62E8; // CCSPlayerPawn*
-            static constexpr std::uintptr_t m_noiseBendTimer                   = 0X6300; // CountdownTimer
-            static constexpr std::uintptr_t m_bentNoisePosition                = 0X6318; // Vector
-            static constexpr std::uintptr_t m_bendNoisePositionValid           = 0X6324; // bool
-            static constexpr std::uintptr_t m_lookAroundStateTimestamp         = 0X6328; // float32
-            static constexpr std::uintptr_t m_lookAheadAngle                   = 0X632C; // float32
-            static constexpr std::uintptr_t m_forwardAngle                     = 0X6330; // float32
-            static constexpr std::uintptr_t m_inhibitLookAroundTimestamp       = 0X6334; // float32
-            static constexpr std::uintptr_t m_lookAtSpot                       = 0X633C; // Vector
-            static constexpr std::uintptr_t m_lookAtSpotDuration               = 0X634C; // float32
-            static constexpr std::uintptr_t m_lookAtSpotTimestamp              = 0X6350; // float32
-            static constexpr std::uintptr_t m_lookAtSpotAngleTolerance         = 0X6354; // float32
-            static constexpr std::uintptr_t m_lookAtSpotClearIfClose           = 0X6358; // bool
-            static constexpr std::uintptr_t m_lookAtSpotAttack                 = 0X6359; // bool
-            static constexpr std::uintptr_t m_lookAtDesc                       = 0X6360; // char*
-            static constexpr std::uintptr_t m_peripheralTimestamp              = 0X6368; // float32
-            static constexpr std::uintptr_t m_approachPointCount               = 0X64F0; // uint8
-            static constexpr std::uintptr_t m_approachPointViewPosition        = 0X64F4; // Vector
-            static constexpr std::uintptr_t m_viewSteadyTimer                  = 0X6500; // IntervalTimer
-            static constexpr std::uintptr_t m_tossGrenadeTimer                 = 0X6518; // CountdownTimer
-            static constexpr std::uintptr_t m_isAvoidingGrenade                = 0X6538; // CountdownTimer
-            static constexpr std::uintptr_t m_spotCheckTimestamp               = 0X6558; // float32
-            static constexpr std::uintptr_t m_checkedHidingSpotCount           = 0X6960; // int32
-            static constexpr std::uintptr_t m_lookPitch                        = 0X6964; // float32
-            static constexpr std::uintptr_t m_lookPitchVel                     = 0X6968; // float32
-            static constexpr std::uintptr_t m_lookYaw                          = 0X696C; // float32
-            static constexpr std::uintptr_t m_lookYawVel                       = 0X6970; // float32
-            static constexpr std::uintptr_t m_targetSpot                       = 0X6974; // Vector
-            static constexpr std::uintptr_t m_targetSpotVelocity               = 0X6980; // Vector
-            static constexpr std::uintptr_t m_targetSpotPredicted              = 0X698C; // Vector
-            static constexpr std::uintptr_t m_aimError                         = 0X6998; // QAngle
-            static constexpr std::uintptr_t m_aimGoal                          = 0X69A4; // QAngle
-            static constexpr std::uintptr_t m_targetSpotTime                   = 0X69B0; // GameTime_t
-            static constexpr std::uintptr_t m_aimFocus                         = 0X69B4; // float32
-            static constexpr std::uintptr_t m_aimFocusInterval                 = 0X69B8; // float32
-            static constexpr std::uintptr_t m_aimFocusNextUpdate               = 0X69BC; // GameTime_t
-            static constexpr std::uintptr_t m_ignoreEnemiesTimer               = 0X69C8; // CountdownTimer
-            static constexpr std::uintptr_t m_enemy                            = 0X69E0; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_isEnemyVisible                   = 0X69E4; // bool
-            static constexpr std::uintptr_t m_visibleEnemyParts                = 0X69E5; // uint8
-            static constexpr std::uintptr_t m_lastEnemyPosition                = 0X69E8; // Vector
-            static constexpr std::uintptr_t m_lastSawEnemyTimestamp            = 0X69F4; // float32
-            static constexpr std::uintptr_t m_firstSawEnemyTimestamp           = 0X69F8; // float32
-            static constexpr std::uintptr_t m_currentEnemyAcquireTimestamp     = 0X69FC; // float32
-            static constexpr std::uintptr_t m_enemyDeathTimestamp              = 0X6A00; // float32
-            static constexpr std::uintptr_t m_friendDeathTimestamp             = 0X6A04; // float32
-            static constexpr std::uintptr_t m_isLastEnemyDead                  = 0X6A08; // bool
-            static constexpr std::uintptr_t m_nearbyEnemyCount                 = 0X6A0C; // int32
-            static constexpr std::uintptr_t m_bomber                           = 0X6C18; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_nearbyFriendCount                = 0X6C1C; // int32
-            static constexpr std::uintptr_t m_closestVisibleFriend             = 0X6C20; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_closestVisibleHumanFriend        = 0X6C24; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_attentionInterval                = 0X6C28; // IntervalTimer
-            static constexpr std::uintptr_t m_attacker                         = 0X6C38; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_attackedTimestamp                = 0X6C3C; // float32
-            static constexpr std::uintptr_t m_burnedByFlamesTimer              = 0X6C40; // IntervalTimer
-            static constexpr std::uintptr_t m_lastVictimID                     = 0X6C50; // int32
-            static constexpr std::uintptr_t m_isAimingAtEnemy                  = 0X6C54; // bool
-            static constexpr std::uintptr_t m_isRapidFiring                    = 0X6C55; // bool
-            static constexpr std::uintptr_t m_equipTimer                       = 0X6C58; // IntervalTimer
-            static constexpr std::uintptr_t m_zoomTimer                        = 0X6C68; // CountdownTimer
-            static constexpr std::uintptr_t m_fireWeaponTimestamp              = 0X6C80; // GameTime_t
-            static constexpr std::uintptr_t m_lookForWeaponsOnGroundTimer      = 0X6C88; // CountdownTimer
-            static constexpr std::uintptr_t m_bIsSleeping                      = 0X6CA0; // bool
-            static constexpr std::uintptr_t m_isEnemySniperVisible             = 0X6CA1; // bool
-            static constexpr std::uintptr_t m_sawEnemySniperTimer              = 0X6CA8; // CountdownTimer
-            static constexpr std::uintptr_t m_enemyQueueIndex                  = 0X6D60; // uint8
-            static constexpr std::uintptr_t m_enemyQueueCount                  = 0X6D61; // uint8
-            static constexpr std::uintptr_t m_enemyQueueAttendIndex            = 0X6D62; // uint8
-            static constexpr std::uintptr_t m_isStuck                          = 0X6D63; // bool
-            static constexpr std::uintptr_t m_stuckTimestamp                   = 0X6D64; // GameTime_t
-            static constexpr std::uintptr_t m_stuckSpot                        = 0X6D68; // Vector
-            static constexpr std::uintptr_t m_wiggleTimer                      = 0X6D78; // CountdownTimer
-            static constexpr std::uintptr_t m_stuckJumpTimer                   = 0X6D90; // CountdownTimer
-            static constexpr std::uintptr_t m_nextCleanupCheckTimestamp        = 0X6DA8; // GameTime_t
-            static constexpr std::uintptr_t m_avgVel                           = 0X6DAC; // float32[10]
-            static constexpr std::uintptr_t m_avgVelIndex                      = 0X6DD4; // int32
-            static constexpr std::uintptr_t m_avgVelCount                      = 0X6DD8; // int32
-            static constexpr std::uintptr_t m_lastOrigin                       = 0X6DDC; // Vector
-            static constexpr std::uintptr_t m_lastRadioRecievedTimestamp       = 0X6DEC; // float32
-            static constexpr std::uintptr_t m_lastRadioSentTimestamp           = 0X6DF0; // float32
-            static constexpr std::uintptr_t m_radioSubject                     = 0X6DF4; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_radioPosition                    = 0X6DF8; // Vector
-            static constexpr std::uintptr_t m_voiceEndTimestamp                = 0X6E04; // float32
-            static constexpr std::uintptr_t m_lastValidReactionQueueFrame      = 0X6E10; // int32
+            static constexpr std::uintptr_t m_stateTimestamp                   = 0X05A8; // float32
+            static constexpr std::uintptr_t m_isAttacking                      = 0X05AC; // bool
+            static constexpr std::uintptr_t m_isOpeningDoor                    = 0X05AD; // bool
+            static constexpr std::uintptr_t m_taskEntity                       = 0X05B4; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_goalPosition                     = 0X05C4; // VectorWS
+            static constexpr std::uintptr_t m_goalEntity                       = 0X05D0; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_avoid                            = 0X05D4; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_avoidTimestamp                   = 0X05D8; // float32
+            static constexpr std::uintptr_t m_isStopping                       = 0X05DC; // bool
+            static constexpr std::uintptr_t m_hasVisitedEnemySpawn             = 0X05DD; // bool
+            static constexpr std::uintptr_t m_stillTimer                       = 0X05E0; // IntervalTimer
+            static constexpr std::uintptr_t m_bEyeAnglesUnderPathFinderControl = 0X05F0; // bool
+            static constexpr std::uintptr_t m_pathIndex                        = 0X4EF0; // int32
+            static constexpr std::uintptr_t m_areaEnteredTimestamp             = 0X4EF4; // GameTime_t
+            static constexpr std::uintptr_t m_repathTimer                      = 0X4EF8; // CountdownTimer
+            static constexpr std::uintptr_t m_avoidFriendTimer                 = 0X4F10; // CountdownTimer
+            static constexpr std::uintptr_t m_isFriendInTheWay                 = 0X4F28; // bool
+            static constexpr std::uintptr_t m_politeTimer                      = 0X4F30; // CountdownTimer
+            static constexpr std::uintptr_t m_isWaitingBehindFriend            = 0X4F48; // bool
+            static constexpr std::uintptr_t m_pathLadderEnd                    = 0X4F74; // float32
+            static constexpr std::uintptr_t m_mustRunTimer                     = 0X4FC0; // CountdownTimer
+            static constexpr std::uintptr_t m_waitTimer                        = 0X4FD8; // CountdownTimer
+            static constexpr std::uintptr_t m_updateTravelDistanceTimer        = 0X4FF0; // CountdownTimer
+            static constexpr std::uintptr_t m_playerTravelDistance             = 0X5008; // float32[64]
+            static constexpr std::uintptr_t m_travelDistancePhase              = 0X5108; // uint8
+            static constexpr std::uintptr_t m_hostageEscortCount               = 0X52A0; // uint8
+            static constexpr std::uintptr_t m_hostageEscortCountTimestamp      = 0X52A4; // float32
+            static constexpr std::uintptr_t m_desiredTeam                      = 0X52A8; // int32
+            static constexpr std::uintptr_t m_hasJoined                        = 0X52AC; // bool
+            static constexpr std::uintptr_t m_isWaitingForHostage              = 0X52AD; // bool
+            static constexpr std::uintptr_t m_inhibitWaitingForHostageTimer    = 0X52B0; // CountdownTimer
+            static constexpr std::uintptr_t m_waitForHostageTimer              = 0X52C8; // CountdownTimer
+            static constexpr std::uintptr_t m_noisePosition                    = 0X52E0; // Vector
+            static constexpr std::uintptr_t m_noiseTravelDistance              = 0X52EC; // float32
+            static constexpr std::uintptr_t m_noiseTimestamp                   = 0X52F0; // float32
+            static constexpr std::uintptr_t m_noiseSource                      = 0X52F8; // CCSPlayerPawn*
+            static constexpr std::uintptr_t m_noiseBendTimer                   = 0X5310; // CountdownTimer
+            static constexpr std::uintptr_t m_bentNoisePosition                = 0X5328; // Vector
+            static constexpr std::uintptr_t m_bendNoisePositionValid           = 0X5334; // bool
+            static constexpr std::uintptr_t m_lookAroundStateTimestamp         = 0X5338; // float32
+            static constexpr std::uintptr_t m_lookAheadAngle                   = 0X533C; // float32
+            static constexpr std::uintptr_t m_lookUpAngle                      = 0X5340; // float32
+            static constexpr std::uintptr_t m_forwardAngle                     = 0X5344; // float32
+            static constexpr std::uintptr_t m_inhibitLookAroundTimestamp       = 0X5348; // float32
+            static constexpr std::uintptr_t m_lookAtSpot                       = 0X5350; // Vector
+            static constexpr std::uintptr_t m_lookAtSpotDuration               = 0X5360; // float32
+            static constexpr std::uintptr_t m_lookAtSpotTimestamp              = 0X5364; // float32
+            static constexpr std::uintptr_t m_lookAtSpotAngleTolerance         = 0X5368; // float32
+            static constexpr std::uintptr_t m_lookAtSpotClearIfClose           = 0X536C; // bool
+            static constexpr std::uintptr_t m_lookAtSpotAttack                 = 0X536D; // bool
+            static constexpr std::uintptr_t m_lookAtDesc                       = 0X5370; // char*
+            static constexpr std::uintptr_t m_peripheralTimestamp              = 0X5378; // float32
+            static constexpr std::uintptr_t m_approachPointCount               = 0X5500; // uint8
+            static constexpr std::uintptr_t m_approachPointViewPosition        = 0X5504; // Vector
+            static constexpr std::uintptr_t m_viewSteadyTimer                  = 0X5510; // IntervalTimer
+            static constexpr std::uintptr_t m_tossGrenadeTimer                 = 0X5528; // CountdownTimer
+            static constexpr std::uintptr_t m_isAvoidingGrenade                = 0X5548; // CountdownTimer
+            static constexpr std::uintptr_t m_spotCheckTimestamp               = 0X5568; // float32
+            static constexpr std::uintptr_t m_checkedHidingSpotCount           = 0X5970; // int32
+            static constexpr std::uintptr_t m_lookPitch                        = 0X5974; // float32
+            static constexpr std::uintptr_t m_lookPitchVel                     = 0X5978; // float32
+            static constexpr std::uintptr_t m_lookYaw                          = 0X597C; // float32
+            static constexpr std::uintptr_t m_lookYawVel                       = 0X5980; // float32
+            static constexpr std::uintptr_t m_targetSpot                       = 0X5984; // Vector
+            static constexpr std::uintptr_t m_targetSpotVelocity               = 0X5990; // Vector
+            static constexpr std::uintptr_t m_targetSpotPredicted              = 0X599C; // Vector
+            static constexpr std::uintptr_t m_aimError                         = 0X59A8; // QAngle
+            static constexpr std::uintptr_t m_aimGoal                          = 0X59B4; // QAngle
+            static constexpr std::uintptr_t m_targetSpotTime                   = 0X59C0; // GameTime_t
+            static constexpr std::uintptr_t m_aimFocus                         = 0X59C4; // float32
+            static constexpr std::uintptr_t m_aimFocusInterval                 = 0X59C8; // float32
+            static constexpr std::uintptr_t m_aimFocusNextUpdate               = 0X59CC; // GameTime_t
+            static constexpr std::uintptr_t m_ignoreEnemiesTimer               = 0X59D8; // CountdownTimer
+            static constexpr std::uintptr_t m_enemy                            = 0X59F0; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_isEnemyVisible                   = 0X59F4; // bool
+            static constexpr std::uintptr_t m_visibleEnemyParts                = 0X59F5; // uint8
+            static constexpr std::uintptr_t m_lastEnemyPosition                = 0X59F8; // Vector
+            static constexpr std::uintptr_t m_lastSawEnemyTimestamp            = 0X5A04; // float32
+            static constexpr std::uintptr_t m_firstSawEnemyTimestamp           = 0X5A08; // float32
+            static constexpr std::uintptr_t m_currentEnemyAcquireTimestamp     = 0X5A0C; // float32
+            static constexpr std::uintptr_t m_enemyDeathTimestamp              = 0X5A10; // float32
+            static constexpr std::uintptr_t m_friendDeathTimestamp             = 0X5A14; // float32
+            static constexpr std::uintptr_t m_isLastEnemyDead                  = 0X5A18; // bool
+            static constexpr std::uintptr_t m_nearbyEnemyCount                 = 0X5A1C; // int32
+            static constexpr std::uintptr_t m_bomber                           = 0X5C28; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_nearbyFriendCount                = 0X5C2C; // int32
+            static constexpr std::uintptr_t m_closestVisibleFriend             = 0X5C30; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_closestVisibleHumanFriend        = 0X5C34; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_attentionInterval                = 0X5C38; // IntervalTimer
+            static constexpr std::uintptr_t m_attacker                         = 0X5C48; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_attackedTimestamp                = 0X5C4C; // float32
+            static constexpr std::uintptr_t m_burnedByFlamesTimer              = 0X5C50; // IntervalTimer
+            static constexpr std::uintptr_t m_lastVictimID                     = 0X5C60; // int32
+            static constexpr std::uintptr_t m_isAimingAtEnemy                  = 0X5C64; // bool
+            static constexpr std::uintptr_t m_isRapidFiring                    = 0X5C65; // bool
+            static constexpr std::uintptr_t m_equipTimer                       = 0X5C68; // IntervalTimer
+            static constexpr std::uintptr_t m_zoomTimer                        = 0X5C78; // CountdownTimer
+            static constexpr std::uintptr_t m_fireWeaponTimestamp              = 0X5C90; // GameTime_t
+            static constexpr std::uintptr_t m_lookForWeaponsOnGroundTimer      = 0X5C98; // CountdownTimer
+            static constexpr std::uintptr_t m_bIsSleeping                      = 0X5CB0; // bool
+            static constexpr std::uintptr_t m_isEnemySniperVisible             = 0X5CB1; // bool
+            static constexpr std::uintptr_t m_sawEnemySniperTimer              = 0X5CB8; // CountdownTimer
+            static constexpr std::uintptr_t m_enemyQueueIndex                  = 0X5D70; // uint8
+            static constexpr std::uintptr_t m_enemyQueueCount                  = 0X5D71; // uint8
+            static constexpr std::uintptr_t m_enemyQueueAttendIndex            = 0X5D72; // uint8
+            static constexpr std::uintptr_t m_isStuck                          = 0X5D73; // bool
+            static constexpr std::uintptr_t m_stuckTimestamp                   = 0X5D74; // GameTime_t
+            static constexpr std::uintptr_t m_stuckSpot                        = 0X5D78; // Vector
+            static constexpr std::uintptr_t m_wiggleTimer                      = 0X5D88; // CountdownTimer
+            static constexpr std::uintptr_t m_stuckJumpTimer                   = 0X5DA0; // CountdownTimer
+            static constexpr std::uintptr_t m_nextCleanupCheckTimestamp        = 0X5DB8; // GameTime_t
+            static constexpr std::uintptr_t m_avgVel                           = 0X5DBC; // float32[10]
+            static constexpr std::uintptr_t m_avgVelIndex                      = 0X5DE4; // int32
+            static constexpr std::uintptr_t m_avgVelCount                      = 0X5DE8; // int32
+            static constexpr std::uintptr_t m_lastOrigin                       = 0X5DEC; // Vector
+            static constexpr std::uintptr_t m_lastRadioRecievedTimestamp       = 0X5DFC; // float32
+            static constexpr std::uintptr_t m_lastRadioSentTimestamp           = 0X5E00; // float32
+            static constexpr std::uintptr_t m_radioSubject                     = 0X5E04; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_radioPosition                    = 0X5E08; // Vector
+            static constexpr std::uintptr_t m_voiceEndTimestamp                = 0X5E14; // float32
+            static constexpr std::uintptr_t m_lastValidReactionQueueFrame      = 0X5E20; // int32
         };
 
         // Has VTable
@@ -3350,20 +3504,20 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_OnMinCountAll       = 0X04A8; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnMaxCountAll       = 0X04C0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFactorAll         = 0X04D8; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnMinPlayerDistAll  = 0X04F8; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_OnFactorAll         = 0X04D8; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnMinPlayerDistAll  = 0X04F8; // CEntityOutputTemplate<float32>
             static constexpr std::uintptr_t m_OnMinCount_1        = 0X0518; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnMaxCount_1        = 0X0530; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFactor_1          = 0X0548; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnMinPlayerDist_1   = 0X0568; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_OnFactor_1          = 0X0548; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnMinPlayerDist_1   = 0X0568; // CEntityOutputTemplate<float32>
             static constexpr std::uintptr_t m_OnMinCount_2        = 0X0588; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnMaxCount_2        = 0X05A0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFactor_2          = 0X05B8; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnMinPlayerDist_2   = 0X05D8; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_OnFactor_2          = 0X05B8; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnMinPlayerDist_2   = 0X05D8; // CEntityOutputTemplate<float32>
             static constexpr std::uintptr_t m_OnMinCount_3        = 0X05F8; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnMaxCount_3        = 0X0610; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFactor_3          = 0X0628; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnMinPlayerDist_3   = 0X0648; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_OnFactor_3          = 0X0628; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnMinPlayerDist_3   = 0X0648; // CEntityOutputTemplate<float32>
             static constexpr std::uintptr_t m_hSource             = 0X0668; // CEntityHandle
             static constexpr std::uintptr_t m_iszSourceEntityName = 0X0670; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_flDistanceMax       = 0X0678; // float32
@@ -3533,6 +3687,8 @@ namespace offsets {
             static constexpr std::uintptr_t m_nRTEnvCP                      = 0X0114; // int32
             static constexpr std::uintptr_t m_nRTEnvCPComponent             = 0X0118; // int32
             static constexpr std::uintptr_t m_szModifier                    = 0X0120; // CUtlString
+            static constexpr std::uintptr_t m_nUseSnapshotFromSurfaceGraph  = 0X0128; // int32
+            static constexpr std::uintptr_t m_snapshotFilter                = 0X012C; // PrecipitationFilter_t
         };
 
         // Has VTable
@@ -3540,19 +3696,19 @@ namespace offsets {
         // Local Type Scope
         class CFuncMoveLinear : public CBaseToggle {
         public:
-            static constexpr std::uintptr_t m_authoredPosition                          = 0X07B0; // MoveLinearAuthoredPos_t
-            static constexpr std::uintptr_t m_angMoveEntitySpace                        = 0X07B4; // QAngle
-            static constexpr std::uintptr_t m_vecMoveDirParentSpace                     = 0X07C0; // Vector
-            static constexpr std::uintptr_t m_soundStart                                = 0X07D0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_soundStop                                 = 0X07D8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_currentSound                              = 0X07E0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flBlockDamage                             = 0X07E8; // float32
-            static constexpr std::uintptr_t m_flStartPosition                           = 0X07EC; // float32
-            static constexpr std::uintptr_t m_OnFullyOpen                               = 0X07F8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFullyClosed                             = 0X0810; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bCreateMovableNavMesh                     = 0X0828; // bool
-            static constexpr std::uintptr_t m_bAllowMovableNavMeshDockingOnEntireEntity = 0X0829; // bool
-            static constexpr std::uintptr_t m_bCreateNavObstacle                        = 0X082A; // bool
+            static constexpr std::uintptr_t m_authoredPosition                          = 0X07E8; // MoveLinearAuthoredPos_t
+            static constexpr std::uintptr_t m_angMoveEntitySpace                        = 0X07EC; // QAngle
+            static constexpr std::uintptr_t m_vecMoveDirParentSpace                     = 0X07F8; // Vector
+            static constexpr std::uintptr_t m_soundStart                                = 0X0808; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_soundStop                                 = 0X0810; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_currentSound                              = 0X0818; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flBlockDamage                             = 0X0820; // float32
+            static constexpr std::uintptr_t m_flStartPosition                           = 0X0824; // float32
+            static constexpr std::uintptr_t m_OnFullyOpen                               = 0X0830; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnFullyClosed                             = 0X0848; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bCreateMovableNavMesh                     = 0X0860; // bool
+            static constexpr std::uintptr_t m_bAllowMovableNavMeshDockingOnEntireEntity = 0X0861; // bool
+            static constexpr std::uintptr_t m_bCreateNavObstacle                        = 0X0862; // bool
         };
 
         // Has Trivial Destructor
@@ -3575,14 +3731,14 @@ namespace offsets {
         // Local Type Scope
         class CItem : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_OnPlayerTouch        = 0X0A28; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnPlayerPickup       = 0X0A40; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bActivateWhenAtRest  = 0X0A58; // bool
-            static constexpr std::uintptr_t m_OnCacheInteraction   = 0X0A60; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnGlovePulled        = 0X0A78; // CEntityIOOutput
-            static constexpr std::uintptr_t m_vOriginalSpawnOrigin = 0X0A90; // VectorWS
-            static constexpr std::uintptr_t m_vOriginalSpawnAngles = 0X0A9C; // QAngle
-            static constexpr std::uintptr_t m_bPhysStartAsleep     = 0X0AA8; // bool
+            static constexpr std::uintptr_t m_OnPlayerTouch        = 0X0948; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnPlayerPickup       = 0X0960; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bActivateWhenAtRest  = 0X0978; // bool
+            static constexpr std::uintptr_t m_OnCacheInteraction   = 0X0980; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnGlovePulled        = 0X0998; // CEntityIOOutput
+            static constexpr std::uintptr_t m_vOriginalSpawnOrigin = 0X09B0; // VectorWS
+            static constexpr std::uintptr_t m_vOriginalSpawnAngles = 0X09BC; // QAngle
+            static constexpr std::uintptr_t m_bPhysStartAsleep     = 0X09C8; // bool
         };
 
         // Has VTable
@@ -3590,7 +3746,7 @@ namespace offsets {
         // Local Type Scope
         class CScriptItem : public CItem {
         public:
-            static constexpr std::uintptr_t m_MoveTypeOverride = 0X0AC0; // MoveType_t
+            static constexpr std::uintptr_t m_MoveTypeOverride = 0X09E0; // MoveType_t
         };
 
         // Has VTable
@@ -3662,27 +3818,27 @@ namespace offsets {
         // Local Type Scope
         class CRopeKeyframe : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_RopeFlags                  = 0X0738; // uint16
-            static constexpr std::uintptr_t m_iNextLinkName              = 0X0740; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_Slack                      = 0X0748; // int16
-            static constexpr std::uintptr_t m_Width                      = 0X074C; // float32
-            static constexpr std::uintptr_t m_TextureScale               = 0X0750; // float32
-            static constexpr std::uintptr_t m_nSegments                  = 0X0754; // uint8
-            static constexpr std::uintptr_t m_bConstrainBetweenEndpoints = 0X0755; // bool
-            static constexpr std::uintptr_t m_strRopeMaterialModel       = 0X0758; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iRopeMaterialModelIndex    = 0X0760; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_Subdiv                     = 0X0768; // uint8
-            static constexpr std::uintptr_t m_nChangeCount               = 0X0769; // uint8
-            static constexpr std::uintptr_t m_RopeLength                 = 0X076A; // int16
-            static constexpr std::uintptr_t m_fLockedPoints              = 0X076C; // uint8
-            static constexpr std::uintptr_t m_bCreatedFromMapFile        = 0X076D; // bool
-            static constexpr std::uintptr_t m_flScrollSpeed              = 0X0770; // float32
-            static constexpr std::uintptr_t m_bStartPointValid           = 0X0774; // bool
-            static constexpr std::uintptr_t m_bEndPointValid             = 0X0775; // bool
-            static constexpr std::uintptr_t m_hStartPoint                = 0X0778; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hEndPoint                  = 0X077C; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_iStartAttachment           = 0X0780; // AttachmentHandle_t
-            static constexpr std::uintptr_t m_iEndAttachment             = 0X0781; // AttachmentHandle_t
+            static constexpr std::uintptr_t m_RopeFlags                  = 0X0770; // uint16
+            static constexpr std::uintptr_t m_iNextLinkName              = 0X0778; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_Slack                      = 0X0780; // int16
+            static constexpr std::uintptr_t m_Width                      = 0X0784; // float32
+            static constexpr std::uintptr_t m_TextureScale               = 0X0788; // float32
+            static constexpr std::uintptr_t m_nSegments                  = 0X078C; // uint8
+            static constexpr std::uintptr_t m_bConstrainBetweenEndpoints = 0X078D; // bool
+            static constexpr std::uintptr_t m_strRopeMaterialModel       = 0X0790; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iRopeMaterialModelIndex    = 0X0798; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_Subdiv                     = 0X07A0; // uint8
+            static constexpr std::uintptr_t m_nChangeCount               = 0X07A1; // uint8
+            static constexpr std::uintptr_t m_RopeLength                 = 0X07A2; // int16
+            static constexpr std::uintptr_t m_fLockedPoints              = 0X07A4; // uint8
+            static constexpr std::uintptr_t m_bCreatedFromMapFile        = 0X07A5; // bool
+            static constexpr std::uintptr_t m_flScrollSpeed              = 0X07A8; // float32
+            static constexpr std::uintptr_t m_bStartPointValid           = 0X07AC; // bool
+            static constexpr std::uintptr_t m_bEndPointValid             = 0X07AD; // bool
+            static constexpr std::uintptr_t m_hStartPoint                = 0X07B0; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hEndPoint                  = 0X07B4; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_iStartAttachment           = 0X07B8; // AttachmentHandle_t
+            static constexpr std::uintptr_t m_iEndAttachment             = 0X07B9; // AttachmentHandle_t
         };
 
         // Has VTable
@@ -3695,18 +3851,18 @@ namespace offsets {
         // Has VTable
         // Construct Allowed
         // Local Type Scope
-        class CBaseCombatCharacter : public CBaseFlex {
+        class CBaseCombatCharacter : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_bForceServerRagdoll    = 0X0AB0; // bool
-            static constexpr std::uintptr_t m_hMyWearables           = 0X0AB8; // CNetworkUtlVectorBase<CHandle<CEconWearable>>
-            static constexpr std::uintptr_t m_impactEnergyScale      = 0X0AD0; // float32
-            static constexpr std::uintptr_t m_bApplyStressDamage     = 0X0AD4; // bool
-            static constexpr std::uintptr_t m_bDeathEventsDispatched = 0X0AD5; // bool
-            static constexpr std::uintptr_t m_pVecRelationships      = 0X0B18; // CUtlVector<RelationshipOverride_t>*
-            static constexpr std::uintptr_t m_strRelationships       = 0X0B20; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_eHull                  = 0X0B28; // Hull_t
-            static constexpr std::uintptr_t m_nNavHullIdx            = 0X0B2C; // uint32
-            static constexpr std::uintptr_t m_movementStats          = 0X0B30; // CMovementStatsProperty
+            static constexpr std::uintptr_t m_bForceServerRagdoll    = 0X0940; // bool
+            static constexpr std::uintptr_t m_hMyWearables           = 0X0948; // CNetworkUtlVectorBase<CHandle<CEconWearable>>
+            static constexpr std::uintptr_t m_impactEnergyScale      = 0X0960; // float32
+            static constexpr std::uintptr_t m_bApplyStressDamage     = 0X0964; // bool
+            static constexpr std::uintptr_t m_bDeathEventsDispatched = 0X0965; // bool
+            static constexpr std::uintptr_t m_pVecRelationships      = 0X09A8; // CUtlVector<RelationshipOverride_t>*
+            static constexpr std::uintptr_t m_strRelationships       = 0X09B0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_eHull                  = 0X09B8; // Hull_t
+            static constexpr std::uintptr_t m_nNavHullIdx            = 0X09BC; // uint32
+            static constexpr std::uintptr_t m_movementStats          = 0X09C0; // CMovementStatsProperty
         };
 
         // Has VTable
@@ -3729,11 +3885,13 @@ namespace offsets {
         // Local Type Scope
         class CLogicRelay : public CLogicalEntity {
         public:
-            static constexpr std::uintptr_t m_bDisabled         = 0X04A8; // bool
-            static constexpr std::uintptr_t m_bWaitForRefire    = 0X04A9; // bool
-            static constexpr std::uintptr_t m_bTriggerOnce      = 0X04AA; // bool
-            static constexpr std::uintptr_t m_bFastRetrigger    = 0X04AB; // bool
-            static constexpr std::uintptr_t m_bPassthoughCaller = 0X04AC; // bool
+            static constexpr std::uintptr_t m_OnSpawn           = 0X04A8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnTrigger         = 0X04C0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bDisabled         = 0X04D8; // bool
+            static constexpr std::uintptr_t m_bWaitForRefire    = 0X04D9; // bool
+            static constexpr std::uintptr_t m_bTriggerOnce      = 0X04DA; // bool
+            static constexpr std::uintptr_t m_bFastRetrigger    = 0X04DB; // bool
+            static constexpr std::uintptr_t m_bPassthoughCaller = 0X04DC; // bool
         };
 
         // Has Trivial Destructor
@@ -3759,14 +3917,29 @@ namespace offsets {
         // Local Type Scope
         class CTestPulseIO : public CLogicalEntity {
         public:
-            static constexpr std::uintptr_t m_OnVariantVoid     = 0X04A8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnVariantBool     = 0X04C0; // CEntityOutputTemplate<bool,bool>
-            static constexpr std::uintptr_t m_OnVariantInt      = 0X04E0; // CEntityOutputTemplate<int32,int32>
-            static constexpr std::uintptr_t m_OnVariantFloat    = 0X0500; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnVariantString   = 0X0520; // CEntityOutputTemplate<CUtlSymbolLarge,CUtlSymbolLarge>
-            static constexpr std::uintptr_t m_OnVariantColor    = 0X0540; // CEntityOutputTemplate<Color,Color>
-            static constexpr std::uintptr_t m_OnVariantVector   = 0X0560; // CEntityOutputTemplate<Vector,Vector>
-            static constexpr std::uintptr_t m_bAllowEmptyInputs = 0X0588; // bool
+            static constexpr std::uintptr_t m_OnVariantVoid                    = 0X04A8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnVariantBool                    = 0X04C0; // CEntityOutputTemplate<bool>
+            static constexpr std::uintptr_t m_OnVariantInt                     = 0X04E0; // CEntityOutputTemplate<int32>
+            static constexpr std::uintptr_t m_OnVariantFloat                   = 0X0500; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnVariantString                  = 0X0520; // CEntityOutputTemplate<CUtlSymbolLarge>
+            static constexpr std::uintptr_t m_OnVariantColor                   = 0X0540; // CEntityOutputTemplate<Color>
+            static constexpr std::uintptr_t m_OnVariantVector                  = 0X0560; // CEntityOutputTemplate<Vector>
+            static constexpr std::uintptr_t m_bAllowEmptyInputs                = 0X0588; // bool
+            static constexpr std::uintptr_t m_TestComponent                    = 0X0590; // CTestPulseIOComponent_Derived
+            static constexpr std::uintptr_t m_OnInternalTestVoid               = 0X05C0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnInternalTestBool               = 0X05D8; // CEntityOutputTemplate<bool>
+            static constexpr std::uintptr_t m_OnInternalTestInt                = 0X05F8; // CEntityOutputTemplate<int32>
+            static constexpr std::uintptr_t m_OnInternalTestFloat              = 0X0618; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnInternalTestString             = 0X0638; // CEntityOutputTemplate<CUtlSymbolLarge>
+            static constexpr std::uintptr_t m_OnInternalTestColor              = 0X0658; // CEntityOutputTemplate<Color>
+            static constexpr std::uintptr_t m_OnInternalTestVector             = 0X0678; // CEntityOutputTemplate<Vector>
+            static constexpr std::uintptr_t m_OnInternalTestEntityName         = 0X06A0; // CEntityOutputTemplate<CEntityNameString>
+            static constexpr std::uintptr_t m_OnInternalTestEntityHandle       = 0X06C0; // CEntityOutputTemplate<CHandle<CBaseEntity>>
+            static constexpr std::uintptr_t m_OnInternalTestSchemaEnum         = 0X06E0; // CEntityOutputTemplate<TestInputOutputCombinationsEnum_t>
+            static constexpr std::uintptr_t m_OnInternalTestFloatString        = 0X0700; // CEntityOutputTemplate<CTestPulseIO::FloatStringArgs_t>
+            static constexpr std::uintptr_t m_OnInternalTestEntityNameString   = 0X0728; // CEntityOutputTemplate<CTestPulseIO::EntityNameStringArgs_t>
+            static constexpr std::uintptr_t m_OnInternalTestEntityHandleInt    = 0X0750; // CEntityOutputTemplate<CTestPulseIO::EntityHandleIntArgs_t>
+            static constexpr std::uintptr_t m_OnInternalTestStringStringString = 0X0770; // CEntityOutputTemplate<CTestPulseIO::ThreeStringArgs_t>
         };
 
         // Has VTable
@@ -3823,7 +3996,7 @@ namespace offsets {
         // Local Type Scope
         class CKnife : public CCSWeaponBase {
         public:
-            static constexpr std::uintptr_t m_bFirstAttack = 0X1130; // bool
+            static constexpr std::uintptr_t m_bFirstAttack = 0X1030; // bool
         };
 
         // Has VTable
@@ -3834,7 +4007,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_PlayerHasAmmo         = 0X04A8; // CEntityIOOutput
             static constexpr std::uintptr_t m_PlayerHasNoAmmo       = 0X04C0; // CEntityIOOutput
             static constexpr std::uintptr_t m_PlayerDied            = 0X04D8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_RequestedPlayerHealth = 0X04F0; // CEntityOutputTemplate<int32,int32>
+            static constexpr std::uintptr_t m_RequestedPlayerHealth = 0X04F0; // CEntityOutputTemplate<int32>
             static constexpr std::uintptr_t m_hPlayer               = 0X0510; // CHandle<CBaseEntity>
         };
 
@@ -3856,20 +4029,20 @@ namespace offsets {
         // Local Type Scope
         class CMarkupVolume : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_bDisabled = 0X0730; // bool
+            static constexpr std::uintptr_t m_bDisabled = 0X0768; // bool
         };
 
         // Has VTable
         // Local Type Scope
         class CMarkupVolumeTagged : public CMarkupVolume {
         public:
-            static constexpr std::uintptr_t m_GroupNames        = 0X0738; // CUtlVector<CGlobalSymbol>
-            static constexpr std::uintptr_t m_Tags              = 0X0750; // CUtlVector<CGlobalSymbol>
-            static constexpr std::uintptr_t m_bIsGroup          = 0X0768; // bool
-            static constexpr std::uintptr_t m_bGroupByPrefab    = 0X0769; // bool
-            static constexpr std::uintptr_t m_bGroupByVolume    = 0X076A; // bool
-            static constexpr std::uintptr_t m_bGroupOtherGroups = 0X076B; // bool
-            static constexpr std::uintptr_t m_bIsInGroup        = 0X076C; // bool
+            static constexpr std::uintptr_t m_GroupNames        = 0X0770; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t m_Tags              = 0X0788; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t m_bIsGroup          = 0X07A0; // bool
+            static constexpr std::uintptr_t m_bGroupByPrefab    = 0X07A1; // bool
+            static constexpr std::uintptr_t m_bGroupByVolume    = 0X07A2; // bool
+            static constexpr std::uintptr_t m_bGroupOtherGroups = 0X07A3; // bool
+            static constexpr std::uintptr_t m_bIsInGroup        = 0X07A4; // bool
         };
 
         // Has VTable
@@ -3935,9 +4108,17 @@ namespace offsets {
         // Local Type Scope
         class CTriggerSoundscape : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_hSoundscape    = 0X0890; // CHandle<CEnvSoundscapeTriggerable>
-            static constexpr std::uintptr_t m_SoundscapeName = 0X0898; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_spectators     = 0X08A0; // CUtlVector<CHandle<CBasePlayerPawn>>
+            static constexpr std::uintptr_t m_hSoundscape    = 0X08C8; // CHandle<CEnvSoundscapeTriggerable>
+            static constexpr std::uintptr_t m_SoundscapeName = 0X08D0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_spectators     = 0X08D8; // CUtlVector<CHandle<CBasePlayerPawn>>
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        // Local Type Scope
+        struct CPulseCell_Outflow_PlayVOLine__CursorState_t {
+        public:
+            static constexpr std::uintptr_t m_sceneInstance = 0X0000; // CHandle<CBaseEntity>
         };
 
         // Has Trivial Destructor
@@ -3951,7 +4132,7 @@ namespace offsets {
         // Local Type Scope
         class CHostageExpresserShim : public CBaseCombatCharacter {
         public:
-            static constexpr std::uintptr_t m_pExpresser = 0X0B70; // CAI_Expresser*
+            static constexpr std::uintptr_t m_pExpresser = 0X0A00; // CAI_Expresser*
         };
 
         // Has VTable
@@ -3983,47 +4164,48 @@ namespace offsets {
         // Local Type Scope
         class CPhysicsProp : public CBreakableProp {
         public:
-            static constexpr std::uintptr_t m_MotionEnabled                       = 0X0BB0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnAwakened                          = 0X0BC8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnAwake                             = 0X0BE0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnAsleep                            = 0X0BF8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnPlayerUse                         = 0X0C10; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnOutOfWorld                        = 0X0C28; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnPlayerPickup                      = 0X0C40; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bForceNavIgnore                     = 0X0C58; // bool
-            static constexpr std::uintptr_t m_bNoNavmeshBlocker                   = 0X0C59; // bool
-            static constexpr std::uintptr_t m_bForceNpcExclude                    = 0X0C5A; // bool
-            static constexpr std::uintptr_t m_massScale                           = 0X0C5C; // float32
-            static constexpr std::uintptr_t m_buoyancyScale                       = 0X0C60; // float32
-            static constexpr std::uintptr_t m_damageType                          = 0X0C64; // int32
-            static constexpr std::uintptr_t m_damageToEnableMotion                = 0X0C68; // int32
-            static constexpr std::uintptr_t m_flForceToEnableMotion               = 0X0C6C; // float32
-            static constexpr std::uintptr_t m_bThrownByPlayer                     = 0X0C70; // bool
-            static constexpr std::uintptr_t m_bDroppedByPlayer                    = 0X0C71; // bool
-            static constexpr std::uintptr_t m_bTouchedByPlayer                    = 0X0C72; // bool
-            static constexpr std::uintptr_t m_bFirstCollisionAfterLaunch          = 0X0C73; // bool
-            static constexpr std::uintptr_t m_bHasBeenAwakened                    = 0X0C74; // bool
-            static constexpr std::uintptr_t m_bIsOverrideProp                     = 0X0C75; // bool
-            static constexpr std::uintptr_t m_flLastBurn                          = 0X0C78; // GameTime_t
-            static constexpr std::uintptr_t m_nDynamicContinuousContactBehavior   = 0X0C7C; // DynamicContinuousContactBehavior_t
-            static constexpr std::uintptr_t m_fNextCheckDisableMotionContactsTime = 0X0C80; // GameTime_t
-            static constexpr std::uintptr_t m_iInitialGlowState                   = 0X0C84; // int32
-            static constexpr std::uintptr_t m_nGlowRange                          = 0X0C88; // int32
-            static constexpr std::uintptr_t m_nGlowRangeMin                       = 0X0C8C; // int32
-            static constexpr std::uintptr_t m_glowColor                           = 0X0C90; // Color
-            static constexpr std::uintptr_t m_bShouldAutoConvertBackFromDebris    = 0X0C94; // bool
-            static constexpr std::uintptr_t m_bMuteImpactEffects                  = 0X0C95; // bool
-            static constexpr std::uintptr_t m_bUpdateNavWhenMoving                = 0X0C9C; // bool
-            static constexpr std::uintptr_t m_bForceNavObstacleCut                = 0X0C9D; // bool
-            static constexpr std::uintptr_t m_bAllowObstacleConvexHullMerging     = 0X0C9E; // bool
-            static constexpr std::uintptr_t m_bAcceptDamageFromHeldObjects        = 0X0C9F; // bool
-            static constexpr std::uintptr_t m_bEnableUseOutput                    = 0X0CA0; // bool
-            static constexpr std::uintptr_t m_CrateType                           = 0X0CA4; // CPhysicsProp::CrateType_t
-            static constexpr std::uintptr_t m_strItemClass                        = 0X0CA8; // CUtlSymbolLarge[4]
-            static constexpr std::uintptr_t m_nItemCount                          = 0X0CC8; // int32[4]
-            static constexpr std::uintptr_t m_bRemovableForAmmoBalancing          = 0X0CD8; // bool
-            static constexpr std::uintptr_t m_bAwake                              = 0X0CD9; // bool
-            static constexpr std::uintptr_t m_bAttachedToReferenceFrame           = 0X0CDA; // bool
+            static constexpr std::uintptr_t m_MotionEnabled                       = 0X0AE0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnAwakened                          = 0X0AF8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnAwake                             = 0X0B10; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnAsleep                            = 0X0B28; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnPlayerUse                         = 0X0B40; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnOutOfWorld                        = 0X0B58; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnPlayerPickup                      = 0X0B70; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bForceNavIgnore                     = 0X0B88; // bool
+            static constexpr std::uintptr_t m_bNoNavmeshBlocker                   = 0X0B89; // bool
+            static constexpr std::uintptr_t m_bForceNpcExclude                    = 0X0B8A; // bool
+            static constexpr std::uintptr_t m_massScale                           = 0X0B8C; // float32
+            static constexpr std::uintptr_t m_buoyancyScale                       = 0X0B90; // float32
+            static constexpr std::uintptr_t m_damageType                          = 0X0B94; // int32
+            static constexpr std::uintptr_t m_damageToEnableMotion                = 0X0B98; // int32
+            static constexpr std::uintptr_t m_flForceToEnableMotion               = 0X0B9C; // float32
+            static constexpr std::uintptr_t m_bThrownByPlayer                     = 0X0BA0; // bool
+            static constexpr std::uintptr_t m_bDroppedByPlayer                    = 0X0BA1; // bool
+            static constexpr std::uintptr_t m_bTouchedByPlayer                    = 0X0BA2; // bool
+            static constexpr std::uintptr_t m_bFirstCollisionAfterLaunch          = 0X0BA3; // bool
+            static constexpr std::uintptr_t m_bHasBeenAwakened                    = 0X0BA4; // bool
+            static constexpr std::uintptr_t m_bIsOverrideProp                     = 0X0BA5; // bool
+            static constexpr std::uintptr_t m_flLastBurn                          = 0X0BA8; // GameTime_t
+            static constexpr std::uintptr_t m_nDynamicContinuousContactBehavior   = 0X0BAC; // DynamicContinuousContactBehavior_t
+            static constexpr std::uintptr_t m_fNextCheckDisableMotionContactsTime = 0X0BB0; // GameTime_t
+            static constexpr std::uintptr_t m_iInitialGlowState                   = 0X0BB4; // int32
+            static constexpr std::uintptr_t m_nGlowRange                          = 0X0BB8; // int32
+            static constexpr std::uintptr_t m_nGlowRangeMin                       = 0X0BBC; // int32
+            static constexpr std::uintptr_t m_glowColor                           = 0X0BC0; // Color
+            static constexpr std::uintptr_t m_bShouldAutoConvertBackFromDebris    = 0X0BC4; // bool
+            static constexpr std::uintptr_t m_bMuteImpactEffects                  = 0X0BC5; // bool
+            static constexpr std::uintptr_t m_nNavObstacleType                    = 0X0BC8; // INavObstacle::NavObstacleType_t
+            static constexpr std::uintptr_t m_bUpdateNavWhenMoving                = 0X0BCC; // bool
+            static constexpr std::uintptr_t m_bForceNavObstacleCut                = 0X0BCD; // bool
+            static constexpr std::uintptr_t m_bAllowObstacleConvexHullMerging     = 0X0BCE; // bool
+            static constexpr std::uintptr_t m_bAcceptDamageFromHeldObjects        = 0X0BCF; // bool
+            static constexpr std::uintptr_t m_bEnableUseOutput                    = 0X0BD0; // bool
+            static constexpr std::uintptr_t m_CrateType                           = 0X0BD4; // CPhysicsProp::CrateType_t
+            static constexpr std::uintptr_t m_strItemClass                        = 0X0BD8; // CUtlSymbolLarge[4]
+            static constexpr std::uintptr_t m_nItemCount                          = 0X0BF8; // int32[4]
+            static constexpr std::uintptr_t m_bRemovableForAmmoBalancing          = 0X0C08; // bool
+            static constexpr std::uintptr_t m_bAwake                              = 0X0C09; // bool
+            static constexpr std::uintptr_t m_bAttachedToReferenceFrame           = 0X0C0A; // bool
         };
 
         // Has VTable
@@ -4031,9 +4213,9 @@ namespace offsets {
         // Local Type Scope
         class CShatterGlassShardPhysics : public CPhysicsProp {
         public:
-            static constexpr std::uintptr_t m_bDebris      = 0X0CE0; // bool
-            static constexpr std::uintptr_t m_hParentShard = 0X0CE4; // uint32
-            static constexpr std::uintptr_t m_ShardDesc    = 0X0CE8; // shard_model_desc_t
+            static constexpr std::uintptr_t m_bDebris      = 0X0C10; // bool
+            static constexpr std::uintptr_t m_hParentShard = 0X0C14; // uint32
+            static constexpr std::uintptr_t m_ShardDesc    = 0X0C18; // shard_model_desc_t
         };
 
         // Has VTable
@@ -4102,13 +4284,16 @@ namespace offsets {
             static constexpr std::uintptr_t m_pButtonPressedCmdNumber     = 0X0088; // uint32[64]
             static constexpr std::uintptr_t m_nLastCommandNumberProcessed = 0X0188; // uint32
             static constexpr std::uintptr_t m_nToggleButtonDownMask       = 0X0190; // uint64
-            static constexpr std::uintptr_t m_flMaxspeed                  = 0X01A0; // float32
-            static constexpr std::uintptr_t m_arrForceSubtickMoveWhen     = 0X01A4; // float32[4]
-            static constexpr std::uintptr_t m_flForwardMove               = 0X01B4; // float32
-            static constexpr std::uintptr_t m_flLeftMove                  = 0X01B8; // float32
-            static constexpr std::uintptr_t m_flUpMove                    = 0X01BC; // float32
-            static constexpr std::uintptr_t m_vecLastMovementImpulses     = 0X01C0; // Vector
-            static constexpr std::uintptr_t m_vecOldViewAngles            = 0X0228; // QAngle
+            static constexpr std::uintptr_t m_flCmdForwardMove            = 0X01A0; // float32
+            static constexpr std::uintptr_t m_flCmdLeftMove               = 0X01A4; // float32
+            static constexpr std::uintptr_t m_flCmdUpMove                 = 0X01A8; // float32
+            static constexpr std::uintptr_t m_flMaxspeed                  = 0X01AC; // float32
+            static constexpr std::uintptr_t m_arrForceSubtickMoveWhen     = 0X01B0; // float32[4]
+            static constexpr std::uintptr_t m_flForwardMove               = 0X01C0; // float32
+            static constexpr std::uintptr_t m_flLeftMove                  = 0X01C4; // float32
+            static constexpr std::uintptr_t m_flUpMove                    = 0X01C8; // float32
+            static constexpr std::uintptr_t m_vecLastMovementImpulses     = 0X01CC; // Vector
+            static constexpr std::uintptr_t m_vecOldViewAngles            = 0X0240; // QAngle
         };
 
         // Has VTable
@@ -4116,32 +4301,37 @@ namespace offsets {
         // Local Type Scope
         class CRagdollProp : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_ragdoll                       = 0X0A30; // ragdoll_t
-            static constexpr std::uintptr_t m_bStartDisabled                = 0X0A80; // bool
-            static constexpr std::uintptr_t m_ragEnabled                    = 0X0A88; // CNetworkUtlVectorBase<bool>
-            static constexpr std::uintptr_t m_ragPos                        = 0X0AA0; // CNetworkUtlVectorBase<Vector>
-            static constexpr std::uintptr_t m_ragAngles                     = 0X0AB8; // CNetworkUtlVectorBase<QAngle>
-            static constexpr std::uintptr_t m_lastUpdateTickCount           = 0X0AD0; // uint32
-            static constexpr std::uintptr_t m_allAsleep                     = 0X0AD4; // bool
-            static constexpr std::uintptr_t m_bFirstCollisionAfterLaunch    = 0X0AD5; // bool
-            static constexpr std::uintptr_t m_hDamageEntity                 = 0X0AD8; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hKiller                       = 0X0ADC; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hPhysicsAttacker              = 0X0AE0; // CHandle<CBasePlayerPawn>
-            static constexpr std::uintptr_t m_flLastPhysicsInfluenceTime    = 0X0AE4; // GameTime_t
-            static constexpr std::uintptr_t m_flFadeOutStartTime            = 0X0AE8; // GameTime_t
-            static constexpr std::uintptr_t m_flFadeTime                    = 0X0AEC; // float32
-            static constexpr std::uintptr_t m_vecLastOrigin                 = 0X0AF0; // VectorWS
-            static constexpr std::uintptr_t m_flAwakeTime                   = 0X0AFC; // GameTime_t
-            static constexpr std::uintptr_t m_flLastOriginChangeTime        = 0X0B00; // GameTime_t
-            static constexpr std::uintptr_t m_strOriginClassName            = 0X0B08; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_strSourceClassName            = 0X0B10; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bHasBeenPhysgunned            = 0X0B18; // bool
-            static constexpr std::uintptr_t m_bAllowStretch                 = 0X0B19; // bool
-            static constexpr std::uintptr_t m_flBlendWeight                 = 0X0B1C; // float32
-            static constexpr std::uintptr_t m_flDefaultFadeScale            = 0X0B20; // float32
-            static constexpr std::uintptr_t m_ragdollMins                   = 0X0B28; // CUtlVector<Vector>
-            static constexpr std::uintptr_t m_ragdollMaxs                   = 0X0B40; // CUtlVector<Vector>
-            static constexpr std::uintptr_t m_bShouldDeleteActivationRecord = 0X0B58; // bool
+            static constexpr std::uintptr_t m_ragdoll                       = 0X0950; // ragdoll_t
+            static constexpr std::uintptr_t m_bStartDisabled                = 0X09A0; // bool
+            static constexpr std::uintptr_t m_ragEnabled                    = 0X09A8; // CNetworkUtlVectorBase<bool>
+            static constexpr std::uintptr_t m_ragPos                        = 0X09C0; // CNetworkUtlVectorBase<Vector>
+            static constexpr std::uintptr_t m_ragAngles                     = 0X09D8; // CNetworkUtlVectorBase<QAngle>
+            static constexpr std::uintptr_t m_lastUpdateTickCount           = 0X09F0; // uint32
+            static constexpr std::uintptr_t m_allAsleep                     = 0X09F4; // bool
+            static constexpr std::uintptr_t m_bFirstCollisionAfterLaunch    = 0X09F5; // bool
+            static constexpr std::uintptr_t m_nNavObstacleType              = 0X09F8; // INavObstacle::NavObstacleType_t
+            static constexpr std::uintptr_t m_bUpdateNavWhenMoving          = 0X09FC; // bool
+            static constexpr std::uintptr_t m_bForceNavObstacleCut          = 0X09FD; // bool
+            static constexpr std::uintptr_t m_bAttachedToReferenceFrame     = 0X09FE; // bool
+            static constexpr std::uintptr_t m_hDamageEntity                 = 0X0A00; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hKiller                       = 0X0A04; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hPhysicsAttacker              = 0X0A08; // CHandle<CBasePlayerPawn>
+            static constexpr std::uintptr_t m_flLastPhysicsInfluenceTime    = 0X0A0C; // GameTime_t
+            static constexpr std::uintptr_t m_flFadeOutStartTime            = 0X0A10; // GameTime_t
+            static constexpr std::uintptr_t m_flFadeTime                    = 0X0A14; // float32
+            static constexpr std::uintptr_t m_vecLastOrigin                 = 0X0A18; // VectorWS
+            static constexpr std::uintptr_t m_flAwakeTime                   = 0X0A24; // GameTime_t
+            static constexpr std::uintptr_t m_flLastOriginChangeTime        = 0X0A28; // GameTime_t
+            static constexpr std::uintptr_t m_strOriginClassName            = 0X0A30; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_strSourceClassName            = 0X0A38; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bHasBeenPhysgunned            = 0X0A40; // bool
+            static constexpr std::uintptr_t m_bAllowStretch                 = 0X0A41; // bool
+            static constexpr std::uintptr_t m_flBlendWeight                 = 0X0A44; // float32
+            static constexpr std::uintptr_t m_flDefaultFadeScale            = 0X0A48; // float32
+            static constexpr std::uintptr_t m_ragdollMins                   = 0X0A50; // CUtlVector<Vector>
+            static constexpr std::uintptr_t m_ragdollMaxs                   = 0X0A68; // CUtlVector<Vector>
+            static constexpr std::uintptr_t m_bShouldDeleteActivationRecord = 0X0A80; // bool
+            static constexpr std::uintptr_t m_vecNavObstacles               = 0X0A98; // CUtlVector<INavObstacle*>
         };
 
         // Has VTable
@@ -4156,7 +4346,7 @@ namespace offsets {
         // Local Type Scope
         class CLightEntity : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_CLightComponent = 0X0730; // CLightComponent*
+            static constexpr std::uintptr_t m_CLightComponent = 0X0768; // CLightComponent*
         };
 
         // Has VTable
@@ -4199,42 +4389,50 @@ namespace offsets {
         class CBaseAnimGraphController : public CSkeletonAnimationController {
         public:
             static constexpr std::uintptr_t m_nAnimationAlgorithm                  = 0X0018; // AnimationAlgorithm_t
-            static constexpr std::uintptr_t m_animGraphNetworkedVars               = 0X0020; // CAnimGraphNetworkedVariables
-            static constexpr std::uintptr_t m_pAnimGraphInstance                   = 0X0228; // CSmartPtr<IAnimationGraphInstance>
-            static constexpr std::uintptr_t m_nNextExternalGraphHandle             = 0X0288; // ExternalAnimGraphHandle_t
-            static constexpr std::uintptr_t m_vecSecondarySkeletonNames            = 0X0290; // CUtlVector<CGlobalSymbol>
-            static constexpr std::uintptr_t m_vecSecondarySkeletons                = 0X02A8; // CNetworkUtlVectorBase<CHandle<CBaseAnimGraph>>
-            static constexpr std::uintptr_t m_nSecondarySkeletonMasterCount        = 0X02C0; // int32
-            static constexpr std::uintptr_t m_flSoundSyncTime                      = 0X02C4; // float32
-            static constexpr std::uintptr_t m_nActiveIKChainMask                   = 0X02C8; // uint32
-            static constexpr std::uintptr_t m_hSequence                            = 0X02CC; // HSequence
-            static constexpr std::uintptr_t m_flSeqStartTime                       = 0X02D0; // GameTime_t
-            static constexpr std::uintptr_t m_flSeqFixedCycle                      = 0X02D4; // float32
-            static constexpr std::uintptr_t m_nAnimLoopMode                        = 0X02D8; // AnimLoopMode_t
-            static constexpr std::uintptr_t m_flPlaybackRate                       = 0X02DC; // CNetworkedQuantizedFloat
-            static constexpr std::uintptr_t m_nNotifyState                         = 0X02E8; // SequenceFinishNotifyState_t
-            static constexpr std::uintptr_t m_bNetworkedAnimationInputsChanged     = 0X02E9; // bool
-            static constexpr std::uintptr_t m_bNetworkedSequenceChanged            = 0X02EA; // bool
-            static constexpr std::uintptr_t m_bLastUpdateSkipped                   = 0X02EB; // bool
-            static constexpr std::uintptr_t m_bSequenceFinished                    = 0X02EC; // bool
-            static constexpr std::uintptr_t m_nPrevAnimUpdateTick                  = 0X02F0; // GameTick_t
-            static constexpr std::uintptr_t m_hGraphDefinitionAG2                  = 0X0590; // CStrongHandle<InfoForResourceTypeCNmGraphDefinition>
-            static constexpr std::uintptr_t m_serializedPoseRecipeAG2              = 0X0598; // CNetworkUtlVectorBase<uint8>
-            static constexpr std::uintptr_t m_nSerializePoseRecipeSizeAG2          = 0X05B0; // int32
-            static constexpr std::uintptr_t m_nSerializePoseRecipeVersionAG2       = 0X05B4; // int32
-            static constexpr std::uintptr_t m_nServerGraphInstanceIteration        = 0X05B8; // int32
-            static constexpr std::uintptr_t m_nServerSerializationContextIteration = 0X05BC; // int32
-            static constexpr std::uintptr_t m_primaryGraphId                       = 0X05C0; // ResourceId_t
-            static constexpr std::uintptr_t m_vecExternalGraphIds                  = 0X05C8; // CNetworkUtlVectorBase<ResourceId_t>
-            static constexpr std::uintptr_t m_vecExternalClipIds                   = 0X05E0; // CNetworkUtlVectorBase<ResourceId_t>
-            static constexpr std::uintptr_t m_sAnimGraph2Identifier                = 0X05F8; // CGlobalSymbol
-            static constexpr std::uintptr_t m_vecExternalGraphs                    = 0X0820; // CUtlVector<ExternalAnimGraph_t>
+            static constexpr std::uintptr_t m_nNextExternalGraphHandle             = 0X001C; // ExternalAnimGraphHandle_t
+            static constexpr std::uintptr_t m_vecSecondarySkeletonSlotIDs          = 0X0020; // CNetworkUtlVectorBase<CGlobalSymbol>
+            static constexpr std::uintptr_t m_vecSecondarySkeletons                = 0X0038; // CNetworkUtlVectorBase<CHandle<CBaseAnimGraph>>
+            static constexpr std::uintptr_t m_nSecondarySkeletonMasterCount        = 0X0050; // int32
+            static constexpr std::uintptr_t m_flSoundSyncTime                      = 0X0054; // float32
+            static constexpr std::uintptr_t m_nActiveIKChainMask                   = 0X0058; // uint32
+            static constexpr std::uintptr_t m_hSequence                            = 0X005C; // HSequence
+            static constexpr std::uintptr_t m_flSeqStartTime                       = 0X0060; // GameTime_t
+            static constexpr std::uintptr_t m_flSeqFixedCycle                      = 0X0064; // float32
+            static constexpr std::uintptr_t m_nAnimLoopMode                        = 0X0068; // AnimLoopMode_t
+            static constexpr std::uintptr_t m_flPlaybackRate                       = 0X006C; // CNetworkedQuantizedFloat
+            static constexpr std::uintptr_t m_nNotifyState                         = 0X0078; // SequenceFinishNotifyState_t
+            static constexpr std::uintptr_t m_bNetworkedAnimationInputsChanged     = 0X0079; // bool
+            static constexpr std::uintptr_t m_bNetworkedSequenceChanged            = 0X007A; // bool
+            static constexpr std::uintptr_t m_bLastUpdateSkipped                   = 0X007B; // bool
+            static constexpr std::uintptr_t m_bSequenceFinished                    = 0X007C; // bool
+            static constexpr std::uintptr_t m_nPrevAnimUpdateTick                  = 0X0080; // GameTick_t
+            static constexpr std::uintptr_t m_hGraphDefinitionAG2                  = 0X0320; // CStrongHandle<InfoForResourceTypeCNmGraphDefinition>
+            static constexpr std::uintptr_t m_SerializePoseRecipeAG2Slots          = 0X0328; // CUtlVectorEmbeddedNetworkVar<AnimGraph2SerializedPoseRecipeSlot_t>
+            static constexpr std::uintptr_t m_SerializePoseRecipeAG2Dynamic        = 0X0390; // CNetworkUtlVectorBase<uint8>
+            static constexpr std::uintptr_t m_nSerializePoseRecipeAG2ActiveSlot    = 0X03A8; // uint32
+            static constexpr std::uintptr_t m_nSerializePoseRecipeVersionAG2       = 0X03AC; // int32
+            static constexpr std::uintptr_t m_nServerGraphInstanceIteration        = 0X03C0; // int32
+            static constexpr std::uintptr_t m_nServerSerializationContextIteration = 0X03C4; // int32
+            static constexpr std::uintptr_t m_primaryGraphId                       = 0X03C8; // ResourceId_t
+            static constexpr std::uintptr_t m_vecExternalGraphIds                  = 0X03D0; // CNetworkUtlVectorBase<ResourceId_t>
+            static constexpr std::uintptr_t m_vecExternalClipIds                   = 0X03E8; // CNetworkUtlVectorBase<ResourceId_t>
+            static constexpr std::uintptr_t m_sAnimGraph2Identifier                = 0X0400; // CGlobalSymbol
+            static constexpr std::uintptr_t m_pGraphInstanceAG2                    = 0X0408; // CNmGraphInstance*
+            static constexpr std::uintptr_t m_vecExternalGraphs                    = 0X0620; // CUtlVector<ExternalAnimGraph_t>
+        };
+
+        // Has VTable
+        // Local Type Scope
+        struct AnimGraph2SerializedPoseRecipeSlot_t {
+        public:
+            static constexpr std::uintptr_t m_topology = 0X0030; // CUtlBinaryBlock
         };
 
         // Has VTable
         // Local Type Scope
         class CBuoyancyHelper {
         public:
+            static constexpr std::uintptr_t m_pController                                 = 0X0008; // IPhysicsMotionController*
             static constexpr std::uintptr_t m_nFluidType                                  = 0X0018; // CUtlStringToken
             static constexpr std::uintptr_t m_flFluidDensity                              = 0X001C; // float32
             static constexpr std::uintptr_t m_flNeutrallyBuoyantGravity                   = 0X0020; // float32
@@ -4252,7 +4450,7 @@ namespace offsets {
         // Local Type Scope
         class COrnamentProp : public CDynamicProp {
         public:
-            static constexpr std::uintptr_t m_initialOwner = 0X0C50; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_initialOwner = 0X0B80; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -4297,83 +4495,83 @@ namespace offsets {
         // Local Type Scope
         class CBarnLight : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_bEnabled                    = 0X0730; // bool
-            static constexpr std::uintptr_t m_nColorMode                  = 0X0734; // int32
-            static constexpr std::uintptr_t m_Color                       = 0X0738; // Color
-            static constexpr std::uintptr_t m_flColorTemperature          = 0X073C; // float32
-            static constexpr std::uintptr_t m_flBrightness                = 0X0740; // float32
-            static constexpr std::uintptr_t m_flBrightnessScale           = 0X0744; // float32
-            static constexpr std::uintptr_t m_nDirectLight                = 0X0748; // int32
-            static constexpr std::uintptr_t m_nBakedShadowIndex           = 0X074C; // int32
-            static constexpr std::uintptr_t m_nLightPathUniqueId          = 0X0750; // int32
-            static constexpr std::uintptr_t m_nLightMapUniqueId           = 0X0754; // int32
-            static constexpr std::uintptr_t m_nLuminaireShape             = 0X0758; // int32
-            static constexpr std::uintptr_t m_flLuminaireSize             = 0X075C; // float32
-            static constexpr std::uintptr_t m_flLuminaireAnisotropy       = 0X0760; // float32
-            static constexpr std::uintptr_t m_LightStyleString            = 0X0768; // CUtlString
-            static constexpr std::uintptr_t m_flLightStyleStartTime       = 0X0770; // GameTime_t
-            static constexpr std::uintptr_t m_QueuedLightStyleStrings     = 0X0778; // CNetworkUtlVectorBase<CUtlString>
-            static constexpr std::uintptr_t m_LightStyleEvents            = 0X0790; // CNetworkUtlVectorBase<CUtlString>
-            static constexpr std::uintptr_t m_LightStyleTargets           = 0X07A8; // CNetworkUtlVectorBase<CHandle<CBaseModelEntity>>
-            static constexpr std::uintptr_t m_StyleEvent                  = 0X07C0; // CEntityIOOutput[4]
-            static constexpr std::uintptr_t m_hLightCookie                = 0X0840; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_flShape                     = 0X0848; // float32
-            static constexpr std::uintptr_t m_flSoftX                     = 0X084C; // float32
-            static constexpr std::uintptr_t m_flSoftY                     = 0X0850; // float32
-            static constexpr std::uintptr_t m_flSkirt                     = 0X0854; // float32
-            static constexpr std::uintptr_t m_flSkirtNear                 = 0X0858; // float32
-            static constexpr std::uintptr_t m_vSizeParams                 = 0X085C; // Vector
-            static constexpr std::uintptr_t m_flRange                     = 0X0868; // float32
-            static constexpr std::uintptr_t m_vShear                      = 0X086C; // Vector
-            static constexpr std::uintptr_t m_nBakeSpecularToCubemaps     = 0X0878; // int32
-            static constexpr std::uintptr_t m_vBakeSpecularToCubemapsSize = 0X087C; // Vector
-            static constexpr std::uintptr_t m_nCastShadows                = 0X0888; // int32
-            static constexpr std::uintptr_t m_nShadowMapSize              = 0X088C; // int32
-            static constexpr std::uintptr_t m_nShadowPriority             = 0X0890; // int32
-            static constexpr std::uintptr_t m_bContactShadow              = 0X0894; // bool
-            static constexpr std::uintptr_t m_bForceShadowsEnabled        = 0X0895; // bool
-            static constexpr std::uintptr_t m_nBounceLight                = 0X0898; // int32
-            static constexpr std::uintptr_t m_flBounceScale               = 0X089C; // float32
-            static constexpr std::uintptr_t m_bDynamicBounce              = 0X08A0; // bool
-            static constexpr std::uintptr_t m_flMinRoughness              = 0X08A4; // float32
-            static constexpr std::uintptr_t m_vAlternateColor             = 0X08A8; // Vector
-            static constexpr std::uintptr_t m_fAlternateColorBrightness   = 0X08B4; // float32
-            static constexpr std::uintptr_t m_nFog                        = 0X08B8; // int32
-            static constexpr std::uintptr_t m_flFogStrength               = 0X08BC; // float32
-            static constexpr std::uintptr_t m_nFogShadows                 = 0X08C0; // int32
-            static constexpr std::uintptr_t m_flFogScale                  = 0X08C4; // float32
-            static constexpr std::uintptr_t m_bFogMixedShadows            = 0X08C8; // bool
-            static constexpr std::uintptr_t m_flFadeSizeStart             = 0X08CC; // float32
-            static constexpr std::uintptr_t m_flFadeSizeEnd               = 0X08D0; // float32
-            static constexpr std::uintptr_t m_flShadowFadeSizeStart       = 0X08D4; // float32
-            static constexpr std::uintptr_t m_flShadowFadeSizeEnd         = 0X08D8; // float32
-            static constexpr std::uintptr_t m_bPrecomputedFieldsValid     = 0X08DC; // bool
-            static constexpr std::uintptr_t m_vPrecomputedBoundsMins      = 0X08E0; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedBoundsMaxs      = 0X08EC; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin       = 0X08F8; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBAngles       = 0X0904; // QAngle
-            static constexpr std::uintptr_t m_vPrecomputedOBBExtent       = 0X0910; // Vector
-            static constexpr std::uintptr_t m_nPrecomputedSubFrusta       = 0X091C; // int32
-            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin0      = 0X0920; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBAngles0      = 0X092C; // QAngle
-            static constexpr std::uintptr_t m_vPrecomputedOBBExtent0      = 0X0938; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin1      = 0X0944; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBAngles1      = 0X0950; // QAngle
-            static constexpr std::uintptr_t m_vPrecomputedOBBExtent1      = 0X095C; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin2      = 0X0968; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBAngles2      = 0X0974; // QAngle
-            static constexpr std::uintptr_t m_vPrecomputedOBBExtent2      = 0X0980; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin3      = 0X098C; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBAngles3      = 0X0998; // QAngle
-            static constexpr std::uintptr_t m_vPrecomputedOBBExtent3      = 0X09A4; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin4      = 0X09B0; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBAngles4      = 0X09BC; // QAngle
-            static constexpr std::uintptr_t m_vPrecomputedOBBExtent4      = 0X09C8; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin5      = 0X09D4; // Vector
-            static constexpr std::uintptr_t m_vPrecomputedOBBAngles5      = 0X09E0; // QAngle
-            static constexpr std::uintptr_t m_vPrecomputedOBBExtent5      = 0X09EC; // Vector
-            static constexpr std::uintptr_t m_bPvsModifyEntity            = 0X09F8; // bool
-            static constexpr std::uintptr_t m_VisClusters                 = 0X0A00; // CNetworkUtlVectorBase<uint16>
+            static constexpr std::uintptr_t m_bEnabled                      = 0X0768; // bool
+            static constexpr std::uintptr_t m_nColorMode                    = 0X076C; // int32
+            static constexpr std::uintptr_t m_Color                         = 0X0770; // Color
+            static constexpr std::uintptr_t m_flColorTemperature            = 0X0774; // float32
+            static constexpr std::uintptr_t m_flBrightness                  = 0X0778; // float32
+            static constexpr std::uintptr_t m_flBrightnessScale             = 0X077C; // float32
+            static constexpr std::uintptr_t m_nDirectLight                  = 0X0780; // int32
+            static constexpr std::uintptr_t m_nBakedShadowIndex             = 0X0784; // int32
+            static constexpr std::uintptr_t m_nLightPathUniqueId            = 0X0788; // int32
+            static constexpr std::uintptr_t m_nLightMapUniqueId             = 0X078C; // int32
+            static constexpr std::uintptr_t m_nLuminaireShape               = 0X0790; // int32
+            static constexpr std::uintptr_t m_flLuminaireSize               = 0X0794; // float32
+            static constexpr std::uintptr_t m_flLuminaireAnisotropy         = 0X0798; // float32
+            static constexpr std::uintptr_t m_LightStyleString              = 0X07A0; // CUtlString
+            static constexpr std::uintptr_t m_flLightStyleStartTime         = 0X07A8; // GameTime_t
+            static constexpr std::uintptr_t m_QueuedLightStyleStrings       = 0X07B0; // CNetworkUtlVectorBase<CUtlString>
+            static constexpr std::uintptr_t m_LightStyleEvents              = 0X07C8; // CNetworkUtlVectorBase<CUtlString>
+            static constexpr std::uintptr_t m_LightStyleTargets             = 0X07E0; // CNetworkUtlVectorBase<CHandle<CBaseModelEntity>>
+            static constexpr std::uintptr_t m_StyleEvent                    = 0X07F8; // CEntityIOOutput[4]
+            static constexpr std::uintptr_t m_hLightCookie                  = 0X0878; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_flShape                       = 0X0880; // float32
+            static constexpr std::uintptr_t m_flSoftX                       = 0X0884; // float32
+            static constexpr std::uintptr_t m_flSoftY                       = 0X0888; // float32
+            static constexpr std::uintptr_t m_flSkirt                       = 0X088C; // float32
+            static constexpr std::uintptr_t m_flSkirtNear                   = 0X0890; // float32
+            static constexpr std::uintptr_t m_vSizeParams                   = 0X0894; // Vector
+            static constexpr std::uintptr_t m_flRange                       = 0X08A0; // float32
+            static constexpr std::uintptr_t m_vShear                        = 0X08A4; // Vector
+            static constexpr std::uintptr_t m_nBakeSpecularToCubemaps       = 0X08B0; // int32
+            static constexpr std::uintptr_t m_vBakeSpecularToCubemapsSize   = 0X08B4; // Vector
+            static constexpr std::uintptr_t m_flBakeSpecularToCubemapsScale = 0X08C0; // float32
+            static constexpr std::uintptr_t m_nCastShadows                  = 0X08C4; // int32
+            static constexpr std::uintptr_t m_nShadowMapSize                = 0X08C8; // int32
+            static constexpr std::uintptr_t m_nShadowPriority               = 0X08CC; // int32
+            static constexpr std::uintptr_t m_bContactShadow                = 0X08D0; // bool
+            static constexpr std::uintptr_t m_bForceShadowsEnabled          = 0X08D1; // bool
+            static constexpr std::uintptr_t m_nBounceLight                  = 0X08D4; // int32
+            static constexpr std::uintptr_t m_flBounceScale                 = 0X08D8; // float32
+            static constexpr std::uintptr_t m_flMinRoughness                = 0X08DC; // float32
+            static constexpr std::uintptr_t m_vAlternateColor               = 0X08E0; // Vector
+            static constexpr std::uintptr_t m_fAlternateColorBrightness     = 0X08EC; // float32
+            static constexpr std::uintptr_t m_nFog                          = 0X08F0; // int32
+            static constexpr std::uintptr_t m_flFogStrength                 = 0X08F4; // float32
+            static constexpr std::uintptr_t m_nFogShadows                   = 0X08F8; // int32
+            static constexpr std::uintptr_t m_flFogScale                    = 0X08FC; // float32
+            static constexpr std::uintptr_t m_flFadeSizeStart               = 0X0900; // float32
+            static constexpr std::uintptr_t m_flFadeSizeEnd                 = 0X0904; // float32
+            static constexpr std::uintptr_t m_flShadowFadeSizeStart         = 0X0908; // float32
+            static constexpr std::uintptr_t m_flShadowFadeSizeEnd           = 0X090C; // float32
+            static constexpr std::uintptr_t m_bPrecomputedFieldsValid       = 0X0910; // bool
+            static constexpr std::uintptr_t m_vPrecomputedBoundsMins        = 0X0914; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedBoundsMaxs        = 0X0920; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin         = 0X092C; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBAngles         = 0X0938; // QAngle
+            static constexpr std::uintptr_t m_vPrecomputedOBBExtent         = 0X0944; // Vector
+            static constexpr std::uintptr_t m_nPrecomputedSubFrusta         = 0X0950; // int32
+            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin0        = 0X0954; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBAngles0        = 0X0960; // QAngle
+            static constexpr std::uintptr_t m_vPrecomputedOBBExtent0        = 0X096C; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin1        = 0X0978; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBAngles1        = 0X0984; // QAngle
+            static constexpr std::uintptr_t m_vPrecomputedOBBExtent1        = 0X0990; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin2        = 0X099C; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBAngles2        = 0X09A8; // QAngle
+            static constexpr std::uintptr_t m_vPrecomputedOBBExtent2        = 0X09B4; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin3        = 0X09C0; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBAngles3        = 0X09CC; // QAngle
+            static constexpr std::uintptr_t m_vPrecomputedOBBExtent3        = 0X09D8; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin4        = 0X09E4; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBAngles4        = 0X09F0; // QAngle
+            static constexpr std::uintptr_t m_vPrecomputedOBBExtent4        = 0X09FC; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBOrigin5        = 0X0A08; // Vector
+            static constexpr std::uintptr_t m_vPrecomputedOBBAngles5        = 0X0A14; // QAngle
+            static constexpr std::uintptr_t m_vPrecomputedOBBExtent5        = 0X0A20; // Vector
+            static constexpr std::uintptr_t m_bPvsModifyEntity              = 0X0A2C; // bool
+            static constexpr std::uintptr_t m_bTransmitAlways               = 0X0A2D; // bool
+            static constexpr std::uintptr_t m_VisClusters                   = 0X0A30; // CNetworkUtlVectorBase<uint16>
         };
 
         // Has VTable
@@ -4381,7 +4579,7 @@ namespace offsets {
         // Local Type Scope
         class CRectLight : public CBarnLight {
         public:
-            static constexpr std::uintptr_t m_bShowLight = 0X0A20; // bool
+            static constexpr std::uintptr_t m_bShowLight = 0X0A50; // bool
         };
 
         // Has VTable
@@ -4427,8 +4625,8 @@ namespace offsets {
         // Local Type Scope
         class CFuncNavBlocker : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_bDisabled          = 0X0738; // bool
-            static constexpr std::uintptr_t m_nBlockedTeamNumber = 0X073C; // int32
+            static constexpr std::uintptr_t m_bDisabled          = 0X0770; // bool
+            static constexpr std::uintptr_t m_nBlockedTeamNumber = 0X0774; // int32
         };
 
         // Has VTable
@@ -4449,11 +4647,11 @@ namespace offsets {
         // Local Type Scope
         class CMoverPathNode : public CPathNode {
         public:
-            static constexpr std::uintptr_t m_OnStartFromOrInSegment = 0X0500; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_OnStoppedAtOrInSegment = 0X0520; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_OnPassThrough          = 0X0540; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_OnPassThroughForward   = 0X0560; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_OnPassThroughReverse   = 0X0580; // CEntityOutputTemplate<CUtlString,char*>
+            static constexpr std::uintptr_t m_OnStartFromOrInSegment = 0X0500; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_OnStoppedAtOrInSegment = 0X0520; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_OnPassThrough          = 0X0540; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_OnPassThroughForward   = 0X0560; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_OnPassThroughReverse   = 0X0580; // CEntityOutputTemplate<CUtlString>
         };
 
         // Has VTable
@@ -4461,12 +4659,12 @@ namespace offsets {
         // Local Type Scope
         class CFuncBrush : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_iSolidity         = 0X0730; // BrushSolidities_e
-            static constexpr std::uintptr_t m_iDisabled         = 0X0734; // int32
-            static constexpr std::uintptr_t m_bSolidBsp         = 0X0738; // bool
-            static constexpr std::uintptr_t m_iszExcludedClass  = 0X0740; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bInvertExclusion  = 0X0748; // bool
-            static constexpr std::uintptr_t m_bScriptedMovement = 0X0749; // bool
+            static constexpr std::uintptr_t m_iSolidity         = 0X0768; // BrushSolidities_e
+            static constexpr std::uintptr_t m_iDisabled         = 0X076C; // int32
+            static constexpr std::uintptr_t m_bSolidBsp         = 0X0770; // bool
+            static constexpr std::uintptr_t m_iszExcludedClass  = 0X0778; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bInvertExclusion  = 0X0780; // bool
+            static constexpr std::uintptr_t m_bScriptedMovement = 0X0781; // bool
         };
 
         // Has VTable
@@ -4489,22 +4687,22 @@ namespace offsets {
         // Local Type Scope
         class CBreakable : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_CPropDataComponent         = 0X0738; // CPropDataComponent
-            static constexpr std::uintptr_t m_Material                   = 0X0778; // Materials
-            static constexpr std::uintptr_t m_hBreaker                   = 0X077C; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_Explosion                  = 0X0780; // Explosions
-            static constexpr std::uintptr_t m_iszSpawnObject             = 0X0788; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flPressureDelay            = 0X0790; // float32
-            static constexpr std::uintptr_t m_iMinHealthDmg              = 0X0794; // int32
-            static constexpr std::uintptr_t m_iszPropData                = 0X0798; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_impactEnergyScale          = 0X07A0; // float32
-            static constexpr std::uintptr_t m_nOverrideBlockLOS          = 0X07A4; // EOverrideBlockLOS_t
-            static constexpr std::uintptr_t m_OnStartDeath               = 0X07A8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnBreak                    = 0X07C0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnHealthChanged            = 0X07D8; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_PerformanceMode            = 0X07F8; // PerformanceMode_t
-            static constexpr std::uintptr_t m_hPhysicsAttacker           = 0X07FC; // CHandle<CBasePlayerPawn>
-            static constexpr std::uintptr_t m_flLastPhysicsInfluenceTime = 0X0800; // GameTime_t
+            static constexpr std::uintptr_t m_CPropDataComponent         = 0X0770; // CPropDataComponent
+            static constexpr std::uintptr_t m_Material                   = 0X07B0; // Materials
+            static constexpr std::uintptr_t m_hBreaker                   = 0X07B4; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_Explosion                  = 0X07B8; // Explosions
+            static constexpr std::uintptr_t m_iszSpawnObject             = 0X07C0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flPressureDelay            = 0X07C8; // float32
+            static constexpr std::uintptr_t m_iMinHealthDmg              = 0X07CC; // int32
+            static constexpr std::uintptr_t m_iszPropData                = 0X07D0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_impactEnergyScale          = 0X07D8; // float32
+            static constexpr std::uintptr_t m_nOverrideBlockLOS          = 0X07DC; // EOverrideBlockLOS_t
+            static constexpr std::uintptr_t m_OnStartDeath               = 0X07E0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnBreak                    = 0X07F8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnHealthChanged            = 0X0810; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_PerformanceMode            = 0X0830; // PerformanceMode_t
+            static constexpr std::uintptr_t m_hPhysicsAttacker           = 0X0834; // CHandle<CBasePlayerPawn>
+            static constexpr std::uintptr_t m_flLastPhysicsInfluenceTime = 0X0838; // GameTime_t
         };
 
         // Has VTable
@@ -4512,21 +4710,21 @@ namespace offsets {
         // Local Type Scope
         class CPhysBox : public CBreakable {
         public:
-            static constexpr std::uintptr_t m_damageType                  = 0X0808; // int32
-            static constexpr std::uintptr_t m_damageToEnableMotion        = 0X080C; // int32
-            static constexpr std::uintptr_t m_flForceToEnableMotion       = 0X0810; // float32
-            static constexpr std::uintptr_t m_vHoverPosePosition          = 0X0814; // Vector
-            static constexpr std::uintptr_t m_angHoverPoseAngles          = 0X0820; // QAngle
-            static constexpr std::uintptr_t m_bNotSolidToWorld            = 0X082C; // bool
-            static constexpr std::uintptr_t m_bEnableUseOutput            = 0X082D; // bool
-            static constexpr std::uintptr_t m_nHoverPoseFlags             = 0X082E; // HoverPoseFlags_t
-            static constexpr std::uintptr_t m_flTouchOutputPerEntityDelay = 0X0830; // float32
-            static constexpr std::uintptr_t m_OnDamaged                   = 0X0838; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnAwakened                  = 0X0850; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnMotionEnabled             = 0X0868; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnPlayerUse                 = 0X0880; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnStartTouch                = 0X0898; // CEntityIOOutput
-            static constexpr std::uintptr_t m_hCarryingPlayer             = 0X08B0; // CHandle<CBasePlayerPawn>
+            static constexpr std::uintptr_t m_damageType                  = 0X0840; // int32
+            static constexpr std::uintptr_t m_damageToEnableMotion        = 0X0844; // int32
+            static constexpr std::uintptr_t m_flForceToEnableMotion       = 0X0848; // float32
+            static constexpr std::uintptr_t m_vHoverPosePosition          = 0X084C; // Vector
+            static constexpr std::uintptr_t m_angHoverPoseAngles          = 0X0858; // QAngle
+            static constexpr std::uintptr_t m_bNotSolidToWorld            = 0X0864; // bool
+            static constexpr std::uintptr_t m_bEnableUseOutput            = 0X0865; // bool
+            static constexpr std::uintptr_t m_nHoverPoseFlags             = 0X0866; // HoverPoseFlags_t
+            static constexpr std::uintptr_t m_flTouchOutputPerEntityDelay = 0X0868; // float32
+            static constexpr std::uintptr_t m_OnDamaged                   = 0X0870; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnAwakened                  = 0X0888; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnMotionEnabled             = 0X08A0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnPlayerUse                 = 0X08B8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnStartTouch                = 0X08D0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_hCarryingPlayer             = 0X08E8; // CHandle<CBasePlayerPawn>
         };
 
         // Has VTable
@@ -4542,12 +4740,12 @@ namespace offsets {
             static constexpr std::uintptr_t m_flSavedElapsedTime    = 0X04B0; // float32
             static constexpr std::uintptr_t m_iszSourceEntityName   = 0X04B8; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_iszAttachmentName     = 0X04C0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_onGUIDChanged         = 0X04C8; // CEntityOutputTemplate<uint64,uint64>
-            static constexpr std::uintptr_t m_onSoundFinished       = 0X04E8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_flClientCullRadius    = 0X0500; // float32
-            static constexpr std::uintptr_t m_iszSoundName          = 0X0530; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hSource               = 0X054C; // CEntityHandle
-            static constexpr std::uintptr_t m_nEntityIndexSelection = 0X0550; // int32
+            static constexpr std::uintptr_t m_onGUIDChanged         = 0X04C8; // CEntityOutputTemplate<SndOpEventGuid_t>
+            static constexpr std::uintptr_t m_onSoundFinished       = 0X04F8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_flClientCullRadius    = 0X0510; // float32
+            static constexpr std::uintptr_t m_iszSoundName          = 0X0540; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hSource               = 0X055C; // CEntityHandle
+            static constexpr std::uintptr_t m_nEntityIndexSelection = 0X0560; // int32
         };
 
         // Has VTable
@@ -4555,8 +4753,8 @@ namespace offsets {
         // Local Type Scope
         class CSoundEventAABBEntity : public CSoundEventEntity {
         public:
-            static constexpr std::uintptr_t m_vMins = 0X0558; // Vector
-            static constexpr std::uintptr_t m_vMaxs = 0X0564; // Vector
+            static constexpr std::uintptr_t m_vMins = 0X0568; // Vector
+            static constexpr std::uintptr_t m_vMaxs = 0X0574; // Vector
         };
 
         // Has VTable
@@ -4579,9 +4777,9 @@ namespace offsets {
         // Local Type Scope
         class COmniLight : public CBarnLight {
         public:
-            static constexpr std::uintptr_t m_flInnerAngle = 0X0A20; // float32
-            static constexpr std::uintptr_t m_flOuterAngle = 0X0A24; // float32
-            static constexpr std::uintptr_t m_bShowLight   = 0X0A28; // bool
+            static constexpr std::uintptr_t m_flInnerAngle = 0X0A50; // float32
+            static constexpr std::uintptr_t m_flOuterAngle = 0X0A54; // float32
+            static constexpr std::uintptr_t m_bShowLight   = 0X0A58; // bool
         };
 
         // Has VTable
@@ -4589,8 +4787,8 @@ namespace offsets {
         // Local Type Scope
         class CTriggerVolume : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_iFilterName = 0X0730; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hFilter     = 0X0738; // CHandle<CBaseFilter>
+            static constexpr std::uintptr_t m_iFilterName = 0X0768; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hFilter     = 0X0770; // CHandle<CBaseFilter>
         };
 
         // Has VTable
@@ -4631,21 +4829,21 @@ namespace offsets {
         // Local Type Scope
         class CEnvExplosion : public CModelPointEntity {
         public:
-            static constexpr std::uintptr_t m_iMagnitude               = 0X0730; // int32
-            static constexpr std::uintptr_t m_flPlayerDamage           = 0X0734; // float32
-            static constexpr std::uintptr_t m_iRadiusOverride          = 0X0738; // int32
-            static constexpr std::uintptr_t m_flInnerRadius            = 0X073C; // float32
-            static constexpr std::uintptr_t m_flDamageForce            = 0X0740; // float32
-            static constexpr std::uintptr_t m_hInflictor               = 0X0744; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_iCustomDamageType        = 0X0748; // DamageTypes_t
-            static constexpr std::uintptr_t m_bCreateDebris            = 0X074C; // bool
-            static constexpr std::uintptr_t m_iszCustomEffectName      = 0X0758; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszCustomSoundName       = 0X0760; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bSuppressParticleImpulse = 0X0768; // bool
-            static constexpr std::uintptr_t m_iClassIgnore             = 0X076C; // Class_T
-            static constexpr std::uintptr_t m_iClassIgnore2            = 0X0770; // Class_T
-            static constexpr std::uintptr_t m_iszEntityIgnoreName      = 0X0778; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hEntityIgnore            = 0X0780; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_iMagnitude               = 0X0768; // int32
+            static constexpr std::uintptr_t m_flPlayerDamage           = 0X076C; // float32
+            static constexpr std::uintptr_t m_iRadiusOverride          = 0X0770; // int32
+            static constexpr std::uintptr_t m_flInnerRadius            = 0X0774; // float32
+            static constexpr std::uintptr_t m_flDamageForce            = 0X0778; // float32
+            static constexpr std::uintptr_t m_hInflictor               = 0X077C; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_iCustomDamageType        = 0X0780; // DamageTypes_t
+            static constexpr std::uintptr_t m_bCreateDebris            = 0X0784; // bool
+            static constexpr std::uintptr_t m_iszCustomEffectName      = 0X0790; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszCustomSoundName       = 0X0798; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bSuppressParticleImpulse = 0X07A0; // bool
+            static constexpr std::uintptr_t m_iClassIgnore             = 0X07A4; // Class_T
+            static constexpr std::uintptr_t m_iClassIgnore2            = 0X07A8; // Class_T
+            static constexpr std::uintptr_t m_iszEntityIgnoreName      = 0X07B0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hEntityIgnore            = 0X07B8; // CHandle<CBaseEntity>
         };
 
         // Has VTable
@@ -4666,6 +4864,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_nCursorStateBlockIndex = 0X0068; // CUtlVector<int32>
         };
 
+        // Construct Allowed
+        // Local Type Scope
+        struct CTestPulseIO__ThreeStringArgs_t {
+        public:
+            static constexpr std::uintptr_t strArg1 = 0X0000; // CUtlString
+            static constexpr std::uintptr_t strArg2 = 0X0008; // CUtlString
+            static constexpr std::uintptr_t strArg3 = 0X0010; // CUtlString
+        };
+
         // Has VTable
         // Construct Allowed
         // Local Type Scope
@@ -4678,8 +4885,8 @@ namespace offsets {
         // Local Type Scope
         class CFootstepControl : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_source      = 0X0890; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_destination = 0X0898; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_source      = 0X08C8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_destination = 0X08D0; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -4710,28 +4917,28 @@ namespace offsets {
         // Local Type Scope
         class CParticleSystem : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_szSnapshotFileName             = 0X0730; // char[512]
-            static constexpr std::uintptr_t m_bActive                        = 0X0930; // bool
-            static constexpr std::uintptr_t m_bFrozen                        = 0X0931; // bool
-            static constexpr std::uintptr_t m_flFreezeTransitionDuration     = 0X0934; // float32
-            static constexpr std::uintptr_t m_nStopType                      = 0X0938; // int32
-            static constexpr std::uintptr_t m_bAnimateDuringGameplayPause    = 0X093C; // bool
-            static constexpr std::uintptr_t m_iEffectIndex                   = 0X0940; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
-            static constexpr std::uintptr_t m_flStartTime                    = 0X0948; // GameTime_t
-            static constexpr std::uintptr_t m_flPreSimTime                   = 0X094C; // float32
-            static constexpr std::uintptr_t m_vServerControlPoints           = 0X0950; // Vector[4]
-            static constexpr std::uintptr_t m_iServerControlPointAssignments = 0X0980; // uint8[4]
-            static constexpr std::uintptr_t m_hControlPointEnts              = 0X0984; // CHandle<CBaseEntity>[64]
-            static constexpr std::uintptr_t m_bNoSave                        = 0X0A84; // bool
-            static constexpr std::uintptr_t m_bNoFreeze                      = 0X0A85; // bool
-            static constexpr std::uintptr_t m_bNoRamp                        = 0X0A86; // bool
-            static constexpr std::uintptr_t m_bStartActive                   = 0X0A87; // bool
-            static constexpr std::uintptr_t m_iszEffectName                  = 0X0A88; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszControlPointNames           = 0X0A90; // CUtlSymbolLarge[64]
-            static constexpr std::uintptr_t m_nDataCP                        = 0X0C90; // int32
-            static constexpr std::uintptr_t m_vecDataCPValue                 = 0X0C94; // Vector
-            static constexpr std::uintptr_t m_nTintCP                        = 0X0CA0; // int32
-            static constexpr std::uintptr_t m_clrTint                        = 0X0CA4; // Color
+            static constexpr std::uintptr_t m_szSnapshotFileName             = 0X0768; // char[512]
+            static constexpr std::uintptr_t m_bActive                        = 0X0968; // bool
+            static constexpr std::uintptr_t m_bFrozen                        = 0X0969; // bool
+            static constexpr std::uintptr_t m_flFreezeTransitionDuration     = 0X096C; // float32
+            static constexpr std::uintptr_t m_nStopType                      = 0X0970; // int32
+            static constexpr std::uintptr_t m_bAnimateDuringGameplayPause    = 0X0974; // bool
+            static constexpr std::uintptr_t m_iEffectIndex                   = 0X0978; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
+            static constexpr std::uintptr_t m_flStartTime                    = 0X0980; // GameTime_t
+            static constexpr std::uintptr_t m_flPreSimTime                   = 0X0984; // float32
+            static constexpr std::uintptr_t m_vServerControlPoints           = 0X0988; // Vector[4]
+            static constexpr std::uintptr_t m_iServerControlPointAssignments = 0X09B8; // uint8[4]
+            static constexpr std::uintptr_t m_hControlPointEnts              = 0X09BC; // CHandle<CBaseEntity>[64]
+            static constexpr std::uintptr_t m_bNoSave                        = 0X0ABC; // bool
+            static constexpr std::uintptr_t m_bNoFreeze                      = 0X0ABD; // bool
+            static constexpr std::uintptr_t m_bNoRamp                        = 0X0ABE; // bool
+            static constexpr std::uintptr_t m_bStartActive                   = 0X0ABF; // bool
+            static constexpr std::uintptr_t m_iszEffectName                  = 0X0AC0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszControlPointNames           = 0X0AC8; // CUtlSymbolLarge[64]
+            static constexpr std::uintptr_t m_nDataCP                        = 0X0CC8; // int32
+            static constexpr std::uintptr_t m_vecDataCPValue                 = 0X0CCC; // Vector
+            static constexpr std::uintptr_t m_nTintCP                        = 0X0CD8; // int32
+            static constexpr std::uintptr_t m_clrTint                        = 0X0CDC; // Color
         };
 
         // Has VTable
@@ -4739,11 +4946,11 @@ namespace offsets {
         // Local Type Scope
         class CTriggerBrush : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_OnStartTouch       = 0X0730; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnEndTouch         = 0X0748; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnUse              = 0X0760; // CEntityIOOutput
-            static constexpr std::uintptr_t m_iInputFilter       = 0X0778; // int32
-            static constexpr std::uintptr_t m_iDontMessageParent = 0X077C; // int32
+            static constexpr std::uintptr_t m_OnStartTouch       = 0X0768; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnEndTouch         = 0X0780; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnUse              = 0X0798; // CEntityIOOutput
+            static constexpr std::uintptr_t m_iInputFilter       = 0X07B0; // int32
+            static constexpr std::uintptr_t m_iDontMessageParent = 0X07B4; // int32
         };
 
         // Has VTable
@@ -4804,8 +5011,18 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Destructor
+        // Construct Allowed
+        // Local Type Scope
+        struct CTestPulseIO__FloatStringArgs_t {
+        public:
+            static constexpr std::uintptr_t flOutFloat   = 0X0000; // float32
+            static constexpr std::uintptr_t strOutString = 0X0008; // CUtlSymbolLarge
+        };
+
         // Has VTable
         // Has Trivial Destructor
+        // Construct Allowed
         // Local Type Scope
         class CountdownTimer {
         public:
@@ -4835,30 +5052,30 @@ namespace offsets {
         // Local Type Scope
         class CBeam : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_flFrameRate     = 0X0730; // float32
-            static constexpr std::uintptr_t m_flHDRColorScale = 0X0734; // float32
-            static constexpr std::uintptr_t m_flFireTime      = 0X0738; // GameTime_t
-            static constexpr std::uintptr_t m_flDamage        = 0X073C; // float32
-            static constexpr std::uintptr_t m_nNumBeamEnts    = 0X0740; // uint8
-            static constexpr std::uintptr_t m_hBaseMaterial   = 0X0748; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_nHaloIndex      = 0X0750; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_nBeamType       = 0X0758; // BeamType_t
-            static constexpr std::uintptr_t m_nBeamFlags      = 0X075C; // uint32
-            static constexpr std::uintptr_t m_hAttachEntity   = 0X0760; // CHandle<CBaseEntity>[10]
-            static constexpr std::uintptr_t m_nAttachIndex    = 0X0788; // AttachmentHandle_t[10]
-            static constexpr std::uintptr_t m_fWidth          = 0X0794; // float32
-            static constexpr std::uintptr_t m_fEndWidth       = 0X0798; // float32
-            static constexpr std::uintptr_t m_fFadeLength     = 0X079C; // float32
-            static constexpr std::uintptr_t m_fHaloScale      = 0X07A0; // float32
-            static constexpr std::uintptr_t m_fAmplitude      = 0X07A4; // float32
-            static constexpr std::uintptr_t m_fStartFrame     = 0X07A8; // float32
-            static constexpr std::uintptr_t m_fSpeed          = 0X07AC; // float32
-            static constexpr std::uintptr_t m_flFrame         = 0X07B0; // float32
-            static constexpr std::uintptr_t m_nClipStyle      = 0X07B4; // BeamClipStyle_t
-            static constexpr std::uintptr_t m_bTurnedOff      = 0X07B8; // bool
-            static constexpr std::uintptr_t m_vecEndPos       = 0X07BC; // VectorWS
-            static constexpr std::uintptr_t m_hEndEntity      = 0X07C8; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_nDissolveType   = 0X07CC; // int32
+            static constexpr std::uintptr_t m_flFrameRate     = 0X0768; // float32
+            static constexpr std::uintptr_t m_flHDRColorScale = 0X076C; // float32
+            static constexpr std::uintptr_t m_flFireTime      = 0X0770; // GameTime_t
+            static constexpr std::uintptr_t m_flDamage        = 0X0774; // float32
+            static constexpr std::uintptr_t m_nNumBeamEnts    = 0X0778; // uint8
+            static constexpr std::uintptr_t m_hBaseMaterial   = 0X0780; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_nHaloIndex      = 0X0788; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_nBeamType       = 0X0790; // BeamType_t
+            static constexpr std::uintptr_t m_nBeamFlags      = 0X0794; // uint32
+            static constexpr std::uintptr_t m_hAttachEntity   = 0X0798; // CHandle<CBaseEntity>[10]
+            static constexpr std::uintptr_t m_nAttachIndex    = 0X07C0; // AttachmentHandle_t[10]
+            static constexpr std::uintptr_t m_fWidth          = 0X07CC; // float32
+            static constexpr std::uintptr_t m_fEndWidth       = 0X07D0; // float32
+            static constexpr std::uintptr_t m_fFadeLength     = 0X07D4; // float32
+            static constexpr std::uintptr_t m_fHaloScale      = 0X07D8; // float32
+            static constexpr std::uintptr_t m_fAmplitude      = 0X07DC; // float32
+            static constexpr std::uintptr_t m_fStartFrame     = 0X07E0; // float32
+            static constexpr std::uintptr_t m_fSpeed          = 0X07E4; // float32
+            static constexpr std::uintptr_t m_flFrame         = 0X07E8; // float32
+            static constexpr std::uintptr_t m_nClipStyle      = 0X07EC; // BeamClipStyle_t
+            static constexpr std::uintptr_t m_bTurnedOff      = 0X07F0; // bool
+            static constexpr std::uintptr_t m_vecEndPos       = 0X07F4; // VectorWS
+            static constexpr std::uintptr_t m_hEndEntity      = 0X0800; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_nDissolveType   = 0X0804; // int32
         };
 
         // Has VTable
@@ -4869,7 +5086,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_strEventName = 0X04B8; // CUtlString
             static constexpr std::uintptr_t m_bIsEnabled   = 0X04C0; // bool
             static constexpr std::uintptr_t m_nTeam        = 0X04C4; // int32
-            static constexpr std::uintptr_t m_OnEventFired = 0X04C8; // CEntityOutputTemplate<CUtlString,char*>
+            static constexpr std::uintptr_t m_OnEventFired = 0X04C8; // CEntityOutputTemplate<CUtlString>
         };
 
         // Has VTable
@@ -4911,31 +5128,31 @@ namespace offsets {
         // Local Type Scope
         class CBasePlayerPawn : public CBaseCombatCharacter {
         public:
-            static constexpr std::uintptr_t m_pWeaponServices        = 0X0B70; // CPlayer_WeaponServices*
-            static constexpr std::uintptr_t m_pItemServices          = 0X0B78; // CPlayer_ItemServices*
-            static constexpr std::uintptr_t m_pAutoaimServices       = 0X0B80; // CPlayer_AutoaimServices*
-            static constexpr std::uintptr_t m_pObserverServices      = 0X0B88; // CPlayer_ObserverServices*
-            static constexpr std::uintptr_t m_pWaterServices         = 0X0B90; // CPlayer_WaterServices*
-            static constexpr std::uintptr_t m_pUseServices           = 0X0B98; // CPlayer_UseServices*
-            static constexpr std::uintptr_t m_pFlashlightServices    = 0X0BA0; // CPlayer_FlashlightServices*
-            static constexpr std::uintptr_t m_pCameraServices        = 0X0BA8; // CPlayer_CameraServices*
-            static constexpr std::uintptr_t m_pMovementServices      = 0X0BB0; // CPlayer_MovementServices*
-            static constexpr std::uintptr_t m_ServerViewAngleChanges = 0X0BC0; // CUtlVectorEmbeddedNetworkVar<ViewAngleServerChange_t>
-            static constexpr std::uintptr_t v_angle                  = 0X0C28; // QAngle
-            static constexpr std::uintptr_t v_anglePrevious          = 0X0C34; // QAngle
-            static constexpr std::uintptr_t m_iHideHUD               = 0X0C40; // uint32
-            static constexpr std::uintptr_t m_skybox3d               = 0X0C48; // sky3dparams_t
-            static constexpr std::uintptr_t m_fTimeLastHurt          = 0X0CD8; // GameTime_t
-            static constexpr std::uintptr_t m_flDeathTime            = 0X0CDC; // GameTime_t
-            static constexpr std::uintptr_t m_fNextSuicideTime       = 0X0CE0; // GameTime_t
-            static constexpr std::uintptr_t m_fInitHUD               = 0X0CE4; // bool
-            static constexpr std::uintptr_t m_pExpresser             = 0X0CE8; // CAI_Expresser*
-            static constexpr std::uintptr_t m_hController            = 0X0CF0; // CHandle<CBasePlayerController>
-            static constexpr std::uintptr_t m_hDefaultController     = 0X0CF4; // CHandle<CBasePlayerController>
-            static constexpr std::uintptr_t m_fHltvReplayDelay       = 0X0CFC; // float32
-            static constexpr std::uintptr_t m_fHltvReplayEnd         = 0X0D00; // float32
-            static constexpr std::uintptr_t m_iHltvReplayEntity      = 0X0D04; // CEntityIndex
-            static constexpr std::uintptr_t m_sndOpvarLatchData      = 0X0D08; // CUtlVector<sndopvarlatchdata_t>
+            static constexpr std::uintptr_t m_pWeaponServices        = 0X0A00; // CPlayer_WeaponServices*
+            static constexpr std::uintptr_t m_pItemServices          = 0X0A08; // CPlayer_ItemServices*
+            static constexpr std::uintptr_t m_pAutoaimServices       = 0X0A10; // CPlayer_AutoaimServices*
+            static constexpr std::uintptr_t m_pObserverServices      = 0X0A18; // CPlayer_ObserverServices*
+            static constexpr std::uintptr_t m_pWaterServices         = 0X0A20; // CPlayer_WaterServices*
+            static constexpr std::uintptr_t m_pUseServices           = 0X0A28; // CPlayer_UseServices*
+            static constexpr std::uintptr_t m_pFlashlightServices    = 0X0A30; // CPlayer_FlashlightServices*
+            static constexpr std::uintptr_t m_pCameraServices        = 0X0A38; // CPlayer_CameraServices*
+            static constexpr std::uintptr_t m_pMovementServices      = 0X0A40; // CPlayer_MovementServices*
+            static constexpr std::uintptr_t m_ServerViewAngleChanges = 0X0A50; // CUtlVectorEmbeddedNetworkVar<ViewAngleServerChange_t>
+            static constexpr std::uintptr_t v_angle                  = 0X0AB8; // QAngle
+            static constexpr std::uintptr_t v_anglePrevious          = 0X0AC4; // QAngle
+            static constexpr std::uintptr_t m_iHideHUD               = 0X0AD0; // uint32
+            static constexpr std::uintptr_t m_skybox3d               = 0X0AD8; // sky3dparams_t
+            static constexpr std::uintptr_t m_fTimeLastHurt          = 0X0B68; // GameTime_t
+            static constexpr std::uintptr_t m_flDeathTime            = 0X0B6C; // GameTime_t
+            static constexpr std::uintptr_t m_fNextSuicideTime       = 0X0B70; // GameTime_t
+            static constexpr std::uintptr_t m_fInitHUD               = 0X0B74; // bool
+            static constexpr std::uintptr_t m_pExpresser             = 0X0B78; // CAI_Expresser*
+            static constexpr std::uintptr_t m_hController            = 0X0B80; // CHandle<CBasePlayerController>
+            static constexpr std::uintptr_t m_hDefaultController     = 0X0B84; // CHandle<CBasePlayerController>
+            static constexpr std::uintptr_t m_fHltvReplayDelay       = 0X0B8C; // float32
+            static constexpr std::uintptr_t m_fHltvReplayEnd         = 0X0B90; // float32
+            static constexpr std::uintptr_t m_iHltvReplayEntity      = 0X0B94; // CEntityIndex
+            static constexpr std::uintptr_t m_sndOpvarLatchData      = 0X0B98; // CUtlVector<sndopvarlatchdata_t>
         };
 
         // Has VTable
@@ -4961,29 +5178,29 @@ namespace offsets {
         // Local Type Scope
         class CSprite : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_hSpriteMaterial       = 0X0730; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_hAttachedToEntity     = 0X0738; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_nAttachment           = 0X073C; // AttachmentHandle_t
-            static constexpr std::uintptr_t m_flSpriteFramerate     = 0X0740; // float32
-            static constexpr std::uintptr_t m_flFrame               = 0X0744; // float32
-            static constexpr std::uintptr_t m_flDieTime             = 0X0748; // GameTime_t
-            static constexpr std::uintptr_t m_nBrightness           = 0X0758; // uint32
-            static constexpr std::uintptr_t m_flBrightnessDuration  = 0X075C; // float32
-            static constexpr std::uintptr_t m_flSpriteScale         = 0X0760; // float32
-            static constexpr std::uintptr_t m_flScaleDuration       = 0X0764; // float32
-            static constexpr std::uintptr_t m_bWorldSpaceScale      = 0X0768; // bool
-            static constexpr std::uintptr_t m_flGlowProxySize       = 0X076C; // float32
-            static constexpr std::uintptr_t m_flHDRColorScale       = 0X0770; // float32
-            static constexpr std::uintptr_t m_flLastTime            = 0X0774; // GameTime_t
-            static constexpr std::uintptr_t m_flMaxFrame            = 0X0778; // float32
-            static constexpr std::uintptr_t m_flStartScale          = 0X077C; // float32
-            static constexpr std::uintptr_t m_flDestScale           = 0X0780; // float32
-            static constexpr std::uintptr_t m_flScaleTimeStart      = 0X0784; // GameTime_t
-            static constexpr std::uintptr_t m_nStartBrightness      = 0X0788; // int32
-            static constexpr std::uintptr_t m_nDestBrightness       = 0X078C; // int32
-            static constexpr std::uintptr_t m_flBrightnessTimeStart = 0X0790; // GameTime_t
-            static constexpr std::uintptr_t m_nSpriteWidth          = 0X0794; // int32
-            static constexpr std::uintptr_t m_nSpriteHeight         = 0X0798; // int32
+            static constexpr std::uintptr_t m_hSpriteMaterial       = 0X0768; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_hAttachedToEntity     = 0X0770; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_nAttachment           = 0X0774; // AttachmentHandle_t
+            static constexpr std::uintptr_t m_flSpriteFramerate     = 0X0778; // float32
+            static constexpr std::uintptr_t m_flFrame               = 0X077C; // float32
+            static constexpr std::uintptr_t m_flDieTime             = 0X0780; // GameTime_t
+            static constexpr std::uintptr_t m_nBrightness           = 0X0790; // uint32
+            static constexpr std::uintptr_t m_flBrightnessDuration  = 0X0794; // float32
+            static constexpr std::uintptr_t m_flSpriteScale         = 0X0798; // float32
+            static constexpr std::uintptr_t m_flScaleDuration       = 0X079C; // float32
+            static constexpr std::uintptr_t m_bWorldSpaceScale      = 0X07A0; // bool
+            static constexpr std::uintptr_t m_flGlowProxySize       = 0X07A4; // float32
+            static constexpr std::uintptr_t m_flHDRColorScale       = 0X07A8; // float32
+            static constexpr std::uintptr_t m_flLastTime            = 0X07AC; // GameTime_t
+            static constexpr std::uintptr_t m_flMaxFrame            = 0X07B0; // float32
+            static constexpr std::uintptr_t m_flStartScale          = 0X07B4; // float32
+            static constexpr std::uintptr_t m_flDestScale           = 0X07B8; // float32
+            static constexpr std::uintptr_t m_flScaleTimeStart      = 0X07BC; // GameTime_t
+            static constexpr std::uintptr_t m_nStartBrightness      = 0X07C0; // int32
+            static constexpr std::uintptr_t m_nDestBrightness       = 0X07C4; // int32
+            static constexpr std::uintptr_t m_flBrightnessTimeStart = 0X07C8; // GameTime_t
+            static constexpr std::uintptr_t m_nSpriteWidth          = 0X07CC; // int32
+            static constexpr std::uintptr_t m_nSpriteHeight         = 0X07D0; // int32
         };
 
         // Has VTable
@@ -5002,7 +5219,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_flInMax   = 0X04AC; // float32
             static constexpr std::uintptr_t m_OutColor1 = 0X04B0; // Color
             static constexpr std::uintptr_t m_OutColor2 = 0X04B4; // Color
-            static constexpr std::uintptr_t m_OutValue  = 0X04B8; // CEntityOutputTemplate<Color,Color>
+            static constexpr std::uintptr_t m_OutValue  = 0X04B8; // CEntityOutputTemplate<Color>
         };
 
         // Has VTable
@@ -5034,7 +5251,7 @@ namespace offsets {
         // Local Type Scope
         class CScriptNavBlocker : public CFuncNavBlocker {
         public:
-            static constexpr std::uintptr_t m_vExtent = 0X0748; // Vector
+            static constexpr std::uintptr_t m_vExtent = 0X0780; // Vector
         };
 
         // Has VTable
@@ -5060,21 +5277,21 @@ namespace offsets {
         // Local Type Scope
         class CCSPlayerPawnBase : public CBasePlayerPawn {
         public:
-            static constexpr std::uintptr_t m_CTouchExpansionComponent  = 0X0D30; // CTouchExpansionComponent
-            static constexpr std::uintptr_t m_pPingServices             = 0X0D80; // CCSPlayer_PingServices*
-            static constexpr std::uintptr_t m_blindUntilTime            = 0X0D88; // GameTime_t
-            static constexpr std::uintptr_t m_blindStartTime            = 0X0D8C; // GameTime_t
-            static constexpr std::uintptr_t m_iPlayerState              = 0X0D90; // CSPlayerState
-            static constexpr std::uintptr_t m_bRespawning               = 0X0E40; // bool
-            static constexpr std::uintptr_t m_bHasMovedSinceSpawn       = 0X0E41; // bool
-            static constexpr std::uintptr_t m_iNumSpawns                = 0X0E44; // int32
-            static constexpr std::uintptr_t m_flIdleTimeSinceLastAction = 0X0E4C; // float32
-            static constexpr std::uintptr_t m_fNextRadarUpdateTime      = 0X0E50; // float32
-            static constexpr std::uintptr_t m_flFlashDuration           = 0X0E54; // float32
-            static constexpr std::uintptr_t m_flFlashMaxAlpha           = 0X0E58; // float32
-            static constexpr std::uintptr_t m_flProgressBarStartTime    = 0X0E5C; // float32
-            static constexpr std::uintptr_t m_iProgressBarDuration      = 0X0E60; // int32
-            static constexpr std::uintptr_t m_hOriginalController       = 0X0E64; // CHandle<CCSPlayerController>
+            static constexpr std::uintptr_t m_CTouchExpansionComponent  = 0X0BC0; // CTouchExpansionComponent
+            static constexpr std::uintptr_t m_pPingServices             = 0X0C10; // CCSPlayer_PingServices*
+            static constexpr std::uintptr_t m_blindUntilTime            = 0X0C18; // GameTime_t
+            static constexpr std::uintptr_t m_blindStartTime            = 0X0C1C; // GameTime_t
+            static constexpr std::uintptr_t m_iPlayerState              = 0X0C20; // CSPlayerState
+            static constexpr std::uintptr_t m_bRespawning               = 0X0CD0; // bool
+            static constexpr std::uintptr_t m_bHasMovedSinceSpawn       = 0X0CD1; // bool
+            static constexpr std::uintptr_t m_iNumSpawns                = 0X0CD4; // int32
+            static constexpr std::uintptr_t m_flIdleTimeSinceLastAction = 0X0CDC; // float32
+            static constexpr std::uintptr_t m_fNextRadarUpdateTime      = 0X0CE0; // float32
+            static constexpr std::uintptr_t m_flFlashDuration           = 0X0CE4; // float32
+            static constexpr std::uintptr_t m_flFlashMaxAlpha           = 0X0CE8; // float32
+            static constexpr std::uintptr_t m_flProgressBarStartTime    = 0X0CEC; // float32
+            static constexpr std::uintptr_t m_iProgressBarDuration      = 0X0CF0; // int32
+            static constexpr std::uintptr_t m_hOriginalController       = 0X0CF4; // CHandle<CCSPlayerController>
         };
 
         // Has VTable
@@ -5089,8 +5306,8 @@ namespace offsets {
         // Local Type Scope
         class CTriggerActiveWeaponDetect : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_OnTouchedActiveWeapon = 0X0890; // CEntityIOOutput
-            static constexpr std::uintptr_t m_iszWeaponClassName    = 0X08A8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_OnTouchedActiveWeapon = 0X08C8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_iszWeaponClassName    = 0X08E0; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -5098,18 +5315,18 @@ namespace offsets {
         // Local Type Scope
         class CFuncLadder : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_vecLadderDir                 = 0X0730; // Vector
-            static constexpr std::uintptr_t m_Dismounts                    = 0X0740; // CUtlVector<CHandle<CInfoLadderDismount>>
-            static constexpr std::uintptr_t m_vecLocalTop                  = 0X0758; // Vector
-            static constexpr std::uintptr_t m_vecPlayerMountPositionTop    = 0X0764; // VectorWS
-            static constexpr std::uintptr_t m_vecPlayerMountPositionBottom = 0X0770; // VectorWS
-            static constexpr std::uintptr_t m_flAutoRideSpeed              = 0X077C; // float32
-            static constexpr std::uintptr_t m_bDisabled                    = 0X0780; // bool
-            static constexpr std::uintptr_t m_bFakeLadder                  = 0X0781; // bool
-            static constexpr std::uintptr_t m_bHasSlack                    = 0X0782; // bool
-            static constexpr std::uintptr_t m_surfacePropName              = 0X0788; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_OnPlayerGotOnLadder          = 0X0790; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnPlayerGotOffLadder         = 0X07A8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_vecLadderDir                 = 0X0768; // Vector
+            static constexpr std::uintptr_t m_Dismounts                    = 0X0778; // CUtlVector<CHandle<CInfoLadderDismount>>
+            static constexpr std::uintptr_t m_vecLocalTop                  = 0X0790; // Vector
+            static constexpr std::uintptr_t m_vecPlayerMountPositionTop    = 0X079C; // VectorWS
+            static constexpr std::uintptr_t m_vecPlayerMountPositionBottom = 0X07A8; // VectorWS
+            static constexpr std::uintptr_t m_flAutoRideSpeed              = 0X07B4; // float32
+            static constexpr std::uintptr_t m_bDisabled                    = 0X07B8; // bool
+            static constexpr std::uintptr_t m_bFakeLadder                  = 0X07B9; // bool
+            static constexpr std::uintptr_t m_bHasSlack                    = 0X07BA; // bool
+            static constexpr std::uintptr_t m_surfacePropName              = 0X07C0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_OnPlayerGotOnLadder          = 0X07C8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnPlayerGotOffLadder         = 0X07E0; // CEntityIOOutput
         };
 
         // Has VTable
@@ -5157,21 +5374,21 @@ namespace offsets {
         // Local Type Scope
         class CPlayerSprayDecal : public CModelPointEntity {
         public:
-            static constexpr std::uintptr_t m_nUniqueID      = 0X0730; // int32
-            static constexpr std::uintptr_t m_unAccountID    = 0X0734; // uint32
-            static constexpr std::uintptr_t m_unTraceID      = 0X0738; // uint32
-            static constexpr std::uintptr_t m_rtGcTime       = 0X073C; // uint32
-            static constexpr std::uintptr_t m_vecEndPos      = 0X0740; // Vector
-            static constexpr std::uintptr_t m_vecStart       = 0X074C; // Vector
-            static constexpr std::uintptr_t m_vecLeft        = 0X0758; // Vector
-            static constexpr std::uintptr_t m_vecNormal      = 0X0764; // Vector
-            static constexpr std::uintptr_t m_nPlayer        = 0X0770; // int32
-            static constexpr std::uintptr_t m_nEntity        = 0X0774; // int32
-            static constexpr std::uintptr_t m_nHitbox        = 0X0778; // int32
-            static constexpr std::uintptr_t m_flCreationTime = 0X077C; // float32
-            static constexpr std::uintptr_t m_nTintID        = 0X0780; // int32
-            static constexpr std::uintptr_t m_nVersion       = 0X0784; // uint8
-            static constexpr std::uintptr_t m_ubSignature    = 0X0785; // uint8[128]
+            static constexpr std::uintptr_t m_nUniqueID      = 0X0768; // int32
+            static constexpr std::uintptr_t m_unAccountID    = 0X076C; // uint32
+            static constexpr std::uintptr_t m_unTraceID      = 0X0770; // uint32
+            static constexpr std::uintptr_t m_rtGcTime       = 0X0774; // uint32
+            static constexpr std::uintptr_t m_vecEndPos      = 0X0778; // Vector
+            static constexpr std::uintptr_t m_vecStart       = 0X0784; // Vector
+            static constexpr std::uintptr_t m_vecLeft        = 0X0790; // Vector
+            static constexpr std::uintptr_t m_vecNormal      = 0X079C; // Vector
+            static constexpr std::uintptr_t m_nPlayer        = 0X07A8; // int32
+            static constexpr std::uintptr_t m_nEntity        = 0X07AC; // int32
+            static constexpr std::uintptr_t m_nHitbox        = 0X07B0; // int32
+            static constexpr std::uintptr_t m_flCreationTime = 0X07B4; // float32
+            static constexpr std::uintptr_t m_nTintID        = 0X07B8; // int32
+            static constexpr std::uintptr_t m_nVersion       = 0X07BC; // uint8
+            static constexpr std::uintptr_t m_ubSignature    = 0X07BD; // uint8[128]
         };
 
         // Has VTable
@@ -5179,7 +5396,7 @@ namespace offsets {
         // Local Type Scope
         class CFuncWater : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_BuoyancyHelper = 0X0730; // CBuoyancyHelper
+            static constexpr std::uintptr_t m_BuoyancyHelper = 0X0768; // CBuoyancyHelper
         };
 
         // Has VTable
@@ -5188,6 +5405,20 @@ namespace offsets {
         class CCSGameModeRules {
         public:
             static constexpr std::uintptr_t __m_pChainEntity = 0X0008; // CNetworkVarChainer
+        };
+
+        // Has Trivial Destructor
+        // Local Type Scope
+        class CPointPrefabAPI {
+        public:
+        };
+
+        // Construct Allowed
+        // Local Type Scope
+        struct CPulseCell_Outflow_PlayVCD__VCDRequirementInfo_t {
+        public:
+            static constexpr std::uintptr_t m_nEventID = 0X0000; // int32
+            static constexpr std::uintptr_t m_Outflow  = 0X0008; // CPulse_OutflowConnection
         };
 
         // Has VTable
@@ -5322,43 +5553,43 @@ namespace offsets {
         // Local Type Scope
         class CFuncTrackTrain : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_ppath                      = 0X0730; // CHandle<CPathTrack>
-            static constexpr std::uintptr_t m_length                     = 0X0734; // float32
-            static constexpr std::uintptr_t m_vPosPrev                   = 0X0738; // Vector
-            static constexpr std::uintptr_t m_angPrev                    = 0X0744; // QAngle
-            static constexpr std::uintptr_t m_controlMins                = 0X0750; // Vector
-            static constexpr std::uintptr_t m_controlMaxs                = 0X075C; // Vector
-            static constexpr std::uintptr_t m_lastBlockPos               = 0X0768; // Vector
-            static constexpr std::uintptr_t m_lastBlockTick              = 0X0774; // int32
-            static constexpr std::uintptr_t m_flVolume                   = 0X0778; // float32
-            static constexpr std::uintptr_t m_flBank                     = 0X077C; // float32
-            static constexpr std::uintptr_t m_oldSpeed                   = 0X0780; // float32
-            static constexpr std::uintptr_t m_flBlockDamage              = 0X0784; // float32
-            static constexpr std::uintptr_t m_height                     = 0X0788; // float32
-            static constexpr std::uintptr_t m_maxSpeed                   = 0X078C; // float32
-            static constexpr std::uintptr_t m_dir                        = 0X0790; // float32
-            static constexpr std::uintptr_t m_iszSoundMove               = 0X0798; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszSoundMovePing           = 0X07A0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszSoundStart              = 0X07A8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszSoundStop               = 0X07B0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_strPathTarget              = 0X07B8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flMoveSoundMinDuration     = 0X07C0; // float32
-            static constexpr std::uintptr_t m_flMoveSoundMaxDuration     = 0X07C4; // float32
-            static constexpr std::uintptr_t m_flNextMoveSoundTime        = 0X07C8; // GameTime_t
-            static constexpr std::uintptr_t m_flMoveSoundMinPitch        = 0X07CC; // float32
-            static constexpr std::uintptr_t m_flMoveSoundMaxPitch        = 0X07D0; // float32
-            static constexpr std::uintptr_t m_eOrientationType           = 0X07D4; // TrainOrientationType_t
-            static constexpr std::uintptr_t m_eVelocityType              = 0X07D8; // TrainVelocityType_t
-            static constexpr std::uintptr_t m_OnStart                    = 0X07F0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnNext                     = 0X0808; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnArrivedAtDestinationNode = 0X0820; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bManualSpeedChanges        = 0X0838; // bool
-            static constexpr std::uintptr_t m_flDesiredSpeed             = 0X083C; // float32
-            static constexpr std::uintptr_t m_flSpeedChangeTime          = 0X0840; // GameTime_t
-            static constexpr std::uintptr_t m_flAccelSpeed               = 0X0844; // float32
-            static constexpr std::uintptr_t m_flDecelSpeed               = 0X0848; // float32
-            static constexpr std::uintptr_t m_bAccelToSpeed              = 0X084C; // bool
-            static constexpr std::uintptr_t m_flNextMPSoundTime          = 0X0850; // GameTime_t
+            static constexpr std::uintptr_t m_ppath                      = 0X0768; // CHandle<CPathTrack>
+            static constexpr std::uintptr_t m_length                     = 0X076C; // float32
+            static constexpr std::uintptr_t m_vPosPrev                   = 0X0770; // Vector
+            static constexpr std::uintptr_t m_angPrev                    = 0X077C; // QAngle
+            static constexpr std::uintptr_t m_controlMins                = 0X0788; // Vector
+            static constexpr std::uintptr_t m_controlMaxs                = 0X0794; // Vector
+            static constexpr std::uintptr_t m_lastBlockPos               = 0X07A0; // Vector
+            static constexpr std::uintptr_t m_lastBlockTick              = 0X07AC; // int32
+            static constexpr std::uintptr_t m_flVolume                   = 0X07B0; // float32
+            static constexpr std::uintptr_t m_flBank                     = 0X07B4; // float32
+            static constexpr std::uintptr_t m_oldSpeed                   = 0X07B8; // float32
+            static constexpr std::uintptr_t m_flBlockDamage              = 0X07BC; // float32
+            static constexpr std::uintptr_t m_height                     = 0X07C0; // float32
+            static constexpr std::uintptr_t m_maxSpeed                   = 0X07C4; // float32
+            static constexpr std::uintptr_t m_dir                        = 0X07C8; // float32
+            static constexpr std::uintptr_t m_iszSoundMove               = 0X07D0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszSoundMovePing           = 0X07D8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszSoundStart              = 0X07E0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszSoundStop               = 0X07E8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_strPathTarget              = 0X07F0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flMoveSoundMinDuration     = 0X07F8; // float32
+            static constexpr std::uintptr_t m_flMoveSoundMaxDuration     = 0X07FC; // float32
+            static constexpr std::uintptr_t m_flNextMoveSoundTime        = 0X0800; // GameTime_t
+            static constexpr std::uintptr_t m_flMoveSoundMinPitch        = 0X0804; // float32
+            static constexpr std::uintptr_t m_flMoveSoundMaxPitch        = 0X0808; // float32
+            static constexpr std::uintptr_t m_eOrientationType           = 0X080C; // TrainOrientationType_t
+            static constexpr std::uintptr_t m_eVelocityType              = 0X0810; // TrainVelocityType_t
+            static constexpr std::uintptr_t m_OnStart                    = 0X0828; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnNext                     = 0X0840; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnArrivedAtDestinationNode = 0X0858; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bManualSpeedChanges        = 0X0870; // bool
+            static constexpr std::uintptr_t m_flDesiredSpeed             = 0X0874; // float32
+            static constexpr std::uintptr_t m_flSpeedChangeTime          = 0X0878; // GameTime_t
+            static constexpr std::uintptr_t m_flAccelSpeed               = 0X087C; // float32
+            static constexpr std::uintptr_t m_flDecelSpeed               = 0X0880; // float32
+            static constexpr std::uintptr_t m_bAccelToSpeed              = 0X0884; // bool
+            static constexpr std::uintptr_t m_flNextMPSoundTime          = 0X0888; // GameTime_t
         };
 
         // Has VTable
@@ -5405,13 +5636,13 @@ namespace offsets {
         // Local Type Scope
         class CSoundEventPathCornerEntity : public CSoundEventEntity {
         public:
-            static constexpr std::uintptr_t m_iszPathCorner           = 0X0558; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iCountMax               = 0X0560; // int32
-            static constexpr std::uintptr_t m_flDistanceMax           = 0X0564; // float32
-            static constexpr std::uintptr_t m_flDistMaxSqr            = 0X0568; // float32
-            static constexpr std::uintptr_t m_flDotProductMax         = 0X056C; // float32
-            static constexpr std::uintptr_t m_bPlaying                = 0X0570; // bool
-            static constexpr std::uintptr_t m_vecCornerPairsNetworked = 0X0598; // CNetworkUtlVectorBase<SoundeventPathCornerPairNetworked_t>
+            static constexpr std::uintptr_t m_iszPathCorner           = 0X0568; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iCountMax               = 0X0570; // int32
+            static constexpr std::uintptr_t m_flDistanceMax           = 0X0574; // float32
+            static constexpr std::uintptr_t m_flDistMaxSqr            = 0X0578; // float32
+            static constexpr std::uintptr_t m_flDotProductMax         = 0X057C; // float32
+            static constexpr std::uintptr_t m_bPlaying                = 0X0580; // bool
+            static constexpr std::uintptr_t m_vecCornerPairsNetworked = 0X05A8; // CNetworkUtlVectorBase<SoundeventPathCornerPairNetworked_t>
         };
 
         // Has VTable
@@ -5419,7 +5650,7 @@ namespace offsets {
         // Local Type Scope
         class CTriggerMultiple : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_OnTrigger = 0X0890; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnTrigger = 0X08C8; // CEntityIOOutput
         };
 
         // Has VTable
@@ -5427,13 +5658,13 @@ namespace offsets {
         // Local Type Scope
         class CDynamicNavConnectionsVolume : public CTriggerMultiple {
         public:
-            static constexpr std::uintptr_t m_iszConnectionTarget      = 0X08A8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_vecConnections           = 0X08B0; // CUtlVector<DynamicVolumeDef_t>
-            static constexpr std::uintptr_t m_sTransitionType          = 0X08C8; // CGlobalSymbol
-            static constexpr std::uintptr_t m_bConnectionsEnabled      = 0X08D0; // bool
-            static constexpr std::uintptr_t m_flTargetAreaSearchRadius = 0X08D4; // float32
-            static constexpr std::uintptr_t m_flUpdateDistance         = 0X08D8; // float32
-            static constexpr std::uintptr_t m_flMaxConnectionDistance  = 0X08DC; // float32
+            static constexpr std::uintptr_t m_iszConnectionTarget      = 0X08E0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_vecConnections           = 0X08E8; // CUtlVector<DynamicVolumeDef_t>
+            static constexpr std::uintptr_t m_sTransitionType          = 0X0900; // CGlobalSymbol
+            static constexpr std::uintptr_t m_bConnectionsEnabled      = 0X0908; // bool
+            static constexpr std::uintptr_t m_flTargetAreaSearchRadius = 0X090C; // float32
+            static constexpr std::uintptr_t m_flUpdateDistance         = 0X0910; // float32
+            static constexpr std::uintptr_t m_flMaxConnectionDistance  = 0X0914; // float32
         };
 
         // Has VTable
@@ -5441,7 +5672,7 @@ namespace offsets {
         // Local Type Scope
         class CConstraintAnchor : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_massScale = 0X0A20; // float32
+            static constexpr std::uintptr_t m_massScale = 0X0940; // float32
         };
 
         // Has VTable
@@ -5449,127 +5680,114 @@ namespace offsets {
         // Local Type Scope
         class CCSPlayerPawn : public CCSPlayerPawnBase {
         public:
-            static constexpr std::uintptr_t m_pBulletServices                         = 0X0E78; // CCSPlayer_BulletServices*
-            static constexpr std::uintptr_t m_pHostageServices                        = 0X0E80; // CCSPlayer_HostageServices*
-            static constexpr std::uintptr_t m_pBuyServices                            = 0X0E88; // CCSPlayer_BuyServices*
-            static constexpr std::uintptr_t m_pActionTrackingServices                 = 0X0E90; // CCSPlayer_ActionTrackingServices*
-            static constexpr std::uintptr_t m_pRadioServices                          = 0X0E98; // CCSPlayer_RadioServices*
-            static constexpr std::uintptr_t m_pDamageReactServices                    = 0X0EA0; // CCSPlayer_DamageReactServices*
-            static constexpr std::uintptr_t m_nCharacterDefIndex                      = 0X0EA8; // uint16
-            static constexpr std::uintptr_t m_bHasFemaleVoice                         = 0X0EAA; // bool
-            static constexpr std::uintptr_t m_strVOPrefix                             = 0X0EB0; // CUtlString
-            static constexpr std::uintptr_t m_szLastPlaceName                         = 0X0EB8; // char[18]
-            static constexpr std::uintptr_t m_bInHostageResetZone                     = 0X0FA8; // bool
-            static constexpr std::uintptr_t m_bInBuyZone                              = 0X0FA9; // bool
-            static constexpr std::uintptr_t m_TouchingBuyZones                        = 0X0FB0; // CUtlVector<CHandle<CBaseEntity>>
-            static constexpr std::uintptr_t m_bWasInBuyZone                           = 0X0FC8; // bool
-            static constexpr std::uintptr_t m_bInHostageRescueZone                    = 0X0FC9; // bool
-            static constexpr std::uintptr_t m_bInBombZone                             = 0X0FCA; // bool
-            static constexpr std::uintptr_t m_bWasInHostageRescueZone                 = 0X0FCB; // bool
-            static constexpr std::uintptr_t m_iRetakesOffering                        = 0X0FCC; // int32
-            static constexpr std::uintptr_t m_iRetakesOfferingCard                    = 0X0FD0; // int32
-            static constexpr std::uintptr_t m_bRetakesHasDefuseKit                    = 0X0FD4; // bool
-            static constexpr std::uintptr_t m_bRetakesMVPLastRound                    = 0X0FD5; // bool
-            static constexpr std::uintptr_t m_iRetakesMVPBoostItem                    = 0X0FD8; // int32
-            static constexpr std::uintptr_t m_RetakesMVPBoostExtraUtility             = 0X0FDC; // loadout_slot_t
-            static constexpr std::uintptr_t m_flHealthShotBoostExpirationTime         = 0X0FE0; // GameTime_t
-            static constexpr std::uintptr_t m_flLandingTimeSeconds                    = 0X0FE4; // float32
-            static constexpr std::uintptr_t m_aimPunchAngle                           = 0X0FE8; // QAngle
-            static constexpr std::uintptr_t m_aimPunchAngleVel                        = 0X0FF4; // QAngle
-            static constexpr std::uintptr_t m_aimPunchTickBase                        = 0X1000; // GameTick_t
-            static constexpr std::uintptr_t m_aimPunchTickFraction                    = 0X1004; // float32
-            static constexpr std::uintptr_t m_aimPunchCache                           = 0X1008; // CUtlVector<QAngle>
-            static constexpr std::uintptr_t m_bIsBuyMenuOpen                          = 0X1020; // bool
-            static constexpr std::uintptr_t m_lastLandTime                            = 0X16C0; // GameTime_t
-            static constexpr std::uintptr_t m_bOnGroundLastTick                       = 0X16C4; // bool
-            static constexpr std::uintptr_t m_iPlayerLocked                           = 0X16C8; // int32
-            static constexpr std::uintptr_t m_flTimeOfLastInjury                      = 0X16D0; // GameTime_t
-            static constexpr std::uintptr_t m_flNextSprayDecalTime                    = 0X16D4; // GameTime_t
-            static constexpr std::uintptr_t m_bNextSprayDecalTimeExpedited            = 0X16D8; // bool
-            static constexpr std::uintptr_t m_nRagdollDamageBone                      = 0X16DC; // int32
-            static constexpr std::uintptr_t m_vRagdollDamageForce                     = 0X16E0; // Vector
-            static constexpr std::uintptr_t m_vRagdollDamagePosition                  = 0X16EC; // Vector
-            static constexpr std::uintptr_t m_szRagdollDamageWeaponName               = 0X16F8; // char[64]
-            static constexpr std::uintptr_t m_bRagdollDamageHeadshot                  = 0X1738; // bool
-            static constexpr std::uintptr_t m_vRagdollServerOrigin                    = 0X173C; // Vector
-            static constexpr std::uintptr_t m_EconGloves                              = 0X1748; // CEconItemView
-            static constexpr std::uintptr_t m_nEconGlovesChanged                      = 0X19F0; // uint8
-            static constexpr std::uintptr_t m_qDeathEyeAngles                         = 0X19F4; // QAngle
-            static constexpr std::uintptr_t m_bSkipOneHeadConstraintUpdate            = 0X1A00; // bool
-            static constexpr std::uintptr_t m_bLeftHanded                             = 0X1A01; // bool
-            static constexpr std::uintptr_t m_fSwitchedHandednessTime                 = 0X1A04; // GameTime_t
-            static constexpr std::uintptr_t m_flViewmodelOffsetX                      = 0X1A08; // float32
-            static constexpr std::uintptr_t m_flViewmodelOffsetY                      = 0X1A0C; // float32
-            static constexpr std::uintptr_t m_flViewmodelOffsetZ                      = 0X1A10; // float32
-            static constexpr std::uintptr_t m_flViewmodelFOV                          = 0X1A14; // float32
-            static constexpr std::uintptr_t m_bIsWalking                              = 0X1A18; // bool
-            static constexpr std::uintptr_t m_fLastGivenDefuserTime                   = 0X1A1C; // float32
-            static constexpr std::uintptr_t m_fLastGivenBombTime                      = 0X1A20; // float32
-            static constexpr std::uintptr_t m_flDealtDamageToEnemyMostRecentTimestamp = 0X1A24; // float32
-            static constexpr std::uintptr_t m_iDisplayHistoryBits                     = 0X1A28; // uint32
-            static constexpr std::uintptr_t m_flLastAttackedTeammate                  = 0X1A2C; // float32
-            static constexpr std::uintptr_t m_allowAutoFollowTime                     = 0X1A30; // GameTime_t
-            static constexpr std::uintptr_t m_bResetArmorNextSpawn                    = 0X1A34; // bool
-            static constexpr std::uintptr_t m_nLastKillerIndex                        = 0X1A38; // CEntityIndex
-            static constexpr std::uintptr_t m_entitySpottedState                      = 0X1A40; // EntitySpottedState_t
-            static constexpr std::uintptr_t m_nSpotRules                              = 0X1A58; // int32
-            static constexpr std::uintptr_t m_bIsScoped                               = 0X1A5C; // bool
-            static constexpr std::uintptr_t m_bResumeZoom                             = 0X1A5D; // bool
-            static constexpr std::uintptr_t m_bIsDefusing                             = 0X1A5E; // bool
-            static constexpr std::uintptr_t m_bIsGrabbingHostage                      = 0X1A5F; // bool
-            static constexpr std::uintptr_t m_iBlockingUseActionInProgress            = 0X1A60; // CSPlayerBlockingUseAction_t
-            static constexpr std::uintptr_t m_flEmitSoundTime                         = 0X1A64; // GameTime_t
-            static constexpr std::uintptr_t m_bInNoDefuseArea                         = 0X1A68; // bool
-            static constexpr std::uintptr_t m_iBombSiteIndex                          = 0X1A6C; // CEntityIndex
-            static constexpr std::uintptr_t m_nWhichBombZone                          = 0X1A70; // int32
-            static constexpr std::uintptr_t m_bInBombZoneTrigger                      = 0X1A74; // bool
-            static constexpr std::uintptr_t m_bWasInBombZoneTrigger                   = 0X1A75; // bool
-            static constexpr std::uintptr_t m_iShotsFired                             = 0X1A78; // int32
-            static constexpr std::uintptr_t m_flFlinchStack                           = 0X1A7C; // float32
-            static constexpr std::uintptr_t m_flVelocityModifier                      = 0X1A80; // float32
-            static constexpr std::uintptr_t m_flHitHeading                            = 0X1A84; // float32
-            static constexpr std::uintptr_t m_nHitBodyPart                            = 0X1A88; // int32
-            static constexpr std::uintptr_t m_vecTotalBulletForce                     = 0X1A8C; // Vector
-            static constexpr std::uintptr_t m_bWaitForNoAttack                        = 0X1A98; // bool
-            static constexpr std::uintptr_t m_ignoreLadderJumpTime                    = 0X1A9C; // float32
-            static constexpr std::uintptr_t m_bKilledByHeadshot                       = 0X1AA0; // bool
-            static constexpr std::uintptr_t m_LastHitBox                              = 0X1AA4; // int32
-            static constexpr std::uintptr_t m_pBot                                    = 0X1AA8; // CCSBot*
-            static constexpr std::uintptr_t m_bBotAllowActive                         = 0X1AB0; // bool
-            static constexpr std::uintptr_t m_thirdPersonHeading                      = 0X1AB4; // QAngle
-            static constexpr std::uintptr_t m_flSlopeDropOffset                       = 0X1AC0; // float32
-            static constexpr std::uintptr_t m_flSlopeDropHeight                       = 0X1AC4; // float32
-            static constexpr std::uintptr_t m_vHeadConstraintOffset                   = 0X1AC8; // Vector
-            static constexpr std::uintptr_t m_nLastPickupPriority                     = 0X1AD4; // int32
-            static constexpr std::uintptr_t m_flLastPickupPriorityTime                = 0X1AD8; // float32
-            static constexpr std::uintptr_t m_ArmorValue                              = 0X1ADC; // int32
-            static constexpr std::uintptr_t m_unCurrentEquipmentValue                 = 0X1AE0; // uint16
-            static constexpr std::uintptr_t m_unRoundStartEquipmentValue              = 0X1AE2; // uint16
-            static constexpr std::uintptr_t m_unFreezetimeEndEquipmentValue           = 0X1AE4; // uint16
-            static constexpr std::uintptr_t m_iLastWeaponFireUsercmd                  = 0X1AE8; // int32
-            static constexpr std::uintptr_t m_bIsSpawning                             = 0X1AEC; // bool
-            static constexpr std::uintptr_t m_iDeathFlags                             = 0X1AF8; // int32
-            static constexpr std::uintptr_t m_bHasDeathInfo                           = 0X1AFC; // bool
-            static constexpr std::uintptr_t m_flDeathInfoTime                         = 0X1B00; // float32
-            static constexpr std::uintptr_t m_vecDeathInfoOrigin                      = 0X1B04; // Vector
-            static constexpr std::uintptr_t m_vecPlayerPatchEconIndices               = 0X1B10; // uint32[5]
-            static constexpr std::uintptr_t m_GunGameImmunityColor                    = 0X1B24; // Color
-            static constexpr std::uintptr_t m_grenadeParameterStashTime               = 0X1B28; // GameTime_t
-            static constexpr std::uintptr_t m_bGrenadeParametersStashed               = 0X1B2C; // bool
-            static constexpr std::uintptr_t m_angStashedShootAngles                   = 0X1B30; // QAngle
-            static constexpr std::uintptr_t m_vecStashedGrenadeThrowPosition          = 0X1B3C; // Vector
-            static constexpr std::uintptr_t m_vecStashedVelocity                      = 0X1B48; // Vector
-            static constexpr std::uintptr_t m_angShootAngleHistory                    = 0X1B54; // QAngle[2]
-            static constexpr std::uintptr_t m_vecThrowPositionHistory                 = 0X1B6C; // Vector[2]
-            static constexpr std::uintptr_t m_vecVelocityHistory                      = 0X1B84; // Vector[2]
-            static constexpr std::uintptr_t m_PredictedDamageTags                     = 0X1BA0; // CUtlVectorEmbeddedNetworkVar<PredictedDamageTag_t>
-            static constexpr std::uintptr_t m_nHighestAppliedDamageTagTick            = 0X1C08; // int32
-            static constexpr std::uintptr_t m_bCommittingSuicideOnTeamChange          = 0X1C0C; // bool
-            static constexpr std::uintptr_t m_wasNotKilledNaturally                   = 0X1C0D; // bool
-            static constexpr std::uintptr_t m_fImmuneToGunGameDamageTime              = 0X1C10; // GameTime_t
-            static constexpr std::uintptr_t m_bGunGameImmunity                        = 0X1C14; // bool
-            static constexpr std::uintptr_t m_fMolotovDamageTime                      = 0X1C18; // float32
-            static constexpr std::uintptr_t m_angEyeAngles                            = 0X1C1C; // QAngle
+            static constexpr std::uintptr_t m_pBulletServices                         = 0X0D08; // CCSPlayer_BulletServices*
+            static constexpr std::uintptr_t m_pHostageServices                        = 0X0D10; // CCSPlayer_HostageServices*
+            static constexpr std::uintptr_t m_pBuyServices                            = 0X0D18; // CCSPlayer_BuyServices*
+            static constexpr std::uintptr_t m_pActionTrackingServices                 = 0X0D20; // CCSPlayer_ActionTrackingServices*
+            static constexpr std::uintptr_t m_pAimPunchServices                       = 0X0D28; // CCSPlayer_AimPunchServices*
+            static constexpr std::uintptr_t m_pRadioServices                          = 0X0D30; // CCSPlayer_RadioServices*
+            static constexpr std::uintptr_t m_pDamageReactServices                    = 0X0D38; // CCSPlayer_DamageReactServices*
+            static constexpr std::uintptr_t m_nCharacterDefIndex                      = 0X0D40; // uint16
+            static constexpr std::uintptr_t m_bHasFemaleVoice                         = 0X0D42; // bool
+            static constexpr std::uintptr_t m_strVOPrefix                             = 0X0D48; // CUtlString
+            static constexpr std::uintptr_t m_szLastPlaceName                         = 0X0D50; // char[18]
+            static constexpr std::uintptr_t m_bInHostageResetZone                     = 0X0E40; // bool
+            static constexpr std::uintptr_t m_bInBuyZone                              = 0X0E41; // bool
+            static constexpr std::uintptr_t m_TouchingBuyZones                        = 0X0E48; // CUtlVector<CHandle<CBaseEntity>>
+            static constexpr std::uintptr_t m_bWasInBuyZone                           = 0X0E60; // bool
+            static constexpr std::uintptr_t m_bInHostageRescueZone                    = 0X0E61; // bool
+            static constexpr std::uintptr_t m_bInBombZone                             = 0X0E62; // bool
+            static constexpr std::uintptr_t m_bWasInHostageRescueZone                 = 0X0E63; // bool
+            static constexpr std::uintptr_t m_iRetakesOffering                        = 0X0E64; // int32
+            static constexpr std::uintptr_t m_iRetakesOfferingCard                    = 0X0E68; // int32
+            static constexpr std::uintptr_t m_bRetakesHasDefuseKit                    = 0X0E6C; // bool
+            static constexpr std::uintptr_t m_bRetakesMVPLastRound                    = 0X0E6D; // bool
+            static constexpr std::uintptr_t m_iRetakesMVPBoostItem                    = 0X0E70; // int32
+            static constexpr std::uintptr_t m_RetakesMVPBoostExtraUtility             = 0X0E74; // loadout_slot_t
+            static constexpr std::uintptr_t m_flHealthShotBoostExpirationTime         = 0X0E78; // GameTime_t
+            static constexpr std::uintptr_t m_flLandingTimeSeconds                    = 0X0E7C; // float32
+            static constexpr std::uintptr_t m_bIsBuyMenuOpen                          = 0X0E80; // bool
+            static constexpr std::uintptr_t m_lastLandTime                            = 0X0EB8; // GameTime_t
+            static constexpr std::uintptr_t m_bOnGroundLastTick                       = 0X0EBC; // bool
+            static constexpr std::uintptr_t m_iPlayerLocked                           = 0X0EC0; // int32
+            static constexpr std::uintptr_t m_flTimeOfLastInjury                      = 0X0EC8; // GameTime_t
+            static constexpr std::uintptr_t m_flNextSprayDecalTime                    = 0X0ECC; // GameTime_t
+            static constexpr std::uintptr_t m_bNextSprayDecalTimeExpedited            = 0X0ED0; // bool
+            static constexpr std::uintptr_t m_nRagdollDamageBone                      = 0X0ED4; // int32
+            static constexpr std::uintptr_t m_vRagdollDamageForce                     = 0X0ED8; // Vector
+            static constexpr std::uintptr_t m_vRagdollDamagePosition                  = 0X0EE4; // Vector
+            static constexpr std::uintptr_t m_szRagdollDamageWeaponName               = 0X0EF0; // char[64]
+            static constexpr std::uintptr_t m_bRagdollDamageHeadshot                  = 0X0F30; // bool
+            static constexpr std::uintptr_t m_vRagdollServerOrigin                    = 0X0F34; // Vector
+            static constexpr std::uintptr_t m_EconGloves                              = 0X0F40; // CEconItemView
+            static constexpr std::uintptr_t m_nEconGlovesChanged                      = 0X11E8; // uint8
+            static constexpr std::uintptr_t m_qDeathEyeAngles                         = 0X11EC; // QAngle
+            static constexpr std::uintptr_t m_bLeftHanded                             = 0X11F8; // bool
+            static constexpr std::uintptr_t m_fSwitchedHandednessTime                 = 0X11FC; // GameTime_t
+            static constexpr std::uintptr_t m_flViewmodelOffsetX                      = 0X1200; // float32
+            static constexpr std::uintptr_t m_flViewmodelOffsetY                      = 0X1204; // float32
+            static constexpr std::uintptr_t m_flViewmodelOffsetZ                      = 0X1208; // float32
+            static constexpr std::uintptr_t m_flViewmodelFOV                          = 0X120C; // float32
+            static constexpr std::uintptr_t m_bIsWalking                              = 0X1210; // bool
+            static constexpr std::uintptr_t m_fLastGivenDefuserTime                   = 0X1214; // float32
+            static constexpr std::uintptr_t m_fLastGivenBombTime                      = 0X1218; // float32
+            static constexpr std::uintptr_t m_flDealtDamageToEnemyMostRecentTimestamp = 0X121C; // float32
+            static constexpr std::uintptr_t m_iDisplayHistoryBits                     = 0X1220; // uint32
+            static constexpr std::uintptr_t m_flLastAttackedTeammate                  = 0X1224; // float32
+            static constexpr std::uintptr_t m_allowAutoFollowTime                     = 0X1228; // GameTime_t
+            static constexpr std::uintptr_t m_bResetArmorNextSpawn                    = 0X122C; // bool
+            static constexpr std::uintptr_t m_nLastKillerIndex                        = 0X1230; // CEntityIndex
+            static constexpr std::uintptr_t m_entitySpottedState                      = 0X1238; // EntitySpottedState_t
+            static constexpr std::uintptr_t m_nSpotRules                              = 0X1250; // int32
+            static constexpr std::uintptr_t m_bIsScoped                               = 0X1254; // bool
+            static constexpr std::uintptr_t m_bResumeZoom                             = 0X1255; // bool
+            static constexpr std::uintptr_t m_bIsDefusing                             = 0X1256; // bool
+            static constexpr std::uintptr_t m_bIsGrabbingHostage                      = 0X1257; // bool
+            static constexpr std::uintptr_t m_iBlockingUseActionInProgress            = 0X1258; // CSPlayerBlockingUseAction_t
+            static constexpr std::uintptr_t m_flEmitSoundTime                         = 0X125C; // GameTime_t
+            static constexpr std::uintptr_t m_bInNoDefuseArea                         = 0X1260; // bool
+            static constexpr std::uintptr_t m_iBombSiteIndex                          = 0X1264; // CEntityIndex
+            static constexpr std::uintptr_t m_nWhichBombZone                          = 0X1268; // int32
+            static constexpr std::uintptr_t m_bInBombZoneTrigger                      = 0X126C; // bool
+            static constexpr std::uintptr_t m_bWasInBombZoneTrigger                   = 0X126D; // bool
+            static constexpr std::uintptr_t m_iShotsFired                             = 0X1270; // int32
+            static constexpr std::uintptr_t m_flFlinchStack                           = 0X1274; // float32
+            static constexpr std::uintptr_t m_flVelocityModifier                      = 0X1278; // float32
+            static constexpr std::uintptr_t m_vecTotalBulletForce                     = 0X127C; // Vector
+            static constexpr std::uintptr_t m_bWaitForNoAttack                        = 0X1288; // bool
+            static constexpr std::uintptr_t m_ignoreLadderJumpTime                    = 0X128C; // float32
+            static constexpr std::uintptr_t m_bKilledByHeadshot                       = 0X1290; // bool
+            static constexpr std::uintptr_t m_LastHitBox                              = 0X1294; // int32
+            static constexpr std::uintptr_t m_pBot                                    = 0X1298; // CCSBot*
+            static constexpr std::uintptr_t m_bBotAllowActive                         = 0X12A0; // bool
+            static constexpr std::uintptr_t m_nLastPickupPriority                     = 0X12A4; // int32
+            static constexpr std::uintptr_t m_flLastPickupPriorityTime                = 0X12A8; // float32
+            static constexpr std::uintptr_t m_ArmorValue                              = 0X12AC; // int32
+            static constexpr std::uintptr_t m_unCurrentEquipmentValue                 = 0X12B0; // uint16
+            static constexpr std::uintptr_t m_unRoundStartEquipmentValue              = 0X12B2; // uint16
+            static constexpr std::uintptr_t m_unFreezetimeEndEquipmentValue           = 0X12B4; // uint16
+            static constexpr std::uintptr_t m_iLastWeaponFireUsercmd                  = 0X12B8; // int32
+            static constexpr std::uintptr_t m_bIsSpawning                             = 0X12BC; // bool
+            static constexpr std::uintptr_t m_iDeathFlags                             = 0X12C8; // int32
+            static constexpr std::uintptr_t m_bHasDeathInfo                           = 0X12CC; // bool
+            static constexpr std::uintptr_t m_flDeathInfoTime                         = 0X12D0; // float32
+            static constexpr std::uintptr_t m_vecDeathInfoOrigin                      = 0X12D4; // Vector
+            static constexpr std::uintptr_t m_vecPlayerPatchEconIndices               = 0X12E0; // uint32[5]
+            static constexpr std::uintptr_t m_GunGameImmunityColor                    = 0X12F4; // Color
+            static constexpr std::uintptr_t m_grenadeParameterStashTime               = 0X12F8; // GameTime_t
+            static constexpr std::uintptr_t m_bGrenadeParametersStashed               = 0X12FC; // bool
+            static constexpr std::uintptr_t m_angStashedShootAngles                   = 0X1300; // QAngle
+            static constexpr std::uintptr_t m_vecStashedGrenadeThrowPosition          = 0X130C; // Vector
+            static constexpr std::uintptr_t m_vecStashedVelocity                      = 0X1318; // Vector
+            static constexpr std::uintptr_t m_angShootAngleHistory                    = 0X1324; // QAngle[2]
+            static constexpr std::uintptr_t m_vecThrowPositionHistory                 = 0X133C; // Vector[2]
+            static constexpr std::uintptr_t m_vecVelocityHistory                      = 0X1354; // Vector[2]
+            static constexpr std::uintptr_t m_bCommittingSuicideOnTeamChange          = 0X1378; // bool
+            static constexpr std::uintptr_t m_wasNotKilledNaturally                   = 0X1379; // bool
+            static constexpr std::uintptr_t m_fImmuneToGunGameDamageTime              = 0X137C; // GameTime_t
+            static constexpr std::uintptr_t m_bGunGameImmunity                        = 0X1380; // bool
+            static constexpr std::uintptr_t m_fMolotovDamageTime                      = 0X1384; // float32
+            static constexpr std::uintptr_t m_angEyeAngles                            = 0X1388; // QAngle
         };
 
         // Has VTable
@@ -5616,17 +5834,17 @@ namespace offsets {
             static constexpr std::uintptr_t m_pParent                                   = 0X0038; // CGameSceneNode*
             static constexpr std::uintptr_t m_pChild                                    = 0X0040; // CGameSceneNode*
             static constexpr std::uintptr_t m_pNextSibling                              = 0X0048; // CGameSceneNode*
-            static constexpr std::uintptr_t m_hParent                                   = 0X0078; // CGameSceneNodeHandle
-            static constexpr std::uintptr_t m_vecOrigin                                 = 0X0088; // CNetworkOriginCellCoordQuantizedVector
-            static constexpr std::uintptr_t m_angRotation                               = 0X00C0; // QAngle
-            static constexpr std::uintptr_t m_flScale                                   = 0X00CC; // float32
-            static constexpr std::uintptr_t m_vecAbsOrigin                              = 0X00D0; // VectorWS
-            static constexpr std::uintptr_t m_angAbsRotation                            = 0X00DC; // QAngle
-            static constexpr std::uintptr_t m_flAbsScale                                = 0X00E8; // float32
-            static constexpr std::uintptr_t m_nParentAttachmentOrBone                   = 0X00EC; // int16
-            static constexpr std::uintptr_t m_bDebugAbsOriginChanges                    = 0X00EE; // bool
-            static constexpr std::uintptr_t m_bDormant                                  = 0X00EF; // bool
-            static constexpr std::uintptr_t m_bForceParentToBeNetworked                 = 0X00F0; // bool
+            static constexpr std::uintptr_t m_hParent                                   = 0X0070; // CGameSceneNodeHandle
+            static constexpr std::uintptr_t m_vecOrigin                                 = 0X0080; // CNetworkOriginCellCoordQuantizedVector
+            static constexpr std::uintptr_t m_angRotation                               = 0X00B8; // QAngle
+            static constexpr std::uintptr_t m_flScale                                   = 0X00C4; // float32
+            static constexpr std::uintptr_t m_vecAbsOrigin                              = 0X00C8; // VectorWS
+            static constexpr std::uintptr_t m_angAbsRotation                            = 0X00D4; // QAngle
+            static constexpr std::uintptr_t m_flAbsScale                                = 0X00E0; // float32
+            static constexpr std::uintptr_t m_nParentAttachmentOrBone                   = 0X00E4; // int16
+            static constexpr std::uintptr_t m_bDebugAbsOriginChanges                    = 0X00E6; // bool
+            static constexpr std::uintptr_t m_bDormant                                  = 0X00E7; // bool
+            static constexpr std::uintptr_t m_bForceParentToBeNetworked                 = 0X00E8; // bool
             static constexpr std::uintptr_t m_bDirtyHierarchy                           = 0X0000; // bitfield:1
             static constexpr std::uintptr_t m_bDirtyBoneMergeInfo                       = 0X0000; // bitfield:1
             static constexpr std::uintptr_t m_bNetworkedPositionChanged                 = 0X0000; // bitfield:1
@@ -5636,14 +5854,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_bBoneMergeFlex                            = 0X0000; // bitfield:1
             static constexpr std::uintptr_t m_nLatchAbsOrigin                           = 0X0000; // bitfield:2
             static constexpr std::uintptr_t m_bDirtyBoneMergeBoneToRoot                 = 0X0000; // bitfield:1
-            static constexpr std::uintptr_t m_nHierarchicalDepth                        = 0X00F3; // uint8
-            static constexpr std::uintptr_t m_nHierarchyType                            = 0X00F4; // uint8
-            static constexpr std::uintptr_t m_nDoNotSetAnimTimeInInvalidatePhysicsCount = 0X00F5; // uint8
-            static constexpr std::uintptr_t m_name                                      = 0X00F8; // CUtlStringToken
-            static constexpr std::uintptr_t m_hierarchyAttachName                       = 0X010C; // CUtlStringToken
-            static constexpr std::uintptr_t m_flZOffset                                 = 0X0110; // float32
-            static constexpr std::uintptr_t m_flClientLocalScale                        = 0X0114; // float32
-            static constexpr std::uintptr_t m_vRenderOrigin                             = 0X0118; // Vector
+            static constexpr std::uintptr_t m_nHierarchicalDepth                        = 0X00EB; // uint8
+            static constexpr std::uintptr_t m_nHierarchyType                            = 0X00EC; // uint8
+            static constexpr std::uintptr_t m_nDoNotSetAnimTimeInInvalidatePhysicsCount = 0X00ED; // uint8
+            static constexpr std::uintptr_t m_name                                      = 0X00F0; // CUtlStringToken
+            static constexpr std::uintptr_t m_hierarchyAttachName                       = 0X0104; // CUtlStringToken
+            static constexpr std::uintptr_t m_flClientLocalScale                        = 0X0108; // float32
+            static constexpr std::uintptr_t m_vRenderOrigin                             = 0X010C; // Vector
         };
 
         // Has VTable
@@ -5672,6 +5889,14 @@ namespace offsets {
         // Local Type Scope
         class CPulsePhysicsConstraintsFuncs {
         public:
+        };
+
+        // Has VTable
+        // Construct Allowed
+        // Local Type Scope
+        class CCashStack : public CBaseModelEntity {
+        public:
+            static constexpr std::uintptr_t m_nCashStackValue = 0X0768; // int32
         };
 
         // Has VTable
@@ -5712,51 +5937,55 @@ namespace offsets {
             static constexpr std::uintptr_t m_hTarget6                 = 0X050C; // CHandle<CBaseEntity>
             static constexpr std::uintptr_t m_hTarget7                 = 0X0510; // CHandle<CBaseEntity>
             static constexpr std::uintptr_t m_hTarget8                 = 0X0514; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_sTargetAttachment        = 0X0518; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bIsPlayingBack           = 0X0520; // bool
-            static constexpr std::uintptr_t m_bPaused                  = 0X0521; // bool
-            static constexpr std::uintptr_t m_bMultiplayer             = 0X0522; // bool
-            static constexpr std::uintptr_t m_bAutogenerated           = 0X0523; // bool
-            static constexpr std::uintptr_t m_flForceClientTime        = 0X0524; // float32
-            static constexpr std::uintptr_t m_flCurrentTime            = 0X0528; // float32
-            static constexpr std::uintptr_t m_flFrameTime              = 0X052C; // float32
-            static constexpr std::uintptr_t m_bCancelAtNextInterrupt   = 0X0530; // bool
-            static constexpr std::uintptr_t m_fPitch                   = 0X0534; // float32
-            static constexpr std::uintptr_t m_bAutomated               = 0X0538; // bool
-            static constexpr std::uintptr_t m_nAutomatedAction         = 0X053C; // int32
-            static constexpr std::uintptr_t m_flAutomationDelay        = 0X0540; // float32
-            static constexpr std::uintptr_t m_flAutomationTime         = 0X0544; // float32
-            static constexpr std::uintptr_t m_nSpeechPriority          = 0X0548; // int32
-            static constexpr std::uintptr_t m_bPausedViaInput          = 0X054C; // bool
-            static constexpr std::uintptr_t m_bPauseAtNextInterrupt    = 0X054D; // bool
-            static constexpr std::uintptr_t m_bWaitingForActor         = 0X054E; // bool
-            static constexpr std::uintptr_t m_bWaitingForInterrupt     = 0X054F; // bool
-            static constexpr std::uintptr_t m_bInterruptedActorsScenes = 0X0550; // bool
-            static constexpr std::uintptr_t m_bBreakOnNonIdle          = 0X0551; // bool
-            static constexpr std::uintptr_t m_bSceneFinished           = 0X0552; // bool
-            static constexpr std::uintptr_t m_hActorList               = 0X0558; // CNetworkUtlVectorBase<CHandle<CBaseFlex>>
-            static constexpr std::uintptr_t m_hRemoveActorList         = 0X0570; // CUtlVector<CHandle<CBaseEntity>>
-            static constexpr std::uintptr_t m_nSceneStringIndex        = 0X05B8; // uint16
-            static constexpr std::uintptr_t m_OnStart                  = 0X05C0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnCompletion             = 0X05D8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnCanceled               = 0X05F0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnPaused                 = 0X0608; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnResumed                = 0X0620; // CEntityIOOutput
-            static constexpr std::uintptr_t m_hInterruptScene          = 0X06C8; // CHandle<CSceneEntity>
-            static constexpr std::uintptr_t m_nInterruptCount          = 0X06CC; // int32
-            static constexpr std::uintptr_t m_bSceneMissing            = 0X06D0; // bool
-            static constexpr std::uintptr_t m_bInterrupted             = 0X06D1; // bool
-            static constexpr std::uintptr_t m_bCompletedEarly          = 0X06D2; // bool
-            static constexpr std::uintptr_t m_bInterruptSceneFinished  = 0X06D3; // bool
-            static constexpr std::uintptr_t m_bRestoring               = 0X06D4; // bool
-            static constexpr std::uintptr_t m_hNotifySceneCompletion   = 0X06D8; // CUtlVector<CHandle<CSceneEntity>>
-            static constexpr std::uintptr_t m_hListManagers            = 0X06F0; // CUtlVector<CHandle<CSceneListManager>>
-            static constexpr std::uintptr_t m_iszSoundName             = 0X0708; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszSequenceName          = 0X0710; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hActor                   = 0X0718; // CHandle<CBaseFlex>
-            static constexpr std::uintptr_t m_hActivator               = 0X071C; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_BusyActor                = 0X0720; // int32
-            static constexpr std::uintptr_t m_iPlayerDeathBehavior     = 0X0724; // SceneOnPlayerDeath_t
+            static constexpr std::uintptr_t m_hLocatorOrigin           = 0X0518; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_sTargetAttachment        = 0X0520; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bIsPlayingBack           = 0X0528; // bool
+            static constexpr std::uintptr_t m_bPaused                  = 0X0529; // bool
+            static constexpr std::uintptr_t m_bMultiplayer             = 0X052A; // bool
+            static constexpr std::uintptr_t m_bAutogenerated           = 0X052B; // bool
+            static constexpr std::uintptr_t m_bAllRequirementsComplete = 0X052C; // bool
+            static constexpr std::uintptr_t m_flForceClientTime        = 0X0530; // float32
+            static constexpr std::uintptr_t m_flCurrentTime            = 0X0534; // float32
+            static constexpr std::uintptr_t m_flFrameTime              = 0X0538; // float32
+            static constexpr std::uintptr_t m_bCancelAtNextInterrupt   = 0X053C; // bool
+            static constexpr std::uintptr_t m_fPitch                   = 0X0540; // float32
+            static constexpr std::uintptr_t m_bAutomated               = 0X0544; // bool
+            static constexpr std::uintptr_t m_nAutomatedAction         = 0X0548; // int32
+            static constexpr std::uintptr_t m_flAutomationDelay        = 0X054C; // float32
+            static constexpr std::uintptr_t m_flAutomationTime         = 0X0550; // float32
+            static constexpr std::uintptr_t m_nSpeechPriority          = 0X0554; // int32
+            static constexpr std::uintptr_t m_bPausedViaInput          = 0X0558; // bool
+            static constexpr std::uintptr_t m_bPauseAtNextInterrupt    = 0X0559; // bool
+            static constexpr std::uintptr_t m_bWaitingForActor         = 0X055A; // bool
+            static constexpr std::uintptr_t m_bWaitingForInterrupt     = 0X055B; // bool
+            static constexpr std::uintptr_t m_bInterruptedActorsScenes = 0X055C; // bool
+            static constexpr std::uintptr_t m_bTakeOverNPCBehavior     = 0X055D; // bool
+            static constexpr std::uintptr_t m_bBreakOnNonIdle          = 0X055E; // bool
+            static constexpr std::uintptr_t m_bSceneFinished           = 0X055F; // bool
+            static constexpr std::uintptr_t m_hActorList               = 0X0560; // CNetworkUtlVectorBase<CHandle<CBaseModelEntity>>
+            static constexpr std::uintptr_t m_hRemoveActorList         = 0X0578; // CUtlVector<CHandle<CBaseEntity>>
+            static constexpr std::uintptr_t m_nSceneStringIndex        = 0X05C0; // uint16
+            static constexpr std::uintptr_t m_OnStart                  = 0X05C8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnCompletion             = 0X05E0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnCanceled               = 0X05F8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnPaused                 = 0X0610; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnResumed                = 0X0628; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnPulseRequirement       = 0X0640; // CEntityIOOutput
+            static constexpr std::uintptr_t m_hInterruptScene          = 0X0758; // CHandle<CSceneEntity>
+            static constexpr std::uintptr_t m_nInterruptCount          = 0X075C; // int32
+            static constexpr std::uintptr_t m_bSceneMissing            = 0X0760; // bool
+            static constexpr std::uintptr_t m_bInterrupted             = 0X0761; // bool
+            static constexpr std::uintptr_t m_bCompletedEarly          = 0X0762; // bool
+            static constexpr std::uintptr_t m_bInterruptSceneFinished  = 0X0763; // bool
+            static constexpr std::uintptr_t m_bRestoring               = 0X0764; // bool
+            static constexpr std::uintptr_t m_hNotifySceneCompletion   = 0X0768; // CUtlVector<CHandle<CSceneEntity>>
+            static constexpr std::uintptr_t m_hListManagers            = 0X0780; // CUtlVector<CHandle<CSceneListManager>>
+            static constexpr std::uintptr_t m_iszSoundName             = 0X0798; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszSequenceName          = 0X07A0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hActor                   = 0X07A8; // CHandle<CBaseModelEntity>
+            static constexpr std::uintptr_t m_hActivator               = 0X07AC; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_BusyActor                = 0X07B0; // int32
+            static constexpr std::uintptr_t m_iPlayerDeathBehavior     = 0X07B4; // SceneOnPlayerDeath_t
         };
 
         // Has VTable
@@ -5782,18 +6011,18 @@ namespace offsets {
         // Local Type Scope
         class CPostProcessingVolume : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_hPostSettings             = 0X08A0; // CStrongHandle<InfoForResourceTypeCPostProcessingResource>
-            static constexpr std::uintptr_t m_flFadeDuration            = 0X08A8; // float32
-            static constexpr std::uintptr_t m_flMinLogExposure          = 0X08AC; // float32
-            static constexpr std::uintptr_t m_flMaxLogExposure          = 0X08B0; // float32
-            static constexpr std::uintptr_t m_flMinExposure             = 0X08B4; // float32
-            static constexpr std::uintptr_t m_flMaxExposure             = 0X08B8; // float32
-            static constexpr std::uintptr_t m_flExposureCompensation    = 0X08BC; // float32
-            static constexpr std::uintptr_t m_flExposureFadeSpeedUp     = 0X08C0; // float32
-            static constexpr std::uintptr_t m_flExposureFadeSpeedDown   = 0X08C4; // float32
-            static constexpr std::uintptr_t m_flTonemapEVSmoothingRange = 0X08C8; // float32
-            static constexpr std::uintptr_t m_bMaster                   = 0X08CC; // bool
-            static constexpr std::uintptr_t m_bExposureControl          = 0X08CD; // bool
+            static constexpr std::uintptr_t m_hPostSettings             = 0X08D8; // CStrongHandle<InfoForResourceTypeCPostProcessingResource>
+            static constexpr std::uintptr_t m_flFadeDuration            = 0X08E0; // float32
+            static constexpr std::uintptr_t m_flMinLogExposure          = 0X08E4; // float32
+            static constexpr std::uintptr_t m_flMaxLogExposure          = 0X08E8; // float32
+            static constexpr std::uintptr_t m_flMinExposure             = 0X08EC; // float32
+            static constexpr std::uintptr_t m_flMaxExposure             = 0X08F0; // float32
+            static constexpr std::uintptr_t m_flExposureCompensation    = 0X08F4; // float32
+            static constexpr std::uintptr_t m_flExposureFadeSpeedUp     = 0X08F8; // float32
+            static constexpr std::uintptr_t m_flExposureFadeSpeedDown   = 0X08FC; // float32
+            static constexpr std::uintptr_t m_flTonemapEVSmoothingRange = 0X0900; // float32
+            static constexpr std::uintptr_t m_bMaster                   = 0X0904; // bool
+            static constexpr std::uintptr_t m_bExposureControl          = 0X0905; // bool
         };
 
         // Has VTable
@@ -5803,7 +6032,7 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_bDisabled     = 0X04A8; // bool
             static constexpr std::uintptr_t m_hTargetEntity = 0X04AC; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_Distance      = 0X04B0; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_Distance      = 0X04B0; // CEntityOutputTemplate<float32>
         };
 
         // Construct Allowed
@@ -5829,21 +6058,21 @@ namespace offsets {
         // Local Type Scope
         class CTriggerLook : public CTriggerOnce {
         public:
-            static constexpr std::uintptr_t m_hLookTarget              = 0X08A8; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_flFieldOfView            = 0X08AC; // float32
-            static constexpr std::uintptr_t m_flLookTime               = 0X08B0; // float32
-            static constexpr std::uintptr_t m_flLookTimeTotal          = 0X08B4; // float32
-            static constexpr std::uintptr_t m_flLookTimeLast           = 0X08B8; // GameTime_t
-            static constexpr std::uintptr_t m_flTimeoutDuration        = 0X08BC; // float32
-            static constexpr std::uintptr_t m_bTimeoutFired            = 0X08C0; // bool
-            static constexpr std::uintptr_t m_bIsLooking               = 0X08C1; // bool
-            static constexpr std::uintptr_t m_b2DFOV                   = 0X08C2; // bool
-            static constexpr std::uintptr_t m_bUseVelocity             = 0X08C3; // bool
-            static constexpr std::uintptr_t m_bTestOcclusion           = 0X08C4; // bool
-            static constexpr std::uintptr_t m_bTestAllVisibleOcclusion = 0X08C5; // bool
-            static constexpr std::uintptr_t m_OnTimeout                = 0X08C8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnStartLook              = 0X08E0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnEndLook                = 0X08F8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_hLookTarget              = 0X08E0; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_flFieldOfView            = 0X08E4; // float32
+            static constexpr std::uintptr_t m_flLookTime               = 0X08E8; // float32
+            static constexpr std::uintptr_t m_flLookTimeTotal          = 0X08EC; // float32
+            static constexpr std::uintptr_t m_flLookTimeLast           = 0X08F0; // GameTime_t
+            static constexpr std::uintptr_t m_flTimeoutDuration        = 0X08F4; // float32
+            static constexpr std::uintptr_t m_bTimeoutFired            = 0X08F8; // bool
+            static constexpr std::uintptr_t m_bIsLooking               = 0X08F9; // bool
+            static constexpr std::uintptr_t m_b2DFOV                   = 0X08FA; // bool
+            static constexpr std::uintptr_t m_bUseVelocity             = 0X08FB; // bool
+            static constexpr std::uintptr_t m_bTestOcclusion           = 0X08FC; // bool
+            static constexpr std::uintptr_t m_bTestAllVisibleOcclusion = 0X08FD; // bool
+            static constexpr std::uintptr_t m_OnTimeout                = 0X0900; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnStartLook              = 0X0918; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnEndLook                = 0X0930; // CEntityIOOutput
         };
 
         // Has VTable
@@ -5851,9 +6080,10 @@ namespace offsets {
         // Local Type Scope
         class CPulseCell_Outflow_PlayVCD : public CPulseCell_Outflow_PlaySceneBase {
         public:
-            static constexpr std::uintptr_t m_hChoreoScene = 0X00F0; // CStrongHandle<InfoForResourceTypeCChoreoSceneResource>
-            static constexpr std::uintptr_t m_OnPaused     = 0X00F8; // CPulse_OutflowConnection
-            static constexpr std::uintptr_t m_OnResumed    = 0X0140; // CPulse_OutflowConnection
+            static constexpr std::uintptr_t m_hChoreoScene    = 0X00F0; // CStrongHandle<InfoForResourceTypeCChoreoSceneResource>
+            static constexpr std::uintptr_t m_OnPaused        = 0X00F8; // CPulse_OutflowConnection
+            static constexpr std::uintptr_t m_OnResumed       = 0X0140; // CPulse_OutflowConnection
+            static constexpr std::uintptr_t m_OutRequirements = 0X0188; // CUtlVector<CPulseCell_Outflow_PlayVCD::VCDRequirementInfo_t>
         };
 
         // Has VTable
@@ -5875,6 +6105,7 @@ namespace offsets {
         // Local Type Scope
         class CPhysForce : public CPointEntity {
         public:
+            static constexpr std::uintptr_t m_pController    = 0X04A8; // IPhysicsMotionController*
             static constexpr std::uintptr_t m_nameAttach     = 0X04B0; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_force          = 0X04B8; // float32
             static constexpr std::uintptr_t m_forceTime      = 0X04BC; // float32
@@ -5948,7 +6179,7 @@ namespace offsets {
         // Local Type Scope
         class CTriggerRemove : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_OnRemove = 0X0890; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnRemove = 0X08C8; // CEntityIOOutput
         };
 
         // Has VTable
@@ -5984,7 +6215,7 @@ namespace offsets {
         // Local Type Scope
         class CMarkupVolumeTagged_Nav : public CMarkupVolumeTagged {
         public:
-            static constexpr std::uintptr_t m_nScopes = 0X0770; // NavScopeFlags_t
+            static constexpr std::uintptr_t m_nScopes = 0X07A8; // NavScopeFlags_t
         };
 
         // Has VTable
@@ -6042,7 +6273,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_iGustDirChange     = 0X0028; // uint16
             static constexpr std::uintptr_t m_iInitialWindDir    = 0X002A; // uint16
             static constexpr std::uintptr_t m_flInitialWindSpeed = 0X002C; // float32
-            static constexpr std::uintptr_t m_location           = 0X0030; // Vector
+            static constexpr std::uintptr_t m_location           = 0X0030; // VectorWS
             static constexpr std::uintptr_t m_OnGustStart        = 0X0040; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnGustEnd          = 0X0058; // CEntityIOOutput
             static constexpr std::uintptr_t m_hEntOwner          = 0X0070; // CHandle<CBaseEntity>
@@ -6059,6 +6290,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_fixupNames                = 0X04C0; // bool
             static constexpr std::uintptr_t m_bLoadDynamic              = 0X04C1; // bool
             static constexpr std::uintptr_t m_associatedRelayEntity     = 0X04C4; // CHandle<CPointPrefab>
+            static constexpr std::uintptr_t m_ProceduralRelaySources    = 0X04C8; // CUtlVector<CHandle<CBaseEntity>>
         };
 
         // Has VTable
@@ -6111,7 +6343,7 @@ namespace offsets {
         // Local Type Scope
         class CEnvGlobal : public CLogicalEntity {
         public:
-            static constexpr std::uintptr_t m_outCounter   = 0X04A8; // CEntityOutputTemplate<int32,int32>
+            static constexpr std::uintptr_t m_outCounter   = 0X04A8; // CEntityOutputTemplate<int32>
             static constexpr std::uintptr_t m_globalstate  = 0X04C8; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_triggermode  = 0X04D0; // int32
             static constexpr std::uintptr_t m_initialstate = 0X04D4; // int32
@@ -6141,7 +6373,7 @@ namespace offsets {
         // Local Type Scope
         class CPlatTrigger : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_pPlatform = 0X0730; // CHandle<CFuncPlat>
+            static constexpr std::uintptr_t m_pPlatform = 0X0768; // CHandle<CFuncPlat>
         };
 
         // Has VTable
@@ -6157,6 +6389,12 @@ namespace offsets {
         class CMapSharedEnvironment : public CLogicalEntity {
         public:
             static constexpr std::uintptr_t m_targetMapName = 0X04A8; // CUtlSymbolLarge
+        };
+
+        // Has Trivial Destructor
+        // Local Type Scope
+        class CTakeDamageResultAPI {
+        public:
         };
 
         // Has VTable
@@ -6179,18 +6417,18 @@ namespace offsets {
         // Local Type Scope
         class CPhysMagnet : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_OnMagnetAttach      = 0X0A20; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnMagnetDetach      = 0X0A38; // CEntityIOOutput
-            static constexpr std::uintptr_t m_massScale           = 0X0A50; // float32
-            static constexpr std::uintptr_t m_forceLimit          = 0X0A54; // float32
-            static constexpr std::uintptr_t m_torqueLimit         = 0X0A58; // float32
-            static constexpr std::uintptr_t m_MagnettedEntities   = 0X0A60; // CUtlVector<magnetted_objects_t>
-            static constexpr std::uintptr_t m_bActive             = 0X0A78; // bool
-            static constexpr std::uintptr_t m_bHasHitSomething    = 0X0A79; // bool
-            static constexpr std::uintptr_t m_flTotalMass         = 0X0A7C; // float32
-            static constexpr std::uintptr_t m_flRadius            = 0X0A80; // float32
-            static constexpr std::uintptr_t m_flNextSuckTime      = 0X0A84; // GameTime_t
-            static constexpr std::uintptr_t m_iMaxObjectsAttached = 0X0A88; // int32
+            static constexpr std::uintptr_t m_OnMagnetAttach      = 0X0940; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnMagnetDetach      = 0X0958; // CEntityIOOutput
+            static constexpr std::uintptr_t m_massScale           = 0X0970; // float32
+            static constexpr std::uintptr_t m_forceLimit          = 0X0974; // float32
+            static constexpr std::uintptr_t m_torqueLimit         = 0X0978; // float32
+            static constexpr std::uintptr_t m_MagnettedEntities   = 0X0980; // CUtlVector<magnetted_objects_t>
+            static constexpr std::uintptr_t m_bActive             = 0X0998; // bool
+            static constexpr std::uintptr_t m_bHasHitSomething    = 0X0999; // bool
+            static constexpr std::uintptr_t m_flTotalMass         = 0X099C; // float32
+            static constexpr std::uintptr_t m_flRadius            = 0X09A0; // float32
+            static constexpr std::uintptr_t m_flNextSuckTime      = 0X09A4; // GameTime_t
+            static constexpr std::uintptr_t m_iMaxObjectsAttached = 0X09A8; // int32
         };
 
         // Has VTable
@@ -6216,7 +6454,7 @@ namespace offsets {
         // Local Type Scope
         class CFuncWall : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_nState = 0X0730; // int32
+            static constexpr std::uintptr_t m_nState = 0X0768; // int32
         };
 
         // Has VTable
@@ -6245,6 +6483,13 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
+        // Local Type Scope
+        class CCSGO_EndOfMatchLineupEnd : public CCSGO_EndOfMatchLineupEndpoint {
+        public:
+        };
+
+        // Has VTable
         // Is Absract
         // Local Type Scope
         class CPlayer_AutoaimServices : public CPlayerPawnComponent {
@@ -6256,8 +6501,8 @@ namespace offsets {
         // Local Type Scope
         class CItemDefuser : public CItem {
         public:
-            static constexpr std::uintptr_t m_entitySpottedState = 0X0AC0; // EntitySpottedState_t
-            static constexpr std::uintptr_t m_nSpotRules         = 0X0AD8; // int32
+            static constexpr std::uintptr_t m_entitySpottedState = 0X09E0; // EntitySpottedState_t
+            static constexpr std::uintptr_t m_nSpotRules         = 0X09F8; // int32
         };
 
         // Has VTable
@@ -6313,8 +6558,8 @@ namespace offsets {
         // Local Type Scope
         class CWeaponBaseItem : public CCSWeaponBase {
         public:
-            static constexpr std::uintptr_t m_bSequenceInProgress = 0X1130; // bool
-            static constexpr std::uintptr_t m_bRedraw             = 0X1131; // bool
+            static constexpr std::uintptr_t m_bSequenceInProgress = 0X1030; // bool
+            static constexpr std::uintptr_t m_bRedraw             = 0X1031; // bool
         };
 
         // Has VTable
@@ -6396,17 +6641,17 @@ namespace offsets {
         // Local Type Scope
         class CC4 : public CCSWeaponBase {
         public:
-            static constexpr std::uintptr_t m_vecLastValidPlayerHeldPosition = 0X1160; // Vector
-            static constexpr std::uintptr_t m_vecLastValidDroppedPosition    = 0X116C; // Vector
-            static constexpr std::uintptr_t m_bDoValidDroppedPositionCheck   = 0X1178; // bool
-            static constexpr std::uintptr_t m_bStartedArming                 = 0X1179; // bool
-            static constexpr std::uintptr_t m_fArmedTime                     = 0X117C; // GameTime_t
-            static constexpr std::uintptr_t m_bBombPlacedAnimation           = 0X1180; // bool
-            static constexpr std::uintptr_t m_bIsPlantingViaUse              = 0X1181; // bool
-            static constexpr std::uintptr_t m_entitySpottedState             = 0X1188; // EntitySpottedState_t
-            static constexpr std::uintptr_t m_nSpotRules                     = 0X11A0; // int32
-            static constexpr std::uintptr_t m_bPlayedArmingBeeps             = 0X11A4; // bool[7]
-            static constexpr std::uintptr_t m_bBombPlanted                   = 0X11AB; // bool
+            static constexpr std::uintptr_t m_vecLastValidPlayerHeldPosition = 0X1060; // Vector
+            static constexpr std::uintptr_t m_vecLastValidDroppedPosition    = 0X106C; // Vector
+            static constexpr std::uintptr_t m_bDoValidDroppedPositionCheck   = 0X1078; // bool
+            static constexpr std::uintptr_t m_bStartedArming                 = 0X1079; // bool
+            static constexpr std::uintptr_t m_fArmedTime                     = 0X107C; // GameTime_t
+            static constexpr std::uintptr_t m_bBombPlacedAnimation           = 0X1080; // bool
+            static constexpr std::uintptr_t m_bIsPlantingViaUse              = 0X1081; // bool
+            static constexpr std::uintptr_t m_entitySpottedState             = 0X1088; // EntitySpottedState_t
+            static constexpr std::uintptr_t m_nSpotRules                     = 0X10A0; // int32
+            static constexpr std::uintptr_t m_bPlayedArmingBeeps             = 0X10A4; // bool[7]
+            static constexpr std::uintptr_t m_bBombPlanted                   = 0X10AB; // bool
         };
 
         // Has VTable
@@ -6424,13 +6669,6 @@ namespace offsets {
         };
 
         // Has VTable
-        // Construct Allowed
-        // Local Type Scope
-        class CBaseFlexAlias_funCBaseFlex : public CBaseFlex {
-        public:
-        };
-
-        // Has VTable
         // Local Type Scope
         class CCSObserver_CameraServices : public CCSPlayerBase_CameraServices {
         public:
@@ -6443,12 +6681,6 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_flFadeStartDist = 0X04A8; // float32
             static constexpr std::uintptr_t m_flFadeEndDist   = 0X04AC; // float32
-        };
-
-        // Has Trivial Destructor
-        // Local Type Scope
-        class CTakeDamageInfoAPI {
-        public:
         };
 
         // Has VTable
@@ -6479,15 +6711,15 @@ namespace offsets {
         // Local Type Scope
         class CBombTarget : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_OnBombExplode        = 0X0890; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnBombPlanted        = 0X08A8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnBombDefused        = 0X08C0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bIsBombSiteB         = 0X08D8; // bool
-            static constexpr std::uintptr_t m_bIsHeistBombTarget   = 0X08D9; // bool
-            static constexpr std::uintptr_t m_bBombPlantedHere     = 0X08DA; // bool
-            static constexpr std::uintptr_t m_szMountTarget        = 0X08E0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hInstructorHint      = 0X08E8; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_nBombSiteDesignation = 0X08EC; // int32
+            static constexpr std::uintptr_t m_OnBombExplode        = 0X08C8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnBombPlanted        = 0X08E0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnBombDefused        = 0X08F8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bIsBombSiteB         = 0X0910; // bool
+            static constexpr std::uintptr_t m_bIsHeistBombTarget   = 0X0911; // bool
+            static constexpr std::uintptr_t m_bBombPlantedHere     = 0X0912; // bool
+            static constexpr std::uintptr_t m_szMountTarget        = 0X0918; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hInstructorHint      = 0X0920; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_nBombSiteDesignation = 0X0924; // int32
         };
 
         // Has VTable
@@ -6529,15 +6761,14 @@ namespace offsets {
         // Local Type Scope
         class CSkeletonInstance : public CGameSceneNode {
         public:
-            static constexpr std::uintptr_t m_modelState                           = 0X0140; // CModelState
-            static constexpr std::uintptr_t m_bIsAnimationEnabled                  = 0X0390; // bool
-            static constexpr std::uintptr_t m_bUseParentRenderBounds               = 0X0391; // bool
-            static constexpr std::uintptr_t m_bDisableSolidCollisionsForHierarchy  = 0X0392; // bool
+            static constexpr std::uintptr_t m_modelState                           = 0X0130; // CModelState
+            static constexpr std::uintptr_t m_bUseParentRenderBounds               = 0X0380; // bool
+            static constexpr std::uintptr_t m_bDisableSolidCollisionsForHierarchy  = 0X0381; // bool
             static constexpr std::uintptr_t m_bDirtyMotionType                     = 0X0000; // bitfield:1
             static constexpr std::uintptr_t m_bIsGeneratingLatchedParentSpaceState = 0X0000; // bitfield:1
-            static constexpr std::uintptr_t m_materialGroup                        = 0X0394; // CUtlStringToken
-            static constexpr std::uintptr_t m_nHitboxSet                           = 0X0398; // uint8
-            static constexpr std::uintptr_t m_bForceServerConstraintsEnabled       = 0X03F4; // bool
+            static constexpr std::uintptr_t m_materialGroup                        = 0X0384; // CUtlStringToken
+            static constexpr std::uintptr_t m_nHitboxSet                           = 0X0388; // uint8
+            static constexpr std::uintptr_t m_bForceServerConstraintsEnabled       = 0X03E4; // bool
         };
 
         // Has VTable
@@ -6556,9 +6787,9 @@ namespace offsets {
         // Local Type Scope
         class CTriggerGameEvent : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_strStartTouchEventName = 0X0890; // CUtlString
-            static constexpr std::uintptr_t m_strEndTouchEventName   = 0X0898; // CUtlString
-            static constexpr std::uintptr_t m_strTriggerID           = 0X08A0; // CUtlString
+            static constexpr std::uintptr_t m_strStartTouchEventName = 0X08C8; // CUtlString
+            static constexpr std::uintptr_t m_strEndTouchEventName   = 0X08D0; // CUtlString
+            static constexpr std::uintptr_t m_strTriggerID           = 0X08D8; // CUtlString
         };
 
         // Has VTable
@@ -6603,10 +6834,10 @@ namespace offsets {
         // Local Type Scope
         class CMarkupVolumeWithRef : public CMarkupVolumeTagged {
         public:
-            static constexpr std::uintptr_t m_bUseRef            = 0X0778; // bool
-            static constexpr std::uintptr_t m_vRefPosEntitySpace = 0X077C; // Vector
-            static constexpr std::uintptr_t m_vRefPosWorldSpace  = 0X0788; // VectorWS
-            static constexpr std::uintptr_t m_flRefDot           = 0X0794; // float32
+            static constexpr std::uintptr_t m_bUseRef            = 0X07B0; // bool
+            static constexpr std::uintptr_t m_vRefPosEntitySpace = 0X07B4; // Vector
+            static constexpr std::uintptr_t m_vRefPosWorldSpace  = 0X07C0; // VectorWS
+            static constexpr std::uintptr_t m_flRefDot           = 0X07CC; // float32
         };
 
         // Has VTable
@@ -6614,9 +6845,9 @@ namespace offsets {
         // Local Type Scope
         class CMarkupVolumeTagged_NavGame : public CMarkupVolumeWithRef {
         public:
-            static constexpr std::uintptr_t m_nScopes             = 0X0798; // NavScopeFlags_t
-            static constexpr std::uintptr_t m_bFloodFillAttribute = 0X0799; // bool
-            static constexpr std::uintptr_t m_bSplitNavSpace      = 0X079A; // bool
+            static constexpr std::uintptr_t m_nScopes             = 0X07D0; // NavScopeFlags_t
+            static constexpr std::uintptr_t m_bFloodFillAttribute = 0X07D1; // bool
+            static constexpr std::uintptr_t m_bSplitNavSpace      = 0X07D2; // bool
         };
 
         // Has VTable
@@ -6659,8 +6890,8 @@ namespace offsets {
         // Local Type Scope
         class CEconWearable : public CEconEntity {
         public:
-            static constexpr std::uintptr_t m_nForceSkin   = 0X0DE0; // int32
-            static constexpr std::uintptr_t m_bAlwaysAllow = 0X0DE4; // bool
+            static constexpr std::uintptr_t m_nForceSkin   = 0X0C70; // int32
+            static constexpr std::uintptr_t m_bAlwaysAllow = 0X0C74; // bool
         };
 
         // Local Type Scope
@@ -6704,13 +6935,13 @@ namespace offsets {
         // Local Type Scope
         class CTriggerPush : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_angPushEntitySpace    = 0X0890; // QAngle
-            static constexpr std::uintptr_t m_vecPushDirEntitySpace = 0X089C; // Vector
-            static constexpr std::uintptr_t m_bTriggerOnStartTouch  = 0X08A8; // bool
-            static constexpr std::uintptr_t m_bUsePathSimple        = 0X08A9; // bool
-            static constexpr std::uintptr_t m_iszPathSimpleName     = 0X08B0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_PathSimple            = 0X08B8; // CPathSimple*
-            static constexpr std::uintptr_t m_splinePushType        = 0X08C0; // uint32
+            static constexpr std::uintptr_t m_angPushEntitySpace    = 0X08C8; // QAngle
+            static constexpr std::uintptr_t m_vecPushDirEntitySpace = 0X08D4; // Vector
+            static constexpr std::uintptr_t m_bTriggerOnStartTouch  = 0X08E0; // bool
+            static constexpr std::uintptr_t m_bUsePathSimple        = 0X08E1; // bool
+            static constexpr std::uintptr_t m_iszPathSimpleName     = 0X08E8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_PathSimple            = 0X08F0; // CHandle<CPathSimple>
+            static constexpr std::uintptr_t m_splinePushType        = 0X08F4; // uint32
         };
 
         // Has VTable
@@ -6746,7 +6977,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_lastOrientation        = 0X04C4; // QAngle
             static constexpr std::uintptr_t m_vecAxis                = 0X04D0; // VectorWS
             static constexpr std::uintptr_t m_bUseHelper             = 0X04DC; // bool
-            static constexpr std::uintptr_t m_AngularVelocity        = 0X04E0; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_AngularVelocity        = 0X04E0; // CEntityOutputTemplate<float32>
             static constexpr std::uintptr_t m_OnLessThan             = 0X0500; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnLessThanOrEqualTo    = 0X0518; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnGreaterThan          = 0X0530; // CEntityIOOutput
@@ -6789,36 +7020,37 @@ namespace offsets {
         class CBasePlayerWeaponVData : public CEntitySubclassVDataBase {
         public:
             static constexpr std::uintptr_t m_szWorldModel                = 0X0028; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCModel>>
-            static constexpr std::uintptr_t m_sToolsOnlyOwnerModelName    = 0X0108; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCModel>>
-            static constexpr std::uintptr_t m_bBuiltRightHanded           = 0X01E8; // bool
-            static constexpr std::uintptr_t m_bAllowFlipping              = 0X01E9; // bool
-            static constexpr std::uintptr_t m_sMuzzleAttachment           = 0X01F0; // CAttachmentNameSymbolWithStorage
-            static constexpr std::uintptr_t m_szMuzzleFlashParticle       = 0X0210; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeIParticleSystemDefinition>>
-            static constexpr std::uintptr_t m_szMuzzleFlashParticleConfig = 0X02F0; // CUtlString
-            static constexpr std::uintptr_t m_szBarrelSmokeParticle       = 0X02F8; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeIParticleSystemDefinition>>
-            static constexpr std::uintptr_t m_nMuzzleSmokeShotThreshold   = 0X03D8; // uint8
-            static constexpr std::uintptr_t m_flMuzzleSmokeTimeout        = 0X03DC; // float32
-            static constexpr std::uintptr_t m_flMuzzleSmokeDecrementRate  = 0X03E0; // float32
-            static constexpr std::uintptr_t m_bGenerateMuzzleLight        = 0X03E4; // bool
-            static constexpr std::uintptr_t m_bLinkedCooldowns            = 0X03E5; // bool
-            static constexpr std::uintptr_t m_iFlags                      = 0X03E6; // ItemFlagTypes_t
-            static constexpr std::uintptr_t m_iWeight                     = 0X03E8; // int32
-            static constexpr std::uintptr_t m_bAutoSwitchTo               = 0X03EC; // bool
-            static constexpr std::uintptr_t m_bAutoSwitchFrom             = 0X03ED; // bool
-            static constexpr std::uintptr_t m_nPrimaryAmmoType            = 0X03EE; // AmmoIndex_t
-            static constexpr std::uintptr_t m_nSecondaryAmmoType          = 0X03EF; // AmmoIndex_t
-            static constexpr std::uintptr_t m_iMaxClip1                   = 0X03F0; // int32
-            static constexpr std::uintptr_t m_iMaxClip2                   = 0X03F4; // int32
-            static constexpr std::uintptr_t m_iDefaultClip1               = 0X03F8; // int32
-            static constexpr std::uintptr_t m_iDefaultClip2               = 0X03FC; // int32
-            static constexpr std::uintptr_t m_bReserveAmmoAsClips         = 0X0400; // bool
-            static constexpr std::uintptr_t m_bTreatAsSingleClip          = 0X0401; // bool
-            static constexpr std::uintptr_t m_bKeepLoadedAmmo             = 0X0402; // bool
-            static constexpr std::uintptr_t m_iRumbleEffect               = 0X0404; // RumbleEffect_t
-            static constexpr std::uintptr_t m_flDropSpeed                 = 0X0408; // float32
-            static constexpr std::uintptr_t m_iSlot                       = 0X040C; // int32
-            static constexpr std::uintptr_t m_iPosition                   = 0X0410; // int32
-            static constexpr std::uintptr_t m_aShootSounds                = 0X0418; // CUtlOrderedMap<WeaponSound_t,CSoundEventName>
+            static constexpr std::uintptr_t m_szWorldModelAg2Override     = 0X0108; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCModel>>
+            static constexpr std::uintptr_t m_sToolsOnlyOwnerModelName    = 0X01E8; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCModel>>
+            static constexpr std::uintptr_t m_bBuiltRightHanded           = 0X02C8; // bool
+            static constexpr std::uintptr_t m_bAllowFlipping              = 0X02C9; // bool
+            static constexpr std::uintptr_t m_sMuzzleAttachment           = 0X02D0; // CAttachmentNameSymbolWithStorage
+            static constexpr std::uintptr_t m_szMuzzleFlashParticle       = 0X02F0; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeIParticleSystemDefinition>>
+            static constexpr std::uintptr_t m_szMuzzleFlashParticleConfig = 0X03D0; // CUtlString
+            static constexpr std::uintptr_t m_szBarrelSmokeParticle       = 0X03D8; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeIParticleSystemDefinition>>
+            static constexpr std::uintptr_t m_nMuzzleSmokeShotThreshold   = 0X04B8; // uint8
+            static constexpr std::uintptr_t m_flMuzzleSmokeTimeout        = 0X04BC; // float32
+            static constexpr std::uintptr_t m_flMuzzleSmokeDecrementRate  = 0X04C0; // float32
+            static constexpr std::uintptr_t m_bGenerateMuzzleLight        = 0X04C4; // bool
+            static constexpr std::uintptr_t m_bLinkedCooldowns            = 0X04C5; // bool
+            static constexpr std::uintptr_t m_iFlags                      = 0X04C6; // ItemFlagTypes_t
+            static constexpr std::uintptr_t m_iWeight                     = 0X04C8; // int32
+            static constexpr std::uintptr_t m_bAutoSwitchTo               = 0X04CC; // bool
+            static constexpr std::uintptr_t m_bAutoSwitchFrom             = 0X04CD; // bool
+            static constexpr std::uintptr_t m_nPrimaryAmmoType            = 0X04CE; // AmmoIndex_t
+            static constexpr std::uintptr_t m_nSecondaryAmmoType          = 0X04CF; // AmmoIndex_t
+            static constexpr std::uintptr_t m_iMaxClip1                   = 0X04D0; // int32
+            static constexpr std::uintptr_t m_iMaxClip2                   = 0X04D4; // int32
+            static constexpr std::uintptr_t m_iDefaultClip1               = 0X04D8; // int32
+            static constexpr std::uintptr_t m_iDefaultClip2               = 0X04DC; // int32
+            static constexpr std::uintptr_t m_bReserveAmmoAsClips         = 0X04E0; // bool
+            static constexpr std::uintptr_t m_bTreatAsSingleClip          = 0X04E1; // bool
+            static constexpr std::uintptr_t m_bKeepLoadedAmmo             = 0X04E2; // bool
+            static constexpr std::uintptr_t m_iRumbleEffect               = 0X04E4; // RumbleEffect_t
+            static constexpr std::uintptr_t m_flDropSpeed                 = 0X04E8; // float32
+            static constexpr std::uintptr_t m_iSlot                       = 0X04EC; // int32
+            static constexpr std::uintptr_t m_iPosition                   = 0X04F0; // int32
+            static constexpr std::uintptr_t m_aShootSounds                = 0X04F8; // CUtlOrderedMap<WeaponSound_t,CSoundEventName>
         };
 
         // Has VTable
@@ -6826,88 +7058,90 @@ namespace offsets {
         // Local Type Scope
         class CCSWeaponBaseVData : public CBasePlayerWeaponVData {
         public:
-            static constexpr std::uintptr_t m_WeaponType                               = 0X0440; // CSWeaponType
-            static constexpr std::uintptr_t m_WeaponCategory                           = 0X0444; // CSWeaponCategory
-            static constexpr std::uintptr_t m_szAnimSkeleton                           = 0X0448; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCNmSkeleton>>
-            static constexpr std::uintptr_t m_vecMuzzlePos0                            = 0X0528; // Vector
-            static constexpr std::uintptr_t m_vecMuzzlePos1                            = 0X0534; // Vector
-            static constexpr std::uintptr_t m_szTracerParticle                         = 0X0540; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeIParticleSystemDefinition>>
-            static constexpr std::uintptr_t m_GearSlot                                 = 0X0620; // gear_slot_t
-            static constexpr std::uintptr_t m_GearSlotPosition                         = 0X0624; // int32
-            static constexpr std::uintptr_t m_DefaultLoadoutSlot                       = 0X0628; // loadout_slot_t
-            static constexpr std::uintptr_t m_nPrice                                   = 0X062C; // int32
-            static constexpr std::uintptr_t m_nKillAward                               = 0X0630; // int32
-            static constexpr std::uintptr_t m_nPrimaryReserveAmmoMax                   = 0X0634; // int32
-            static constexpr std::uintptr_t m_nSecondaryReserveAmmoMax                 = 0X0638; // int32
-            static constexpr std::uintptr_t m_bMeleeWeapon                             = 0X063C; // bool
-            static constexpr std::uintptr_t m_bHasBurstMode                            = 0X063D; // bool
-            static constexpr std::uintptr_t m_bIsRevolver                              = 0X063E; // bool
-            static constexpr std::uintptr_t m_bCannotShootUnderwater                   = 0X063F; // bool
-            static constexpr std::uintptr_t m_szName                                   = 0X0640; // CGlobalSymbol
-            static constexpr std::uintptr_t m_eSilencerType                            = 0X0648; // CSWeaponSilencerType
-            static constexpr std::uintptr_t m_nCrosshairMinDistance                    = 0X064C; // int32
-            static constexpr std::uintptr_t m_nCrosshairDeltaDistance                  = 0X0650; // int32
-            static constexpr std::uintptr_t m_bIsFullAuto                              = 0X0654; // bool
-            static constexpr std::uintptr_t m_nNumBullets                              = 0X0658; // int32
-            static constexpr std::uintptr_t m_bReloadsSingleShells                     = 0X065C; // bool
-            static constexpr std::uintptr_t m_flCycleTime                              = 0X0660; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flMaxSpeed                               = 0X0668; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flSpread                                 = 0X0670; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flInaccuracyCrouch                       = 0X0678; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flInaccuracyStand                        = 0X0680; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flInaccuracyJump                         = 0X0688; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flInaccuracyLand                         = 0X0690; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flInaccuracyLadder                       = 0X0698; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flInaccuracyFire                         = 0X06A0; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flInaccuracyMove                         = 0X06A8; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flRecoilAngle                            = 0X06B0; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flRecoilAngleVariance                    = 0X06B8; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flRecoilMagnitude                        = 0X06C0; // CFiringModeFloat
-            static constexpr std::uintptr_t m_flRecoilMagnitudeVariance                = 0X06C8; // CFiringModeFloat
-            static constexpr std::uintptr_t m_nTracerFrequency                         = 0X06D0; // CFiringModeInt
-            static constexpr std::uintptr_t m_flInaccuracyJumpInitial                  = 0X06D8; // float32
-            static constexpr std::uintptr_t m_flInaccuracyJumpApex                     = 0X06DC; // float32
-            static constexpr std::uintptr_t m_flInaccuracyReload                       = 0X06E0; // float32
-            static constexpr std::uintptr_t m_flDeployDuration                         = 0X06E4; // float32
-            static constexpr std::uintptr_t m_flDisallowAttackAfterReloadStartDuration = 0X06E8; // float32
-            static constexpr std::uintptr_t m_nBurstShotCount                          = 0X06EC; // int32
-            static constexpr std::uintptr_t m_bAllowBurstHolster                       = 0X06F0; // bool
-            static constexpr std::uintptr_t m_nRecoilSeed                              = 0X06F4; // int32
-            static constexpr std::uintptr_t m_nSpreadSeed                              = 0X06F8; // int32
-            static constexpr std::uintptr_t m_flAttackMovespeedFactor                  = 0X06FC; // float32
-            static constexpr std::uintptr_t m_flInaccuracyPitchShift                   = 0X0700; // float32
-            static constexpr std::uintptr_t m_flInaccuracyAltSoundThreshold            = 0X0704; // float32
-            static constexpr std::uintptr_t m_szUseRadioSubtitle                       = 0X0708; // CUtlString
-            static constexpr std::uintptr_t m_bUnzoomsAfterShot                        = 0X0710; // bool
-            static constexpr std::uintptr_t m_bHideViewModelWhenZoomed                 = 0X0711; // bool
-            static constexpr std::uintptr_t m_nZoomLevels                              = 0X0714; // int32
-            static constexpr std::uintptr_t m_nZoomFOV1                                = 0X0718; // int32
-            static constexpr std::uintptr_t m_nZoomFOV2                                = 0X071C; // int32
-            static constexpr std::uintptr_t m_flZoomTime0                              = 0X0720; // float32
-            static constexpr std::uintptr_t m_flZoomTime1                              = 0X0724; // float32
-            static constexpr std::uintptr_t m_flZoomTime2                              = 0X0728; // float32
-            static constexpr std::uintptr_t m_flIronSightPullUpSpeed                   = 0X072C; // float32
-            static constexpr std::uintptr_t m_flIronSightPutDownSpeed                  = 0X0730; // float32
-            static constexpr std::uintptr_t m_flIronSightFOV                           = 0X0734; // float32
-            static constexpr std::uintptr_t m_flIronSightPivotForward                  = 0X0738; // float32
-            static constexpr std::uintptr_t m_flIronSightLooseness                     = 0X073C; // float32
-            static constexpr std::uintptr_t m_nDamage                                  = 0X0740; // int32
-            static constexpr std::uintptr_t m_flHeadshotMultiplier                     = 0X0744; // float32
-            static constexpr std::uintptr_t m_flArmorRatio                             = 0X0748; // float32
-            static constexpr std::uintptr_t m_flPenetration                            = 0X074C; // float32
-            static constexpr std::uintptr_t m_flRange                                  = 0X0750; // float32
-            static constexpr std::uintptr_t m_flRangeModifier                          = 0X0754; // float32
-            static constexpr std::uintptr_t m_flFlinchVelocityModifierLarge            = 0X0758; // float32
-            static constexpr std::uintptr_t m_flFlinchVelocityModifierSmall            = 0X075C; // float32
-            static constexpr std::uintptr_t m_flRecoveryTimeCrouch                     = 0X0760; // float32
-            static constexpr std::uintptr_t m_flRecoveryTimeStand                      = 0X0764; // float32
-            static constexpr std::uintptr_t m_flRecoveryTimeCrouchFinal                = 0X0768; // float32
-            static constexpr std::uintptr_t m_flRecoveryTimeStandFinal                 = 0X076C; // float32
-            static constexpr std::uintptr_t m_nRecoveryTransitionStartBullet           = 0X0770; // int32
-            static constexpr std::uintptr_t m_nRecoveryTransitionEndBullet             = 0X0774; // int32
-            static constexpr std::uintptr_t m_flThrowVelocity                          = 0X0778; // float32
-            static constexpr std::uintptr_t m_vSmokeColor                              = 0X077C; // Vector
-            static constexpr std::uintptr_t m_szAnimClass                              = 0X0788; // CGlobalSymbol
+            static constexpr std::uintptr_t m_WeaponType                               = 0X0520; // CSWeaponType
+            static constexpr std::uintptr_t m_WeaponCategory                           = 0X0524; // CSWeaponCategory
+            static constexpr std::uintptr_t m_szAnimSkeleton                           = 0X0528; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCNmSkeleton>>
+            static constexpr std::uintptr_t m_vecMuzzlePos0                            = 0X0608; // Vector
+            static constexpr std::uintptr_t m_vecMuzzlePos1                            = 0X0614; // Vector
+            static constexpr std::uintptr_t m_szTracerParticle                         = 0X0620; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeIParticleSystemDefinition>>
+            static constexpr std::uintptr_t m_GearSlot                                 = 0X0700; // gear_slot_t
+            static constexpr std::uintptr_t m_GearSlotPosition                         = 0X0704; // int32
+            static constexpr std::uintptr_t m_DefaultLoadoutSlot                       = 0X0708; // loadout_slot_t
+            static constexpr std::uintptr_t m_nPrice                                   = 0X070C; // int32
+            static constexpr std::uintptr_t m_nKillAward                               = 0X0710; // int32
+            static constexpr std::uintptr_t m_nPrimaryReserveAmmoMax                   = 0X0714; // int32
+            static constexpr std::uintptr_t m_nSecondaryReserveAmmoMax                 = 0X0718; // int32
+            static constexpr std::uintptr_t m_bMeleeWeapon                             = 0X071C; // bool
+            static constexpr std::uintptr_t m_bHasBurstMode                            = 0X071D; // bool
+            static constexpr std::uintptr_t m_bIsRevolver                              = 0X071E; // bool
+            static constexpr std::uintptr_t m_bCannotShootUnderwater                   = 0X071F; // bool
+            static constexpr std::uintptr_t m_szName                                   = 0X0720; // CGlobalSymbol
+            static constexpr std::uintptr_t m_eSilencerType                            = 0X0728; // CSWeaponSilencerType
+            static constexpr std::uintptr_t m_nCrosshairMinDistance                    = 0X072C; // int32
+            static constexpr std::uintptr_t m_nCrosshairDeltaDistance                  = 0X0730; // int32
+            static constexpr std::uintptr_t m_bIsFullAuto                              = 0X0734; // bool
+            static constexpr std::uintptr_t m_nNumBullets                              = 0X0738; // int32
+            static constexpr std::uintptr_t m_bReloadsSingleShells                     = 0X073C; // bool
+            static constexpr std::uintptr_t m_flCycleTime                              = 0X0740; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flCycleTimeWhenInBurstMode               = 0X0748; // float32
+            static constexpr std::uintptr_t m_flTimeBetweenBurstShots                  = 0X074C; // float32
+            static constexpr std::uintptr_t m_flMaxSpeed                               = 0X0750; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flSpread                                 = 0X0758; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flInaccuracyCrouch                       = 0X0760; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flInaccuracyStand                        = 0X0768; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flInaccuracyJump                         = 0X0770; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flInaccuracyLand                         = 0X0778; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flInaccuracyLadder                       = 0X0780; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flInaccuracyFire                         = 0X0788; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flInaccuracyMove                         = 0X0790; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flRecoilAngle                            = 0X0798; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flRecoilAngleVariance                    = 0X07A0; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flRecoilMagnitude                        = 0X07A8; // CFiringModeFloat
+            static constexpr std::uintptr_t m_flRecoilMagnitudeVariance                = 0X07B0; // CFiringModeFloat
+            static constexpr std::uintptr_t m_nTracerFrequency                         = 0X07B8; // CFiringModeInt
+            static constexpr std::uintptr_t m_flInaccuracyJumpInitial                  = 0X07C0; // float32
+            static constexpr std::uintptr_t m_flInaccuracyJumpApex                     = 0X07C4; // float32
+            static constexpr std::uintptr_t m_flInaccuracyReload                       = 0X07C8; // float32
+            static constexpr std::uintptr_t m_flDeployDuration                         = 0X07CC; // float32
+            static constexpr std::uintptr_t m_flDisallowAttackAfterReloadStartDuration = 0X07D0; // float32
+            static constexpr std::uintptr_t m_nBurstShotCount                          = 0X07D4; // int32
+            static constexpr std::uintptr_t m_bAllowBurstHolster                       = 0X07D8; // bool
+            static constexpr std::uintptr_t m_nRecoilSeed                              = 0X07DC; // int32
+            static constexpr std::uintptr_t m_nSpreadSeed                              = 0X07E0; // int32
+            static constexpr std::uintptr_t m_flAttackMovespeedFactor                  = 0X07E4; // float32
+            static constexpr std::uintptr_t m_flInaccuracyPitchShift                   = 0X07E8; // float32
+            static constexpr std::uintptr_t m_flInaccuracyAltSoundThreshold            = 0X07EC; // float32
+            static constexpr std::uintptr_t m_szUseRadioSubtitle                       = 0X07F0; // CUtlString
+            static constexpr std::uintptr_t m_bUnzoomsAfterShot                        = 0X07F8; // bool
+            static constexpr std::uintptr_t m_bHideViewModelWhenZoomed                 = 0X07F9; // bool
+            static constexpr std::uintptr_t m_nZoomLevels                              = 0X07FC; // int32
+            static constexpr std::uintptr_t m_nZoomFOV1                                = 0X0800; // int32
+            static constexpr std::uintptr_t m_nZoomFOV2                                = 0X0804; // int32
+            static constexpr std::uintptr_t m_flZoomTime0                              = 0X0808; // float32
+            static constexpr std::uintptr_t m_flZoomTime1                              = 0X080C; // float32
+            static constexpr std::uintptr_t m_flZoomTime2                              = 0X0810; // float32
+            static constexpr std::uintptr_t m_flIronSightPullUpSpeed                   = 0X0814; // float32
+            static constexpr std::uintptr_t m_flIronSightPutDownSpeed                  = 0X0818; // float32
+            static constexpr std::uintptr_t m_flIronSightFOV                           = 0X081C; // float32
+            static constexpr std::uintptr_t m_flIronSightPivotForward                  = 0X0820; // float32
+            static constexpr std::uintptr_t m_flIronSightLooseness                     = 0X0824; // float32
+            static constexpr std::uintptr_t m_nDamage                                  = 0X0828; // int32
+            static constexpr std::uintptr_t m_flHeadshotMultiplier                     = 0X082C; // float32
+            static constexpr std::uintptr_t m_flArmorRatio                             = 0X0830; // float32
+            static constexpr std::uintptr_t m_flPenetration                            = 0X0834; // float32
+            static constexpr std::uintptr_t m_flRange                                  = 0X0838; // float32
+            static constexpr std::uintptr_t m_flRangeModifier                          = 0X083C; // float32
+            static constexpr std::uintptr_t m_flFlinchVelocityModifierLarge            = 0X0840; // float32
+            static constexpr std::uintptr_t m_flFlinchVelocityModifierSmall            = 0X0844; // float32
+            static constexpr std::uintptr_t m_flRecoveryTimeCrouch                     = 0X0848; // float32
+            static constexpr std::uintptr_t m_flRecoveryTimeStand                      = 0X084C; // float32
+            static constexpr std::uintptr_t m_flRecoveryTimeCrouchFinal                = 0X0850; // float32
+            static constexpr std::uintptr_t m_flRecoveryTimeStandFinal                 = 0X0854; // float32
+            static constexpr std::uintptr_t m_nRecoveryTransitionStartBullet           = 0X0858; // int32
+            static constexpr std::uintptr_t m_nRecoveryTransitionEndBullet             = 0X085C; // int32
+            static constexpr std::uintptr_t m_flThrowVelocity                          = 0X0860; // float32
+            static constexpr std::uintptr_t m_vSmokeColor                              = 0X0864; // Vector
+            static constexpr std::uintptr_t m_szAnimClass                              = 0X0870; // CGlobalSymbol
         };
 
         // Has VTable
@@ -6955,18 +7189,21 @@ namespace offsets {
             static constexpr std::uintptr_t m_ExpectedParamType = 0X00A0; // CPulseValueFullType
         };
 
-        // Construct Allowed
-        // Local Type Scope
-        class CScenePayloadVData {
-        public:
-            static constexpr std::uintptr_t m_sSceneFile = 0X0000; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCChoreoSceneResource>>
-        };
-
         // Has Trivial Constructor
         // Has Trivial Destructor
         // Local Type Scope
         class CPulseFuncs_GameParticleManager {
         public:
+        };
+
+        // Construct Allowed
+        // Local Type Scope
+        class CScenePayloadVData {
+        public:
+            static constexpr std::uintptr_t m_eNPCBehavior = 0X0000; // ENPCBehaviorOverride_t
+            static constexpr std::uintptr_t m_sPulseFile   = 0X0008; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeIPulseGraphDef>>
+            static constexpr std::uintptr_t m_sSceneFile   = 0X00E8; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCChoreoSceneResource>>
+            static constexpr std::uintptr_t m_ePriority    = 0X01C8; // InteractionPriority_t
         };
 
         // Has VTable
@@ -6984,6 +7221,7 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_worldGoalAxis    = 0X04B0; // Vector
             static constexpr std::uintptr_t m_localTestAxis    = 0X04BC; // Vector
+            static constexpr std::uintptr_t m_pController      = 0X04C8; // IPhysicsMotionController*
             static constexpr std::uintptr_t m_nameAttach       = 0X04D0; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_attachedObject   = 0X04D8; // CHandle<CBaseEntity>
             static constexpr std::uintptr_t m_angularLimit     = 0X04DC; // float32
@@ -7007,6 +7245,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_SpawnedEntityHandles         = 0X04E8; // CUtlVector<CEntityHandle>
             static constexpr std::uintptr_t m_ScriptSpawnCallback          = 0X0500; // HSCRIPT
             static constexpr std::uintptr_t m_ScriptCallbackScope          = 0X0508; // HSCRIPT
+            static constexpr std::uintptr_t m_OnEntitySpawned              = 0X0510; // CEntityOutputTemplate<CUtlVector<CEntityHandle>>
         };
 
         // Has VTable
@@ -7232,34 +7471,34 @@ namespace offsets {
         // Local Type Scope
         class CChicken : public CDynamicProp {
         public:
-            static constexpr std::uintptr_t m_AttributeManager        = 0X0C70; // CAttributeContainer
-            static constexpr std::uintptr_t m_updateTimer             = 0X0F68; // CountdownTimer
-            static constexpr std::uintptr_t m_stuckAnchor             = 0X0F80; // Vector
-            static constexpr std::uintptr_t m_stuckTimer              = 0X0F90; // CountdownTimer
-            static constexpr std::uintptr_t m_collisionStuckTimer     = 0X0FA8; // CountdownTimer
-            static constexpr std::uintptr_t m_isOnGround              = 0X0FC0; // bool
-            static constexpr std::uintptr_t m_vFallVelocity           = 0X0FC4; // Vector
-            static constexpr std::uintptr_t m_desiredActivity         = 0X0FD0; // ChickenActivity
-            static constexpr std::uintptr_t m_currentActivity         = 0X0FD4; // ChickenActivity
-            static constexpr std::uintptr_t m_activityTimer           = 0X0FD8; // CountdownTimer
-            static constexpr std::uintptr_t m_turnRate                = 0X0FF0; // float32
-            static constexpr std::uintptr_t m_fleeFrom                = 0X0FF4; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_moveRateThrottleTimer   = 0X0FF8; // CountdownTimer
-            static constexpr std::uintptr_t m_startleTimer            = 0X1010; // CountdownTimer
-            static constexpr std::uintptr_t m_vocalizeTimer           = 0X1028; // CountdownTimer
-            static constexpr std::uintptr_t m_flWhenZombified         = 0X1040; // GameTime_t
-            static constexpr std::uintptr_t m_jumpedThisFrame         = 0X1044; // bool
-            static constexpr std::uintptr_t m_leader                  = 0X1048; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_reuseTimer              = 0X1060; // CountdownTimer
-            static constexpr std::uintptr_t m_hasBeenUsed             = 0X1078; // bool
-            static constexpr std::uintptr_t m_jumpTimer               = 0X1080; // CountdownTimer
-            static constexpr std::uintptr_t m_flLastJumpTime          = 0X1098; // float32
-            static constexpr std::uintptr_t m_bInJump                 = 0X109C; // bool
-            static constexpr std::uintptr_t m_repathTimer             = 0X30A8; // CountdownTimer
-            static constexpr std::uintptr_t m_vecPathGoal             = 0X3140; // Vector
-            static constexpr std::uintptr_t m_flActiveFollowStartTime = 0X314C; // GameTime_t
-            static constexpr std::uintptr_t m_followMinuteTimer       = 0X3150; // CountdownTimer
-            static constexpr std::uintptr_t m_BlockDirectionTimer     = 0X3170; // CountdownTimer
+            static constexpr std::uintptr_t m_AttributeManager        = 0X0BA0; // CAttributeContainer
+            static constexpr std::uintptr_t m_updateTimer             = 0X0E98; // CountdownTimer
+            static constexpr std::uintptr_t m_stuckAnchor             = 0X0EB0; // Vector
+            static constexpr std::uintptr_t m_stuckTimer              = 0X0EC0; // CountdownTimer
+            static constexpr std::uintptr_t m_collisionStuckTimer     = 0X0ED8; // CountdownTimer
+            static constexpr std::uintptr_t m_isOnGround              = 0X0EF0; // bool
+            static constexpr std::uintptr_t m_vFallVelocity           = 0X0EF4; // Vector
+            static constexpr std::uintptr_t m_desiredActivity         = 0X0F00; // ChickenActivity
+            static constexpr std::uintptr_t m_currentActivity         = 0X0F04; // ChickenActivity
+            static constexpr std::uintptr_t m_activityTimer           = 0X0F08; // CountdownTimer
+            static constexpr std::uintptr_t m_turnRate                = 0X0F20; // float32
+            static constexpr std::uintptr_t m_fleeFrom                = 0X0F24; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_moveRateThrottleTimer   = 0X0F28; // CountdownTimer
+            static constexpr std::uintptr_t m_startleTimer            = 0X0F40; // CountdownTimer
+            static constexpr std::uintptr_t m_vocalizeTimer           = 0X0F58; // CountdownTimer
+            static constexpr std::uintptr_t m_flWhenZombified         = 0X0F70; // GameTime_t
+            static constexpr std::uintptr_t m_jumpedThisFrame         = 0X0F74; // bool
+            static constexpr std::uintptr_t m_leader                  = 0X0F78; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_reuseTimer              = 0X0F90; // CountdownTimer
+            static constexpr std::uintptr_t m_hasBeenUsed             = 0X0FA8; // bool
+            static constexpr std::uintptr_t m_jumpTimer               = 0X0FB0; // CountdownTimer
+            static constexpr std::uintptr_t m_flLastJumpTime          = 0X0FC8; // float32
+            static constexpr std::uintptr_t m_bInJump                 = 0X0FCC; // bool
+            static constexpr std::uintptr_t m_repathTimer             = 0X2FD8; // CountdownTimer
+            static constexpr std::uintptr_t m_vecPathGoal             = 0X3070; // Vector
+            static constexpr std::uintptr_t m_flActiveFollowStartTime = 0X307C; // GameTime_t
+            static constexpr std::uintptr_t m_followMinuteTimer       = 0X3080; // CountdownTimer
+            static constexpr std::uintptr_t m_BlockDirectionTimer     = 0X30A0; // CountdownTimer
         };
 
         // Has VTable
@@ -7267,11 +7506,11 @@ namespace offsets {
         // Local Type Scope
         class CPhysicsPropRespawnable : public CPhysicsProp {
         public:
-            static constexpr std::uintptr_t m_vOriginalSpawnOrigin = 0X0CE0; // VectorWS
-            static constexpr std::uintptr_t m_vOriginalSpawnAngles = 0X0CEC; // QAngle
-            static constexpr std::uintptr_t m_vOriginalMins        = 0X0CF8; // Vector
-            static constexpr std::uintptr_t m_vOriginalMaxs        = 0X0D04; // Vector
-            static constexpr std::uintptr_t m_flRespawnDuration    = 0X0D10; // float32
+            static constexpr std::uintptr_t m_vOriginalSpawnOrigin = 0X0C10; // VectorWS
+            static constexpr std::uintptr_t m_vOriginalSpawnAngles = 0X0C1C; // QAngle
+            static constexpr std::uintptr_t m_vOriginalMins        = 0X0C28; // Vector
+            static constexpr std::uintptr_t m_vOriginalMaxs        = 0X0C34; // Vector
+            static constexpr std::uintptr_t m_flRespawnDuration    = 0X0C40; // float32
         };
 
         // Has VTable
@@ -7279,25 +7518,25 @@ namespace offsets {
         // Local Type Scope
         class CEnvBeam : public CBeam {
         public:
-            static constexpr std::uintptr_t m_active            = 0X07D0; // int32
-            static constexpr std::uintptr_t m_spriteTexture     = 0X07D8; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_iszStartEntity    = 0X07E0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszEndEntity      = 0X07E8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_life              = 0X07F0; // float32
-            static constexpr std::uintptr_t m_boltWidth         = 0X07F4; // float32
-            static constexpr std::uintptr_t m_noiseAmplitude    = 0X07F8; // float32
-            static constexpr std::uintptr_t m_speed             = 0X07FC; // int32
-            static constexpr std::uintptr_t m_restrike          = 0X0800; // float32
-            static constexpr std::uintptr_t m_iszSpriteName     = 0X0808; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_frameStart        = 0X0810; // int32
-            static constexpr std::uintptr_t m_vEndPointWorld    = 0X0814; // VectorWS
-            static constexpr std::uintptr_t m_vEndPointRelative = 0X0820; // Vector
-            static constexpr std::uintptr_t m_radius            = 0X082C; // float32
-            static constexpr std::uintptr_t m_TouchType         = 0X0830; // Touch_t
-            static constexpr std::uintptr_t m_iFilterName       = 0X0838; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hFilter           = 0X0840; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_iszDecal          = 0X0848; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_OnTouchedByEntity = 0X0850; // CEntityIOOutput
+            static constexpr std::uintptr_t m_active            = 0X0808; // int32
+            static constexpr std::uintptr_t m_spriteTexture     = 0X0810; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_iszStartEntity    = 0X0818; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszEndEntity      = 0X0820; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_life              = 0X0828; // float32
+            static constexpr std::uintptr_t m_boltWidth         = 0X082C; // float32
+            static constexpr std::uintptr_t m_noiseAmplitude    = 0X0830; // float32
+            static constexpr std::uintptr_t m_speed             = 0X0834; // int32
+            static constexpr std::uintptr_t m_restrike          = 0X0838; // float32
+            static constexpr std::uintptr_t m_iszSpriteName     = 0X0840; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_frameStart        = 0X0848; // int32
+            static constexpr std::uintptr_t m_vEndPointWorld    = 0X084C; // VectorWS
+            static constexpr std::uintptr_t m_vEndPointRelative = 0X0858; // Vector
+            static constexpr std::uintptr_t m_radius            = 0X0864; // float32
+            static constexpr std::uintptr_t m_TouchType         = 0X0868; // Touch_t
+            static constexpr std::uintptr_t m_iFilterName       = 0X0870; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hFilter           = 0X0878; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_iszDecal          = 0X0880; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_OnTouchedByEntity = 0X0888; // CEntityIOOutput
         };
 
         // Has VTable
@@ -7319,8 +7558,8 @@ namespace offsets {
         // Local Type Scope
         class CTonemapTrigger : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_tonemapControllerName = 0X0890; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hTonemapController    = 0X0898; // CEntityHandle
+            static constexpr std::uintptr_t m_tonemapControllerName = 0X08C8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hTonemapController    = 0X08D0; // CEntityHandle
         };
 
         // Has VTable
@@ -7328,83 +7567,88 @@ namespace offsets {
         // Local Type Scope
         class CEnvShake : public CPointEntity {
         public:
-            static constexpr std::uintptr_t m_limitToEntity = 0X04A8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_Amplitude     = 0X04B0; // float32
-            static constexpr std::uintptr_t m_Frequency     = 0X04B4; // float32
-            static constexpr std::uintptr_t m_Duration      = 0X04B8; // float32
-            static constexpr std::uintptr_t m_Radius        = 0X04BC; // float32
-            static constexpr std::uintptr_t m_stopTime      = 0X04C0; // GameTime_t
-            static constexpr std::uintptr_t m_nextShake     = 0X04C4; // GameTime_t
-            static constexpr std::uintptr_t m_currentAmp    = 0X04C8; // float32
-            static constexpr std::uintptr_t m_maxForce      = 0X04CC; // Vector
-            static constexpr std::uintptr_t m_shakeCallback = 0X04E0; // CPhysicsShake
+            static constexpr std::uintptr_t m_limitToEntity    = 0X04A8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_Amplitude        = 0X04B0; // float32
+            static constexpr std::uintptr_t m_Frequency        = 0X04B4; // float32
+            static constexpr std::uintptr_t m_Duration         = 0X04B8; // float32
+            static constexpr std::uintptr_t m_Radius           = 0X04BC; // float32
+            static constexpr std::uintptr_t m_stopTime         = 0X04C0; // GameTime_t
+            static constexpr std::uintptr_t m_nextShake        = 0X04C4; // GameTime_t
+            static constexpr std::uintptr_t m_currentAmp       = 0X04C8; // float32
+            static constexpr std::uintptr_t m_maxForce         = 0X04CC; // Vector
+            static constexpr std::uintptr_t m_pShakeController = 0X04D8; // IPhysicsMotionController*
+            static constexpr std::uintptr_t m_shakeCallback    = 0X04E0; // CPhysicsShake
         };
 
         // Has VTable
         // Local Type Scope
         class CPlayer_MovementServices_Humanoid : public CPlayer_MovementServices {
         public:
-            static constexpr std::uintptr_t m_flStepSoundTime     = 0X0240; // float32
-            static constexpr std::uintptr_t m_flFallVelocity      = 0X0244; // float32
-            static constexpr std::uintptr_t m_groundNormal        = 0X0248; // Vector
-            static constexpr std::uintptr_t m_flSurfaceFriction   = 0X0254; // float32
-            static constexpr std::uintptr_t m_surfaceProps        = 0X0258; // CUtlStringToken
-            static constexpr std::uintptr_t m_nStepside           = 0X0268; // int32
-            static constexpr std::uintptr_t m_vecSmoothedVelocity = 0X026C; // Vector
+            static constexpr std::uintptr_t m_flStepSoundTime     = 0X0258; // float32
+            static constexpr std::uintptr_t m_flFallVelocity      = 0X025C; // float32
+            static constexpr std::uintptr_t m_groundNormal        = 0X0260; // Vector
+            static constexpr std::uintptr_t m_flSurfaceFriction   = 0X026C; // float32
+            static constexpr std::uintptr_t m_surfaceProps        = 0X0270; // CUtlStringToken
+            static constexpr std::uintptr_t m_nStepside           = 0X0280; // int32
+            static constexpr std::uintptr_t m_vecSmoothedVelocity = 0X0284; // Vector
         };
 
         // Has VTable
         // Local Type Scope
         class CCSPlayer_MovementServices : public CPlayer_MovementServices_Humanoid {
         public:
-            static constexpr std::uintptr_t m_vecLadderNormal                     = 0X0278; // Vector
-            static constexpr std::uintptr_t m_nLadderSurfacePropIndex             = 0X0284; // int32
-            static constexpr std::uintptr_t m_bDucked                             = 0X0288; // bool
-            static constexpr std::uintptr_t m_flDuckAmount                        = 0X028C; // float32
-            static constexpr std::uintptr_t m_flDuckSpeed                         = 0X0290; // float32
-            static constexpr std::uintptr_t m_bDuckOverride                       = 0X0294; // bool
-            static constexpr std::uintptr_t m_bDesiresDuck                        = 0X0295; // bool
-            static constexpr std::uintptr_t m_bDucking                            = 0X0296; // bool
-            static constexpr std::uintptr_t m_flDuckOffset                        = 0X0298; // float32
-            static constexpr std::uintptr_t m_nDuckTimeMsecs                      = 0X029C; // uint32
-            static constexpr std::uintptr_t m_nDuckJumpTimeMsecs                  = 0X02A0; // uint32
-            static constexpr std::uintptr_t m_nJumpTimeMsecs                      = 0X02A4; // uint32
-            static constexpr std::uintptr_t m_flLastDuckTime                      = 0X02A8; // float32
-            static constexpr std::uintptr_t m_vecLastPositionAtFullCrouchSpeed    = 0X02B8; // Vector2D
-            static constexpr std::uintptr_t m_duckUntilOnGround                   = 0X02C0; // bool
-            static constexpr std::uintptr_t m_bHasWalkMovedSinceLastJump          = 0X02C1; // bool
-            static constexpr std::uintptr_t m_bInStuckTest                        = 0X02C2; // bool
-            static constexpr std::uintptr_t m_nTraceCount                         = 0X04D0; // int32
-            static constexpr std::uintptr_t m_StuckLast                           = 0X04D4; // int32
-            static constexpr std::uintptr_t m_bSpeedCropped                       = 0X04D8; // bool
-            static constexpr std::uintptr_t m_nOldWaterLevel                      = 0X04DC; // int32
-            static constexpr std::uintptr_t m_flWaterEntryTime                    = 0X04E0; // float32
-            static constexpr std::uintptr_t m_vecForward                          = 0X04E4; // Vector
-            static constexpr std::uintptr_t m_vecLeft                             = 0X04F0; // Vector
-            static constexpr std::uintptr_t m_vecUp                               = 0X04FC; // Vector
-            static constexpr std::uintptr_t m_nGameCodeHasMovedPlayerAfterCommand = 0X0508; // int32
-            static constexpr std::uintptr_t m_bMadeFootstepNoise                  = 0X050C; // bool
-            static constexpr std::uintptr_t m_iFootsteps                          = 0X0510; // int32
-            static constexpr std::uintptr_t m_fStashGrenadeParameterWhen          = 0X0514; // GameTime_t
-            static constexpr std::uintptr_t m_nButtonDownMaskPrev                 = 0X0518; // uint64
-            static constexpr std::uintptr_t m_flOffsetTickCompleteTime            = 0X0520; // float32
-            static constexpr std::uintptr_t m_flOffsetTickStashedSpeed            = 0X0524; // float32
-            static constexpr std::uintptr_t m_flStamina                           = 0X0528; // float32
-            static constexpr std::uintptr_t m_flHeightAtJumpStart                 = 0X052C; // float32
-            static constexpr std::uintptr_t m_flMaxJumpHeightThisJump             = 0X0530; // float32
-            static constexpr std::uintptr_t m_flMaxJumpHeightLastJump             = 0X0534; // float32
-            static constexpr std::uintptr_t m_flStaminaAtJumpStart                = 0X0538; // float32
-            static constexpr std::uintptr_t m_flVelMulAtJumpStart                 = 0X053C; // float32
-            static constexpr std::uintptr_t m_flAccumulatedJumpError              = 0X0540; // float32
-            static constexpr std::uintptr_t m_LegacyJump                          = 0X0548; // CCSPlayerLegacyJump
-            static constexpr std::uintptr_t m_ModernJump                          = 0X0560; // CCSPlayerModernJump
-            static constexpr std::uintptr_t m_nLastJumpTick                       = 0X0598; // GameTick_t
-            static constexpr std::uintptr_t m_flLastJumpFrac                      = 0X059C; // float32
-            static constexpr std::uintptr_t m_flLastJumpVelocityZ                 = 0X05A0; // float32
-            static constexpr std::uintptr_t m_bJumpApexPending                    = 0X05A4; // bool
-            static constexpr std::uintptr_t m_flTicksSinceLastSurfingDetected     = 0X05A8; // float32
-            static constexpr std::uintptr_t m_bWasSurfing                         = 0X05AC; // bool
-            static constexpr std::uintptr_t m_vecInputRotated                     = 0X063C; // Vector
+            static constexpr std::uintptr_t m_AnimationState                      = 0X02E0; // CCSPlayerAnimationState
+            static constexpr std::uintptr_t m_vecLadderNormal                     = 0X03D0; // Vector
+            static constexpr std::uintptr_t m_nLadderSurfacePropIndex             = 0X03DC; // int32
+            static constexpr std::uintptr_t m_bDucked                             = 0X03E0; // bool
+            static constexpr std::uintptr_t m_flDuckAmount                        = 0X03E4; // float32
+            static constexpr std::uintptr_t m_flDuckSpeed                         = 0X03E8; // float32
+            static constexpr std::uintptr_t m_bDuckOverride                       = 0X03EC; // bool
+            static constexpr std::uintptr_t m_bDesiresDuck                        = 0X03ED; // bool
+            static constexpr std::uintptr_t m_bDucking                            = 0X03EE; // bool
+            static constexpr std::uintptr_t m_flDuckRootOffset                    = 0X03F0; // float32
+            static constexpr std::uintptr_t m_flDuckViewOffset                    = 0X03F4; // float32
+            static constexpr std::uintptr_t m_flLastDuckTime                      = 0X03F8; // float32
+            static constexpr std::uintptr_t m_flBombPlantViewOffset               = 0X03FC; // float32
+            static constexpr std::uintptr_t m_vecLastPositionAtFullCrouchSpeed    = 0X0408; // Vector2D
+            static constexpr std::uintptr_t m_duckUntilOnGround                   = 0X0410; // bool
+            static constexpr std::uintptr_t m_bHasWalkMovedSinceLastJump          = 0X0411; // bool
+            static constexpr std::uintptr_t m_bInStuckTest                        = 0X0412; // bool
+            static constexpr std::uintptr_t m_nTraceCount                         = 0X0620; // int32
+            static constexpr std::uintptr_t m_StuckLast                           = 0X0624; // int32
+            static constexpr std::uintptr_t m_bSpeedCropped                       = 0X0628; // bool
+            static constexpr std::uintptr_t m_nOldWaterLevel                      = 0X062C; // int32
+            static constexpr std::uintptr_t m_flWaterEntryTime                    = 0X0630; // float32
+            static constexpr std::uintptr_t m_vecForward                          = 0X0634; // Vector
+            static constexpr std::uintptr_t m_vecLeft                             = 0X0640; // Vector
+            static constexpr std::uintptr_t m_vecUp                               = 0X064C; // Vector
+            static constexpr std::uintptr_t m_nGameCodeHasMovedPlayerAfterCommand = 0X0658; // int32
+            static constexpr std::uintptr_t m_bMadeFootstepNoise                  = 0X065C; // bool
+            static constexpr std::uintptr_t m_iFootsteps                          = 0X0660; // int32
+            static constexpr std::uintptr_t m_fStashGrenadeParameterWhen          = 0X0664; // GameTime_t
+            static constexpr std::uintptr_t m_nButtonDownMaskPrev                 = 0X0668; // uint64
+            static constexpr std::uintptr_t m_bUseFrictionStashedSpeed            = 0X0670; // bool
+            static constexpr std::uintptr_t m_flUseFrictionStashedSpeedUntilFrac  = 0X0674; // float32
+            static constexpr std::uintptr_t m_flFrictionStashedSpeed              = 0X0678; // float32
+            static constexpr std::uintptr_t m_flStamina                           = 0X067C; // float32
+            static constexpr std::uintptr_t m_flHeightAtJumpStart                 = 0X0680; // float32
+            static constexpr std::uintptr_t m_flMaxJumpHeightThisJump             = 0X0684; // float32
+            static constexpr std::uintptr_t m_flMaxJumpHeightLastJump             = 0X0688; // float32
+            static constexpr std::uintptr_t m_flStaminaAtJumpStart                = 0X068C; // float32
+            static constexpr std::uintptr_t m_flVelMulAtJumpStart                 = 0X0690; // float32
+            static constexpr std::uintptr_t m_flAccumulatedJumpError              = 0X0694; // float32
+            static constexpr std::uintptr_t m_LegacyJump                          = 0X0698; // CCSPlayerLegacyJump
+            static constexpr std::uintptr_t m_ModernJump                          = 0X06B0; // CCSPlayerModernJump
+            static constexpr std::uintptr_t m_nLastJumpTick                       = 0X06E8; // GameTick_t
+            static constexpr std::uintptr_t m_flLastJumpFrac                      = 0X06EC; // float32
+            static constexpr std::uintptr_t m_flLastJumpVelocityZ                 = 0X06F0; // float32
+            static constexpr std::uintptr_t m_bJumpApexPending                    = 0X06F4; // bool
+            static constexpr std::uintptr_t m_flTicksSinceLastSurfingDetected     = 0X06F8; // float32
+            static constexpr std::uintptr_t m_bWasSurfing                         = 0X06FC; // bool
+            static constexpr std::uintptr_t m_vecWalkWishVel                      = 0X078C; // Vector2D
+            static constexpr std::uintptr_t m_gtLastTimeOnStaticWorldGround       = 0X0FB8; // GameTime_t
+            static constexpr std::uintptr_t m_gtLastTimeInAir                     = 0X0FBC; // GameTime_t
+            static constexpr std::uintptr_t m_bHasEverProcessedCommand            = 0X0FC0; // bool
         };
 
         // Has VTable
@@ -7416,6 +7660,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_nPrevArmor  = 0X0038; // int32
             static constexpr std::uintptr_t m_bPrevHelmet = 0X003C; // bool
             static constexpr std::uintptr_t m_hItem       = 0X0040; // CEntityHandle
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        // Local Type Scope
+        struct CTestPulseIO__EntityNameStringArgs_t {
+        public:
+            static constexpr std::uintptr_t nameA     = 0X0000; // CEntityNameString
+            static constexpr std::uintptr_t strValueB = 0X0008; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -7563,44 +7816,44 @@ namespace offsets {
         // Local Type Scope
         class CBasePropDoor : public CDynamicProp {
         public:
-            static constexpr std::uintptr_t m_flAutoReturnDelay     = 0X0C60; // float32
-            static constexpr std::uintptr_t m_hDoorList             = 0X0C68; // CUtlVector<CHandle<CBasePropDoor>>
-            static constexpr std::uintptr_t m_nHardwareType         = 0X0C80; // int32
-            static constexpr std::uintptr_t m_bNeedsHardware        = 0X0C84; // bool
-            static constexpr std::uintptr_t m_eDoorState            = 0X0C88; // DoorState_t
-            static constexpr std::uintptr_t m_bLocked               = 0X0C8C; // bool
-            static constexpr std::uintptr_t m_bNoNPCs               = 0X0C8D; // bool
-            static constexpr std::uintptr_t m_closedPosition        = 0X0C90; // Vector
-            static constexpr std::uintptr_t m_closedAngles          = 0X0C9C; // QAngle
-            static constexpr std::uintptr_t m_hBlocker              = 0X0CA8; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_bFirstBlocked         = 0X0CAC; // bool
-            static constexpr std::uintptr_t m_ls                    = 0X0CB0; // locksound_t
-            static constexpr std::uintptr_t m_bForceClosed          = 0X0CD0; // bool
-            static constexpr std::uintptr_t m_vecLatchWorldPosition = 0X0CD4; // VectorWS
-            static constexpr std::uintptr_t m_hActivator            = 0X0CE0; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_SoundMoving           = 0X0CF8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_SoundOpen             = 0X0D00; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_SoundClose            = 0X0D08; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_SoundLock             = 0X0D10; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_SoundUnlock           = 0X0D18; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_SoundLatch            = 0X0D20; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_SoundPound            = 0X0D28; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_SoundJiggle           = 0X0D30; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_SoundLockedAnim       = 0X0D38; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_numCloseAttempts      = 0X0D40; // int32
-            static constexpr std::uintptr_t m_nPhysicsMaterial      = 0X0D44; // CUtlStringToken
-            static constexpr std::uintptr_t m_SlaveName             = 0X0D48; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hMaster               = 0X0D50; // CHandle<CBasePropDoor>
-            static constexpr std::uintptr_t m_OnBlockedClosing      = 0X0D58; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnBlockedOpening      = 0X0D70; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnUnblockedClosing    = 0X0D88; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnUnblockedOpening    = 0X0DA0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFullyClosed         = 0X0DB8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFullyOpen           = 0X0DD0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnClose               = 0X0DE8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnOpen                = 0X0E00; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnLockedUse           = 0X0E18; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnAjarOpen            = 0X0E30; // CEntityIOOutput
+            static constexpr std::uintptr_t m_flAutoReturnDelay     = 0X0B90; // float32
+            static constexpr std::uintptr_t m_hDoorList             = 0X0B98; // CUtlVector<CHandle<CBasePropDoor>>
+            static constexpr std::uintptr_t m_nHardwareType         = 0X0BB0; // int32
+            static constexpr std::uintptr_t m_bNeedsHardware        = 0X0BB4; // bool
+            static constexpr std::uintptr_t m_eDoorState            = 0X0BB8; // DoorState_t
+            static constexpr std::uintptr_t m_bLocked               = 0X0BBC; // bool
+            static constexpr std::uintptr_t m_bNoNPCs               = 0X0BBD; // bool
+            static constexpr std::uintptr_t m_closedPosition        = 0X0BC0; // Vector
+            static constexpr std::uintptr_t m_closedAngles          = 0X0BCC; // QAngle
+            static constexpr std::uintptr_t m_hBlocker              = 0X0BD8; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_bFirstBlocked         = 0X0BDC; // bool
+            static constexpr std::uintptr_t m_ls                    = 0X0BE0; // locksound_t
+            static constexpr std::uintptr_t m_bForceClosed          = 0X0C00; // bool
+            static constexpr std::uintptr_t m_vecLatchWorldPosition = 0X0C04; // VectorWS
+            static constexpr std::uintptr_t m_hActivator            = 0X0C10; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_SoundMoving           = 0X0C28; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_SoundOpen             = 0X0C30; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_SoundClose            = 0X0C38; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_SoundLock             = 0X0C40; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_SoundUnlock           = 0X0C48; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_SoundLatch            = 0X0C50; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_SoundPound            = 0X0C58; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_SoundJiggle           = 0X0C60; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_SoundLockedAnim       = 0X0C68; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_numCloseAttempts      = 0X0C70; // int32
+            static constexpr std::uintptr_t m_nPhysicsMaterial      = 0X0C74; // CUtlStringToken
+            static constexpr std::uintptr_t m_SlaveName             = 0X0C78; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hMaster               = 0X0C80; // CHandle<CBasePropDoor>
+            static constexpr std::uintptr_t m_OnBlockedClosing      = 0X0C88; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnBlockedOpening      = 0X0CA0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnUnblockedClosing    = 0X0CB8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnUnblockedOpening    = 0X0CD0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnFullyClosed         = 0X0CE8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnFullyOpen           = 0X0D00; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnClose               = 0X0D18; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnOpen                = 0X0D30; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnLockedUse           = 0X0D48; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnAjarOpen            = 0X0D60; // CEntityIOOutput
         };
 
         // Has VTable
@@ -7608,24 +7861,24 @@ namespace offsets {
         // Local Type Scope
         class CPropDoorRotating : public CBasePropDoor {
         public:
-            static constexpr std::uintptr_t m_vecAxis                     = 0X0E50; // Vector
-            static constexpr std::uintptr_t m_flDistance                  = 0X0E5C; // float32
-            static constexpr std::uintptr_t m_eSpawnPosition              = 0X0E60; // PropDoorRotatingSpawnPos_t
-            static constexpr std::uintptr_t m_eOpenDirection              = 0X0E64; // PropDoorRotatingOpenDirection_e
-            static constexpr std::uintptr_t m_eCurrentOpenDirection       = 0X0E68; // PropDoorRotatingOpenDirection_e
-            static constexpr std::uintptr_t m_eDefaultCheckDirection      = 0X0E6C; // doorCheck_e
-            static constexpr std::uintptr_t m_flAjarAngle                 = 0X0E70; // float32
-            static constexpr std::uintptr_t m_angRotationAjarDeprecated   = 0X0E74; // QAngle
-            static constexpr std::uintptr_t m_angRotationClosed           = 0X0E80; // QAngle
-            static constexpr std::uintptr_t m_angRotationOpenForward      = 0X0E8C; // QAngle
-            static constexpr std::uintptr_t m_angRotationOpenBack         = 0X0E98; // QAngle
-            static constexpr std::uintptr_t m_angGoal                     = 0X0EA4; // QAngle
-            static constexpr std::uintptr_t m_vecForwardBoundsMin         = 0X0EB0; // Vector
-            static constexpr std::uintptr_t m_vecForwardBoundsMax         = 0X0EBC; // Vector
-            static constexpr std::uintptr_t m_vecBackBoundsMin            = 0X0EC8; // Vector
-            static constexpr std::uintptr_t m_vecBackBoundsMax            = 0X0ED4; // Vector
-            static constexpr std::uintptr_t m_bAjarDoorShouldntAlwaysOpen = 0X0EE0; // bool
-            static constexpr std::uintptr_t m_hEntityBlocker              = 0X0EE4; // CHandle<CEntityBlocker>
+            static constexpr std::uintptr_t m_vecAxis                     = 0X0D80; // Vector
+            static constexpr std::uintptr_t m_flDistance                  = 0X0D8C; // float32
+            static constexpr std::uintptr_t m_eSpawnPosition              = 0X0D90; // PropDoorRotatingSpawnPos_t
+            static constexpr std::uintptr_t m_eOpenDirection              = 0X0D94; // PropDoorRotatingOpenDirection_e
+            static constexpr std::uintptr_t m_eCurrentOpenDirection       = 0X0D98; // PropDoorRotatingOpenDirection_e
+            static constexpr std::uintptr_t m_eDefaultCheckDirection      = 0X0D9C; // doorCheck_e
+            static constexpr std::uintptr_t m_flAjarAngle                 = 0X0DA0; // float32
+            static constexpr std::uintptr_t m_angRotationAjarDeprecated   = 0X0DA4; // QAngle
+            static constexpr std::uintptr_t m_angRotationClosed           = 0X0DB0; // QAngle
+            static constexpr std::uintptr_t m_angRotationOpenForward      = 0X0DBC; // QAngle
+            static constexpr std::uintptr_t m_angRotationOpenBack         = 0X0DC8; // QAngle
+            static constexpr std::uintptr_t m_angGoal                     = 0X0DD4; // QAngle
+            static constexpr std::uintptr_t m_vecForwardBoundsMin         = 0X0DE0; // Vector
+            static constexpr std::uintptr_t m_vecForwardBoundsMax         = 0X0DEC; // Vector
+            static constexpr std::uintptr_t m_vecBackBoundsMin            = 0X0DF8; // Vector
+            static constexpr std::uintptr_t m_vecBackBoundsMax            = 0X0E04; // Vector
+            static constexpr std::uintptr_t m_bAjarDoorShouldntAlwaysOpen = 0X0E10; // bool
+            static constexpr std::uintptr_t m_hEntityBlocker              = 0X0E14; // CHandle<CEntityBlocker>
         };
 
         // Has VTable
@@ -7633,11 +7886,11 @@ namespace offsets {
         // Local Type Scope
         class CEnvParticleGlow : public CParticleSystem {
         public:
-            static constexpr std::uintptr_t m_flAlphaScale     = 0X0CA8; // float32
-            static constexpr std::uintptr_t m_flRadiusScale    = 0X0CAC; // float32
-            static constexpr std::uintptr_t m_flSelfIllumScale = 0X0CB0; // float32
-            static constexpr std::uintptr_t m_ColorTint        = 0X0CB4; // Color
-            static constexpr std::uintptr_t m_hTextureOverride = 0X0CB8; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_flAlphaScale     = 0X0CE0; // float32
+            static constexpr std::uintptr_t m_flRadiusScale    = 0X0CE4; // float32
+            static constexpr std::uintptr_t m_flSelfIllumScale = 0X0CE8; // float32
+            static constexpr std::uintptr_t m_ColorTint        = 0X0CEC; // Color
+            static constexpr std::uintptr_t m_hTextureOverride = 0X0CF0; // CStrongHandle<InfoForResourceTypeCTextureBase>
         };
 
         // Has VTable
@@ -7651,7 +7904,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_flOut2         = 0X04B4; // float32
             static constexpr std::uintptr_t m_flOldInValue   = 0X04B8; // float32
             static constexpr std::uintptr_t m_bEnabled       = 0X04BC; // bool
-            static constexpr std::uintptr_t m_OutValue       = 0X04C0; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_OutValue       = 0X04C0; // CEntityOutputTemplate<float32>
             static constexpr std::uintptr_t m_OnRoseAboveMin = 0X04E0; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnRoseAboveMax = 0X04F8; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnFellBelowMin = 0X0510; // CEntityIOOutput
@@ -7705,7 +7958,7 @@ namespace offsets {
         // Local Type Scope
         class CScriptTriggerOnce : public CTriggerOnce {
         public:
-            static constexpr std::uintptr_t m_vExtent = 0X08A8; // Vector
+            static constexpr std::uintptr_t m_vExtent = 0X08E0; // Vector
         };
 
         // Has VTable
@@ -7735,10 +7988,10 @@ namespace offsets {
         // Local Type Scope
         class CTriggerTeleport : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_iLandmark                  = 0X0890; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bUseLandmarkAngles         = 0X0898; // bool
-            static constexpr std::uintptr_t m_bMirrorPlayer              = 0X0899; // bool
-            static constexpr std::uintptr_t m_bCheckDestIfClearForPlayer = 0X089A; // bool
+            static constexpr std::uintptr_t m_iLandmark                  = 0X08C8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bUseLandmarkAngles         = 0X08D0; // bool
+            static constexpr std::uintptr_t m_bMirrorPlayer              = 0X08D1; // bool
+            static constexpr std::uintptr_t m_bCheckDestIfClearForPlayer = 0X08D2; // bool
         };
 
         // Has VTable
@@ -7796,7 +8049,78 @@ namespace offsets {
             static constexpr std::uintptr_t m_bEnabled      = 0X04B8; // bool
             static constexpr std::uintptr_t m_fPrevVelocity = 0X04BC; // float32
             static constexpr std::uintptr_t m_flAvgInterval = 0X04C0; // float32
-            static constexpr std::uintptr_t m_Velocity      = 0X04C8; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_Velocity      = 0X04C8; // CEntityOutputTemplate<float32>
+        };
+
+        // Has VTable
+        // Is Absract
+        // Construct Allowed
+        class CAnimGraphControllerBase {
+        public:
+            static constexpr std::uintptr_t m_hExternalGraph = 0X0010; // ExternalAnimGraphHandle_t
+        };
+
+        // Has VTable
+        // Construct Allowed
+        // Local Type Scope
+        class CCS2WeaponGraphController : public CAnimGraphControllerBase {
+        public:
+            static constexpr std::uintptr_t m_action                   = 0X0088; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_bActionReset             = 0X00A0; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_flWeaponActionSpeedScale = 0X00B8; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_weaponCategory           = 0X00D0; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_weaponType               = 0X00E8; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_weaponExtraInfo          = 0X0100; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_flWeaponAmmo             = 0X0118; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flWeaponAmmoMax          = 0X0130; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flWeaponAmmoReserve      = 0X0148; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_bWeaponIsSilenced        = 0X0160; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_flWeaponIronsightAmount  = 0X0178; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_bIsUsingLegacyModel      = 0X0190; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_idleVariation            = 0X01A8; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_deployVariation          = 0X01C0; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_attackType               = 0X01D8; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_attackThrowStrength      = 0X01F0; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flAttackVariation        = 0X0208; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_inspectVariation         = 0X0220; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_inspectExtraInfo         = 0X0238; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_reloadStage              = 0X0250; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+        };
+
+        // Has VTable
+        // Construct Allowed
+        // Local Type Scope
+        class CCS2PawnGraphController : public CCS2WeaponGraphController {
+        public:
+            static constexpr std::uintptr_t m_bIsDefusing                   = 0X0588; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_moveType                      = 0X05A0; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_moveDirectionID               = 0X05B8; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_flMoveSpeedX                  = 0X05D0; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flMoveSpeedY                  = 0X05E8; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flMoveSpeedHorizontal         = 0X0600; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flPreviousMoveSpeedHorizontal = 0X0618; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flCrouchAmount                = 0X0630; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_bIsWalking                    = 0X0648; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_bIsStutterStep                = 0X0660; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_flWeaponDropAmount            = 0X0678; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_groundAction                  = 0X0690; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_groundActionDirectionID       = 0X06A8; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_flGroundTurnAngleOrVelocity   = 0X06C0; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flLadderCycle                 = 0X06D8; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flLadderYaw                   = 0X06F0; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flLadderYawBackwards          = 0X0708; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_airAction                     = 0X0720; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_flAirHeightAboveGround        = 0X0738; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_leftFootTarget                = 0X0750; // CAnimGraph2ParamOptionalRef<CNmTarget>
+            static constexpr std::uintptr_t m_rightFootTarget               = 0X0768; // CAnimGraph2ParamOptionalRef<CNmTarget>
+            static constexpr std::uintptr_t m_flFlashedAmount               = 0X0780; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flAimPitchAngle               = 0X0798; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flAimYawAngle                 = 0X07B0; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_flinchHead                    = 0X07C8; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_flinchHeadRestart             = 0X07E0; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_flinchBody                    = 0X07F8; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_flinchBodyRestart             = 0X0810; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_flinchIsOnFire                = 0X0828; // CAnimGraph2ParamOptionalRef<bool>
         };
 
         // Has VTable
@@ -7818,55 +8142,55 @@ namespace offsets {
         // Has VTable
         // Construct Allowed
         // Local Type Scope
-        class CHostage : public CHostageExpresserShim {
+        class CScriptTriggerMultiple : public CTriggerMultiple {
         public:
-            static constexpr std::uintptr_t m_OnHostageBeginGrab                     = 0X0B98; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFirstPickedUp                        = 0X0BB0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnDroppedNotRescued                    = 0X0BC8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnRescued                              = 0X0BE0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_entitySpottedState                     = 0X0BF8; // EntitySpottedState_t
-            static constexpr std::uintptr_t m_nSpotRules                             = 0X0C10; // int32
-            static constexpr std::uintptr_t m_uiHostageSpawnExclusionGroupMask       = 0X0C14; // uint32
-            static constexpr std::uintptr_t m_nHostageSpawnRandomFactor              = 0X0C18; // uint32
-            static constexpr std::uintptr_t m_bRemove                                = 0X0C1C; // bool
-            static constexpr std::uintptr_t m_vel                                    = 0X0C20; // Vector
-            static constexpr std::uintptr_t m_isRescued                              = 0X0C2C; // bool
-            static constexpr std::uintptr_t m_jumpedThisFrame                        = 0X0C2D; // bool
-            static constexpr std::uintptr_t m_nHostageState                          = 0X0C30; // int32
-            static constexpr std::uintptr_t m_leader                                 = 0X0C34; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_lastLeader                             = 0X0C38; // CHandle<CCSPlayerPawnBase>
-            static constexpr std::uintptr_t m_reuseTimer                             = 0X0C40; // CountdownTimer
-            static constexpr std::uintptr_t m_hasBeenUsed                            = 0X0C58; // bool
-            static constexpr std::uintptr_t m_accel                                  = 0X0C5C; // Vector
-            static constexpr std::uintptr_t m_isRunning                              = 0X0C68; // bool
-            static constexpr std::uintptr_t m_isCrouching                            = 0X0C69; // bool
-            static constexpr std::uintptr_t m_jumpTimer                              = 0X0C70; // CountdownTimer
-            static constexpr std::uintptr_t m_isWaitingForLeader                     = 0X0C88; // bool
-            static constexpr std::uintptr_t m_repathTimer                            = 0X2C98; // CountdownTimer
-            static constexpr std::uintptr_t m_inhibitDoorTimer                       = 0X2CB0; // CountdownTimer
-            static constexpr std::uintptr_t m_inhibitObstacleAvoidanceTimer          = 0X2D40; // CountdownTimer
-            static constexpr std::uintptr_t m_wiggleTimer                            = 0X2D60; // CountdownTimer
-            static constexpr std::uintptr_t m_isAdjusted                             = 0X2D7C; // bool
-            static constexpr std::uintptr_t m_bHandsHaveBeenCut                      = 0X2D7D; // bool
-            static constexpr std::uintptr_t m_hHostageGrabber                        = 0X2D80; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_fLastGrabTime                          = 0X2D84; // GameTime_t
-            static constexpr std::uintptr_t m_vecPositionWhenStartedDroppingToGround = 0X2D88; // Vector
-            static constexpr std::uintptr_t m_vecGrabbedPos                          = 0X2D94; // Vector
-            static constexpr std::uintptr_t m_flRescueStartTime                      = 0X2DA0; // GameTime_t
-            static constexpr std::uintptr_t m_flGrabSuccessTime                      = 0X2DA4; // GameTime_t
-            static constexpr std::uintptr_t m_flDropStartTime                        = 0X2DA8; // GameTime_t
-            static constexpr std::uintptr_t m_nApproachRewardPayouts                 = 0X2DAC; // int32
-            static constexpr std::uintptr_t m_nPickupEventCount                      = 0X2DB0; // int32
-            static constexpr std::uintptr_t m_vecSpawnGroundPos                      = 0X2DB4; // Vector
-            static constexpr std::uintptr_t m_vecHostageResetPosition                = 0X2DEC; // VectorWS
+            static constexpr std::uintptr_t m_vExtent = 0X08E0; // Vector
         };
 
         // Has VTable
         // Construct Allowed
         // Local Type Scope
-        class CScriptTriggerMultiple : public CTriggerMultiple {
+        class CHostage : public CHostageExpresserShim {
         public:
-            static constexpr std::uintptr_t m_vExtent = 0X08A8; // Vector
+            static constexpr std::uintptr_t m_OnHostageBeginGrab                     = 0X0A28; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnFirstPickedUp                        = 0X0A40; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnDroppedNotRescued                    = 0X0A58; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnRescued                              = 0X0A70; // CEntityIOOutput
+            static constexpr std::uintptr_t m_entitySpottedState                     = 0X0A88; // EntitySpottedState_t
+            static constexpr std::uintptr_t m_nSpotRules                             = 0X0AA0; // int32
+            static constexpr std::uintptr_t m_uiHostageSpawnExclusionGroupMask       = 0X0AA4; // uint32
+            static constexpr std::uintptr_t m_nHostageSpawnRandomFactor              = 0X0AA8; // uint32
+            static constexpr std::uintptr_t m_bRemove                                = 0X0AAC; // bool
+            static constexpr std::uintptr_t m_vel                                    = 0X0AB0; // Vector
+            static constexpr std::uintptr_t m_isRescued                              = 0X0ABC; // bool
+            static constexpr std::uintptr_t m_jumpedThisFrame                        = 0X0ABD; // bool
+            static constexpr std::uintptr_t m_nHostageState                          = 0X0AC0; // int32
+            static constexpr std::uintptr_t m_leader                                 = 0X0AC4; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_lastLeader                             = 0X0AC8; // CHandle<CCSPlayerPawnBase>
+            static constexpr std::uintptr_t m_reuseTimer                             = 0X0AD0; // CountdownTimer
+            static constexpr std::uintptr_t m_hasBeenUsed                            = 0X0AE8; // bool
+            static constexpr std::uintptr_t m_accel                                  = 0X0AEC; // Vector
+            static constexpr std::uintptr_t m_isRunning                              = 0X0AF8; // bool
+            static constexpr std::uintptr_t m_isCrouching                            = 0X0AF9; // bool
+            static constexpr std::uintptr_t m_jumpTimer                              = 0X0B00; // CountdownTimer
+            static constexpr std::uintptr_t m_isWaitingForLeader                     = 0X0B18; // bool
+            static constexpr std::uintptr_t m_repathTimer                            = 0X2B28; // CountdownTimer
+            static constexpr std::uintptr_t m_inhibitDoorTimer                       = 0X2B40; // CountdownTimer
+            static constexpr std::uintptr_t m_inhibitObstacleAvoidanceTimer          = 0X2BD0; // CountdownTimer
+            static constexpr std::uintptr_t m_wiggleTimer                            = 0X2BF0; // CountdownTimer
+            static constexpr std::uintptr_t m_isAdjusted                             = 0X2C0C; // bool
+            static constexpr std::uintptr_t m_bHandsHaveBeenCut                      = 0X2C0D; // bool
+            static constexpr std::uintptr_t m_hHostageGrabber                        = 0X2C10; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_fLastGrabTime                          = 0X2C14; // GameTime_t
+            static constexpr std::uintptr_t m_vecPositionWhenStartedDroppingToGround = 0X2C18; // Vector
+            static constexpr std::uintptr_t m_vecGrabbedPos                          = 0X2C24; // Vector
+            static constexpr std::uintptr_t m_flRescueStartTime                      = 0X2C30; // GameTime_t
+            static constexpr std::uintptr_t m_flGrabSuccessTime                      = 0X2C34; // GameTime_t
+            static constexpr std::uintptr_t m_flDropStartTime                        = 0X2C38; // GameTime_t
+            static constexpr std::uintptr_t m_nApproachRewardPayouts                 = 0X2C3C; // int32
+            static constexpr std::uintptr_t m_nPickupEventCount                      = 0X2C40; // int32
+            static constexpr std::uintptr_t m_vecSpawnGroundPos                      = 0X2C44; // Vector
+            static constexpr std::uintptr_t m_vecHostageResetPosition                = 0X2C7C; // VectorWS
         };
 
         // Has VTable
@@ -7887,6 +8211,25 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_nSendUpdate = 0X0040; // int32
             static constexpr std::uintptr_t m_DamageList  = 0X0048; // CUtlVectorEmbeddedNetworkVar<CDamageRecord>
+        };
+
+        // Has VTable
+        // Construct Allowed
+        // Local Type Scope
+        class CEnvCombinedLightProbeVolumeAlias_func_combined_light_probe_volume : public CEnvCombinedLightProbeVolume {
+        public:
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Construct Allowed
+        // Local Type Scope
+        struct CBaseModelEntity__OnDamageLevelChangedArgs_t {
+        public:
+            static constexpr std::uintptr_t nHitGroup              = 0X0000; // HitGroup_t
+            static constexpr std::uintptr_t nDamageLevel           = 0X0004; // int32
+            static constexpr std::uintptr_t nDamageLevelsRemaining = 0X0008; // int32
+            static constexpr std::uintptr_t nPrevDamageLevel       = 0X000C; // int32
         };
 
         // Has VTable
@@ -7934,9 +8277,10 @@ namespace offsets {
         // Local Type Scope
         class CDestructiblePartsComponent {
         public:
-            static constexpr std::uintptr_t __m_pChainEntity           = 0X0000; // CNetworkVarChainer
-            static constexpr std::uintptr_t m_vecDamageTakenByHitGroup = 0X0048; // CUtlVector<uint16>
-            static constexpr std::uintptr_t m_hOwner                   = 0X0060; // CHandle<CBaseModelEntity>
+            static constexpr std::uintptr_t __m_pChainEntity                        = 0X0000; // CNetworkVarChainer
+            static constexpr std::uintptr_t m_vecDamageTakenByHitGroup              = 0X0048; // CUtlVector<uint16>
+            static constexpr std::uintptr_t m_hOwner                                = 0X0060; // CHandle<CBaseModelEntity>
+            static constexpr std::uintptr_t m_pAnimGraphDestructibleGraphController = 0X0068; // CBaseAnimGraphDestructibleParts_GraphController*
         };
 
         // Has VTable
@@ -7944,13 +8288,13 @@ namespace offsets {
         // Local Type Scope
         class CChangeLevel : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_sMapName            = 0X0890; // CUtlString
-            static constexpr std::uintptr_t m_sLandmarkName       = 0X0898; // CUtlString
-            static constexpr std::uintptr_t m_OnChangeLevel       = 0X08A0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bTouched            = 0X08B8; // bool
-            static constexpr std::uintptr_t m_bNoTouch            = 0X08B9; // bool
-            static constexpr std::uintptr_t m_bNewChapter         = 0X08BA; // bool
-            static constexpr std::uintptr_t m_bOnChangeLevelFired = 0X08BB; // bool
+            static constexpr std::uintptr_t m_sMapName            = 0X08C8; // CUtlString
+            static constexpr std::uintptr_t m_sLandmarkName       = 0X08D0; // CUtlString
+            static constexpr std::uintptr_t m_OnChangeLevel       = 0X08D8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bTouched            = 0X08F0; // bool
+            static constexpr std::uintptr_t m_bNoTouch            = 0X08F1; // bool
+            static constexpr std::uintptr_t m_bNewChapter         = 0X08F2; // bool
+            static constexpr std::uintptr_t m_bOnChangeLevelFired = 0X08F3; // bool
         };
 
         // Has VTable
@@ -7958,31 +8302,31 @@ namespace offsets {
         // Local Type Scope
         class CBaseButton : public CBaseToggle {
         public:
-            static constexpr std::uintptr_t m_angMoveEntitySpace        = 0X07B0; // QAngle
-            static constexpr std::uintptr_t m_fStayPushed               = 0X07BC; // bool
-            static constexpr std::uintptr_t m_fRotating                 = 0X07BD; // bool
-            static constexpr std::uintptr_t m_ls                        = 0X07C0; // locksound_t
-            static constexpr std::uintptr_t m_sUseSound                 = 0X07E0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_sLockedSound              = 0X07E8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_sUnlockedSound            = 0X07F0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_sOverrideAnticipationName = 0X07F8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bLocked                   = 0X0800; // bool
-            static constexpr std::uintptr_t m_bDisabled                 = 0X0801; // bool
-            static constexpr std::uintptr_t m_flUseLockedTime           = 0X0804; // GameTime_t
-            static constexpr std::uintptr_t m_bSolidBsp                 = 0X0808; // bool
-            static constexpr std::uintptr_t m_OnDamaged                 = 0X0810; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnPressed                 = 0X0828; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnUseLocked               = 0X0840; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnIn                      = 0X0858; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnOut                     = 0X0870; // CEntityIOOutput
-            static constexpr std::uintptr_t m_nState                    = 0X0888; // int32
-            static constexpr std::uintptr_t m_hConstraint               = 0X088C; // CEntityHandle
-            static constexpr std::uintptr_t m_hConstraintParent         = 0X0890; // CEntityHandle
-            static constexpr std::uintptr_t m_bForceNpcExclude          = 0X0894; // bool
-            static constexpr std::uintptr_t m_sGlowEntity               = 0X0898; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_glowEntity                = 0X08A0; // CHandle<CBaseModelEntity>
-            static constexpr std::uintptr_t m_usable                    = 0X08A4; // bool
-            static constexpr std::uintptr_t m_szDisplayText             = 0X08A8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_angMoveEntitySpace        = 0X07E8; // QAngle
+            static constexpr std::uintptr_t m_fStayPushed               = 0X07F4; // bool
+            static constexpr std::uintptr_t m_fRotating                 = 0X07F5; // bool
+            static constexpr std::uintptr_t m_ls                        = 0X07F8; // locksound_t
+            static constexpr std::uintptr_t m_sUseSound                 = 0X0818; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_sLockedSound              = 0X0820; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_sUnlockedSound            = 0X0828; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_sOverrideAnticipationName = 0X0830; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bLocked                   = 0X0838; // bool
+            static constexpr std::uintptr_t m_bDisabled                 = 0X0839; // bool
+            static constexpr std::uintptr_t m_flUseLockedTime           = 0X083C; // GameTime_t
+            static constexpr std::uintptr_t m_bSolidBsp                 = 0X0840; // bool
+            static constexpr std::uintptr_t m_OnDamaged                 = 0X0848; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnPressed                 = 0X0860; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnUseLocked               = 0X0878; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnIn                      = 0X0890; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnOut                     = 0X08A8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_nState                    = 0X08C0; // int32
+            static constexpr std::uintptr_t m_hConstraint               = 0X08C4; // CEntityHandle
+            static constexpr std::uintptr_t m_hConstraintParent         = 0X08C8; // CEntityHandle
+            static constexpr std::uintptr_t m_bForceNpcExclude          = 0X08CC; // bool
+            static constexpr std::uintptr_t m_sGlowEntity               = 0X08D0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_glowEntity                = 0X08D8; // CHandle<CBaseModelEntity>
+            static constexpr std::uintptr_t m_usable                    = 0X08DC; // bool
+            static constexpr std::uintptr_t m_szDisplayText             = 0X08E0; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -8010,22 +8354,22 @@ namespace offsets {
         // Has VTable
         // Construct Allowed
         // Local Type Scope
-        class CBaseGrenade : public CBaseFlex {
+        class CBaseGrenade : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_OnPlayerPickup   = 0X0AB8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnExplode        = 0X0AD0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bHasWarnedAI     = 0X0AE8; // bool
-            static constexpr std::uintptr_t m_bIsSmokeGrenade  = 0X0AE9; // bool
-            static constexpr std::uintptr_t m_bIsLive          = 0X0AEA; // bool
-            static constexpr std::uintptr_t m_DmgRadius        = 0X0AEC; // float32
-            static constexpr std::uintptr_t m_flDetonateTime   = 0X0AF0; // GameTime_t
-            static constexpr std::uintptr_t m_flWarnAITime     = 0X0AF4; // float32
-            static constexpr std::uintptr_t m_flDamage         = 0X0AF8; // float32
-            static constexpr std::uintptr_t m_iszBounceSound   = 0X0B00; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_ExplosionSound   = 0X0B08; // CUtlString
-            static constexpr std::uintptr_t m_hThrower         = 0X0B14; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_flNextAttack     = 0X0B2C; // GameTime_t
-            static constexpr std::uintptr_t m_hOriginalThrower = 0X0B30; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_OnPlayerPickup   = 0X0948; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnExplode        = 0X0960; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bHasWarnedAI     = 0X0978; // bool
+            static constexpr std::uintptr_t m_bIsSmokeGrenade  = 0X0979; // bool
+            static constexpr std::uintptr_t m_bIsLive          = 0X097A; // bool
+            static constexpr std::uintptr_t m_DmgRadius        = 0X097C; // float32
+            static constexpr std::uintptr_t m_flDetonateTime   = 0X0980; // GameTime_t
+            static constexpr std::uintptr_t m_flWarnAITime     = 0X0984; // float32
+            static constexpr std::uintptr_t m_flDamage         = 0X0988; // float32
+            static constexpr std::uintptr_t m_iszBounceSound   = 0X0990; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_ExplosionSound   = 0X0998; // CUtlString
+            static constexpr std::uintptr_t m_hThrower         = 0X09A0; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_flNextAttack     = 0X09B8; // GameTime_t
+            static constexpr std::uintptr_t m_hOriginalThrower = 0X09BC; // CHandle<CCSPlayerPawn>
         };
 
         // Has VTable
@@ -8033,14 +8377,14 @@ namespace offsets {
         // Local Type Scope
         class CColorCorrectionVolume : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_MaxWeight       = 0X0890; // float32
-            static constexpr std::uintptr_t m_FadeDuration    = 0X0894; // float32
-            static constexpr std::uintptr_t m_Weight          = 0X0898; // float32
-            static constexpr std::uintptr_t m_lookupFilename  = 0X089C; // char[512]
-            static constexpr std::uintptr_t m_LastEnterWeight = 0X0A9C; // float32
-            static constexpr std::uintptr_t m_LastEnterTime   = 0X0AA0; // GameTime_t
-            static constexpr std::uintptr_t m_LastExitWeight  = 0X0AA4; // float32
-            static constexpr std::uintptr_t m_LastExitTime    = 0X0AA8; // GameTime_t
+            static constexpr std::uintptr_t m_MaxWeight       = 0X08C8; // float32
+            static constexpr std::uintptr_t m_FadeDuration    = 0X08CC; // float32
+            static constexpr std::uintptr_t m_Weight          = 0X08D0; // float32
+            static constexpr std::uintptr_t m_lookupFilename  = 0X08D4; // char[512]
+            static constexpr std::uintptr_t m_LastEnterWeight = 0X0AD4; // float32
+            static constexpr std::uintptr_t m_LastEnterTime   = 0X0AD8; // GameTime_t
+            static constexpr std::uintptr_t m_LastExitWeight  = 0X0ADC; // float32
+            static constexpr std::uintptr_t m_LastExitTime    = 0X0AE0; // GameTime_t
         };
 
         // Has VTable
@@ -8065,7 +8409,7 @@ namespace offsets {
         // Local Type Scope
         class CBodyComponentBaseAnimGraph : public CBodyComponentSkeletonInstance {
         public:
-            static constexpr std::uintptr_t m_animationController = 0X04B0; // CBaseAnimGraphController
+            static constexpr std::uintptr_t m_animationController = 0X04A0; // CBaseAnimGraphController
         };
 
         // Construct Allowed
@@ -8080,11 +8424,11 @@ namespace offsets {
         // Local Type Scope
         class CFogVolume : public CServerOnlyModelEntity {
         public:
-            static constexpr std::uintptr_t m_fogName             = 0X0730; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_postProcessName     = 0X0738; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_colorCorrectionName = 0X0740; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bDisabled           = 0X0750; // bool
-            static constexpr std::uintptr_t m_bInFogVolumesList   = 0X0751; // bool
+            static constexpr std::uintptr_t m_fogName             = 0X0768; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_postProcessName     = 0X0770; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_colorCorrectionName = 0X0778; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bDisabled           = 0X0788; // bool
+            static constexpr std::uintptr_t m_bInFogVolumesList   = 0X0789; // bool
         };
 
         // Has VTable
@@ -8092,24 +8436,24 @@ namespace offsets {
         // Local Type Scope
         class CFuncRotating : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_OnStopped           = 0X0730; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnStarted           = 0X0748; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnReachedStart      = 0X0760; // CEntityIOOutput
-            static constexpr std::uintptr_t m_localRotationVector = 0X0778; // RotationVector
-            static constexpr std::uintptr_t m_flFanFriction       = 0X0784; // float32
-            static constexpr std::uintptr_t m_flAttenuation       = 0X0788; // float32
-            static constexpr std::uintptr_t m_flVolume            = 0X078C; // float32
-            static constexpr std::uintptr_t m_flTargetSpeed       = 0X0790; // float32
-            static constexpr std::uintptr_t m_flMaxSpeed          = 0X0794; // float32
-            static constexpr std::uintptr_t m_flBlockDamage       = 0X0798; // float32
-            static constexpr std::uintptr_t m_NoiseRunning        = 0X07A0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bReversed           = 0X07A8; // bool
-            static constexpr std::uintptr_t m_bAccelDecel         = 0X07A9; // bool
-            static constexpr std::uintptr_t m_prevLocalAngles     = 0X07C0; // QAngle
-            static constexpr std::uintptr_t m_angStart            = 0X07CC; // QAngle
-            static constexpr std::uintptr_t m_bStopAtStartPos     = 0X07D8; // bool
-            static constexpr std::uintptr_t m_vecClientOrigin     = 0X07DC; // Vector
-            static constexpr std::uintptr_t m_vecClientAngles     = 0X07E8; // QAngle
+            static constexpr std::uintptr_t m_OnStopped           = 0X0768; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnStarted           = 0X0780; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnReachedStart      = 0X0798; // CEntityIOOutput
+            static constexpr std::uintptr_t m_localRotationVector = 0X07B0; // RotationVector
+            static constexpr std::uintptr_t m_flFanFriction       = 0X07BC; // float32
+            static constexpr std::uintptr_t m_flAttenuation       = 0X07C0; // float32
+            static constexpr std::uintptr_t m_flVolume            = 0X07C4; // float32
+            static constexpr std::uintptr_t m_flTargetSpeed       = 0X07C8; // float32
+            static constexpr std::uintptr_t m_flMaxSpeed          = 0X07CC; // float32
+            static constexpr std::uintptr_t m_flBlockDamage       = 0X07D0; // float32
+            static constexpr std::uintptr_t m_NoiseRunning        = 0X07D8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bReversed           = 0X07E0; // bool
+            static constexpr std::uintptr_t m_bAccelDecel         = 0X07E1; // bool
+            static constexpr std::uintptr_t m_prevLocalAngles     = 0X07F8; // QAngle
+            static constexpr std::uintptr_t m_angStart            = 0X0804; // QAngle
+            static constexpr std::uintptr_t m_bStopAtStartPos     = 0X0810; // bool
+            static constexpr std::uintptr_t m_vecClientOrigin     = 0X0814; // Vector
+            static constexpr std::uintptr_t m_vecClientAngles     = 0X0820; // QAngle
         };
 
         // Has VTable
@@ -8240,15 +8584,15 @@ namespace offsets {
         // Local Type Scope
         class CFuncMonitor : public CFuncBrush {
         public:
-            static constexpr std::uintptr_t m_targetCamera          = 0X0750; // CUtlString
-            static constexpr std::uintptr_t m_nResolutionEnum       = 0X0758; // int32
-            static constexpr std::uintptr_t m_bRenderShadows        = 0X075C; // bool
-            static constexpr std::uintptr_t m_bUseUniqueColorTarget = 0X075D; // bool
-            static constexpr std::uintptr_t m_brushModelName        = 0X0760; // CUtlString
-            static constexpr std::uintptr_t m_hTargetCamera         = 0X0768; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_bEnabled              = 0X076C; // bool
-            static constexpr std::uintptr_t m_bDraw3DSkybox         = 0X076D; // bool
-            static constexpr std::uintptr_t m_bStartEnabled         = 0X076E; // bool
+            static constexpr std::uintptr_t m_targetCamera          = 0X0788; // CUtlString
+            static constexpr std::uintptr_t m_nResolutionEnum       = 0X0790; // int32
+            static constexpr std::uintptr_t m_bRenderShadows        = 0X0794; // bool
+            static constexpr std::uintptr_t m_bUseUniqueColorTarget = 0X0795; // bool
+            static constexpr std::uintptr_t m_brushModelName        = 0X0798; // CUtlString
+            static constexpr std::uintptr_t m_hTargetCamera         = 0X07A0; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_bEnabled              = 0X07A4; // bool
+            static constexpr std::uintptr_t m_bDraw3DSkybox         = 0X07A5; // bool
+            static constexpr std::uintptr_t m_bStartEnabled         = 0X07A6; // bool
         };
 
         // Has VTable
@@ -8266,9 +8610,9 @@ namespace offsets {
         // Local Type Scope
         class CGunTarget : public CBaseToggle {
         public:
-            static constexpr std::uintptr_t m_on         = 0X07B0; // bool
-            static constexpr std::uintptr_t m_hTargetEnt = 0X07B4; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_OnDeath    = 0X07B8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_on         = 0X07E8; // bool
+            static constexpr std::uintptr_t m_hTargetEnt = 0X07EC; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_OnDeath    = 0X07F0; // CEntityIOOutput
         };
 
         // Has VTable
@@ -8276,11 +8620,11 @@ namespace offsets {
         // Local Type Scope
         class CSoundEventConeEntity : public CSoundEventEntity {
         public:
-            static constexpr std::uintptr_t m_flEmitterAngle   = 0X0558; // float32
-            static constexpr std::uintptr_t m_flSweetSpotAngle = 0X055C; // float32
-            static constexpr std::uintptr_t m_flAttenMin       = 0X0560; // float32
-            static constexpr std::uintptr_t m_flAttenMax       = 0X0564; // float32
-            static constexpr std::uintptr_t m_iszParameterName = 0X0568; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flEmitterAngle   = 0X0568; // float32
+            static constexpr std::uintptr_t m_flSweetSpotAngle = 0X056C; // float32
+            static constexpr std::uintptr_t m_flAttenMin       = 0X0570; // float32
+            static constexpr std::uintptr_t m_flAttenMax       = 0X0574; // float32
+            static constexpr std::uintptr_t m_iszParameterName = 0X0578; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -8317,22 +8661,22 @@ namespace offsets {
         // Local Type Scope
         class CBaseCSGrenadeProjectile : public CBaseGrenade {
         public:
-            static constexpr std::uintptr_t m_vInitialPosition         = 0X0B40; // Vector
-            static constexpr std::uintptr_t m_vInitialVelocity         = 0X0B4C; // Vector
-            static constexpr std::uintptr_t m_nBounces                 = 0X0B58; // int32
-            static constexpr std::uintptr_t m_nExplodeEffectIndex      = 0X0B60; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
-            static constexpr std::uintptr_t m_nExplodeEffectTickBegin  = 0X0B68; // int32
-            static constexpr std::uintptr_t m_vecExplodeEffectOrigin   = 0X0B6C; // Vector
-            static constexpr std::uintptr_t m_flSpawnTime              = 0X0B78; // GameTime_t
-            static constexpr std::uintptr_t m_unOGSExtraFlags          = 0X0B7C; // uint8
-            static constexpr std::uintptr_t m_bDetonationRecorded      = 0X0B7D; // bool
-            static constexpr std::uintptr_t m_nItemIndex               = 0X0B7E; // uint16
-            static constexpr std::uintptr_t m_vecOriginalSpawnLocation = 0X0B80; // Vector
-            static constexpr std::uintptr_t m_flLastBounceSoundTime    = 0X0B8C; // GameTime_t
-            static constexpr std::uintptr_t m_vecGrenadeSpin           = 0X0B90; // RotationVector
-            static constexpr std::uintptr_t m_vecLastHitSurfaceNormal  = 0X0B9C; // Vector
-            static constexpr std::uintptr_t m_nTicksAtZeroVelocity     = 0X0BA8; // int32
-            static constexpr std::uintptr_t m_bHasEverHitEnemy         = 0X0BAC; // bool
+            static constexpr std::uintptr_t m_vInitialPosition         = 0X09C0; // Vector
+            static constexpr std::uintptr_t m_vInitialVelocity         = 0X09CC; // Vector
+            static constexpr std::uintptr_t m_nBounces                 = 0X09D8; // int32
+            static constexpr std::uintptr_t m_nExplodeEffectIndex      = 0X09E0; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
+            static constexpr std::uintptr_t m_nExplodeEffectTickBegin  = 0X09E8; // int32
+            static constexpr std::uintptr_t m_vecExplodeEffectOrigin   = 0X09EC; // Vector
+            static constexpr std::uintptr_t m_flSpawnTime              = 0X09F8; // GameTime_t
+            static constexpr std::uintptr_t m_unOGSExtraFlags          = 0X09FC; // uint8
+            static constexpr std::uintptr_t m_bDetonationRecorded      = 0X09FD; // bool
+            static constexpr std::uintptr_t m_nItemIndex               = 0X09FE; // uint16
+            static constexpr std::uintptr_t m_vecOriginalSpawnLocation = 0X0A00; // Vector
+            static constexpr std::uintptr_t m_flLastBounceSoundTime    = 0X0A0C; // GameTime_t
+            static constexpr std::uintptr_t m_vecGrenadeSpin           = 0X0A10; // RotationVector
+            static constexpr std::uintptr_t m_vecLastHitSurfaceNormal  = 0X0A1C; // Vector
+            static constexpr std::uintptr_t m_nTicksAtZeroVelocity     = 0X0A28; // int32
+            static constexpr std::uintptr_t m_bHasEverHitEnemy         = 0X0A2C; // bool
         };
 
         // Has VTable
@@ -8340,10 +8684,10 @@ namespace offsets {
         // Local Type Scope
         class CDecoyProjectile : public CBaseCSGrenadeProjectile {
         public:
-            static constexpr std::uintptr_t m_nDecoyShotTick      = 0X0BC8; // int32
-            static constexpr std::uintptr_t m_shotsRemaining      = 0X0BCC; // int32
-            static constexpr std::uintptr_t m_fExpireTime         = 0X0BD0; // GameTime_t
-            static constexpr std::uintptr_t m_decoyWeaponDefIndex = 0X0BE0; // uint16
+            static constexpr std::uintptr_t m_nDecoyShotTick      = 0X0A48; // int32
+            static constexpr std::uintptr_t m_shotsRemaining      = 0X0A4C; // int32
+            static constexpr std::uintptr_t m_fExpireTime         = 0X0A50; // GameTime_t
+            static constexpr std::uintptr_t m_decoyWeaponDefIndex = 0X0A60; // uint16
         };
 
         // Has VTable
@@ -8395,24 +8739,35 @@ namespace offsets {
             static constexpr std::uintptr_t m_hPathMover                         = 0X04CC; // CHandle<CPathMover>
             static constexpr std::uintptr_t m_flSpawnFrequencySeconds            = 0X04D0; // float32
             static constexpr std::uintptr_t m_flSpawnFrequencyDistToNearestMover = 0X04D4; // float32
-            static constexpr std::uintptr_t m_mapSpawnedMoverTemplates           = 0X04D8; // CUtlHashtable<CHandle<CFuncMover>,CPathMoverEntitySpawn>
+            static constexpr std::uintptr_t m_mapSpawnedMoverTemplates           = 0X04D8; // CUtlHashtable<CHandle<CFuncMover>,PathMoverEntitySpawn>
             static constexpr std::uintptr_t m_nMaxActive                         = 0X04F8; // int32
-            static constexpr std::uintptr_t m_flLastSpawnTime                    = 0X04FC; // GameTime_t
-            static constexpr std::uintptr_t m_bEnabled                           = 0X0500; // bool
+            static constexpr std::uintptr_t m_nSpawnNum                          = 0X04FC; // int32
+            static constexpr std::uintptr_t m_flLastSpawnTime                    = 0X0500; // GameTime_t
+            static constexpr std::uintptr_t m_bEnabled                           = 0X0504; // bool
+            static constexpr std::uintptr_t m_bDestroyMoverOnArrivedAtEnd        = 0X0505; // bool
+            static constexpr std::uintptr_t m_vecQueuedRemovals                  = 0X0508; // CUtlVector<CHandle<CFuncMover>>
+            static constexpr std::uintptr_t m_OnTemplateSpawned                  = 0X0520; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnTemplateGroupSpawned             = 0X0538; // CEntityIOOutput
         };
 
         // Has VTable
         // Local Type Scope
         class CModelState {
         public:
-            static constexpr std::uintptr_t m_hModel                         = 0X00A0; // CStrongHandle<InfoForResourceTypeCModel>
-            static constexpr std::uintptr_t m_ModelName                      = 0X00A8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bClientClothCreationSuppressed = 0X00F5; // bool
-            static constexpr std::uintptr_t m_MeshGroupMask                  = 0X01A0; // uint64
-            static constexpr std::uintptr_t m_nBodyGroupChoices              = 0X01F0; // CNetworkUtlVectorBase<int32>
-            static constexpr std::uintptr_t m_nIdealMotionType               = 0X023A; // int8
-            static constexpr std::uintptr_t m_nForceLOD                      = 0X023B; // int8
-            static constexpr std::uintptr_t m_nClothUpdateFlags              = 0X023C; // int8
+            static constexpr std::uintptr_t m_hModel                           = 0X00A0; // CStrongHandle<InfoForResourceTypeCModel>
+            static constexpr std::uintptr_t m_ModelName                        = 0X00A8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_pVPhysicsAggregate               = 0X00E0; // IPhysAggregateInstance*
+            static constexpr std::uintptr_t m_flRootBoneOffset_x               = 0X00E8; // float32
+            static constexpr std::uintptr_t m_flRootBoneOffset_y               = 0X00EC; // float32
+            static constexpr std::uintptr_t m_flRootBoneOffset_z               = 0X00F0; // float32
+            static constexpr std::uintptr_t m_nRootBoneOffsetResetSerialNumber = 0X00F4; // uint8
+            static constexpr std::uintptr_t m_bClientClothCreationSuppressed   = 0X00F5; // bool
+            static constexpr std::uintptr_t m_nAnimStateNoInterpSerialNumber   = 0X01A0; // uint8
+            static constexpr std::uintptr_t m_MeshGroupMask                    = 0X01A8; // uint64
+            static constexpr std::uintptr_t m_nBodyGroupChoices                = 0X01F8; // CNetworkUtlVectorBase<int32>
+            static constexpr std::uintptr_t m_nIdealMotionType                 = 0X0242; // int8
+            static constexpr std::uintptr_t m_nForceLOD                        = 0X0243; // int8
+            static constexpr std::uintptr_t m_nClothUpdateFlags                = 0X0244; // int8
         };
 
         // Has Trivial Destructor
@@ -8527,8 +8882,8 @@ namespace offsets {
             static constexpr std::uintptr_t m_bHitMin          = 0X04B0; // bool
             static constexpr std::uintptr_t m_bHitMax          = 0X04B1; // bool
             static constexpr std::uintptr_t m_bDisabled        = 0X04B2; // bool
-            static constexpr std::uintptr_t m_OutValue         = 0X04B8; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnGetValue       = 0X04D8; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_OutValue         = 0X04B8; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnGetValue       = 0X04D8; // CEntityOutputTemplate<float32>
             static constexpr std::uintptr_t m_OnHitMin         = 0X04F8; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnHitMax         = 0X0510; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnChangedFromMin = 0X0528; // CEntityIOOutput
@@ -8555,7 +8910,7 @@ namespace offsets {
         // Local Type Scope
         class CCSPlace : public CServerOnlyModelEntity {
         public:
-            static constexpr std::uintptr_t m_name = 0X0748; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_name = 0X0780; // CUtlSymbolLarge
         };
 
         // Construct Allowed
@@ -8592,15 +8947,15 @@ namespace offsets {
         // Local Type Scope
         class CEnvDecal : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_hDecalMaterial       = 0X0730; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_flWidth              = 0X0738; // float32
-            static constexpr std::uintptr_t m_flHeight             = 0X073C; // float32
-            static constexpr std::uintptr_t m_flDepth              = 0X0740; // float32
-            static constexpr std::uintptr_t m_nRenderOrder         = 0X0744; // uint32
-            static constexpr std::uintptr_t m_bProjectOnWorld      = 0X0748; // bool
-            static constexpr std::uintptr_t m_bProjectOnCharacters = 0X0749; // bool
-            static constexpr std::uintptr_t m_bProjectOnWater      = 0X074A; // bool
-            static constexpr std::uintptr_t m_flDepthSortBias      = 0X074C; // float32
+            static constexpr std::uintptr_t m_hDecalMaterial       = 0X0768; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_flWidth              = 0X0770; // float32
+            static constexpr std::uintptr_t m_flHeight             = 0X0774; // float32
+            static constexpr std::uintptr_t m_flDepth              = 0X0778; // float32
+            static constexpr std::uintptr_t m_nRenderOrder         = 0X077C; // uint32
+            static constexpr std::uintptr_t m_bProjectOnWorld      = 0X0780; // bool
+            static constexpr std::uintptr_t m_bProjectOnCharacters = 0X0781; // bool
+            static constexpr std::uintptr_t m_bProjectOnWater      = 0X0782; // bool
+            static constexpr std::uintptr_t m_flDepthSortBias      = 0X0784; // float32
         };
 
         // Has VTable
@@ -8641,38 +8996,38 @@ namespace offsets {
         // Local Type Scope
         class CItemGeneric : public CItem {
         public:
-            static constexpr std::uintptr_t m_bHasTriggerRadius           = 0X0AD4; // bool
-            static constexpr std::uintptr_t m_bHasPickupRadius            = 0X0AD5; // bool
-            static constexpr std::uintptr_t m_flPickupRadiusSqr           = 0X0AD8; // float32
-            static constexpr std::uintptr_t m_flTriggerRadiusSqr          = 0X0ADC; // float32
-            static constexpr std::uintptr_t m_flLastPickupCheck           = 0X0AE0; // GameTime_t
-            static constexpr std::uintptr_t m_bPlayerCounterListenerAdded = 0X0AE4; // bool
-            static constexpr std::uintptr_t m_bPlayerInTriggerRadius      = 0X0AE5; // bool
-            static constexpr std::uintptr_t m_hSpawnParticleEffect        = 0X0AE8; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
-            static constexpr std::uintptr_t m_pAmbientSoundEffect         = 0X0AF0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bAutoStartAmbientSound      = 0X0AF8; // bool
-            static constexpr std::uintptr_t m_pSpawnScriptFunction        = 0X0B00; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hPickupParticleEffect       = 0X0B08; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
-            static constexpr std::uintptr_t m_pPickupSoundEffect          = 0X0B10; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_pPickupScriptFunction       = 0X0B18; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hTimeoutParticleEffect      = 0X0B20; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
-            static constexpr std::uintptr_t m_pTimeoutSoundEffect         = 0X0B28; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_pTimeoutScriptFunction      = 0X0B30; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_pPickupFilterName           = 0X0B38; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hPickupFilter               = 0X0B40; // CHandle<CBaseFilter>
-            static constexpr std::uintptr_t m_OnPickup                    = 0X0B48; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnTimeout                   = 0X0B60; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnTriggerStartTouch         = 0X0B78; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnTriggerTouch              = 0X0B90; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnTriggerEndTouch           = 0X0BA8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_pAllowPickupScriptFunction  = 0X0BC0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flPickupRadius              = 0X0BC8; // float32
-            static constexpr std::uintptr_t m_flTriggerRadius             = 0X0BCC; // float32
-            static constexpr std::uintptr_t m_pTriggerSoundEffect         = 0X0BD0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bGlowWhenInTrigger          = 0X0BD8; // bool
-            static constexpr std::uintptr_t m_glowColor                   = 0X0BD9; // Color
-            static constexpr std::uintptr_t m_bUseable                    = 0X0BDD; // bool
-            static constexpr std::uintptr_t m_hTriggerHelper              = 0X0BE0; // CHandle<CItemGenericTriggerHelper>
+            static constexpr std::uintptr_t m_bHasTriggerRadius           = 0X09F4; // bool
+            static constexpr std::uintptr_t m_bHasPickupRadius            = 0X09F5; // bool
+            static constexpr std::uintptr_t m_flPickupRadiusSqr           = 0X09F8; // float32
+            static constexpr std::uintptr_t m_flTriggerRadiusSqr          = 0X09FC; // float32
+            static constexpr std::uintptr_t m_flLastPickupCheck           = 0X0A00; // GameTime_t
+            static constexpr std::uintptr_t m_bPlayerCounterListenerAdded = 0X0A04; // bool
+            static constexpr std::uintptr_t m_bPlayerInTriggerRadius      = 0X0A05; // bool
+            static constexpr std::uintptr_t m_hSpawnParticleEffect        = 0X0A08; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
+            static constexpr std::uintptr_t m_pAmbientSoundEffect         = 0X0A10; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bAutoStartAmbientSound      = 0X0A18; // bool
+            static constexpr std::uintptr_t m_pSpawnScriptFunction        = 0X0A20; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hPickupParticleEffect       = 0X0A28; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
+            static constexpr std::uintptr_t m_pPickupSoundEffect          = 0X0A30; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_pPickupScriptFunction       = 0X0A38; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hTimeoutParticleEffect      = 0X0A40; // CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>
+            static constexpr std::uintptr_t m_pTimeoutSoundEffect         = 0X0A48; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_pTimeoutScriptFunction      = 0X0A50; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_pPickupFilterName           = 0X0A58; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hPickupFilter               = 0X0A60; // CHandle<CBaseFilter>
+            static constexpr std::uintptr_t m_OnPickup                    = 0X0A68; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnTimeout                   = 0X0A80; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnTriggerStartTouch         = 0X0A98; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnTriggerTouch              = 0X0AB0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnTriggerEndTouch           = 0X0AC8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_pAllowPickupScriptFunction  = 0X0AE0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flPickupRadius              = 0X0AE8; // float32
+            static constexpr std::uintptr_t m_flTriggerRadius             = 0X0AEC; // float32
+            static constexpr std::uintptr_t m_pTriggerSoundEffect         = 0X0AF0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bGlowWhenInTrigger          = 0X0AF8; // bool
+            static constexpr std::uintptr_t m_glowColor                   = 0X0AF9; // Color
+            static constexpr std::uintptr_t m_bUseable                    = 0X0AFD; // bool
+            static constexpr std::uintptr_t m_hTriggerHelper              = 0X0B00; // CHandle<CItemGenericTriggerHelper>
         };
 
         // Has VTable
@@ -8717,8 +9072,8 @@ namespace offsets {
             static constexpr std::uintptr_t m_iszSoundReachedValueZero = 0X0568; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_iszSoundReachedValueOne  = 0X0570; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_iszSoundMovingLoop       = 0X0578; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_Position                 = 0X0598; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_PositionDelta            = 0X05B8; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_Position                 = 0X0598; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_PositionDelta            = 0X05B8; // CEntityOutputTemplate<float32>
             static constexpr std::uintptr_t m_OnReachedValueZero       = 0X05D8; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnReachedValueOne        = 0X05F0; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnReachedValueCustom     = 0X0608; // CEntityIOOutput
@@ -8754,12 +9109,12 @@ namespace offsets {
         // Local Type Scope
         class CFuncTrain : public CBasePlatTrain {
         public:
-            static constexpr std::uintptr_t m_hCurrentTarget  = 0X07D8; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_activated       = 0X07DC; // bool
-            static constexpr std::uintptr_t m_hEnemy          = 0X07E0; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_flBlockDamage   = 0X07E4; // float32
-            static constexpr std::uintptr_t m_flNextBlockTime = 0X07E8; // GameTime_t
-            static constexpr std::uintptr_t m_iszLastTarget   = 0X07F0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hCurrentTarget  = 0X0810; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_activated       = 0X0814; // bool
+            static constexpr std::uintptr_t m_hEnemy          = 0X0818; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_flBlockDamage   = 0X081C; // float32
+            static constexpr std::uintptr_t m_flNextBlockTime = 0X0820; // GameTime_t
+            static constexpr std::uintptr_t m_iszLastTarget   = 0X0828; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -8792,7 +9147,22 @@ namespace offsets {
         // Local Type Scope
         class CBuyZone : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_LegacyTeamNum = 0X0890; // int32
+            static constexpr std::uintptr_t m_LegacyTeamNum = 0X08C8; // int32
+        };
+
+        // Has VTable
+        // Construct Allowed
+        // Local Type Scope
+        class CInfoChoreoAnchor : public CPointEntity {
+        public:
+            static constexpr std::uintptr_t m_vecTargetEntries = 0X04A8; // CUtlVector<CInfoChoreoAnchorPosition>
+            static constexpr std::uintptr_t m_vecTargetWarps   = 0X04C0; // CUtlVector<CInfoChoreoAnchorPosition>
+        };
+
+        // Has Trivial Destructor
+        // Local Type Scope
+        class DestructiblePartDamageRequestAPI {
+        public:
         };
 
         // Has VTable
@@ -8846,6 +9216,13 @@ namespace offsets {
         // Has VTable
         // Construct Allowed
         // Local Type Scope
+        class CCSGO_EndOfMatchLineupStart : public CCSGO_EndOfMatchLineupEndpoint {
+        public:
+        };
+
+        // Has VTable
+        // Construct Allowed
+        // Local Type Scope
         class FilterDamageType : public CBaseFilter {
         public:
             static constexpr std::uintptr_t m_iDamageType = 0X04E0; // int32
@@ -8876,41 +9253,6 @@ namespace offsets {
         };
 
         // Has VTable
-        // Is Absract
-        // Construct Allowed
-        class CAnimGraphControllerBase {
-        public:
-            static constexpr std::uintptr_t m_hExternalGraph = 0X0018; // ExternalAnimGraphHandle_t
-        };
-
-        // Has VTable
-        // Construct Allowed
-        // Local Type Scope
-        class CCS2WeaponGraphController : public CAnimGraphControllerBase {
-        public:
-            static constexpr std::uintptr_t m_action                   = 0X0090; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_bActionReset             = 0X00A8; // CAnimGraph2ParamOptionalRef<bool>
-            static constexpr std::uintptr_t m_flWeaponActionSpeedScale = 0X00C0; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_weaponCategory           = 0X00D8; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_weaponType               = 0X00F0; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_weaponExtraInfo          = 0X0108; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_flWeaponAmmo             = 0X0120; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_flWeaponAmmoMax          = 0X0138; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_flWeaponAmmoReserve      = 0X0150; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_bWeaponIsSilenced        = 0X0168; // CAnimGraph2ParamOptionalRef<bool>
-            static constexpr std::uintptr_t m_flWeaponIronsightAmount  = 0X0180; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_bIsUsingLegacyModel      = 0X0198; // CAnimGraph2ParamOptionalRef<bool>
-            static constexpr std::uintptr_t m_idleVariation            = 0X01B0; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_deployVariation          = 0X01C8; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_attackType               = 0X01E0; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_attackThrowStrength      = 0X01F8; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_flAttackVariation        = 0X0210; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_inspectVariation         = 0X0228; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_inspectExtraInfo         = 0X0240; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_reloadStage              = 0X0258; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-        };
-
-        // Has VTable
         // Has Trivial Destructor
         // Local Type Scope
         class CEffectData {
@@ -8935,7 +9277,6 @@ namespace offsets {
             static constexpr std::uintptr_t m_nAttachmentIndex = 0X0064; // AttachmentHandle_t
             static constexpr std::uintptr_t m_nAttachmentName  = 0X0068; // CUtlStringToken
             static constexpr std::uintptr_t m_iEffectName      = 0X006C; // uint16
-            static constexpr std::uintptr_t m_nExplosionType   = 0X006E; // uint8
         };
 
         // Has VTable
@@ -8943,16 +9284,16 @@ namespace offsets {
         // Local Type Scope
         class CEntityDissolve : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_flFadeInStart        = 0X0730; // float32
-            static constexpr std::uintptr_t m_flFadeInLength       = 0X0734; // float32
-            static constexpr std::uintptr_t m_flFadeOutModelStart  = 0X0738; // float32
-            static constexpr std::uintptr_t m_flFadeOutModelLength = 0X073C; // float32
-            static constexpr std::uintptr_t m_flFadeOutStart       = 0X0740; // float32
-            static constexpr std::uintptr_t m_flFadeOutLength      = 0X0744; // float32
-            static constexpr std::uintptr_t m_flStartTime          = 0X0748; // GameTime_t
-            static constexpr std::uintptr_t m_nDissolveType        = 0X074C; // EntityDisolveType_t
-            static constexpr std::uintptr_t m_vDissolverOrigin     = 0X0750; // Vector
-            static constexpr std::uintptr_t m_nMagnitude           = 0X075C; // uint32
+            static constexpr std::uintptr_t m_flFadeInStart        = 0X0768; // float32
+            static constexpr std::uintptr_t m_flFadeInLength       = 0X076C; // float32
+            static constexpr std::uintptr_t m_flFadeOutModelStart  = 0X0770; // float32
+            static constexpr std::uintptr_t m_flFadeOutModelLength = 0X0774; // float32
+            static constexpr std::uintptr_t m_flFadeOutStart       = 0X0778; // float32
+            static constexpr std::uintptr_t m_flFadeOutLength      = 0X077C; // float32
+            static constexpr std::uintptr_t m_flStartTime          = 0X0780; // GameTime_t
+            static constexpr std::uintptr_t m_nDissolveType        = 0X0784; // EntityDisolveType_t
+            static constexpr std::uintptr_t m_vDissolverOrigin     = 0X0788; // Vector
+            static constexpr std::uintptr_t m_nMagnitude           = 0X0794; // uint32
         };
 
         // Has VTable
@@ -9233,8 +9574,8 @@ namespace offsets {
             static constexpr std::uintptr_t m_bRenderToCubemaps           = 0X0120; // bool
             static constexpr std::uintptr_t m_bAllowSSTGeneration         = 0X0121; // bool
             static constexpr std::uintptr_t m_nDirectLight                = 0X0124; // int32
-            static constexpr std::uintptr_t m_nIndirectLight              = 0X0128; // int32
-            static constexpr std::uintptr_t m_bDynamicBounce              = 0X012C; // bool
+            static constexpr std::uintptr_t m_nBounceLight                = 0X0128; // int32
+            static constexpr std::uintptr_t m_flBounceScale               = 0X012C; // float32
             static constexpr std::uintptr_t m_flFadeMinDist               = 0X0130; // float32
             static constexpr std::uintptr_t m_flFadeMaxDist               = 0X0134; // float32
             static constexpr std::uintptr_t m_flShadowFadeMinDist         = 0X0138; // float32
@@ -9266,20 +9607,20 @@ namespace offsets {
         // Local Type Scope
         class CBaseClientUIEntity : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_bEnabled       = 0X0730; // bool
-            static constexpr std::uintptr_t m_DialogXMLName  = 0X0738; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_PanelClassName = 0X0740; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_PanelID        = 0X0748; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_CustomOutput0  = 0X0750; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_CustomOutput1  = 0X0770; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_CustomOutput2  = 0X0790; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_CustomOutput3  = 0X07B0; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_CustomOutput4  = 0X07D0; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_CustomOutput5  = 0X07F0; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_CustomOutput6  = 0X0810; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_CustomOutput7  = 0X0830; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_CustomOutput8  = 0X0850; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_CustomOutput9  = 0X0870; // CEntityOutputTemplate<CUtlString,char*>
+            static constexpr std::uintptr_t m_bEnabled       = 0X0768; // bool
+            static constexpr std::uintptr_t m_DialogXMLName  = 0X0770; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_PanelClassName = 0X0778; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_PanelID        = 0X0780; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_CustomOutput0  = 0X0788; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_CustomOutput1  = 0X07A8; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_CustomOutput2  = 0X07C8; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_CustomOutput3  = 0X07E8; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_CustomOutput4  = 0X0808; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_CustomOutput5  = 0X0828; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_CustomOutput6  = 0X0848; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_CustomOutput7  = 0X0868; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_CustomOutput8  = 0X0888; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_CustomOutput9  = 0X08A8; // CEntityOutputTemplate<CUtlString>
         };
 
         // Has VTable
@@ -9287,8 +9628,8 @@ namespace offsets {
         // Local Type Scope
         class CPointClientUIDialog : public CBaseClientUIEntity {
         public:
-            static constexpr std::uintptr_t m_hActivator    = 0X0890; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_bStartEnabled = 0X0894; // bool
+            static constexpr std::uintptr_t m_hActivator    = 0X08C8; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_bStartEnabled = 0X08CC; // bool
         };
 
         // Has VTable
@@ -9296,7 +9637,7 @@ namespace offsets {
         // Local Type Scope
         class CLogicLineToEntity : public CLogicalEntity {
         public:
-            static constexpr std::uintptr_t m_Line        = 0X04A8; // CEntityOutputTemplate<Vector,Vector>
+            static constexpr std::uintptr_t m_Line        = 0X04A8; // CEntityOutputTemplate<Vector>
             static constexpr std::uintptr_t m_SourceName  = 0X04D0; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_StartEntity = 0X04D8; // CHandle<CBaseEntity>
             static constexpr std::uintptr_t m_EndEntity   = 0X04DC; // CHandle<CBaseEntity>
@@ -9318,6 +9659,12 @@ namespace offsets {
             static constexpr std::uintptr_t m_bIsRescuing                   = 0X0224; // bool
             static constexpr std::uintptr_t m_weaponPurchasesThisMatch      = 0X0228; // WeaponPurchaseTracker_t
             static constexpr std::uintptr_t m_weaponPurchasesThisRound      = 0X0298; // WeaponPurchaseTracker_t
+        };
+
+        // Has Trivial Destructor
+        // Local Type Scope
+        class CTestPulseIOComponent_API {
+        public:
         };
 
         // Has VTable
@@ -9475,13 +9822,13 @@ namespace offsets {
         // Local Type Scope
         class CInstancedSceneEntity : public CSceneEntity {
         public:
-            static constexpr std::uintptr_t m_hOwner              = 0X0730; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_bHadOwner           = 0X0734; // bool
-            static constexpr std::uintptr_t m_flPostSpeakDelay    = 0X0738; // float32
-            static constexpr std::uintptr_t m_flPreDelay          = 0X073C; // float32
-            static constexpr std::uintptr_t m_bIsBackground       = 0X0740; // bool
-            static constexpr std::uintptr_t m_bRemoveOnCompletion = 0X0741; // bool
-            static constexpr std::uintptr_t m_hTarget             = 0X0744; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hOwner              = 0X07C0; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_bHadOwner           = 0X07C4; // bool
+            static constexpr std::uintptr_t m_flPostSpeakDelay    = 0X07C8; // float32
+            static constexpr std::uintptr_t m_flPreDelay          = 0X07CC; // float32
+            static constexpr std::uintptr_t m_bIsBackground       = 0X07D0; // bool
+            static constexpr std::uintptr_t m_bRemoveOnCompletion = 0X07D1; // bool
+            static constexpr std::uintptr_t m_hTarget             = 0X07D4; // CHandle<CBaseEntity>
         };
 
         // Has VTable
@@ -9514,7 +9861,7 @@ namespace offsets {
         class CPulseCell_BooleanSwitchState : public CPulseCell_BaseState {
         public:
             static constexpr std::uintptr_t m_Condition = 0X0048; // PulseObservableBoolExpression_t
-            static constexpr std::uintptr_t m_SubGraph  = 0X00C0; // CPulse_OutflowConnection
+            static constexpr std::uintptr_t m_Always    = 0X00C0; // CPulse_OutflowConnection
             static constexpr std::uintptr_t m_WhenTrue  = 0X0108; // CPulse_OutflowConnection
             static constexpr std::uintptr_t m_WhenFalse = 0X0150; // CPulse_OutflowConnection
         };
@@ -9586,32 +9933,32 @@ namespace offsets {
         // Local Type Scope
         class CFuncShatterglass : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_matPanelTransform               = 0X0730; // matrix3x4_t
-            static constexpr std::uintptr_t m_matPanelTransformWsTemp         = 0X0760; // matrix3x4_t
-            static constexpr std::uintptr_t m_vecShatterGlassShards           = 0X0790; // CUtlVector<uint32>
-            static constexpr std::uintptr_t m_PanelSize                       = 0X07A8; // Vector2D
-            static constexpr std::uintptr_t m_flLastShatterSoundEmitTime      = 0X07B0; // GameTime_t
-            static constexpr std::uintptr_t m_flLastCleanupTime               = 0X07B4; // GameTime_t
-            static constexpr std::uintptr_t m_flInitAtTime                    = 0X07B8; // GameTime_t
-            static constexpr std::uintptr_t m_flGlassThickness                = 0X07BC; // float32
-            static constexpr std::uintptr_t m_flSpawnInvulnerability          = 0X07C0; // float32
-            static constexpr std::uintptr_t m_bBreakSilent                    = 0X07C4; // bool
-            static constexpr std::uintptr_t m_bBreakShardless                 = 0X07C5; // bool
-            static constexpr std::uintptr_t m_bBroken                         = 0X07C6; // bool
-            static constexpr std::uintptr_t m_bGlassNavIgnore                 = 0X07C7; // bool
-            static constexpr std::uintptr_t m_bGlassInFrame                   = 0X07C8; // bool
-            static constexpr std::uintptr_t m_bStartBroken                    = 0X07C9; // bool
-            static constexpr std::uintptr_t m_iInitialDamageType              = 0X07CA; // uint8
-            static constexpr std::uintptr_t m_szDamagePositioningEntityName01 = 0X07D0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_szDamagePositioningEntityName02 = 0X07D8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_szDamagePositioningEntityName03 = 0X07E0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_szDamagePositioningEntityName04 = 0X07E8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_vInitialDamagePositions         = 0X07F0; // CUtlVector<Vector>
-            static constexpr std::uintptr_t m_vExtraDamagePositions           = 0X0808; // CUtlVector<Vector>
-            static constexpr std::uintptr_t m_vInitialPanelVertices           = 0X0820; // CUtlVector<Vector4D>
-            static constexpr std::uintptr_t m_OnBroken                        = 0X0838; // CEntityIOOutput
-            static constexpr std::uintptr_t m_iSurfaceType                    = 0X0850; // uint8
-            static constexpr std::uintptr_t m_hMaterialDamageBase             = 0X0858; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_matPanelTransform               = 0X0768; // matrix3x4_t
+            static constexpr std::uintptr_t m_matPanelTransformWsTemp         = 0X0798; // matrix3x4_t
+            static constexpr std::uintptr_t m_vecShatterGlassShards           = 0X07C8; // CUtlVector<uint32>
+            static constexpr std::uintptr_t m_PanelSize                       = 0X07E0; // Vector2D
+            static constexpr std::uintptr_t m_flLastShatterSoundEmitTime      = 0X07E8; // GameTime_t
+            static constexpr std::uintptr_t m_flLastCleanupTime               = 0X07EC; // GameTime_t
+            static constexpr std::uintptr_t m_flInitAtTime                    = 0X07F0; // GameTime_t
+            static constexpr std::uintptr_t m_flGlassThickness                = 0X07F4; // float32
+            static constexpr std::uintptr_t m_flSpawnInvulnerability          = 0X07F8; // float32
+            static constexpr std::uintptr_t m_bBreakSilent                    = 0X07FC; // bool
+            static constexpr std::uintptr_t m_bBreakShardless                 = 0X07FD; // bool
+            static constexpr std::uintptr_t m_bBroken                         = 0X07FE; // bool
+            static constexpr std::uintptr_t m_bGlassNavIgnore                 = 0X07FF; // bool
+            static constexpr std::uintptr_t m_bGlassInFrame                   = 0X0800; // bool
+            static constexpr std::uintptr_t m_bStartBroken                    = 0X0801; // bool
+            static constexpr std::uintptr_t m_iInitialDamageType              = 0X0802; // uint8
+            static constexpr std::uintptr_t m_szDamagePositioningEntityName01 = 0X0808; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_szDamagePositioningEntityName02 = 0X0810; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_szDamagePositioningEntityName03 = 0X0818; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_szDamagePositioningEntityName04 = 0X0820; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_vInitialDamagePositions         = 0X0828; // CUtlVector<Vector>
+            static constexpr std::uintptr_t m_vExtraDamagePositions           = 0X0840; // CUtlVector<Vector>
+            static constexpr std::uintptr_t m_vInitialPanelVertices           = 0X0858; // CUtlVector<Vector4D>
+            static constexpr std::uintptr_t m_OnBroken                        = 0X0870; // CEntityIOOutput
+            static constexpr std::uintptr_t m_iSurfaceType                    = 0X0888; // uint8
+            static constexpr std::uintptr_t m_hMaterialDamageBase             = 0X0890; // CStrongHandle<InfoForResourceTypeIMaterial2>
         };
 
         // Has VTable
@@ -9626,33 +9973,33 @@ namespace offsets {
         // Local Type Scope
         class CPlantedC4 : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_bBombTicking                         = 0X0A28; // bool
-            static constexpr std::uintptr_t m_flC4Blow                             = 0X0A2C; // GameTime_t
-            static constexpr std::uintptr_t m_nBombSite                            = 0X0A30; // int32
-            static constexpr std::uintptr_t m_nSourceSoundscapeHash                = 0X0A34; // int32
-            static constexpr std::uintptr_t m_bAbortDetonationBecauseWorldIsFrozen = 0X0A38; // bool
-            static constexpr std::uintptr_t m_AttributeManager                     = 0X0A40; // CAttributeContainer
-            static constexpr std::uintptr_t m_OnBombDefused                        = 0X0D38; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnBombBeginDefuse                    = 0X0D50; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnBombDefuseAborted                  = 0X0D68; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bCannotBeDefused                     = 0X0D80; // bool
-            static constexpr std::uintptr_t m_entitySpottedState                   = 0X0D88; // EntitySpottedState_t
-            static constexpr std::uintptr_t m_nSpotRules                           = 0X0DA0; // int32
-            static constexpr std::uintptr_t m_bHasExploded                         = 0X0DA4; // bool
-            static constexpr std::uintptr_t m_bBombDefused                         = 0X0DA5; // bool
-            static constexpr std::uintptr_t m_bTrainingPlacedByPlayer              = 0X0DA6; // bool
-            static constexpr std::uintptr_t m_flTimerLength                        = 0X0DA8; // float32
-            static constexpr std::uintptr_t m_bBeingDefused                        = 0X0DAC; // bool
-            static constexpr std::uintptr_t m_fLastDefuseTime                      = 0X0DB4; // GameTime_t
-            static constexpr std::uintptr_t m_flDefuseLength                       = 0X0DBC; // float32
-            static constexpr std::uintptr_t m_flDefuseCountDown                    = 0X0DC0; // GameTime_t
-            static constexpr std::uintptr_t m_hBombDefuser                         = 0X0DC4; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_iProgressBarTime                     = 0X0DC8; // int32
-            static constexpr std::uintptr_t m_bVoiceAlertFired                     = 0X0DCC; // bool
-            static constexpr std::uintptr_t m_bVoiceAlertPlayed                    = 0X0DCD; // bool[4]
-            static constexpr std::uintptr_t m_flNextBotBeepTime                    = 0X0DD4; // GameTime_t
-            static constexpr std::uintptr_t m_angCatchUpToPlayerEye                = 0X0DDC; // QAngle
-            static constexpr std::uintptr_t m_flLastSpinDetectionTime              = 0X0DE8; // GameTime_t
+            static constexpr std::uintptr_t m_bBombTicking                         = 0X0948; // bool
+            static constexpr std::uintptr_t m_flC4Blow                             = 0X094C; // GameTime_t
+            static constexpr std::uintptr_t m_nBombSite                            = 0X0950; // int32
+            static constexpr std::uintptr_t m_nSourceSoundscapeHash                = 0X0954; // int32
+            static constexpr std::uintptr_t m_bAbortDetonationBecauseWorldIsFrozen = 0X0958; // bool
+            static constexpr std::uintptr_t m_AttributeManager                     = 0X0960; // CAttributeContainer
+            static constexpr std::uintptr_t m_OnBombDefused                        = 0X0C58; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnBombBeginDefuse                    = 0X0C70; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnBombDefuseAborted                  = 0X0C88; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bCannotBeDefused                     = 0X0CA0; // bool
+            static constexpr std::uintptr_t m_entitySpottedState                   = 0X0CA8; // EntitySpottedState_t
+            static constexpr std::uintptr_t m_nSpotRules                           = 0X0CC0; // int32
+            static constexpr std::uintptr_t m_bHasExploded                         = 0X0CC4; // bool
+            static constexpr std::uintptr_t m_bBombDefused                         = 0X0CC5; // bool
+            static constexpr std::uintptr_t m_bTrainingPlacedByPlayer              = 0X0CC6; // bool
+            static constexpr std::uintptr_t m_flTimerLength                        = 0X0CC8; // float32
+            static constexpr std::uintptr_t m_bBeingDefused                        = 0X0CCC; // bool
+            static constexpr std::uintptr_t m_fLastDefuseTime                      = 0X0CD4; // GameTime_t
+            static constexpr std::uintptr_t m_flDefuseLength                       = 0X0CDC; // float32
+            static constexpr std::uintptr_t m_flDefuseCountDown                    = 0X0CE0; // GameTime_t
+            static constexpr std::uintptr_t m_hBombDefuser                         = 0X0CE4; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_iProgressBarTime                     = 0X0CE8; // int32
+            static constexpr std::uintptr_t m_bVoiceAlertFired                     = 0X0CEC; // bool
+            static constexpr std::uintptr_t m_bVoiceAlertPlayed                    = 0X0CED; // bool[4]
+            static constexpr std::uintptr_t m_flNextBotBeepTime                    = 0X0CF4; // GameTime_t
+            static constexpr std::uintptr_t m_angCatchUpToPlayerEye                = 0X0CFC; // QAngle
+            static constexpr std::uintptr_t m_flLastSpinDetectionTime              = 0X0D08; // GameTime_t
         };
 
         // Has VTable
@@ -9762,10 +10109,10 @@ namespace offsets {
         // Local Type Scope
         class CSpotlightEnd : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_flLightScale  = 0X0730; // float32
-            static constexpr std::uintptr_t m_Radius        = 0X0734; // float32
-            static constexpr std::uintptr_t m_vSpotlightDir = 0X0738; // Vector
-            static constexpr std::uintptr_t m_vSpotlightOrg = 0X0744; // VectorWS
+            static constexpr std::uintptr_t m_flLightScale  = 0X0768; // float32
+            static constexpr std::uintptr_t m_Radius        = 0X076C; // float32
+            static constexpr std::uintptr_t m_vSpotlightDir = 0X0770; // Vector
+            static constexpr std::uintptr_t m_vSpotlightOrg = 0X077C; // VectorWS
         };
 
         // Has VTable
@@ -9773,18 +10120,18 @@ namespace offsets {
         // Local Type Scope
         class CEnvSky : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_hSkyMaterial             = 0X0730; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_hSkyMaterialLightingOnly = 0X0738; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_bStartDisabled           = 0X0740; // bool
-            static constexpr std::uintptr_t m_vTintColor               = 0X0741; // Color
-            static constexpr std::uintptr_t m_vTintColorLightingOnly   = 0X0745; // Color
-            static constexpr std::uintptr_t m_flBrightnessScale        = 0X074C; // float32
-            static constexpr std::uintptr_t m_nFogType                 = 0X0750; // int32
-            static constexpr std::uintptr_t m_flFogMinStart            = 0X0754; // float32
-            static constexpr std::uintptr_t m_flFogMinEnd              = 0X0758; // float32
-            static constexpr std::uintptr_t m_flFogMaxStart            = 0X075C; // float32
-            static constexpr std::uintptr_t m_flFogMaxEnd              = 0X0760; // float32
-            static constexpr std::uintptr_t m_bEnabled                 = 0X0764; // bool
+            static constexpr std::uintptr_t m_hSkyMaterial             = 0X0768; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_hSkyMaterialLightingOnly = 0X0770; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_bStartDisabled           = 0X0778; // bool
+            static constexpr std::uintptr_t m_vTintColor               = 0X0779; // Color
+            static constexpr std::uintptr_t m_vTintColorLightingOnly   = 0X077D; // Color
+            static constexpr std::uintptr_t m_flBrightnessScale        = 0X0784; // float32
+            static constexpr std::uintptr_t m_nFogType                 = 0X0788; // int32
+            static constexpr std::uintptr_t m_flFogMinStart            = 0X078C; // float32
+            static constexpr std::uintptr_t m_flFogMinEnd              = 0X0790; // float32
+            static constexpr std::uintptr_t m_flFogMaxStart            = 0X0794; // float32
+            static constexpr std::uintptr_t m_flFogMaxEnd              = 0X0798; // float32
+            static constexpr std::uintptr_t m_bEnabled                 = 0X079C; // bool
         };
 
         // Has VTable
@@ -9809,8 +10156,8 @@ namespace offsets {
             static constexpr std::uintptr_t m_bFired            = 0X04CC; // bool
             static constexpr std::uintptr_t m_OnFacingLookat    = 0X04D0; // CEntityIOOutput
             static constexpr std::uintptr_t m_OnNotFacingLookat = 0X04E8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_TargetDir         = 0X0500; // CEntityOutputTemplate<Vector,Vector>
-            static constexpr std::uintptr_t m_FacingPercentage  = 0X0528; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_TargetDir         = 0X0500; // CEntityOutputTemplate<Vector>
+            static constexpr std::uintptr_t m_FacingPercentage  = 0X0528; // CEntityOutputTemplate<float32>
         };
 
         // Has VTable
@@ -9836,54 +10183,55 @@ namespace offsets {
         // Local Type Scope
         class CGenericConstraint : public CPhysConstraint {
         public:
-            static constexpr std::uintptr_t m_nLinearMotionX             = 0X0510; // JointMotion_t
-            static constexpr std::uintptr_t m_nLinearMotionY             = 0X0514; // JointMotion_t
-            static constexpr std::uintptr_t m_nLinearMotionZ             = 0X0518; // JointMotion_t
-            static constexpr std::uintptr_t m_flLinearFrequencyX         = 0X051C; // float32
-            static constexpr std::uintptr_t m_flLinearFrequencyY         = 0X0520; // float32
-            static constexpr std::uintptr_t m_flLinearFrequencyZ         = 0X0524; // float32
-            static constexpr std::uintptr_t m_flLinearDampingRatioX      = 0X0528; // float32
-            static constexpr std::uintptr_t m_flLinearDampingRatioY      = 0X052C; // float32
-            static constexpr std::uintptr_t m_flLinearDampingRatioZ      = 0X0530; // float32
-            static constexpr std::uintptr_t m_flMaxLinearImpulseX        = 0X0534; // float32
-            static constexpr std::uintptr_t m_flMaxLinearImpulseY        = 0X0538; // float32
-            static constexpr std::uintptr_t m_flMaxLinearImpulseZ        = 0X053C; // float32
-            static constexpr std::uintptr_t m_flBreakAfterTimeX          = 0X0540; // float32
-            static constexpr std::uintptr_t m_flBreakAfterTimeY          = 0X0544; // float32
-            static constexpr std::uintptr_t m_flBreakAfterTimeZ          = 0X0548; // float32
-            static constexpr std::uintptr_t m_flBreakAfterTimeStartTimeX = 0X054C; // GameTime_t
-            static constexpr std::uintptr_t m_flBreakAfterTimeStartTimeY = 0X0550; // GameTime_t
-            static constexpr std::uintptr_t m_flBreakAfterTimeStartTimeZ = 0X0554; // GameTime_t
-            static constexpr std::uintptr_t m_flBreakAfterTimeThresholdX = 0X0558; // float32
-            static constexpr std::uintptr_t m_flBreakAfterTimeThresholdY = 0X055C; // float32
-            static constexpr std::uintptr_t m_flBreakAfterTimeThresholdZ = 0X0560; // float32
-            static constexpr std::uintptr_t m_flNotifyForceX             = 0X0564; // float32
-            static constexpr std::uintptr_t m_flNotifyForceY             = 0X0568; // float32
-            static constexpr std::uintptr_t m_flNotifyForceZ             = 0X056C; // float32
-            static constexpr std::uintptr_t m_flNotifyForceMinTimeX      = 0X0570; // float32
-            static constexpr std::uintptr_t m_flNotifyForceMinTimeY      = 0X0574; // float32
-            static constexpr std::uintptr_t m_flNotifyForceMinTimeZ      = 0X0578; // float32
-            static constexpr std::uintptr_t m_flNotifyForceLastTimeX     = 0X057C; // GameTime_t
-            static constexpr std::uintptr_t m_flNotifyForceLastTimeY     = 0X0580; // GameTime_t
-            static constexpr std::uintptr_t m_flNotifyForceLastTimeZ     = 0X0584; // GameTime_t
-            static constexpr std::uintptr_t m_bAxisNotifiedX             = 0X0588; // bool
-            static constexpr std::uintptr_t m_bAxisNotifiedY             = 0X0589; // bool
-            static constexpr std::uintptr_t m_bAxisNotifiedZ             = 0X058A; // bool
-            static constexpr std::uintptr_t m_nAngularMotionX            = 0X058C; // JointMotion_t
-            static constexpr std::uintptr_t m_nAngularMotionY            = 0X0590; // JointMotion_t
-            static constexpr std::uintptr_t m_nAngularMotionZ            = 0X0594; // JointMotion_t
-            static constexpr std::uintptr_t m_flAngularFrequencyX        = 0X0598; // float32
-            static constexpr std::uintptr_t m_flAngularFrequencyY        = 0X059C; // float32
-            static constexpr std::uintptr_t m_flAngularFrequencyZ        = 0X05A0; // float32
-            static constexpr std::uintptr_t m_flAngularDampingRatioX     = 0X05A4; // float32
-            static constexpr std::uintptr_t m_flAngularDampingRatioY     = 0X05A8; // float32
-            static constexpr std::uintptr_t m_flAngularDampingRatioZ     = 0X05AC; // float32
-            static constexpr std::uintptr_t m_flMaxAngularImpulseX       = 0X05B0; // float32
-            static constexpr std::uintptr_t m_flMaxAngularImpulseY       = 0X05B4; // float32
-            static constexpr std::uintptr_t m_flMaxAngularImpulseZ       = 0X05B8; // float32
-            static constexpr std::uintptr_t m_NotifyForceReachedX        = 0X05C0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_NotifyForceReachedY        = 0X05D8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_NotifyForceReachedZ        = 0X05F0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bPlaceAnchorsAtConstraintTransform = 0X0510; // bool
+            static constexpr std::uintptr_t m_nLinearMotionX                     = 0X0514; // JointMotion_t
+            static constexpr std::uintptr_t m_nLinearMotionY                     = 0X0518; // JointMotion_t
+            static constexpr std::uintptr_t m_nLinearMotionZ                     = 0X051C; // JointMotion_t
+            static constexpr std::uintptr_t m_flLinearFrequencyX                 = 0X0520; // float32
+            static constexpr std::uintptr_t m_flLinearFrequencyY                 = 0X0524; // float32
+            static constexpr std::uintptr_t m_flLinearFrequencyZ                 = 0X0528; // float32
+            static constexpr std::uintptr_t m_flLinearDampingRatioX              = 0X052C; // float32
+            static constexpr std::uintptr_t m_flLinearDampingRatioY              = 0X0530; // float32
+            static constexpr std::uintptr_t m_flLinearDampingRatioZ              = 0X0534; // float32
+            static constexpr std::uintptr_t m_flMaxLinearImpulseX                = 0X0538; // float32
+            static constexpr std::uintptr_t m_flMaxLinearImpulseY                = 0X053C; // float32
+            static constexpr std::uintptr_t m_flMaxLinearImpulseZ                = 0X0540; // float32
+            static constexpr std::uintptr_t m_flBreakAfterTimeX                  = 0X0544; // float32
+            static constexpr std::uintptr_t m_flBreakAfterTimeY                  = 0X0548; // float32
+            static constexpr std::uintptr_t m_flBreakAfterTimeZ                  = 0X054C; // float32
+            static constexpr std::uintptr_t m_flBreakAfterTimeStartTimeX         = 0X0550; // GameTime_t
+            static constexpr std::uintptr_t m_flBreakAfterTimeStartTimeY         = 0X0554; // GameTime_t
+            static constexpr std::uintptr_t m_flBreakAfterTimeStartTimeZ         = 0X0558; // GameTime_t
+            static constexpr std::uintptr_t m_flBreakAfterTimeThresholdX         = 0X055C; // float32
+            static constexpr std::uintptr_t m_flBreakAfterTimeThresholdY         = 0X0560; // float32
+            static constexpr std::uintptr_t m_flBreakAfterTimeThresholdZ         = 0X0564; // float32
+            static constexpr std::uintptr_t m_flNotifyForceX                     = 0X0568; // float32
+            static constexpr std::uintptr_t m_flNotifyForceY                     = 0X056C; // float32
+            static constexpr std::uintptr_t m_flNotifyForceZ                     = 0X0570; // float32
+            static constexpr std::uintptr_t m_flNotifyForceMinTimeX              = 0X0574; // float32
+            static constexpr std::uintptr_t m_flNotifyForceMinTimeY              = 0X0578; // float32
+            static constexpr std::uintptr_t m_flNotifyForceMinTimeZ              = 0X057C; // float32
+            static constexpr std::uintptr_t m_flNotifyForceLastTimeX             = 0X0580; // GameTime_t
+            static constexpr std::uintptr_t m_flNotifyForceLastTimeY             = 0X0584; // GameTime_t
+            static constexpr std::uintptr_t m_flNotifyForceLastTimeZ             = 0X0588; // GameTime_t
+            static constexpr std::uintptr_t m_bAxisNotifiedX                     = 0X058C; // bool
+            static constexpr std::uintptr_t m_bAxisNotifiedY                     = 0X058D; // bool
+            static constexpr std::uintptr_t m_bAxisNotifiedZ                     = 0X058E; // bool
+            static constexpr std::uintptr_t m_nAngularMotionX                    = 0X0590; // JointMotion_t
+            static constexpr std::uintptr_t m_nAngularMotionY                    = 0X0594; // JointMotion_t
+            static constexpr std::uintptr_t m_nAngularMotionZ                    = 0X0598; // JointMotion_t
+            static constexpr std::uintptr_t m_flAngularFrequencyX                = 0X059C; // float32
+            static constexpr std::uintptr_t m_flAngularFrequencyY                = 0X05A0; // float32
+            static constexpr std::uintptr_t m_flAngularFrequencyZ                = 0X05A4; // float32
+            static constexpr std::uintptr_t m_flAngularDampingRatioX             = 0X05A8; // float32
+            static constexpr std::uintptr_t m_flAngularDampingRatioY             = 0X05AC; // float32
+            static constexpr std::uintptr_t m_flAngularDampingRatioZ             = 0X05B0; // float32
+            static constexpr std::uintptr_t m_flMaxAngularImpulseX               = 0X05B4; // float32
+            static constexpr std::uintptr_t m_flMaxAngularImpulseY               = 0X05B8; // float32
+            static constexpr std::uintptr_t m_flMaxAngularImpulseZ               = 0X05BC; // float32
+            static constexpr std::uintptr_t m_NotifyForceReachedX                = 0X05C0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_NotifyForceReachedY                = 0X05D8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_NotifyForceReachedZ                = 0X05F0; // CEntityIOOutput
         };
 
         // Has VTable
@@ -9907,11 +10255,11 @@ namespace offsets {
         // Local Type Scope
         class CEnvLaser : public CBeam {
         public:
-            static constexpr std::uintptr_t m_iszLaserTarget = 0X07D0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_pSprite        = 0X07D8; // CSprite*
-            static constexpr std::uintptr_t m_iszSpriteName  = 0X07E0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_firePosition   = 0X07E8; // Vector
-            static constexpr std::uintptr_t m_flStartFrame   = 0X07F4; // float32
+            static constexpr std::uintptr_t m_iszLaserTarget = 0X0808; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_pSprite        = 0X0810; // CHandle<CSprite>
+            static constexpr std::uintptr_t m_iszSpriteName  = 0X0818; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_firePosition   = 0X0820; // Vector
+            static constexpr std::uintptr_t m_flStartFrame   = 0X082C; // float32
         };
 
         // Has VTable
@@ -9955,6 +10303,8 @@ namespace offsets {
             static constexpr std::uintptr_t m_flTorqueScale                      = 0X04D4; // float32
             static constexpr std::uintptr_t m_flTargetSpeed                      = 0X04D8; // float32
             static constexpr std::uintptr_t m_flSpeedWhenSpinUpOrSpinDownStarted = 0X04DC; // float32
+            static constexpr std::uintptr_t m_pFixedWorldBody                    = 0X04E0; // IPhysicsBody*
+            static constexpr std::uintptr_t m_pMotorJoint                        = 0X04E8; // IPhysicsJoint*
             static constexpr std::uintptr_t m_motor                              = 0X04F0; // CMotorController
         };
 
@@ -9987,6 +10337,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_flPushScale                  = 0X04C4; // float32
             static constexpr std::uintptr_t m_bConvertToDebrisWhenPossible = 0X04C8; // bool
             static constexpr std::uintptr_t m_bAffectInvulnerableEnts      = 0X04C9; // bool
+            static constexpr std::uintptr_t m_bDisablePushClamp            = 0X04CA; // bool
             static constexpr std::uintptr_t m_OnPushedPlayer               = 0X04D0; // CEntityIOOutput
         };
 
@@ -9997,6 +10348,7 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_vAnchorOffsetRestore                 = 0X0558; // Vector
             static constexpr std::uintptr_t m_hSplineEntity                        = 0X0564; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_pSplineBody                          = 0X0568; // IPhysicsBody*
             static constexpr std::uintptr_t m_bEnableLateralConstraint             = 0X0570; // bool
             static constexpr std::uintptr_t m_bEnableVerticalConstraint            = 0X0571; // bool
             static constexpr std::uintptr_t m_bEnableAngularConstraint             = 0X0572; // bool
@@ -10018,10 +10370,10 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t m_flInValue      = 0X04A8; // float32
             static constexpr std::uintptr_t m_flCompareValue = 0X04AC; // float32
-            static constexpr std::uintptr_t m_OnLessThan     = 0X04B0; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnEqualTo      = 0X04D0; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnNotEqualTo   = 0X04F0; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnGreaterThan  = 0X0510; // CEntityOutputTemplate<float32,float32>
+            static constexpr std::uintptr_t m_OnLessThan     = 0X04B0; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnEqualTo      = 0X04D0; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnNotEqualTo   = 0X04F0; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnGreaterThan  = 0X0510; // CEntityOutputTemplate<float32>
         };
 
         // Has VTable
@@ -10046,7 +10398,7 @@ namespace offsets {
         // Local Type Scope
         class CFuncTankTrain : public CFuncTrackTrain {
         public:
-            static constexpr std::uintptr_t m_OnDeath = 0X0858; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnDeath = 0X0890; // CEntityIOOutput
         };
 
         // Has VTable
@@ -10054,30 +10406,30 @@ namespace offsets {
         // Local Type Scope
         class CPointClientUIWorldPanel : public CBaseClientUIEntity {
         public:
-            static constexpr std::uintptr_t m_bIgnoreInput                        = 0X0890; // bool
-            static constexpr std::uintptr_t m_bLit                                = 0X0891; // bool
-            static constexpr std::uintptr_t m_bFollowPlayerAcrossTeleport         = 0X0892; // bool
-            static constexpr std::uintptr_t m_flWidth                             = 0X0894; // float32
-            static constexpr std::uintptr_t m_flHeight                            = 0X0898; // float32
-            static constexpr std::uintptr_t m_flDPI                               = 0X089C; // float32
-            static constexpr std::uintptr_t m_flInteractDistance                  = 0X08A0; // float32
-            static constexpr std::uintptr_t m_flDepthOffset                       = 0X08A4; // float32
-            static constexpr std::uintptr_t m_unOwnerContext                      = 0X08A8; // uint32
-            static constexpr std::uintptr_t m_unHorizontalAlign                   = 0X08AC; // uint32
-            static constexpr std::uintptr_t m_unVerticalAlign                     = 0X08B0; // uint32
-            static constexpr std::uintptr_t m_unOrientation                       = 0X08B4; // uint32
-            static constexpr std::uintptr_t m_bAllowInteractionFromAllSceneWorlds = 0X08B8; // bool
-            static constexpr std::uintptr_t m_vecCSSClasses                       = 0X08C0; // CNetworkUtlVectorBase<CUtlSymbolLarge>
-            static constexpr std::uintptr_t m_bOpaque                             = 0X08D8; // bool
-            static constexpr std::uintptr_t m_bNoDepth                            = 0X08D9; // bool
-            static constexpr std::uintptr_t m_bVisibleWhenParentNoDraw            = 0X08DA; // bool
-            static constexpr std::uintptr_t m_bRenderBackface                     = 0X08DB; // bool
-            static constexpr std::uintptr_t m_bUseOffScreenIndicator              = 0X08DC; // bool
-            static constexpr std::uintptr_t m_bExcludeFromSaveGames               = 0X08DD; // bool
-            static constexpr std::uintptr_t m_bGrabbable                          = 0X08DE; // bool
-            static constexpr std::uintptr_t m_bOnlyRenderToTexture                = 0X08DF; // bool
-            static constexpr std::uintptr_t m_bDisableMipGen                      = 0X08E0; // bool
-            static constexpr std::uintptr_t m_nExplicitImageLayout                = 0X08E4; // int32
+            static constexpr std::uintptr_t m_bIgnoreInput                        = 0X08C8; // bool
+            static constexpr std::uintptr_t m_bLit                                = 0X08C9; // bool
+            static constexpr std::uintptr_t m_bFollowPlayerAcrossTeleport         = 0X08CA; // bool
+            static constexpr std::uintptr_t m_flWidth                             = 0X08CC; // float32
+            static constexpr std::uintptr_t m_flHeight                            = 0X08D0; // float32
+            static constexpr std::uintptr_t m_flDPI                               = 0X08D4; // float32
+            static constexpr std::uintptr_t m_flInteractDistance                  = 0X08D8; // float32
+            static constexpr std::uintptr_t m_flDepthOffset                       = 0X08DC; // float32
+            static constexpr std::uintptr_t m_unOwnerContext                      = 0X08E0; // uint32
+            static constexpr std::uintptr_t m_unHorizontalAlign                   = 0X08E4; // uint32
+            static constexpr std::uintptr_t m_unVerticalAlign                     = 0X08E8; // uint32
+            static constexpr std::uintptr_t m_unOrientation                       = 0X08EC; // uint32
+            static constexpr std::uintptr_t m_bAllowInteractionFromAllSceneWorlds = 0X08F0; // bool
+            static constexpr std::uintptr_t m_vecCSSClasses                       = 0X08F8; // CNetworkUtlVectorBase<CUtlSymbolLarge>
+            static constexpr std::uintptr_t m_bOpaque                             = 0X0910; // bool
+            static constexpr std::uintptr_t m_bNoDepth                            = 0X0911; // bool
+            static constexpr std::uintptr_t m_bVisibleWhenParentNoDraw            = 0X0912; // bool
+            static constexpr std::uintptr_t m_bRenderBackface                     = 0X0913; // bool
+            static constexpr std::uintptr_t m_bUseOffScreenIndicator              = 0X0914; // bool
+            static constexpr std::uintptr_t m_bExcludeFromSaveGames               = 0X0915; // bool
+            static constexpr std::uintptr_t m_bGrabbable                          = 0X0916; // bool
+            static constexpr std::uintptr_t m_bOnlyRenderToTexture                = 0X0917; // bool
+            static constexpr std::uintptr_t m_bDisableMipGen                      = 0X0918; // bool
+            static constexpr std::uintptr_t m_nExplicitImageLayout                = 0X091C; // int32
         };
 
         // Has VTable
@@ -10085,7 +10437,7 @@ namespace offsets {
         // Local Type Scope
         class CSoundEventSphereEntity : public CSoundEventEntity {
         public:
-            static constexpr std::uintptr_t m_flRadius = 0X0558; // float32
+            static constexpr std::uintptr_t m_flRadius = 0X0568; // float32
         };
 
         // Has VTable
@@ -10098,6 +10450,18 @@ namespace offsets {
             static constexpr std::uintptr_t m_iStartAccount            = 0X004C; // int32
             static constexpr std::uintptr_t m_iTotalCashSpent          = 0X0050; // int32
             static constexpr std::uintptr_t m_iCashSpentThisRound      = 0X0054; // int32
+        };
+
+        // Has VTable
+        // Local Type Scope
+        class CCSPlayer_AimPunchServices : public CPlayerPawnComponent {
+        public:
+            static constexpr std::uintptr_t m_predictableBaseTick             = 0X0048; // GameTick_t
+            static constexpr std::uintptr_t m_predictableBaseTickInterpAmount = 0X004C; // float32
+            static constexpr std::uintptr_t m_predictableBaseAngle            = 0X0050; // QAngle
+            static constexpr std::uintptr_t m_predictableBaseAngleVel         = 0X005C; // QAngle
+            static constexpr std::uintptr_t m_unpredictableBaseTick           = 0X00A0; // GameTick_t
+            static constexpr std::uintptr_t m_unpredictableBaseAngle          = 0X00A4; // QAngle
         };
 
         // Has VTable
@@ -10124,41 +10488,11 @@ namespace offsets {
             static constexpr std::uintptr_t m_nCurrentPhase                   = 0X0DF8; // int32
             static constexpr std::uintptr_t m_nPhaseStartTick                 = 0X0DFC; // int32
             static constexpr std::uintptr_t m_nPhaseDurationTicks             = 0X0E00; // int32
-            static constexpr std::uintptr_t m_OnMapVetoed                     = 0X0E08; // CEntityOutputTemplate<CUtlSymbolLarge,CUtlSymbolLarge>
-            static constexpr std::uintptr_t m_OnMapPicked                     = 0X0E28; // CEntityOutputTemplate<CUtlSymbolLarge,CUtlSymbolLarge>
-            static constexpr std::uintptr_t m_OnSidesPicked                   = 0X0E48; // CEntityOutputTemplate<int32,int32>
-            static constexpr std::uintptr_t m_OnNewPhaseStarted               = 0X0E68; // CEntityOutputTemplate<int32,int32>
-            static constexpr std::uintptr_t m_OnLevelTransition               = 0X0E88; // CEntityOutputTemplate<int32,int32>
-        };
-
-        // Has VTable
-        // Local Type Scope
-        class CAnimGraphNetworkedVariables {
-        public:
-            static constexpr std::uintptr_t m_PredNetBoolVariables                  = 0X0008; // CNetworkUtlVectorBase<uint32>
-            static constexpr std::uintptr_t m_PredNetByteVariables                  = 0X0020; // CNetworkUtlVectorBase<uint8>
-            static constexpr std::uintptr_t m_PredNetUInt16Variables                = 0X0038; // CNetworkUtlVectorBase<uint16>
-            static constexpr std::uintptr_t m_PredNetIntVariables                   = 0X0050; // CNetworkUtlVectorBase<int32>
-            static constexpr std::uintptr_t m_PredNetUInt32Variables                = 0X0068; // CNetworkUtlVectorBase<uint32>
-            static constexpr std::uintptr_t m_PredNetUInt64Variables                = 0X0080; // CNetworkUtlVectorBase<uint64>
-            static constexpr std::uintptr_t m_PredNetFloatVariables                 = 0X0098; // CNetworkUtlVectorBase<float32>
-            static constexpr std::uintptr_t m_PredNetVectorVariables                = 0X00B0; // CNetworkUtlVectorBase<Vector>
-            static constexpr std::uintptr_t m_PredNetQuaternionVariables            = 0X00C8; // CNetworkUtlVectorBase<Quaternion>
-            static constexpr std::uintptr_t m_PredNetGlobalSymbolVariables          = 0X00E0; // CNetworkUtlVectorBase<CGlobalSymbol>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetBoolVariables         = 0X00F8; // CNetworkUtlVectorBase<uint32>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetByteVariables         = 0X0110; // CNetworkUtlVectorBase<uint8>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetUInt16Variables       = 0X0128; // CNetworkUtlVectorBase<uint16>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetIntVariables          = 0X0140; // CNetworkUtlVectorBase<int32>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetUInt32Variables       = 0X0158; // CNetworkUtlVectorBase<uint32>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetUInt64Variables       = 0X0170; // CNetworkUtlVectorBase<uint64>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetFloatVariables        = 0X0188; // CNetworkUtlVectorBase<float32>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetVectorVariables       = 0X01A0; // CNetworkUtlVectorBase<Vector>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetQuaternionVariables   = 0X01B8; // CNetworkUtlVectorBase<Quaternion>
-            static constexpr std::uintptr_t m_OwnerOnlyPredNetGlobalSymbolVariables = 0X01D0; // CNetworkUtlVectorBase<CGlobalSymbol>
-            static constexpr std::uintptr_t m_nBoolVariablesCount                   = 0X01E8; // int32
-            static constexpr std::uintptr_t m_nOwnerOnlyBoolVariablesCount          = 0X01EC; // int32
-            static constexpr std::uintptr_t m_nRandomSeedOffset                     = 0X01F0; // int32
-            static constexpr std::uintptr_t m_flLastTeleportTime                    = 0X01F4; // float32
+            static constexpr std::uintptr_t m_OnMapVetoed                     = 0X0E08; // CEntityOutputTemplate<CUtlSymbolLarge>
+            static constexpr std::uintptr_t m_OnMapPicked                     = 0X0E28; // CEntityOutputTemplate<CUtlSymbolLarge>
+            static constexpr std::uintptr_t m_OnSidesPicked                   = 0X0E48; // CEntityOutputTemplate<int32>
+            static constexpr std::uintptr_t m_OnNewPhaseStarted               = 0X0E68; // CEntityOutputTemplate<int32>
+            static constexpr std::uintptr_t m_OnLevelTransition               = 0X0E88; // CEntityOutputTemplate<int32>
         };
 
         // Has VTable
@@ -10226,6 +10560,18 @@ namespace offsets {
         // Has VTable
         // Construct Allowed
         // Local Type Scope
+        class CChoreoComponent {
+        public:
+            static constexpr std::uintptr_t __m_pChainEntity          = 0X0008; // CNetworkVarChainer
+            static constexpr std::uintptr_t m_hOwner                  = 0X0030; // CHandle<CBaseModelEntity>
+            static constexpr std::uintptr_t m_nNextSceneEventId       = 0X0068; // SceneEventId_t
+            static constexpr std::uintptr_t m_bUpdateLayerPriorities  = 0X006C; // bool
+            static constexpr std::uintptr_t m_flAllowResponsesEndTime = 0X0070; // GameTime_t
+        };
+
+        // Has VTable
+        // Construct Allowed
+        // Local Type Scope
         class CPulseCell_Value_RandomInt : public CPulseCell_BaseValue {
         public:
         };
@@ -10244,14 +10590,14 @@ namespace offsets {
         // Local Type Scope
         class CTextureBasedAnimatable : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_bLoop               = 0X0730; // bool
-            static constexpr std::uintptr_t m_flFPS               = 0X0734; // float32
-            static constexpr std::uintptr_t m_hPositionKeys       = 0X0738; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_hRotationKeys       = 0X0740; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_vAnimationBoundsMin = 0X0748; // Vector
-            static constexpr std::uintptr_t m_vAnimationBoundsMax = 0X0754; // Vector
-            static constexpr std::uintptr_t m_flStartTime         = 0X0760; // float32
-            static constexpr std::uintptr_t m_flStartFrame        = 0X0764; // float32
+            static constexpr std::uintptr_t m_bLoop               = 0X0768; // bool
+            static constexpr std::uintptr_t m_flFPS               = 0X076C; // float32
+            static constexpr std::uintptr_t m_hPositionKeys       = 0X0770; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_hRotationKeys       = 0X0778; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_vAnimationBoundsMin = 0X0780; // Vector
+            static constexpr std::uintptr_t m_vAnimationBoundsMax = 0X078C; // Vector
+            static constexpr std::uintptr_t m_flStartTime         = 0X0798; // float32
+            static constexpr std::uintptr_t m_flStartFrame        = 0X079C; // float32
         };
 
         // Has VTable
@@ -10264,9 +10610,9 @@ namespace offsets {
             static constexpr std::uintptr_t m_qAngle      = 0X04C0; // Quaternion
             static constexpr std::uintptr_t m_iNextKey    = 0X04D0; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_flNextTime  = 0X04D8; // float32
-            static constexpr std::uintptr_t m_pNextKey    = 0X04E0; // CPathKeyFrame*
-            static constexpr std::uintptr_t m_pPrevKey    = 0X04E8; // CPathKeyFrame*
-            static constexpr std::uintptr_t m_flMoveSpeed = 0X04F0; // float32
+            static constexpr std::uintptr_t m_pNextKey    = 0X04DC; // CHandle<CPathKeyFrame>
+            static constexpr std::uintptr_t m_pPrevKey    = 0X04E0; // CHandle<CPathKeyFrame>
+            static constexpr std::uintptr_t m_flMoveSpeed = 0X04E4; // float32
         };
 
         // Has VTable
@@ -10274,17 +10620,17 @@ namespace offsets {
         // Local Type Scope
         class CBaseMoveBehavior : public CPathKeyFrame {
         public:
-            static constexpr std::uintptr_t m_iPositionInterpolator     = 0X0500; // int32
-            static constexpr std::uintptr_t m_iRotationInterpolator     = 0X0504; // int32
-            static constexpr std::uintptr_t m_flAnimStartTime           = 0X0508; // float32
-            static constexpr std::uintptr_t m_flAnimEndTime             = 0X050C; // float32
-            static constexpr std::uintptr_t m_flAverageSpeedAcrossFrame = 0X0510; // float32
-            static constexpr std::uintptr_t m_pCurrentKeyFrame          = 0X0518; // CPathKeyFrame*
-            static constexpr std::uintptr_t m_pTargetKeyFrame           = 0X0520; // CPathKeyFrame*
-            static constexpr std::uintptr_t m_pPreKeyFrame              = 0X0528; // CPathKeyFrame*
-            static constexpr std::uintptr_t m_pPostKeyFrame             = 0X0530; // CPathKeyFrame*
-            static constexpr std::uintptr_t m_flTimeIntoFrame           = 0X0538; // float32
-            static constexpr std::uintptr_t m_iDirection                = 0X053C; // int32
+            static constexpr std::uintptr_t m_iPositionInterpolator     = 0X04F0; // int32
+            static constexpr std::uintptr_t m_iRotationInterpolator     = 0X04F4; // int32
+            static constexpr std::uintptr_t m_flAnimStartTime           = 0X04F8; // float32
+            static constexpr std::uintptr_t m_flAnimEndTime             = 0X04FC; // float32
+            static constexpr std::uintptr_t m_flAverageSpeedAcrossFrame = 0X0500; // float32
+            static constexpr std::uintptr_t m_pCurrentKeyFrame          = 0X0504; // CHandle<CPathKeyFrame>
+            static constexpr std::uintptr_t m_pTargetKeyFrame           = 0X0508; // CHandle<CPathKeyFrame>
+            static constexpr std::uintptr_t m_pPreKeyFrame              = 0X050C; // CHandle<CPathKeyFrame>
+            static constexpr std::uintptr_t m_pPostKeyFrame             = 0X0510; // CHandle<CPathKeyFrame>
+            static constexpr std::uintptr_t m_flTimeIntoFrame           = 0X0514; // float32
+            static constexpr std::uintptr_t m_iDirection                = 0X0518; // int32
         };
 
         // Has VTable
@@ -10292,15 +10638,15 @@ namespace offsets {
         // Local Type Scope
         class CDynamicLight : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_ActualFlags = 0X0730; // uint8
-            static constexpr std::uintptr_t m_Flags       = 0X0731; // uint8
-            static constexpr std::uintptr_t m_LightStyle  = 0X0732; // uint8
-            static constexpr std::uintptr_t m_On          = 0X0733; // bool
-            static constexpr std::uintptr_t m_Radius      = 0X0734; // float32
-            static constexpr std::uintptr_t m_Exponent    = 0X0738; // int32
-            static constexpr std::uintptr_t m_InnerAngle  = 0X073C; // float32
-            static constexpr std::uintptr_t m_OuterAngle  = 0X0740; // float32
-            static constexpr std::uintptr_t m_SpotRadius  = 0X0744; // float32
+            static constexpr std::uintptr_t m_ActualFlags = 0X0768; // uint8
+            static constexpr std::uintptr_t m_Flags       = 0X0769; // uint8
+            static constexpr std::uintptr_t m_LightStyle  = 0X076A; // uint8
+            static constexpr std::uintptr_t m_On          = 0X076B; // bool
+            static constexpr std::uintptr_t m_Radius      = 0X076C; // float32
+            static constexpr std::uintptr_t m_Exponent    = 0X0770; // int32
+            static constexpr std::uintptr_t m_InnerAngle  = 0X0774; // float32
+            static constexpr std::uintptr_t m_OuterAngle  = 0X0778; // float32
+            static constexpr std::uintptr_t m_SpotRadius  = 0X077C; // float32
         };
 
         // Has VTable
@@ -10308,8 +10654,8 @@ namespace offsets {
         // Local Type Scope
         class CWeaponTaser : public CCSWeaponBaseGun {
         public:
-            static constexpr std::uintptr_t m_fFireTime       = 0X1150; // GameTime_t
-            static constexpr std::uintptr_t m_nLastAttackTick = 0X1154; // int32
+            static constexpr std::uintptr_t m_fFireTime       = 0X1050; // GameTime_t
+            static constexpr std::uintptr_t m_nLastAttackTick = 0X1054; // int32
         };
 
         // Has VTable
@@ -10349,34 +10695,34 @@ namespace offsets {
         // Local Type Scope
         class CBaseDoor : public CBaseToggle {
         public:
-            static constexpr std::uintptr_t m_angMoveEntitySpace    = 0X07C0; // QAngle
-            static constexpr std::uintptr_t m_vecMoveDirParentSpace = 0X07CC; // Vector
-            static constexpr std::uintptr_t m_ls                    = 0X07D8; // locksound_t
-            static constexpr std::uintptr_t m_bForceClosed          = 0X07F8; // bool
-            static constexpr std::uintptr_t m_bDoorGroup            = 0X07F9; // bool
-            static constexpr std::uintptr_t m_bLocked               = 0X07FA; // bool
-            static constexpr std::uintptr_t m_bIgnoreDebris         = 0X07FB; // bool
-            static constexpr std::uintptr_t m_bNoNPCs               = 0X07FC; // bool
-            static constexpr std::uintptr_t m_eSpawnPosition        = 0X0800; // FuncDoorSpawnPos_t
-            static constexpr std::uintptr_t m_flBlockDamage         = 0X0804; // float32
-            static constexpr std::uintptr_t m_NoiseMoving           = 0X0808; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_NoiseArrived          = 0X0810; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_NoiseMovingClosed     = 0X0818; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_NoiseArrivedClosed    = 0X0820; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_ChainTarget           = 0X0828; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_OnBlockedClosing      = 0X0830; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnBlockedOpening      = 0X0848; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnUnblockedClosing    = 0X0860; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnUnblockedOpening    = 0X0878; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFullyClosed         = 0X0890; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFullyOpen           = 0X08A8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnClose               = 0X08C0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnOpen                = 0X08D8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnLockedUse           = 0X08F0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bLoopMoveSound        = 0X0908; // bool
-            static constexpr std::uintptr_t m_bCreateNavObstacle    = 0X0928; // bool
-            static constexpr std::uintptr_t m_isChaining            = 0X0929; // bool
-            static constexpr std::uintptr_t m_bIsUsable             = 0X092A; // bool
+            static constexpr std::uintptr_t m_angMoveEntitySpace    = 0X07F8; // QAngle
+            static constexpr std::uintptr_t m_vecMoveDirParentSpace = 0X0804; // Vector
+            static constexpr std::uintptr_t m_ls                    = 0X0810; // locksound_t
+            static constexpr std::uintptr_t m_bForceClosed          = 0X0830; // bool
+            static constexpr std::uintptr_t m_bDoorGroup            = 0X0831; // bool
+            static constexpr std::uintptr_t m_bLocked               = 0X0832; // bool
+            static constexpr std::uintptr_t m_bIgnoreDebris         = 0X0833; // bool
+            static constexpr std::uintptr_t m_bNoNPCs               = 0X0834; // bool
+            static constexpr std::uintptr_t m_eSpawnPosition        = 0X0838; // FuncDoorSpawnPos_t
+            static constexpr std::uintptr_t m_flBlockDamage         = 0X083C; // float32
+            static constexpr std::uintptr_t m_NoiseMoving           = 0X0840; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_NoiseArrived          = 0X0848; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_NoiseMovingClosed     = 0X0850; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_NoiseArrivedClosed    = 0X0858; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_ChainTarget           = 0X0860; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_OnBlockedClosing      = 0X0868; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnBlockedOpening      = 0X0880; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnUnblockedClosing    = 0X0898; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnUnblockedOpening    = 0X08B0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnFullyClosed         = 0X08C8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnFullyOpen           = 0X08E0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnClose               = 0X08F8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnOpen                = 0X0910; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnLockedUse           = 0X0928; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bLoopMoveSound        = 0X0940; // bool
+            static constexpr std::uintptr_t m_bCreateNavObstacle    = 0X0960; // bool
+            static constexpr std::uintptr_t m_isChaining            = 0X0961; // bool
+            static constexpr std::uintptr_t m_bIsUsable             = 0X0962; // bool
         };
 
         // Has VTable
@@ -10384,7 +10730,7 @@ namespace offsets {
         // Local Type Scope
         class CRotDoor : public CBaseDoor {
         public:
-            static constexpr std::uintptr_t m_bSolidBsp = 0X0930; // bool
+            static constexpr std::uintptr_t m_bSolidBsp = 0X0968; // bool
         };
 
         // Has VTable
@@ -10421,7 +10767,7 @@ namespace offsets {
         // Local Type Scope
         class CFuncVPhysicsClip : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_bDisabled = 0X0730; // bool
+            static constexpr std::uintptr_t m_bDisabled = 0X0768; // bool
         };
 
         // Has VTable
@@ -10483,10 +10829,10 @@ namespace offsets {
         // Local Type Scope
         class CFuncElectrifiedVolume : public CFuncBrush {
         public:
-            static constexpr std::uintptr_t m_EffectName               = 0X0750; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_EffectInterpenetrateName = 0X0758; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_EffectZapName            = 0X0760; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszEffectSource          = 0X0768; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_EffectName               = 0X0788; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_EffectInterpenetrateName = 0X0790; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_EffectZapName            = 0X0798; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszEffectSource          = 0X07A0; // CUtlSymbolLarge
         };
 
         // Has VTable
@@ -10541,8 +10887,8 @@ namespace offsets {
         // Local Type Scope
         class CSoundEventOBBEntity : public CSoundEventEntity {
         public:
-            static constexpr std::uintptr_t m_vMins = 0X0558; // Vector
-            static constexpr std::uintptr_t m_vMaxs = 0X0564; // Vector
+            static constexpr std::uintptr_t m_vMins = 0X0568; // Vector
+            static constexpr std::uintptr_t m_vMaxs = 0X0574; // Vector
         };
 
         // Has VTable
@@ -10550,9 +10896,9 @@ namespace offsets {
         // Local Type Scope
         class CFlashbangProjectile : public CBaseCSGrenadeProjectile {
         public:
-            static constexpr std::uintptr_t m_flTimeToDetonate = 0X0BB0; // float32
-            static constexpr std::uintptr_t m_numOpponentsHit  = 0X0BB4; // uint8
-            static constexpr std::uintptr_t m_numTeammatesHit  = 0X0BB5; // uint8
+            static constexpr std::uintptr_t m_flTimeToDetonate = 0X0A30; // float32
+            static constexpr std::uintptr_t m_numOpponentsHit  = 0X0A34; // uint8
+            static constexpr std::uintptr_t m_numTeammatesHit  = 0X0A35; // uint8
         };
 
         // Has VTable
@@ -10576,12 +10922,23 @@ namespace offsets {
             static constexpr std::uintptr_t m_nNpcEvents = 0X3E84E8; // int32
         };
 
+        // Construct Allowed
+        // Local Type Scope
+        class CExplosionTypeData {
+        public:
+            static constexpr std::uintptr_t m_SoundName      = 0X0000; // CSoundEventName
+            static constexpr std::uintptr_t m_ParticleEffect = 0X0010; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeIParticleSystemDefinition>>
+            static constexpr std::uintptr_t m_bIsIncindiary  = 0X00F0; // bool
+            static constexpr std::uintptr_t m_bHasForces     = 0X00F1; // bool
+            static constexpr std::uintptr_t m_DecalType      = 0X00F8; // CGlobalSymbol
+        };
+
         // Has VTable
         // Construct Allowed
         // Local Type Scope
         class CWeaponCZ75a : public CCSWeaponBaseGun {
         public:
-            static constexpr std::uintptr_t m_bMagazineRemoved = 0X1150; // bool
+            static constexpr std::uintptr_t m_bMagazineRemoved = 0X1050; // bool
         };
 
         // Has VTable
@@ -10589,7 +10946,7 @@ namespace offsets {
         // Local Type Scope
         class CScriptTriggerPush : public CTriggerPush {
         public:
-            static constexpr std::uintptr_t m_vExtent = 0X08C8; // Vector
+            static constexpr std::uintptr_t m_vExtent = 0X08F8; // Vector
         };
 
         // Has VTable
@@ -10597,9 +10954,9 @@ namespace offsets {
         // Local Type Scope
         class CRevertSaved : public CModelPointEntity {
         public:
-            static constexpr std::uintptr_t m_loadTime = 0X0730; // float32
-            static constexpr std::uintptr_t m_Duration = 0X0734; // float32
-            static constexpr std::uintptr_t m_HoldTime = 0X0738; // float32
+            static constexpr std::uintptr_t m_loadTime = 0X0768; // float32
+            static constexpr std::uintptr_t m_Duration = 0X076C; // float32
+            static constexpr std::uintptr_t m_HoldTime = 0X0770; // float32
         };
 
         // Has VTable
@@ -10614,20 +10971,20 @@ namespace offsets {
         // Local Type Scope
         class CTriggerHurt : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_flOriginalDamage   = 0X0890; // float32
-            static constexpr std::uintptr_t m_flDamage           = 0X0894; // float32
-            static constexpr std::uintptr_t m_flDamageCap        = 0X0898; // float32
-            static constexpr std::uintptr_t m_flLastDmgTime      = 0X089C; // GameTime_t
-            static constexpr std::uintptr_t m_flForgivenessDelay = 0X08A0; // float32
-            static constexpr std::uintptr_t m_bitsDamageInflict  = 0X08A4; // DamageTypes_t
-            static constexpr std::uintptr_t m_damageModel        = 0X08A8; // int32
-            static constexpr std::uintptr_t m_bNoDmgForce        = 0X08AC; // bool
-            static constexpr std::uintptr_t m_vDamageForce       = 0X08B0; // Vector
-            static constexpr std::uintptr_t m_thinkAlways        = 0X08BC; // bool
-            static constexpr std::uintptr_t m_hurtThinkPeriod    = 0X08C0; // float32
-            static constexpr std::uintptr_t m_OnHurt             = 0X08C8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnHurtPlayer       = 0X08E0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_hurtEntities       = 0X08F8; // CUtlVector<CHandle<CBaseEntity>>
+            static constexpr std::uintptr_t m_flOriginalDamage   = 0X08C8; // float32
+            static constexpr std::uintptr_t m_flDamage           = 0X08CC; // float32
+            static constexpr std::uintptr_t m_flDamageCap        = 0X08D0; // float32
+            static constexpr std::uintptr_t m_flLastDmgTime      = 0X08D4; // GameTime_t
+            static constexpr std::uintptr_t m_flForgivenessDelay = 0X08D8; // float32
+            static constexpr std::uintptr_t m_bitsDamageInflict  = 0X08DC; // DamageTypes_t
+            static constexpr std::uintptr_t m_damageModel        = 0X08E0; // int32
+            static constexpr std::uintptr_t m_bNoDmgForce        = 0X08E4; // bool
+            static constexpr std::uintptr_t m_vDamageForce       = 0X08E8; // Vector
+            static constexpr std::uintptr_t m_thinkAlways        = 0X08F4; // bool
+            static constexpr std::uintptr_t m_hurtThinkPeriod    = 0X08F8; // float32
+            static constexpr std::uintptr_t m_OnHurt             = 0X0900; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnHurtPlayer       = 0X0918; // CEntityIOOutput
+            static constexpr std::uintptr_t m_hurtEntities       = 0X0930; // CUtlVector<CHandle<CBaseEntity>>
         };
 
         // Has VTable
@@ -10646,20 +11003,18 @@ namespace offsets {
         class CCSPlayer_WeaponServices : public CPlayer_WeaponServices {
         public:
             static constexpr std::uintptr_t m_flNextAttack                      = 0X00C0; // GameTime_t
-            static constexpr std::uintptr_t m_bIsLookingAtWeapon                = 0X00C4; // bool
-            static constexpr std::uintptr_t m_bIsHoldingLookAtWeapon            = 0X00C5; // bool
-            static constexpr std::uintptr_t m_hSavedWeapon                      = 0X00C8; // CHandle<CBasePlayerWeapon>
-            static constexpr std::uintptr_t m_nTimeToMelee                      = 0X00CC; // int32
-            static constexpr std::uintptr_t m_nTimeToSecondary                  = 0X00D0; // int32
-            static constexpr std::uintptr_t m_nTimeToPrimary                    = 0X00D4; // int32
-            static constexpr std::uintptr_t m_nTimeToSniperRifle                = 0X00D8; // int32
-            static constexpr std::uintptr_t m_bIsBeingGivenItem                 = 0X00DC; // bool
-            static constexpr std::uintptr_t m_bIsPickingUpItemWithUse           = 0X00DD; // bool
-            static constexpr std::uintptr_t m_bPickedUpWeapon                   = 0X00DE; // bool
-            static constexpr std::uintptr_t m_bDisableAutoDeploy                = 0X00DF; // bool
-            static constexpr std::uintptr_t m_bIsPickingUpGroundWeapon          = 0X00E0; // bool
-            static constexpr std::uintptr_t m_networkAnimTiming                 = 0X18B8; // CNetworkUtlVectorBase<uint8>
-            static constexpr std::uintptr_t m_bBlockInspectUntilNextGraphUpdate = 0X18D0; // bool
+            static constexpr std::uintptr_t m_hSavedWeapon                      = 0X00C4; // CHandle<CBasePlayerWeapon>
+            static constexpr std::uintptr_t m_nTimeToMelee                      = 0X00C8; // int32
+            static constexpr std::uintptr_t m_nTimeToSecondary                  = 0X00CC; // int32
+            static constexpr std::uintptr_t m_nTimeToPrimary                    = 0X00D0; // int32
+            static constexpr std::uintptr_t m_nTimeToSniperRifle                = 0X00D4; // int32
+            static constexpr std::uintptr_t m_bIsBeingGivenItem                 = 0X00D8; // bool
+            static constexpr std::uintptr_t m_bIsPickingUpItemWithUse           = 0X00D9; // bool
+            static constexpr std::uintptr_t m_bPickedUpWeapon                   = 0X00DA; // bool
+            static constexpr std::uintptr_t m_bDisableAutoDeploy                = 0X00DB; // bool
+            static constexpr std::uintptr_t m_bIsPickingUpGroundWeapon          = 0X00DC; // bool
+            static constexpr std::uintptr_t m_networkAnimTiming                 = 0X1860; // CNetworkUtlVectorBase<uint8>
+            static constexpr std::uintptr_t m_bBlockInspectUntilNextGraphUpdate = 0X1878; // bool
         };
 
         // Has VTable
@@ -10700,7 +11055,7 @@ namespace offsets {
         // Local Type Scope
         class CScriptTriggerHurt : public CTriggerHurt {
         public:
-            static constexpr std::uintptr_t m_vExtent = 0X0910; // Vector
+            static constexpr std::uintptr_t m_vExtent = 0X0950; // Vector
         };
 
         // Has VTable
@@ -10715,7 +11070,7 @@ namespace offsets {
         // Local Type Scope
         class CTriggerDetectExplosion : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_OnDetectedExplosion = 0X08B8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnDetectedExplosion = 0X08F0; // CEntityIOOutput
         };
 
         // Has VTable
@@ -10731,18 +11086,18 @@ namespace offsets {
         // Local Type Scope
         class CSmokeGrenadeProjectile : public CBaseCSGrenadeProjectile {
         public:
-            static constexpr std::uintptr_t m_nSmokeEffectTickBegin = 0X0BD8; // int32
-            static constexpr std::uintptr_t m_bDidSmokeEffect       = 0X0BDC; // bool
-            static constexpr std::uintptr_t m_nRandomSeed           = 0X0BE0; // int32
-            static constexpr std::uintptr_t m_vSmokeColor           = 0X0BE4; // Vector
-            static constexpr std::uintptr_t m_vSmokeDetonationPos   = 0X0BF0; // Vector
-            static constexpr std::uintptr_t m_VoxelFrameData        = 0X0C00; // CNetworkUtlVectorBase<uint8>
-            static constexpr std::uintptr_t m_nVoxelFrameDataSize   = 0X0C18; // int32
-            static constexpr std::uintptr_t m_nVoxelUpdate          = 0X0C1C; // int32
-            static constexpr std::uintptr_t m_flLastBounce          = 0X0C20; // GameTime_t
-            static constexpr std::uintptr_t m_fllastSimulationTime  = 0X0C24; // GameTime_t
-            static constexpr std::uintptr_t m_bExplodeFromInferno   = 0X2EA8; // bool
-            static constexpr std::uintptr_t m_bDidGroundScorch      = 0X2EA9; // bool
+            static constexpr std::uintptr_t m_nSmokeEffectTickBegin = 0X0A58; // int32
+            static constexpr std::uintptr_t m_bDidSmokeEffect       = 0X0A5C; // bool
+            static constexpr std::uintptr_t m_nRandomSeed           = 0X0A60; // int32
+            static constexpr std::uintptr_t m_vSmokeColor           = 0X0A64; // Vector
+            static constexpr std::uintptr_t m_vSmokeDetonationPos   = 0X0A70; // Vector
+            static constexpr std::uintptr_t m_VoxelFrameData        = 0X0A80; // CNetworkUtlVectorBase<uint8>
+            static constexpr std::uintptr_t m_nVoxelFrameDataSize   = 0X0A98; // int32
+            static constexpr std::uintptr_t m_nVoxelUpdate          = 0X0A9C; // int32
+            static constexpr std::uintptr_t m_flLastBounce          = 0X0AA0; // GameTime_t
+            static constexpr std::uintptr_t m_fllastSimulationTime  = 0X0AA4; // GameTime_t
+            static constexpr std::uintptr_t m_bExplodeFromInferno   = 0X2D28; // bool
+            static constexpr std::uintptr_t m_bDidGroundScorch      = 0X2D29; // bool
         };
 
         // Has VTable
@@ -10801,24 +11156,30 @@ namespace offsets {
         // Local Type Scope
         class CEnvCubemapFog : public CBaseEntity {
         public:
-            static constexpr std::uintptr_t m_flEndDistance        = 0X04A8; // float32
-            static constexpr std::uintptr_t m_flStartDistance      = 0X04AC; // float32
-            static constexpr std::uintptr_t m_flFogFalloffExponent = 0X04B0; // float32
-            static constexpr std::uintptr_t m_bHeightFogEnabled    = 0X04B4; // bool
-            static constexpr std::uintptr_t m_flFogHeightWidth     = 0X04B8; // float32
-            static constexpr std::uintptr_t m_flFogHeightEnd       = 0X04BC; // float32
-            static constexpr std::uintptr_t m_flFogHeightStart     = 0X04C0; // float32
-            static constexpr std::uintptr_t m_flFogHeightExponent  = 0X04C4; // float32
-            static constexpr std::uintptr_t m_flLODBias            = 0X04C8; // float32
-            static constexpr std::uintptr_t m_bActive              = 0X04CC; // bool
-            static constexpr std::uintptr_t m_bStartDisabled       = 0X04CD; // bool
-            static constexpr std::uintptr_t m_flFogMaxOpacity      = 0X04D0; // float32
-            static constexpr std::uintptr_t m_nCubemapSourceType   = 0X04D4; // int32
-            static constexpr std::uintptr_t m_hSkyMaterial         = 0X04D8; // CStrongHandle<InfoForResourceTypeIMaterial2>
-            static constexpr std::uintptr_t m_iszSkyEntity         = 0X04E0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hFogCubemapTexture   = 0X04E8; // CStrongHandle<InfoForResourceTypeCTextureBase>
-            static constexpr std::uintptr_t m_bHasHeightFogEnd     = 0X04F0; // bool
-            static constexpr std::uintptr_t m_bFirstTime           = 0X04F1; // bool
+            static constexpr std::uintptr_t m_flEndDistance             = 0X04A8; // float32
+            static constexpr std::uintptr_t m_flStartDistance           = 0X04AC; // float32
+            static constexpr std::uintptr_t m_flFogFalloffExponent      = 0X04B0; // float32
+            static constexpr std::uintptr_t m_bHeightFogEnabled         = 0X04B4; // bool
+            static constexpr std::uintptr_t m_flFogHeightWidth          = 0X04B8; // float32
+            static constexpr std::uintptr_t m_flFogHeightEnd            = 0X04BC; // float32
+            static constexpr std::uintptr_t m_flFogHeightStart          = 0X04C0; // float32
+            static constexpr std::uintptr_t m_flFogHeightExponent       = 0X04C4; // float32
+            static constexpr std::uintptr_t m_flLODBias                 = 0X04C8; // float32
+            static constexpr std::uintptr_t m_bActive                   = 0X04CC; // bool
+            static constexpr std::uintptr_t m_bStartDisabled            = 0X04CD; // bool
+            static constexpr std::uintptr_t m_flFogMaxOpacity           = 0X04D0; // float32
+            static constexpr std::uintptr_t m_nCubemapSourceType        = 0X04D4; // int32
+            static constexpr std::uintptr_t m_hSkyMaterial              = 0X04D8; // CStrongHandle<InfoForResourceTypeIMaterial2>
+            static constexpr std::uintptr_t m_iszSkyEntity              = 0X04E0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_nHeightFogType            = 0X04E8; // int32
+            static constexpr std::uintptr_t m_nFogHeightBlendMode       = 0X04EC; // int32
+            static constexpr std::uintptr_t m_nFogHeightCoordinateSpace = 0X04F0; // int32
+            static constexpr std::uintptr_t m_nDistanceFogType          = 0X04F4; // int32
+            static constexpr std::uintptr_t m_DistanceFogCurveString    = 0X04F8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_HeightFogCurveString      = 0X0500; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hFogCubemapTexture        = 0X0598; // CStrongHandle<InfoForResourceTypeCTextureBase>
+            static constexpr std::uintptr_t m_bHasHeightFogEnd          = 0X05A0; // bool
+            static constexpr std::uintptr_t m_bFirstTime                = 0X05A1; // bool
         };
 
         // Has VTable
@@ -10837,10 +11198,10 @@ namespace offsets {
         // Local Type Scope
         class CGameMoney : public CRulePointEntity {
         public:
-            static constexpr std::uintptr_t m_OnMoneySpent     = 0X0740; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnMoneySpentFail = 0X0758; // CEntityIOOutput
-            static constexpr std::uintptr_t m_nMoney           = 0X0770; // int32
-            static constexpr std::uintptr_t m_strAwardText     = 0X0778; // CUtlString
+            static constexpr std::uintptr_t m_OnMoneySpent     = 0X0778; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnMoneySpentFail = 0X0790; // CEntityIOOutput
+            static constexpr std::uintptr_t m_nMoney           = 0X07A8; // int32
+            static constexpr std::uintptr_t m_strAwardText     = 0X07B0; // CUtlString
         };
 
         // Has VTable
@@ -10863,7 +11224,7 @@ namespace offsets {
         // Local Type Scope
         class CItemGenericTriggerHelper : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_hParentItem = 0X0730; // CHandle<CItemGeneric>
+            static constexpr std::uintptr_t m_hParentItem = 0X0768; // CHandle<CItemGeneric>
         };
 
         // Has VTable
@@ -10871,12 +11232,12 @@ namespace offsets {
         // Local Type Scope
         class CRagdollPropAttached : public CRagdollProp {
         public:
-            static constexpr std::uintptr_t m_boneIndexAttached                     = 0X0B70; // uint32
-            static constexpr std::uintptr_t m_ragdollAttachedObjectIndex            = 0X0B74; // uint32
-            static constexpr std::uintptr_t m_attachmentPointBoneSpace              = 0X0B78; // Vector
-            static constexpr std::uintptr_t m_attachmentPointRagdollSpace           = 0X0B84; // Vector
-            static constexpr std::uintptr_t m_bShouldDetach                         = 0X0B90; // bool
-            static constexpr std::uintptr_t m_bShouldDeleteAttachedActivationRecord = 0X0BA0; // bool
+            static constexpr std::uintptr_t m_boneIndexAttached                     = 0X0AB0; // uint32
+            static constexpr std::uintptr_t m_ragdollAttachedObjectIndex            = 0X0AB4; // uint32
+            static constexpr std::uintptr_t m_attachmentPointBoneSpace              = 0X0AB8; // Vector
+            static constexpr std::uintptr_t m_attachmentPointRagdollSpace           = 0X0AC4; // Vector
+            static constexpr std::uintptr_t m_bShouldDetach                         = 0X0AD0; // bool
+            static constexpr std::uintptr_t m_bShouldDeleteAttachedActivationRecord = 0X0AE0; // bool
         };
 
         // Has VTable
@@ -10884,8 +11245,8 @@ namespace offsets {
         // Local Type Scope
         class CItemDogtags : public CItem {
         public:
-            static constexpr std::uintptr_t m_OwningPlayer  = 0X0AC0; // CHandle<CCSPlayerPawn>
-            static constexpr std::uintptr_t m_KillingPlayer = 0X0AC4; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_OwningPlayer  = 0X09E0; // CHandle<CCSPlayerPawn>
+            static constexpr std::uintptr_t m_KillingPlayer = 0X09E4; // CHandle<CCSPlayerPawn>
         };
 
         // Has VTable
@@ -10910,20 +11271,20 @@ namespace offsets {
         // Local Type Scope
         class CTriggerSndSosOpvar : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_hTouchingPlayers = 0X0890; // CUtlVector<CHandle<CBaseEntity>>
-            static constexpr std::uintptr_t m_flPosition       = 0X08A8; // Vector
-            static constexpr std::uintptr_t m_flCenterSize     = 0X08B4; // float32
-            static constexpr std::uintptr_t m_flMinVal         = 0X08B8; // float32
-            static constexpr std::uintptr_t m_flMaxVal         = 0X08BC; // float32
-            static constexpr std::uintptr_t m_opvarName        = 0X08C0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_stackName        = 0X08C8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_operatorName     = 0X08D0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bVolIs2D         = 0X08D8; // bool
-            static constexpr std::uintptr_t m_opvarNameChar    = 0X08D9; // char[256]
-            static constexpr std::uintptr_t m_stackNameChar    = 0X09D9; // char[256]
-            static constexpr std::uintptr_t m_operatorNameChar = 0X0AD9; // char[256]
-            static constexpr std::uintptr_t m_VecNormPos       = 0X0BDC; // Vector
-            static constexpr std::uintptr_t m_flNormCenterSize = 0X0BE8; // float32
+            static constexpr std::uintptr_t m_hTouchingPlayers = 0X08C8; // CUtlVector<CHandle<CBaseEntity>>
+            static constexpr std::uintptr_t m_flPosition       = 0X08E0; // Vector
+            static constexpr std::uintptr_t m_flCenterSize     = 0X08EC; // float32
+            static constexpr std::uintptr_t m_flMinVal         = 0X08F0; // float32
+            static constexpr std::uintptr_t m_flMaxVal         = 0X08F4; // float32
+            static constexpr std::uintptr_t m_opvarName        = 0X08F8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_stackName        = 0X0900; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_operatorName     = 0X0908; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bVolIs2D         = 0X0910; // bool
+            static constexpr std::uintptr_t m_opvarNameChar    = 0X0911; // char[256]
+            static constexpr std::uintptr_t m_stackNameChar    = 0X0A11; // char[256]
+            static constexpr std::uintptr_t m_operatorNameChar = 0X0B11; // char[256]
+            static constexpr std::uintptr_t m_VecNormPos       = 0X0C14; // Vector
+            static constexpr std::uintptr_t m_flNormCenterSize = 0X0C20; // float32
         };
 
         // Has VTable
@@ -10939,11 +11300,11 @@ namespace offsets {
         // Local Type Scope
         class CPulseCell_Step_CallExternalMethod : public CPulseCell_BaseYieldingInflow {
         public:
-            static constexpr std::uintptr_t m_MethodName     = 0X0048; // PulseSymbol_t
-            static constexpr std::uintptr_t m_GameBlackboard = 0X0058; // PulseSymbol_t
-            static constexpr std::uintptr_t m_ExpectedArgs   = 0X0068; // CUtlLeanVector<CPulseRuntimeMethodArg>
-            static constexpr std::uintptr_t m_nAsyncCallMode = 0X0078; // PulseMethodCallMode_t
-            static constexpr std::uintptr_t m_OnFinished     = 0X0080; // CPulse_ResumePoint
+            static constexpr std::uintptr_t m_MethodName       = 0X0048; // PulseSymbol_t
+            static constexpr std::uintptr_t m_nBlackboardIndex = 0X0058; // PulseRuntimeBlackboardReferenceIndex_t
+            static constexpr std::uintptr_t m_ExpectedArgs     = 0X0060; // CUtlLeanVector<CPulseRuntimeMethodArg>
+            static constexpr std::uintptr_t m_nAsyncCallMode   = 0X0070; // PulseMethodCallMode_t
+            static constexpr std::uintptr_t m_OnFinished       = 0X0078; // CPulse_ResumePoint
         };
 
         // Has VTable
@@ -10951,36 +11312,36 @@ namespace offsets {
         // Local Type Scope
         class CPointCommentaryNode : public CBaseAnimGraph {
         public:
-            static constexpr std::uintptr_t m_iszPreCommands             = 0X0A20; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszPostCommands            = 0X0A28; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszCommentaryFile          = 0X0A30; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszViewTarget              = 0X0A38; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hViewTarget                = 0X0A40; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hViewTargetAngles          = 0X0A44; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_iszViewPosition            = 0X0A48; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hViewPosition              = 0X0A50; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hViewPositionMover         = 0X0A54; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_bPreventMovement           = 0X0A58; // bool
-            static constexpr std::uintptr_t m_bUnderCrosshair            = 0X0A59; // bool
-            static constexpr std::uintptr_t m_bUnstoppable               = 0X0A5A; // bool
-            static constexpr std::uintptr_t m_flFinishedTime             = 0X0A5C; // GameTime_t
-            static constexpr std::uintptr_t m_vecFinishOrigin            = 0X0A60; // Vector
-            static constexpr std::uintptr_t m_vecOriginalAngles          = 0X0A6C; // QAngle
-            static constexpr std::uintptr_t m_vecFinishAngles            = 0X0A78; // QAngle
-            static constexpr std::uintptr_t m_bPreventChangesWhileMoving = 0X0A84; // bool
-            static constexpr std::uintptr_t m_bDisabled                  = 0X0A85; // bool
-            static constexpr std::uintptr_t m_vecTeleportOrigin          = 0X0A88; // VectorWS
-            static constexpr std::uintptr_t m_flAbortedPlaybackAt        = 0X0A94; // GameTime_t
-            static constexpr std::uintptr_t m_pOnCommentaryStarted       = 0X0A98; // CEntityIOOutput
-            static constexpr std::uintptr_t m_pOnCommentaryStopped       = 0X0AB0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bActive                    = 0X0AC8; // bool
-            static constexpr std::uintptr_t m_flStartTime                = 0X0ACC; // GameTime_t
-            static constexpr std::uintptr_t m_flStartTimeInCommentary    = 0X0AD0; // float32
-            static constexpr std::uintptr_t m_iszTitle                   = 0X0AD8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszSpeakers                = 0X0AE0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iNodeNumber                = 0X0AE8; // int32
-            static constexpr std::uintptr_t m_iNodeNumberMax             = 0X0AEC; // int32
-            static constexpr std::uintptr_t m_bListenedTo                = 0X0AF0; // bool
+            static constexpr std::uintptr_t m_iszPreCommands             = 0X0940; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszPostCommands            = 0X0948; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszCommentaryFile          = 0X0950; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszViewTarget              = 0X0958; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hViewTarget                = 0X0960; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hViewTargetAngles          = 0X0964; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_iszViewPosition            = 0X0968; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hViewPosition              = 0X0970; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hViewPositionMover         = 0X0974; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_bPreventMovement           = 0X0978; // bool
+            static constexpr std::uintptr_t m_bUnderCrosshair            = 0X0979; // bool
+            static constexpr std::uintptr_t m_bUnstoppable               = 0X097A; // bool
+            static constexpr std::uintptr_t m_flFinishedTime             = 0X097C; // GameTime_t
+            static constexpr std::uintptr_t m_vecFinishOrigin            = 0X0980; // Vector
+            static constexpr std::uintptr_t m_vecOriginalAngles          = 0X098C; // QAngle
+            static constexpr std::uintptr_t m_vecFinishAngles            = 0X0998; // QAngle
+            static constexpr std::uintptr_t m_bPreventChangesWhileMoving = 0X09A4; // bool
+            static constexpr std::uintptr_t m_bDisabled                  = 0X09A5; // bool
+            static constexpr std::uintptr_t m_vecTeleportOrigin          = 0X09A8; // VectorWS
+            static constexpr std::uintptr_t m_flAbortedPlaybackAt        = 0X09B4; // GameTime_t
+            static constexpr std::uintptr_t m_pOnCommentaryStarted       = 0X09B8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_pOnCommentaryStopped       = 0X09D0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bActive                    = 0X09E8; // bool
+            static constexpr std::uintptr_t m_flStartTime                = 0X09EC; // GameTime_t
+            static constexpr std::uintptr_t m_flStartTimeInCommentary    = 0X09F0; // float32
+            static constexpr std::uintptr_t m_iszTitle                   = 0X09F8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszSpeakers                = 0X0A00; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iNodeNumber                = 0X0A08; // int32
+            static constexpr std::uintptr_t m_iNodeNumberMax             = 0X0A0C; // int32
+            static constexpr std::uintptr_t m_bListenedTo                = 0X0A10; // bool
         };
 
         // Has VTable
@@ -10988,20 +11349,20 @@ namespace offsets {
         // Local Type Scope
         class CMomentaryRotButton : public CRotButton {
         public:
-            static constexpr std::uintptr_t m_Position          = 0X08B0; // CEntityOutputTemplate<float32,float32>
-            static constexpr std::uintptr_t m_OnUnpressed       = 0X08D0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFullyOpen       = 0X08E8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnFullyClosed     = 0X0900; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnReachedPosition = 0X0918; // CEntityIOOutput
-            static constexpr std::uintptr_t m_lastUsed          = 0X0930; // int32
-            static constexpr std::uintptr_t m_start             = 0X0934; // QAngle
-            static constexpr std::uintptr_t m_end               = 0X0940; // QAngle
-            static constexpr std::uintptr_t m_IdealYaw          = 0X094C; // float32
-            static constexpr std::uintptr_t m_sNoise            = 0X0950; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bUpdateTarget     = 0X0958; // bool
-            static constexpr std::uintptr_t m_direction         = 0X095C; // int32
-            static constexpr std::uintptr_t m_returnSpeed       = 0X0960; // float32
-            static constexpr std::uintptr_t m_flStartPosition   = 0X0964; // float32
+            static constexpr std::uintptr_t m_Position          = 0X08E8; // CEntityOutputTemplate<float32>
+            static constexpr std::uintptr_t m_OnUnpressed       = 0X0908; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnFullyOpen       = 0X0920; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnFullyClosed     = 0X0938; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnReachedPosition = 0X0950; // CEntityIOOutput
+            static constexpr std::uintptr_t m_lastUsed          = 0X0968; // int32
+            static constexpr std::uintptr_t m_start             = 0X096C; // QAngle
+            static constexpr std::uintptr_t m_end               = 0X0978; // QAngle
+            static constexpr std::uintptr_t m_IdealYaw          = 0X0984; // float32
+            static constexpr std::uintptr_t m_sNoise            = 0X0988; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bUpdateTarget     = 0X0990; // bool
+            static constexpr std::uintptr_t m_direction         = 0X0994; // int32
+            static constexpr std::uintptr_t m_returnSpeed       = 0X0998; // float32
+            static constexpr std::uintptr_t m_flStartPosition   = 0X099C; // float32
         };
 
         // Has VTable
@@ -11030,90 +11391,97 @@ namespace offsets {
         // Local Type Scope
         class CFuncMover : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_iszPathName                               = 0X0730; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hPathMover                                = 0X0738; // CHandle<CPathMover>
-            static constexpr std::uintptr_t m_hPrevPathMover                            = 0X073C; // CHandle<CPathMover>
-            static constexpr std::uintptr_t m_iszPathNodeStart                          = 0X0740; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszPathNodeEnd                            = 0X0748; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_eMoveType                                 = 0X0750; // CFuncMover::Move_t
-            static constexpr std::uintptr_t m_bIsReversing                              = 0X0754; // bool
-            static constexpr std::uintptr_t m_flStartSpeed                              = 0X0758; // float32
-            static constexpr std::uintptr_t m_flPathLocation                            = 0X075C; // float32
-            static constexpr std::uintptr_t m_flT                                       = 0X0760; // float32
-            static constexpr std::uintptr_t m_nCurrentNodeIndex                         = 0X0764; // int32
-            static constexpr std::uintptr_t m_nPreviousNodeIndex                        = 0X0768; // int32
-            static constexpr std::uintptr_t m_eSolidType                                = 0X076C; // SolidType_t
-            static constexpr std::uintptr_t m_bIsMoving                                 = 0X076D; // bool
-            static constexpr std::uintptr_t m_flTimeToReachMaxSpeed                     = 0X0770; // float32
-            static constexpr std::uintptr_t m_flDistanceToReachMaxSpeed                 = 0X0774; // float32
-            static constexpr std::uintptr_t m_flTimeToReachZeroSpeed                    = 0X0778; // float32
-            static constexpr std::uintptr_t m_flComputedDistanceToReachMaxSpeed         = 0X077C; // float32
-            static constexpr std::uintptr_t m_flComputedDistanceToReachZeroSpeed        = 0X0780; // float32
-            static constexpr std::uintptr_t m_flStartCurveScale                         = 0X0784; // float32
-            static constexpr std::uintptr_t m_flStopCurveScale                          = 0X0788; // float32
-            static constexpr std::uintptr_t m_flDistanceToReachZeroSpeed                = 0X078C; // float32
-            static constexpr std::uintptr_t m_flTimeMovementStart                       = 0X0790; // GameTime_t
-            static constexpr std::uintptr_t m_flTimeMovementStop                        = 0X0794; // GameTime_t
-            static constexpr std::uintptr_t m_hStopAtNode                               = 0X0798; // CHandle<CMoverPathNode>
-            static constexpr std::uintptr_t m_flPathLocationToBeginStop                 = 0X079C; // float32
-            static constexpr std::uintptr_t m_flPathLocationStart                       = 0X07A0; // float32
-            static constexpr std::uintptr_t m_flBeginStopT                              = 0X07A4; // float32
-            static constexpr std::uintptr_t m_iszStartForwardSound                      = 0X07A8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszLoopForwardSound                       = 0X07B0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszStopForwardSound                       = 0X07B8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszStartReverseSound                      = 0X07C0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszLoopReverseSound                       = 0X07C8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszStopReverseSound                       = 0X07D0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszArriveAtDestinationSound               = 0X07D8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_OnMovementEnd                             = 0X07F8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bStartAtClosestPoint                      = 0X0810; // bool
-            static constexpr std::uintptr_t m_bStartAtEnd                               = 0X0811; // bool
-            static constexpr std::uintptr_t m_bStartFollowingClosestMover               = 0X0812; // bool
-            static constexpr std::uintptr_t m_eOrientationUpdate                        = 0X0814; // CFuncMover::OrientationUpdate_t
-            static constexpr std::uintptr_t m_flTimeStartOrientationChange              = 0X0818; // GameTime_t
-            static constexpr std::uintptr_t m_flTimeToBlendToNewOrientation             = 0X081C; // float32
-            static constexpr std::uintptr_t m_flDurationBlendToNewOrientationRan        = 0X0820; // float32
-            static constexpr std::uintptr_t m_nOriginalOrientationIndex                 = 0X0824; // int32
-            static constexpr std::uintptr_t m_bCreateMovableNavMesh                     = 0X0828; // bool
-            static constexpr std::uintptr_t m_bAllowMovableNavMeshDockingOnEntireEntity = 0X0829; // bool
-            static constexpr std::uintptr_t m_OnNodePassed                              = 0X0830; // CEntityOutputTemplate<CUtlString,char*>
-            static constexpr std::uintptr_t m_iszOrientationMatchEntityName             = 0X0850; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hOrientationMatchEntity                   = 0X0858; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_flTimeToTraverseToNextNode                = 0X085C; // float32
-            static constexpr std::uintptr_t m_vLerpToNewPosStartInPathEntitySpace       = 0X0860; // Vector
-            static constexpr std::uintptr_t m_vLerpToNewPosEndInPathEntitySpace         = 0X086C; // Vector
-            static constexpr std::uintptr_t m_flLerpToPositionT                         = 0X0878; // float32
-            static constexpr std::uintptr_t m_flLerpToPositionDeltaT                    = 0X087C; // float32
-            static constexpr std::uintptr_t m_OnLerpToPositionComplete                  = 0X0880; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bIsPaused                                 = 0X0898; // bool
-            static constexpr std::uintptr_t m_eTransitionedToPathNodeAction             = 0X089C; // CFuncMover::TransitionToPathNodeAction_t
-            static constexpr std::uintptr_t m_nDelayedTeleportToNode                    = 0X08A0; // int32
-            static constexpr std::uintptr_t m_bIsVerboseLogging                         = 0X08A4; // bool
-            static constexpr std::uintptr_t m_hFollowEntity                             = 0X08A8; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_flFollowDistance                          = 0X08AC; // float32
-            static constexpr std::uintptr_t m_flFollowMinimumSpeed                      = 0X08B0; // float32
-            static constexpr std::uintptr_t m_flCurFollowEntityT                        = 0X08B4; // float32
-            static constexpr std::uintptr_t m_flCurFollowSpeed                          = 0X08B8; // float32
-            static constexpr std::uintptr_t m_strOrientationFaceEntityName              = 0X08C0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hOrientationFaceEntity                    = 0X08C8; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_OnStart                                   = 0X08D0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnStartForward                            = 0X08E8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnStartReverse                            = 0X0900; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnStop                                    = 0X0918; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnStopped                                 = 0X0930; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bNextNodeReturnsCurrent                   = 0X0948; // bool
-            static constexpr std::uintptr_t m_bStartedMoving                            = 0X0949; // bool
-            static constexpr std::uintptr_t m_eFollowEntityDirection                    = 0X0968; // CFuncMover::FollowEntityDirection_t
-            static constexpr std::uintptr_t m_hFollowMover                              = 0X096C; // CHandle<CFuncMover>
-            static constexpr std::uintptr_t m_iszFollowMoverEntityName                  = 0X0970; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flFollowMoverDistance                     = 0X0978; // float32
-            static constexpr std::uintptr_t m_flFollowMoverCalculatedDistance           = 0X097C; // float32
-            static constexpr std::uintptr_t m_flFollowMoverSpringStrength               = 0X0980; // float32
-            static constexpr std::uintptr_t m_bFollowConstraintsInitialized             = 0X0984; // bool
-            static constexpr std::uintptr_t m_eFollowConstraint                         = 0X0988; // CFuncMover::FollowConstraint_t
-            static constexpr std::uintptr_t m_flFollowMoverSpeed                        = 0X098C; // float32
-            static constexpr std::uintptr_t m_flFollowMoverVelocity                     = 0X0990; // float32
-            static constexpr std::uintptr_t m_nTickMovementRan                          = 0X0994; // GameTick_t
+            static constexpr std::uintptr_t m_iszPathName                               = 0X0768; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hPathMover                                = 0X0770; // CHandle<CPathMover>
+            static constexpr std::uintptr_t m_hPrevPathMover                            = 0X0774; // CHandle<CPathMover>
+            static constexpr std::uintptr_t m_iszPathNodeStart                          = 0X0778; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszPathNodeEnd                            = 0X0780; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bIgnoreEndNode                            = 0X0788; // bool
+            static constexpr std::uintptr_t m_eMoveType                                 = 0X078C; // CFuncMover::Move_t
+            static constexpr std::uintptr_t m_bIsReversing                              = 0X0790; // bool
+            static constexpr std::uintptr_t m_flStartSpeed                              = 0X0794; // float32
+            static constexpr std::uintptr_t m_flPathLocation                            = 0X0798; // float32
+            static constexpr std::uintptr_t m_flT                                       = 0X079C; // float32
+            static constexpr std::uintptr_t m_nCurrentNodeIndex                         = 0X07A0; // int32
+            static constexpr std::uintptr_t m_nPreviousNodeIndex                        = 0X07A4; // int32
+            static constexpr std::uintptr_t m_eSolidType                                = 0X07A8; // SolidType_t
+            static constexpr std::uintptr_t m_bIsMoving                                 = 0X07A9; // bool
+            static constexpr std::uintptr_t m_flTimeToReachMaxSpeed                     = 0X07AC; // float32
+            static constexpr std::uintptr_t m_flDistanceToReachMaxSpeed                 = 0X07B0; // float32
+            static constexpr std::uintptr_t m_flTimeToReachZeroSpeed                    = 0X07B4; // float32
+            static constexpr std::uintptr_t m_flComputedDistanceToReachMaxSpeed         = 0X07B8; // float32
+            static constexpr std::uintptr_t m_flComputedDistanceToReachZeroSpeed        = 0X07BC; // float32
+            static constexpr std::uintptr_t m_flStartCurveScale                         = 0X07C0; // float32
+            static constexpr std::uintptr_t m_flStopCurveScale                          = 0X07C4; // float32
+            static constexpr std::uintptr_t m_flDistanceToReachZeroSpeed                = 0X07C8; // float32
+            static constexpr std::uintptr_t m_flTimeMovementStart                       = 0X07CC; // GameTime_t
+            static constexpr std::uintptr_t m_flTimeMovementStop                        = 0X07D0; // GameTime_t
+            static constexpr std::uintptr_t m_hStopAtNode                               = 0X07D4; // CHandle<CMoverPathNode>
+            static constexpr std::uintptr_t m_flPathLocationToBeginStop                 = 0X07D8; // float32
+            static constexpr std::uintptr_t m_flPathLocationStart                       = 0X07DC; // float32
+            static constexpr std::uintptr_t m_flBeginStopT                              = 0X07E0; // float32
+            static constexpr std::uintptr_t m_iszStartForwardSound                      = 0X07E8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszLoopForwardSound                       = 0X07F0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszStopForwardSound                       = 0X07F8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszStartReverseSound                      = 0X0800; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszLoopReverseSound                       = 0X0808; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszStopReverseSound                       = 0X0810; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszArriveAtDestinationSound               = 0X0818; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_OnMovementEnd                             = 0X0838; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bStartAtClosestPoint                      = 0X0850; // bool
+            static constexpr std::uintptr_t m_bStartAtEnd                               = 0X0851; // bool
+            static constexpr std::uintptr_t m_bStartFollowingClosestMover               = 0X0852; // bool
+            static constexpr std::uintptr_t m_eOrientationUpdate                        = 0X0854; // CFuncMover::OrientationUpdate_t
+            static constexpr std::uintptr_t m_flTimeStartOrientationChange              = 0X0858; // GameTime_t
+            static constexpr std::uintptr_t m_flTimeToBlendToNewOrientation             = 0X085C; // float32
+            static constexpr std::uintptr_t m_flDurationBlendToNewOrientationRan        = 0X0860; // float32
+            static constexpr std::uintptr_t m_bCreateMovableNavMesh                     = 0X0864; // bool
+            static constexpr std::uintptr_t m_bAllowMovableNavMeshDockingOnEntireEntity = 0X0865; // bool
+            static constexpr std::uintptr_t m_OnNodePassed                              = 0X0868; // CEntityOutputTemplate<CUtlString>
+            static constexpr std::uintptr_t m_iszOrientationMatchEntityName             = 0X0888; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hOrientationMatchEntity                   = 0X0890; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_flTimeToTraverseToNextNode                = 0X0894; // float32
+            static constexpr std::uintptr_t m_vLerpToNewPosStartInPathEntitySpace       = 0X0898; // Vector
+            static constexpr std::uintptr_t m_vLerpToNewPosEndInPathEntitySpace         = 0X08A4; // Vector
+            static constexpr std::uintptr_t m_flLerpToPositionT                         = 0X08B0; // float32
+            static constexpr std::uintptr_t m_flLerpToPositionDeltaT                    = 0X08B4; // float32
+            static constexpr std::uintptr_t m_OnLerpToPositionComplete                  = 0X08B8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bIsPaused                                 = 0X08D0; // bool
+            static constexpr std::uintptr_t m_eTransitionedToPathNodeAction             = 0X08D4; // CFuncMover::TransitionToPathNodeAction_t
+            static constexpr std::uintptr_t m_qTransitionSourceOrientation              = 0X08E0; // Quaternion
+            static constexpr std::uintptr_t m_nDelayedTeleportToNode                    = 0X08F0; // int32
+            static constexpr std::uintptr_t m_bIsImGuiLogging                           = 0X08F4; // bool
+            static constexpr std::uintptr_t m_hFollowEntity                             = 0X08F8; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_flFollowDistance                          = 0X08FC; // float32
+            static constexpr std::uintptr_t m_flFollowMinimumSpeed                      = 0X0900; // float32
+            static constexpr std::uintptr_t m_flCurFollowEntityT                        = 0X0904; // float32
+            static constexpr std::uintptr_t m_flCurFollowSpeed                          = 0X0908; // float32
+            static constexpr std::uintptr_t m_strOrientationFaceEntityName              = 0X0910; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hOrientationFaceEntity                    = 0X0918; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_OnStart                                   = 0X0920; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnStartForward                            = 0X0938; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnStartReverse                            = 0X0950; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnStop                                    = 0X0968; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnStopped                                 = 0X0980; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bNextNodeReturnsCurrent                   = 0X0998; // bool
+            static constexpr std::uintptr_t m_bStartedMoving                            = 0X0999; // bool
+            static constexpr std::uintptr_t m_eFollowEntityDirection                    = 0X09B8; // CFuncMover::FollowEntityDirection_t
+            static constexpr std::uintptr_t m_hFollowMover                              = 0X09BC; // CHandle<CFuncMover>
+            static constexpr std::uintptr_t m_iszFollowMoverEntityName                  = 0X09C0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flFollowMoverDistance                     = 0X09C8; // float32
+            static constexpr std::uintptr_t m_flFollowMoverRatio                        = 0X09CC; // float32
+            static constexpr std::uintptr_t m_flFollowMoverCalculatedDistance           = 0X09D0; // float32
+            static constexpr std::uintptr_t m_flFollowMoverSpringStrength               = 0X09D4; // float32
+            static constexpr std::uintptr_t m_nFollowMoverConstraintPriority            = 0X09D8; // int32
+            static constexpr std::uintptr_t m_bFollowConstraintsInitialized             = 0X09DC; // bool
+            static constexpr std::uintptr_t m_eFollowConstraint                         = 0X09E0; // CFuncMover::FollowConstraint_t
+            static constexpr std::uintptr_t m_flFollowMoverSpeed                        = 0X09E4; // float32
+            static constexpr std::uintptr_t m_flFollowMoverVelocity                     = 0X09E8; // float32
+            static constexpr std::uintptr_t m_nTickMovementRan                          = 0X09EC; // GameTick_t
+            static constexpr std::uintptr_t m_movementSummary                           = 0X09F0; // FuncMoverMovementSummary_t
+            static constexpr std::uintptr_t m_bStopFromBeginStopTarget                  = 0X0A10; // bool
+            static constexpr std::uintptr_t m_bQueueStop                                = 0X0A11; // bool
+            static constexpr std::uintptr_t m_bQueueStopMoving                          = 0X0A12; // bool
         };
 
         // Has VTable
@@ -11121,8 +11489,8 @@ namespace offsets {
         // Local Type Scope
         class CFuncNavObstruction : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_bDisabled               = 0X0748; // bool
-            static constexpr std::uintptr_t m_bUseAsyncObstacleUpdate = 0X0749; // bool
+            static constexpr std::uintptr_t m_bDisabled               = 0X0780; // bool
+            static constexpr std::uintptr_t m_bUseAsyncObstacleUpdate = 0X0781; // bool
         };
 
         // Has VTable
@@ -11165,9 +11533,9 @@ namespace offsets {
         // Local Type Scope
         class CMolotovProjectile : public CBaseCSGrenadeProjectile {
         public:
-            static constexpr std::uintptr_t m_bIsIncGrenade = 0X0BB0; // bool
-            static constexpr std::uintptr_t m_bDetonated    = 0X0BC8; // bool
-            static constexpr std::uintptr_t m_stillTimer    = 0X0BD0; // IntervalTimer
+            static constexpr std::uintptr_t m_bIsIncGrenade = 0X0A30; // bool
+            static constexpr std::uintptr_t m_bDetonated    = 0X0A48; // bool
+            static constexpr std::uintptr_t m_stillTimer    = 0X0A50; // IntervalTimer
         };
 
         // Has VTable
@@ -11214,10 +11582,10 @@ namespace offsets {
         // Local Type Scope
         class CPropDoorRotatingBreakable : public CPropDoorRotating {
         public:
-            static constexpr std::uintptr_t m_bBreakable               = 0X0EF0; // bool
-            static constexpr std::uintptr_t m_isAbleToCloseAreaPortals = 0X0EF1; // bool
-            static constexpr std::uintptr_t m_currentDamageState       = 0X0EF4; // int32
-            static constexpr std::uintptr_t m_damageStates             = 0X0EF8; // CUtlVector<CUtlSymbolLarge>
+            static constexpr std::uintptr_t m_bBreakable               = 0X0E20; // bool
+            static constexpr std::uintptr_t m_isAbleToCloseAreaPortals = 0X0E21; // bool
+            static constexpr std::uintptr_t m_currentDamageState       = 0X0E24; // int32
+            static constexpr std::uintptr_t m_damageStates             = 0X0E28; // CUtlVector<CUtlSymbolLarge>
         };
 
         // Has VTable
@@ -11234,13 +11602,13 @@ namespace offsets {
             static constexpr std::uintptr_t m_weaponPurchases = 0X0008; // CUtlVectorEmbeddedNetworkVar<WeaponPurchaseCount_t>
         };
 
-        // Has Trivial Destructor
         // Construct Allowed
         // Local Type Scope
         struct CPulseCell_Outflow_PlaySceneBase__CursorState_t {
         public:
-            static constexpr std::uintptr_t m_sceneInstance = 0X0000; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_mainActor     = 0X0004; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_sceneInstance     = 0X0000; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_mainActor         = 0X0004; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_cursorIDToEventID = 0X0008; // CUtlHashtable<PulseCursorID_t,int32>
         };
 
         // Construct Allowed
@@ -11309,24 +11677,24 @@ namespace offsets {
         // Local Type Scope
         class CPointClientUIWorldTextPanel : public CPointClientUIWorldPanel {
         public:
-            static constexpr std::uintptr_t m_messageText = 0X08E8; // char[512]
+            static constexpr std::uintptr_t m_messageText = 0X0920; // char[512]
         };
 
         // Local Type Scope
         class CEntityIdentity {
         public:
-            static constexpr std::uintptr_t m_nameStringableIndex = 0X0014; // int32
-            static constexpr std::uintptr_t m_name                = 0X0018; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_designerName        = 0X0020; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flags               = 0X0030; // uint32
-            static constexpr std::uintptr_t m_worldGroupId        = 0X0038; // WorldGroupId_t
-            static constexpr std::uintptr_t m_fDataObjectTypes    = 0X003C; // uint32
-            static constexpr std::uintptr_t m_PathIndex           = 0X0040; // ChangeAccessorFieldPathIndex_t
-            static constexpr std::uintptr_t m_pAttributes         = 0X0048; // CEntityAttributeTable*
-            static constexpr std::uintptr_t m_pPrev               = 0X0050; // CEntityIdentity*
-            static constexpr std::uintptr_t m_pNext               = 0X0058; // CEntityIdentity*
-            static constexpr std::uintptr_t m_pPrevByClass        = 0X0060; // CEntityIdentity*
-            static constexpr std::uintptr_t m_pNextByClass        = 0X0068; // CEntityIdentity*
+            static constexpr std::uintptr_t m_nameStringTableIndex = 0X0014; // int32
+            static constexpr std::uintptr_t m_name                 = 0X0018; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_designerName         = 0X0020; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flags                = 0X0030; // uint32
+            static constexpr std::uintptr_t m_worldGroupId         = 0X0038; // WorldGroupId_t
+            static constexpr std::uintptr_t m_fDataObjectTypes     = 0X003C; // uint32
+            static constexpr std::uintptr_t m_PathIndex            = 0X0040; // ChangeAccessorFieldPathIndex_t
+            static constexpr std::uintptr_t m_pAttributes          = 0X0048; // CEntityAttributeTable*
+            static constexpr std::uintptr_t m_pPrev                = 0X0050; // CEntityIdentity*
+            static constexpr std::uintptr_t m_pNext                = 0X0058; // CEntityIdentity*
+            static constexpr std::uintptr_t m_pPrevByClass         = 0X0060; // CEntityIdentity*
+            static constexpr std::uintptr_t m_pNextByClass         = 0X0068; // CEntityIdentity*
         };
 
         // Has Trivial Destructor
@@ -11341,47 +11709,47 @@ namespace offsets {
         // Local Type Scope
         class CFuncRotator : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_hRotatorTarget                  = 0X0730; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_bIsRotating                     = 0X0734; // bool
-            static constexpr std::uintptr_t m_bIsReversing                    = 0X0735; // bool
-            static constexpr std::uintptr_t m_flTimeToReachMaxSpeed           = 0X0738; // float32
-            static constexpr std::uintptr_t m_flTimeToReachZeroSpeed          = 0X073C; // float32
-            static constexpr std::uintptr_t m_flDistanceAlongArcTraveled      = 0X0740; // float32
-            static constexpr std::uintptr_t m_flTimeToWaitOscillate           = 0X0744; // float32
-            static constexpr std::uintptr_t m_flTimeRotationStart             = 0X0748; // GameTime_t
-            static constexpr std::uintptr_t m_qLSPrevChange                   = 0X0750; // Quaternion
-            static constexpr std::uintptr_t m_qWSPrev                         = 0X0760; // Quaternion
-            static constexpr std::uintptr_t m_qWSInit                         = 0X0770; // Quaternion
-            static constexpr std::uintptr_t m_qLSInit                         = 0X0780; // Quaternion
-            static constexpr std::uintptr_t m_qLSOrientation                  = 0X0790; // Quaternion
-            static constexpr std::uintptr_t m_OnRotationStarted               = 0X07A0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnRotationCompleted             = 0X07B8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnOscillate                     = 0X07D0; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnOscillateStartArrive          = 0X07E8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnOscillateStartDepart          = 0X0800; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnOscillateEndArrive            = 0X0818; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnOscillateEndDepart            = 0X0830; // CEntityIOOutput
-            static constexpr std::uintptr_t m_bOscillateDepart                = 0X0848; // bool
-            static constexpr std::uintptr_t m_nOscillateCount                 = 0X084C; // int32
-            static constexpr std::uintptr_t m_eRotateType                     = 0X0850; // CFuncRotator::Rotate_t
-            static constexpr std::uintptr_t m_ePrevRotateType                 = 0X0854; // CFuncRotator::Rotate_t
-            static constexpr std::uintptr_t m_bHasTargetOverride              = 0X0858; // bool
-            static constexpr std::uintptr_t m_qOrientationOverride            = 0X0860; // Quaternion
-            static constexpr std::uintptr_t m_eSpaceOverride                  = 0X0870; // RotatorTargetSpace_t
-            static constexpr std::uintptr_t m_qAngularVelocity                = 0X0874; // QAngle
-            static constexpr std::uintptr_t m_vLookAtForcedUp                 = 0X0880; // Vector
-            static constexpr std::uintptr_t m_strRotatorTarget                = 0X0890; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bRecordHistory                  = 0X0898; // bool
-            static constexpr std::uintptr_t m_vecRotatorHistory               = 0X08A0; // CUtlVector<RotatorHistoryEntry_t>
-            static constexpr std::uintptr_t m_bReturningToPreviousOrientation = 0X08B8; // bool
-            static constexpr std::uintptr_t m_vecRotatorQueue                 = 0X08C0; // CUtlVector<RotatorQueueEntry_t>
-            static constexpr std::uintptr_t m_vecRotatorQueueHistory          = 0X08D8; // CUtlVector<RotatorHistoryEntry_t>
-            static constexpr std::uintptr_t m_eSolidType                      = 0X08F0; // SolidType_t
-            static constexpr std::uintptr_t m_hSpeedFromMover                 = 0X08F4; // CHandle<CFuncMover>
-            static constexpr std::uintptr_t m_iszSpeedFromMover               = 0X08F8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flSpeedScale                    = 0X0900; // float32
-            static constexpr std::uintptr_t m_flMinYawRotation                = 0X0904; // float32
-            static constexpr std::uintptr_t m_flMaxYawRotation                = 0X0908; // float32
+            static constexpr std::uintptr_t m_hRotatorTarget                  = 0X0768; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_bIsRotating                     = 0X076C; // bool
+            static constexpr std::uintptr_t m_bIsReversing                    = 0X076D; // bool
+            static constexpr std::uintptr_t m_flTimeToReachMaxSpeed           = 0X0770; // float32
+            static constexpr std::uintptr_t m_flTimeToReachZeroSpeed          = 0X0774; // float32
+            static constexpr std::uintptr_t m_flDistanceAlongArcTraveled      = 0X0778; // float32
+            static constexpr std::uintptr_t m_flTimeToWaitOscillate           = 0X077C; // float32
+            static constexpr std::uintptr_t m_flTimeRotationStart             = 0X0780; // GameTime_t
+            static constexpr std::uintptr_t m_qLSPrevChange                   = 0X0790; // Quaternion
+            static constexpr std::uintptr_t m_qWSPrev                         = 0X07A0; // Quaternion
+            static constexpr std::uintptr_t m_qWSInit                         = 0X07B0; // Quaternion
+            static constexpr std::uintptr_t m_qLSInit                         = 0X07C0; // Quaternion
+            static constexpr std::uintptr_t m_qLSOrientation                  = 0X07D0; // Quaternion
+            static constexpr std::uintptr_t m_OnRotationStarted               = 0X07E0; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnRotationCompleted             = 0X07F8; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnOscillate                     = 0X0810; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnOscillateStartArrive          = 0X0828; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnOscillateStartDepart          = 0X0840; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnOscillateEndArrive            = 0X0858; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnOscillateEndDepart            = 0X0870; // CEntityIOOutput
+            static constexpr std::uintptr_t m_bOscillateDepart                = 0X0888; // bool
+            static constexpr std::uintptr_t m_nOscillateCount                 = 0X088C; // int32
+            static constexpr std::uintptr_t m_eRotateType                     = 0X0890; // CFuncRotator::Rotate_t
+            static constexpr std::uintptr_t m_ePrevRotateType                 = 0X0894; // CFuncRotator::Rotate_t
+            static constexpr std::uintptr_t m_bHasTargetOverride              = 0X0898; // bool
+            static constexpr std::uintptr_t m_qOrientationOverride            = 0X08A0; // Quaternion
+            static constexpr std::uintptr_t m_eSpaceOverride                  = 0X08B0; // RotatorTargetSpace_t
+            static constexpr std::uintptr_t m_qAngularVelocity                = 0X08B4; // QAngle
+            static constexpr std::uintptr_t m_vLookAtForcedUp                 = 0X08C0; // Vector
+            static constexpr std::uintptr_t m_strRotatorTarget                = 0X08D0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bRecordHistory                  = 0X08D8; // bool
+            static constexpr std::uintptr_t m_vecRotatorHistory               = 0X08E0; // CUtlVector<RotatorHistoryEntry_t>
+            static constexpr std::uintptr_t m_bReturningToPreviousOrientation = 0X08F8; // bool
+            static constexpr std::uintptr_t m_vecRotatorQueue                 = 0X0900; // CUtlVector<RotatorQueueEntry_t>
+            static constexpr std::uintptr_t m_vecRotatorQueueHistory          = 0X0918; // CUtlVector<RotatorHistoryEntry_t>
+            static constexpr std::uintptr_t m_eSolidType                      = 0X0930; // SolidType_t
+            static constexpr std::uintptr_t m_hSpeedFromMover                 = 0X0934; // CHandle<CFuncMover>
+            static constexpr std::uintptr_t m_iszSpeedFromMover               = 0X0938; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flSpeedScale                    = 0X0940; // float32
+            static constexpr std::uintptr_t m_flMinYawRotation                = 0X0944; // float32
+            static constexpr std::uintptr_t m_flMaxYawRotation                = 0X0948; // float32
         };
 
         // Has VTable
@@ -11408,19 +11776,20 @@ namespace offsets {
         class CBasePlayerVData : public CEntitySubclassVDataBase {
         public:
             static constexpr std::uintptr_t m_sModelName                = 0X0028; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCModel>>
-            static constexpr std::uintptr_t m_flHeadDamageMultiplier    = 0X0108; // CSkillFloat
-            static constexpr std::uintptr_t m_flChestDamageMultiplier   = 0X0118; // CSkillFloat
-            static constexpr std::uintptr_t m_flStomachDamageMultiplier = 0X0128; // CSkillFloat
-            static constexpr std::uintptr_t m_flArmDamageMultiplier     = 0X0138; // CSkillFloat
-            static constexpr std::uintptr_t m_flLegDamageMultiplier     = 0X0148; // CSkillFloat
-            static constexpr std::uintptr_t m_flHoldBreathTime          = 0X0158; // float32
-            static constexpr std::uintptr_t m_flDrowningDamageInterval  = 0X015C; // float32
-            static constexpr std::uintptr_t m_nDrowningDamageInitial    = 0X0160; // int32
-            static constexpr std::uintptr_t m_nDrowningDamageMax        = 0X0164; // int32
-            static constexpr std::uintptr_t m_nWaterSpeed               = 0X0168; // int32
-            static constexpr std::uintptr_t m_flUseRange                = 0X016C; // float32
-            static constexpr std::uintptr_t m_flUseAngleTolerance       = 0X0170; // float32
-            static constexpr std::uintptr_t m_flCrouchTime              = 0X0174; // float32
+            static constexpr std::uintptr_t m_sModelNameAg2Override     = 0X0108; // CResourceNameTyped<CWeakHandle<InfoForResourceTypeCModel>>
+            static constexpr std::uintptr_t m_flHeadDamageMultiplier    = 0X01E8; // CSkillFloat
+            static constexpr std::uintptr_t m_flChestDamageMultiplier   = 0X01F8; // CSkillFloat
+            static constexpr std::uintptr_t m_flStomachDamageMultiplier = 0X0208; // CSkillFloat
+            static constexpr std::uintptr_t m_flArmDamageMultiplier     = 0X0218; // CSkillFloat
+            static constexpr std::uintptr_t m_flLegDamageMultiplier     = 0X0228; // CSkillFloat
+            static constexpr std::uintptr_t m_flHoldBreathTime          = 0X0238; // float32
+            static constexpr std::uintptr_t m_flDrowningDamageInterval  = 0X023C; // float32
+            static constexpr std::uintptr_t m_nDrowningDamageInitial    = 0X0240; // int32
+            static constexpr std::uintptr_t m_nDrowningDamageMax        = 0X0244; // int32
+            static constexpr std::uintptr_t m_nWaterSpeed               = 0X0248; // int32
+            static constexpr std::uintptr_t m_flUseRange                = 0X024C; // float32
+            static constexpr std::uintptr_t m_flUseAngleTolerance       = 0X0250; // float32
+            static constexpr std::uintptr_t m_flCrouchTime              = 0X0254; // float32
         };
 
         // Has VTable
@@ -11428,10 +11797,10 @@ namespace offsets {
         // Local Type Scope
         class CTriggerImpact : public CTriggerMultiple {
         public:
-            static constexpr std::uintptr_t m_flMagnitude  = 0X08A8; // float32
-            static constexpr std::uintptr_t m_flNoise      = 0X08AC; // float32
-            static constexpr std::uintptr_t m_flViewkick   = 0X08B0; // float32
-            static constexpr std::uintptr_t m_pOutputForce = 0X08B8; // CEntityOutputTemplate<Vector,Vector>
+            static constexpr std::uintptr_t m_flMagnitude  = 0X08E0; // float32
+            static constexpr std::uintptr_t m_flNoise      = 0X08E4; // float32
+            static constexpr std::uintptr_t m_flViewkick   = 0X08E8; // float32
+            static constexpr std::uintptr_t m_pOutputForce = 0X08F0; // CEntityOutputTemplate<Vector>
         };
 
         // Has VTable
@@ -11442,6 +11811,15 @@ namespace offsets {
             static constexpr std::uintptr_t m_flDMBonusStartTime  = 0X0030; // GameTime_t
             static constexpr std::uintptr_t m_flDMBonusTimeLength = 0X0034; // float32
             static constexpr std::uintptr_t m_sDMBonusWeapon      = 0X0038; // CUtlString
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        // Local Type Scope
+        struct CTestPulseIO__EntityHandleIntArgs_t {
+        public:
+            static constexpr std::uintptr_t handleA = 0X0000; // CEntityHandle
+            static constexpr std::uintptr_t valueB  = 0X0004; // int32
         };
 
         // Has VTable
@@ -11506,15 +11884,15 @@ namespace offsets {
         // Local Type Scope
         class CFuncConveyor : public CBaseModelEntity {
         public:
-            static constexpr std::uintptr_t m_szConveyorModels            = 0X0730; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flTransitionDurationSeconds = 0X0738; // float32
-            static constexpr std::uintptr_t m_angMoveEntitySpace          = 0X073C; // QAngle
-            static constexpr std::uintptr_t m_vecMoveDirEntitySpace       = 0X0748; // Vector
-            static constexpr std::uintptr_t m_flTargetSpeed               = 0X0754; // float32
-            static constexpr std::uintptr_t m_nTransitionStartTick        = 0X0758; // GameTick_t
-            static constexpr std::uintptr_t m_nTransitionDurationTicks    = 0X075C; // int32
-            static constexpr std::uintptr_t m_flTransitionStartSpeed      = 0X0760; // float32
-            static constexpr std::uintptr_t m_hConveyorModels             = 0X0768; // CNetworkUtlVectorBase<CHandle<CBaseEntity>>
+            static constexpr std::uintptr_t m_szConveyorModels            = 0X0768; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flTransitionDurationSeconds = 0X0770; // float32
+            static constexpr std::uintptr_t m_angMoveEntitySpace          = 0X0774; // QAngle
+            static constexpr std::uintptr_t m_vecMoveDirEntitySpace       = 0X0780; // Vector
+            static constexpr std::uintptr_t m_flTargetSpeed               = 0X078C; // float32
+            static constexpr std::uintptr_t m_nTransitionStartTick        = 0X0790; // GameTick_t
+            static constexpr std::uintptr_t m_nTransitionDurationTicks    = 0X0794; // int32
+            static constexpr std::uintptr_t m_flTransitionStartSpeed      = 0X0798; // float32
+            static constexpr std::uintptr_t m_hConveyorModels             = 0X07A0; // CNetworkUtlVectorBase<CHandle<CBaseEntity>>
         };
 
         // Has VTable
@@ -11522,19 +11900,20 @@ namespace offsets {
         // Local Type Scope
         class CTriggerPhysics : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_gravityScale                 = 0X08A0; // float32
-            static constexpr std::uintptr_t m_linearLimit                  = 0X08A4; // float32
-            static constexpr std::uintptr_t m_linearDamping                = 0X08A8; // float32
-            static constexpr std::uintptr_t m_angularLimit                 = 0X08AC; // float32
-            static constexpr std::uintptr_t m_angularDamping               = 0X08B0; // float32
-            static constexpr std::uintptr_t m_linearForce                  = 0X08B4; // float32
-            static constexpr std::uintptr_t m_flFrequency                  = 0X08B8; // float32
-            static constexpr std::uintptr_t m_flDampingRatio               = 0X08BC; // float32
-            static constexpr std::uintptr_t m_vecLinearForcePointAt        = 0X08C0; // Vector
-            static constexpr std::uintptr_t m_bCollapseToForcePoint        = 0X08CC; // bool
-            static constexpr std::uintptr_t m_vecLinearForcePointAtWorld   = 0X08D0; // Vector
-            static constexpr std::uintptr_t m_vecLinearForceDirection      = 0X08DC; // Vector
-            static constexpr std::uintptr_t m_bConvertToDebrisWhenPossible = 0X08E8; // bool
+            static constexpr std::uintptr_t m_pController                  = 0X08D0; // IPhysicsMotionController*
+            static constexpr std::uintptr_t m_gravityScale                 = 0X08D8; // float32
+            static constexpr std::uintptr_t m_linearLimit                  = 0X08DC; // float32
+            static constexpr std::uintptr_t m_linearDamping                = 0X08E0; // float32
+            static constexpr std::uintptr_t m_angularLimit                 = 0X08E4; // float32
+            static constexpr std::uintptr_t m_angularDamping               = 0X08E8; // float32
+            static constexpr std::uintptr_t m_linearForce                  = 0X08EC; // float32
+            static constexpr std::uintptr_t m_flFrequency                  = 0X08F0; // float32
+            static constexpr std::uintptr_t m_flDampingRatio               = 0X08F4; // float32
+            static constexpr std::uintptr_t m_vecLinearForcePointAt        = 0X08F8; // Vector
+            static constexpr std::uintptr_t m_bCollapseToForcePoint        = 0X0904; // bool
+            static constexpr std::uintptr_t m_vecLinearForcePointAtWorld   = 0X0908; // Vector
+            static constexpr std::uintptr_t m_vecLinearForceDirection      = 0X0914; // Vector
+            static constexpr std::uintptr_t m_bConvertToDebrisWhenPossible = 0X0920; // bool
         };
 
         // Has VTable
@@ -11561,9 +11940,21 @@ namespace offsets {
         // Local Type Scope
         class CInfoInteraction : public CPointEntity {
         public:
-            static constexpr std::uintptr_t m_strSlotEntityName = 0X04A8; // CUtlSymbolLarge[8]
-            static constexpr std::uintptr_t m_strInteractVData  = 0X04E8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_flInteractRadius  = 0X04F0; // float32
+            static constexpr std::uintptr_t m_hSceneRequest           = 0X04A8; // SceneRequestHandle_t
+            static constexpr std::uintptr_t m_hSceneOpportunity       = 0X04AC; // SceneOpportunityHandle_t
+            static constexpr std::uintptr_t m_bEnabled                = 0X04B0; // bool
+            static constexpr std::uintptr_t m_bStartDisabled          = 0X04B1; // bool
+            static constexpr std::uintptr_t m_strSceneVDataName       = 0X04B8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_strPulseVDataName       = 0X04C0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flRadius                = 0X04E8; // float32
+            static constexpr std::uintptr_t m_flOwnerFOV              = 0X04EC; // float32
+            static constexpr std::uintptr_t m_strLocalInterestReqTags = 0X04F0; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_strLocalInterestOptTags = 0X04F8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_strLookTarget           = 0X0500; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_flDuration              = 0X0508; // float32
+            static constexpr std::uintptr_t m_flCooldown              = 0X050C; // float32
+            static constexpr std::uintptr_t m_nRepeatCount            = 0X0510; // int32
+            static constexpr std::uintptr_t m_bDisableOnExit          = 0X0514; // bool
         };
 
         // Has VTable
@@ -11612,22 +12003,22 @@ namespace offsets {
         // Local Type Scope
         class CTriggerLerpObject : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_iszLerpTarget              = 0X0890; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hLerpTarget                = 0X0898; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_iszLerpTargetAttachment    = 0X08A0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_hLerpTargetAttachment      = 0X08A8; // AttachmentHandle_t
-            static constexpr std::uintptr_t m_flLerpDuration             = 0X08AC; // float32
-            static constexpr std::uintptr_t m_bAttachedEntityWasParented = 0X08B0; // bool
-            static constexpr std::uintptr_t m_bLerpRestoreMoveType       = 0X08B1; // bool
-            static constexpr std::uintptr_t m_bSingleLerpObject          = 0X08B2; // bool
-            static constexpr std::uintptr_t m_vecLerpingObjects          = 0X08B8; // CUtlVector<lerpdata_t>
-            static constexpr std::uintptr_t m_iszLerpEffect              = 0X08D0; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_iszLerpSound               = 0X08D8; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_bAttachTouchingObject      = 0X08E0; // bool
-            static constexpr std::uintptr_t m_hEntityToWaitForDisconnect = 0X08E4; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_OnLerpStarted              = 0X08E8; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnLerpFinished             = 0X0900; // CEntityIOOutput
-            static constexpr std::uintptr_t m_OnDetached                 = 0X0918; // CEntityIOOutput
+            static constexpr std::uintptr_t m_iszLerpTarget              = 0X08C8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hLerpTarget                = 0X08D0; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_iszLerpTargetAttachment    = 0X08D8; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_hLerpTargetAttachment      = 0X08E0; // AttachmentHandle_t
+            static constexpr std::uintptr_t m_flLerpDuration             = 0X08E4; // float32
+            static constexpr std::uintptr_t m_bAttachedEntityWasParented = 0X08E8; // bool
+            static constexpr std::uintptr_t m_bLerpRestoreMoveType       = 0X08E9; // bool
+            static constexpr std::uintptr_t m_bSingleLerpObject          = 0X08EA; // bool
+            static constexpr std::uintptr_t m_vecLerpingObjects          = 0X08F0; // CUtlVector<lerpdata_t>
+            static constexpr std::uintptr_t m_iszLerpEffect              = 0X0908; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_iszLerpSound               = 0X0910; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bAttachTouchingObject      = 0X0918; // bool
+            static constexpr std::uintptr_t m_hEntityToWaitForDisconnect = 0X091C; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_OnLerpStarted              = 0X0920; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnLerpFinished             = 0X0938; // CEntityIOOutput
+            static constexpr std::uintptr_t m_OnDetached                 = 0X0950; // CEntityIOOutput
         };
 
         // Has VTable
@@ -11642,9 +12033,9 @@ namespace offsets {
         // Local Type Scope
         class CTriggerSave : public CBaseTrigger {
         public:
-            static constexpr std::uintptr_t m_bForceNewLevelUnit = 0X0890; // bool
-            static constexpr std::uintptr_t m_fDangerousTimer    = 0X0894; // float32
-            static constexpr std::uintptr_t m_minHitPoints       = 0X0898; // int32
+            static constexpr std::uintptr_t m_bForceNewLevelUnit = 0X08C8; // bool
+            static constexpr std::uintptr_t m_fDangerousTimer    = 0X08CC; // float32
+            static constexpr std::uintptr_t m_minHitPoints       = 0X08D0; // int32
         };
 
         // Has VTable
@@ -11689,6 +12080,15 @@ namespace offsets {
         public:
         };
 
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PhysBlockHeader_t {
+        public:
+            static constexpr std::uintptr_t nSaved       = 0X0000; // int32
+            static constexpr std::uintptr_t pWorldObject = 0X0008; // uint64
+        };
+
         // Has Trivial Destructor
         struct Relationship_t {
         public:
@@ -11709,6 +12109,32 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t vP1 = 0X0000; // Vector
             static constexpr std::uintptr_t vP2 = 0X000C; // Vector
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct NavHull_t {
+        public:
+            static constexpr std::uintptr_t m_nHullIdx = 0X0000; // int32
+        };
+
+        // Construct Allowed
+        struct CDebugSnapshotData_t {
+        public:
+            static constexpr std::uintptr_t m_text                = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_dataType            = 0X0008; // uint32
+            static constexpr std::uintptr_t m_userFlags           = 0X000C; // uint32
+            static constexpr std::uintptr_t m_userData            = 0X0010; // uint32
+            static constexpr std::uintptr_t m_userVector          = 0X0014; // VectorWS
+            static constexpr std::uintptr_t m_userTransform       = 0X0020; // CTransformWS
+            static constexpr std::uintptr_t m_userShape           = 0X0040; // CGenericShapeProxy
+            static constexpr std::uintptr_t m_drawColor           = 0X00D8; // Color
+            static constexpr std::uintptr_t m_vecDebugOverlayData = 0X00E0; // CUtlVector<CDebugDrawHistoryData*>
+            static constexpr std::uintptr_t m_pStructuredData     = 0X00F8; // DebugSnapshotBaseStructuredData_t*
+            static constexpr std::uintptr_t m_hEntity             = 0X0100; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_sEntityName         = 0X0108; // CUtlString
+            static constexpr std::uintptr_t m_nEntityIndex        = 0X0110; // CEntityIndex
+            static constexpr std::uintptr_t m_children            = 0X0120; // CUtlLeanVector<CDebugSnapshotData_t>
         };
 
         // Has Trivial Destructor
@@ -11788,6 +12214,7 @@ namespace offsets {
         // Has Trivial Destructor
         struct WrappedPhysicsJoint_t {
         public:
+            static constexpr std::uintptr_t m_pJoint = 0X0000; // IPhysicsJoint*
         };
 
         // Has VTable
@@ -11808,10 +12235,72 @@ namespace offsets {
             static constexpr std::uintptr_t m_nWorldGroupId = 0X0004; // WorldGroupId_t
         };
 
+        // Has VTable
+        // Construct Allowed
+        struct DebugSnapshotBaseStructuredData_t {
+        public:
+        };
+
+        // Has VTable
+        // Construct Allowed
+        struct AI_BaseNPCAnimGraph_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t e_action_desired        = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t b_action_restart        = 0X0010; // bool
+            static constexpr std::uintptr_t e_movement_type_desired = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t b_movement_type_restart = 0X0020; // bool
+        };
+
         // Construct Allowed
         class CPhysicsBodyGameMarkupData {
         public:
             static constexpr std::uintptr_t m_PhysicsBodyMarkupByBoneName = 0X0000; // CUtlOrderedMap<CUtlString,CPhysicsBodyGameMarkup>
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct SoundCommand_t {
+        public:
+            static constexpr std::uintptr_t m_time      = 0X0008; // float32
+            static constexpr std::uintptr_t m_deltaTime = 0X000C; // float32
+            static constexpr std::uintptr_t m_command   = 0X0010; // soundcommands_t
+            static constexpr std::uintptr_t m_value     = 0X0014; // float32
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct modifiedconvars_t {
+        public:
+            static constexpr std::uintptr_t pszConvar       = 0X0000; // char[128]
+            static constexpr std::uintptr_t pszCurrentValue = 0X0080; // char[128]
+            static constexpr std::uintptr_t pszOrgValue     = 0X0100; // char[128]
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CTestPulseIOComponent {
+        public:
+            static constexpr std::uintptr_t m_ComponentData       = 0X0008; // CUtlString
+            static constexpr std::uintptr_t m_OnComponentTestFunc = 0X0010; // CEntityOutputTemplate<CUtlSymbolLarge>
+        };
+
+        // Has VTable
+        // Construct Allowed
+        class CTestPulseIOComponent_Derived : public CTestPulseIOComponent {
+        public:
+        };
+
+        // Construct Allowed
+        class SAVE_HEADER {
+        public:
+            static constexpr std::uintptr_t m_saveId           = 0X0000; // int32
+            static constexpr std::uintptr_t m_version          = 0X0004; // int32
+            static constexpr std::uintptr_t m_nConnectionCount = 0X0008; // int32
+            static constexpr std::uintptr_t m_nMapVersion      = 0X000C; // int32
+            static constexpr std::uintptr_t m_sSpawnGroupName  = 0X0010; // CUtlString
+            static constexpr std::uintptr_t m_vecWorldOffset   = 0X0020; // matrix3x4a_t
+            static constexpr std::uintptr_t m_flSaveTime       = 0X0050; // float32
         };
 
         // Has Trivial Destructor
@@ -11824,8 +12313,74 @@ namespace offsets {
         };
 
         // Has Trivial Destructor
+        // Construct Allowed
+        struct AI_DefaultNPC_DebugSnapshotData_t__PathQuery_t {
+        public:
+            static constexpr std::uintptr_t m_sInitialQueryName = 0X0000; // CGlobalSymbol
+            static constexpr std::uintptr_t m_sCurrentQueryName = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nMode             = 0X0010; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nType             = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t m_nState            = 0X0020; // CGlobalSymbol
+        };
+
+        // Has VTable
+        // Construct Allowed
+        struct AI_Motor_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t current_movement_gait_set = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t current_movement_gait     = 0X0010; // CGlobalSymbol
+            static constexpr std::uintptr_t movement_setting_id       = 0X0018; // CGlobalSymbol
+        };
+
+        // Has Trivial Destructor
         class CFloatExponentialMovingAverage {
         public:
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        struct physics_save_sphere_t {
+        public:
+            static constexpr std::uintptr_t radius = 0X0000; // float32
+        };
+
+        // Construct Allowed
+        class GAME_HEADER {
+        public:
+            static constexpr std::uintptr_t m_sComment         = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_nSpawnGroupCount = 0X0008; // int32
+            static constexpr std::uintptr_t m_sLandmark        = 0X0010; // CUtlString
+            static constexpr std::uintptr_t m_sRequiredAddons  = 0X0018; // CUtlString
+        };
+
+        // Has VTable
+        // Construct Allowed
+        struct AI_BaseNPC_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t npc_state                   = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t current_enemy               = 0X0010; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t s_current_schedule          = 0X0018; // CUtlString
+            static constexpr std::uintptr_t s_current_task              = 0X0020; // CGlobalSymbol
+            static constexpr std::uintptr_t s_schedule_interrupt_reason = 0X0028; // CUtlString
+            static constexpr std::uintptr_t s_schedule_fail_reason      = 0X0030; // CUtlString
+            static constexpr std::uintptr_t conditions                  = 0X0038; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t anim_events                 = 0X0050; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t e_action_body_section       = 0X0068; // CGlobalSymbol
+            static constexpr std::uintptr_t e_movement_body_section     = 0X0070; // CGlobalSymbol
+        };
+
+        // Construct Allowed
+        class CDebugDrawHistoryData {
+        public:
+            static constexpr std::uintptr_t m_hEntity    = 0X0000; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_etype      = 0X0004; // ESceneViewDebugOverlaysListenerDataType_t
+            static constexpr std::uintptr_t m_vectors    = 0X0008; // CUtlLeanVector<Vector4D>
+            static constexpr std::uintptr_t m_colors     = 0X0018; // CUtlLeanVector<Color>
+            static constexpr std::uintptr_t m_dimensions = 0X0028; // CUtlLeanVector<float32>
+            static constexpr std::uintptr_t m_times      = 0X0038; // CUtlLeanVector<float64>
+            static constexpr std::uintptr_t m_uint64s    = 0X0048; // CUtlLeanVector<uint64>
+            static constexpr std::uintptr_t m_bools      = 0X0058; // CUtlLeanVector<bool>
+            static constexpr std::uintptr_t m_strings    = 0X0068; // CUtlLeanVector<CUtlString>
         };
 
         // Has VTable
@@ -11848,6 +12403,14 @@ namespace offsets {
         struct AmmoIndex_t {
         public:
             static constexpr std::uintptr_t m_Value = 0X0000; // int8
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct SceneRequestTargetMapPair_t {
+        public:
+            static constexpr std::uintptr_t m_actorName  = 0X0000; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_targetName = 0X0008; // CUtlSymbolLarge
         };
 
         // Construct Allowed
@@ -11880,7 +12443,7 @@ namespace offsets {
         // Has VTable
         class CNavVolumeSphere : public CNavVolume {
         public:
-            static constexpr std::uintptr_t m_vCenter  = 0X0078; // Vector
+            static constexpr std::uintptr_t m_vCenter  = 0X0078; // VectorWS
             static constexpr std::uintptr_t m_flRadius = 0X0084; // float32
         };
 
@@ -11890,6 +12453,19 @@ namespace offsets {
             static constexpr std::uintptr_t m_flRadiusInner = 0X0088; // float32
         };
 
+        // Has VTable
+        // Construct Allowed
+        struct AI_Navigator_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t s_npc_nav_authority    = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t s_goal_nav_search_id   = 0X0010; // CGlobalSymbol
+            static constexpr std::uintptr_t s_goal_source_location = 0X0018; // CUtlString
+            static constexpr std::uintptr_t goal_actual_pos        = 0X0020; // VectorWS
+            static constexpr std::uintptr_t goal_base_pos          = 0X002C; // VectorWS
+            static constexpr std::uintptr_t waypoints              = 0X0038; // CUtlVector<AI_Navigator_DebugSnapshotData_t::Waypoint_t>
+        };
+
+        // Construct Allowed
         class CDecalInstance {
         public:
             static constexpr std::uintptr_t m_sDecalGroup            = 0X0000; // CGlobalSymbol
@@ -11899,26 +12475,25 @@ namespace offsets {
             static constexpr std::uintptr_t m_nBoneIndex             = 0X0018; // int32
             static constexpr std::uintptr_t m_nTriangleIndex         = 0X001C; // int32
             static constexpr std::uintptr_t m_vPositionLS            = 0X0020; // Vector
-            static constexpr std::uintptr_t m_vNormalLS              = 0X002C; // Vector
-            static constexpr std::uintptr_t m_vSAxisLS               = 0X0038; // Vector
-            static constexpr std::uintptr_t m_nFlags                 = 0X0044; // DecalFlags_t
-            static constexpr std::uintptr_t m_Color                  = 0X0048; // Color
-            static constexpr std::uintptr_t m_flWidth                = 0X004C; // float32
-            static constexpr std::uintptr_t m_flHeight               = 0X0050; // float32
-            static constexpr std::uintptr_t m_flDepth                = 0X0054; // float32
-            static constexpr std::uintptr_t m_transform              = 0X0060; // CTransformWS
-            static constexpr std::uintptr_t m_flAnimationScale       = 0X0080; // float32
-            static constexpr std::uintptr_t m_flAnimationStartTime   = 0X0084; // float32
-            static constexpr std::uintptr_t m_flPlaceTime            = 0X0088; // GameTime_t
-            static constexpr std::uintptr_t m_flFadeStartTime        = 0X008C; // float32
-            static constexpr std::uintptr_t m_flFadeDuration         = 0X0090; // float32
-            static constexpr std::uintptr_t m_flLightingOriginOffset = 0X0094; // float32
-            static constexpr std::uintptr_t m_flBoundingRadiusSqr    = 0X00A0; // float32
-            static constexpr std::uintptr_t m_nSequenceIndex         = 0X00A4; // int16
-            static constexpr std::uintptr_t m_bIsAdjacent            = 0X00A6; // bool
-            static constexpr std::uintptr_t m_bDoDecalLightmapping   = 0X00A7; // bool
-            static constexpr std::uintptr_t m_nDecalRtEncoding       = 0X00A8; // DecalRtEncoding_t
-            static constexpr std::uintptr_t m_bProjectToBackfaces    = 0X00A9; // bool
+            static constexpr std::uintptr_t m_vPositionOS            = 0X002C; // Vector
+            static constexpr std::uintptr_t m_vNormalLS              = 0X0038; // Vector
+            static constexpr std::uintptr_t m_vSAxisLS               = 0X0044; // Vector
+            static constexpr std::uintptr_t m_nFlags                 = 0X0050; // DecalFlags_t
+            static constexpr std::uintptr_t m_Color                  = 0X0054; // Color
+            static constexpr std::uintptr_t m_flWidth                = 0X0058; // float32
+            static constexpr std::uintptr_t m_flHeight               = 0X005C; // float32
+            static constexpr std::uintptr_t m_flDepth                = 0X0060; // float32
+            static constexpr std::uintptr_t m_transform              = 0X0070; // CTransformWS
+            static constexpr std::uintptr_t m_flAnimationScale       = 0X0090; // float32
+            static constexpr std::uintptr_t m_flAnimationStartTime   = 0X0094; // float32
+            static constexpr std::uintptr_t m_flPlaceTime            = 0X0098; // GameTime_t
+            static constexpr std::uintptr_t m_flFadeStartTime        = 0X009C; // float32
+            static constexpr std::uintptr_t m_flFadeDuration         = 0X00A0; // float32
+            static constexpr std::uintptr_t m_flLightingOriginOffset = 0X00A4; // float32
+            static constexpr std::uintptr_t m_flBoundingRadiusSqr    = 0X00B0; // float32
+            static constexpr std::uintptr_t m_nSequenceIndex         = 0X00B4; // int16
+            static constexpr std::uintptr_t m_bIsAdjacent            = 0X00B6; // bool
+            static constexpr std::uintptr_t m_bDoDecalLightmapping   = 0X00B7; // bool
         };
 
         // Has Trivial Destructor
@@ -11950,12 +12525,6 @@ namespace offsets {
         public:
         };
 
-        class CPathMoverEntitySpawn {
-        public:
-            static constexpr std::uintptr_t hMover           = 0X0000; // CHandle<CFuncMover>
-            static constexpr std::uintptr_t vecOtherEntities = 0X0008; // CUtlVector<CHandle<CBaseEntity>>
-        };
-
         // Has VTable
         class CResponseCriteriaSet {
         public:
@@ -11976,7 +12545,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_bConsiderSceneInvolvementAsSpeech = 0X0079; // bool
             static constexpr std::uintptr_t m_bSceneEntityDisabled              = 0X007A; // bool
             static constexpr std::uintptr_t m_nLastSpokenPriority               = 0X007C; // int32
-            static constexpr std::uintptr_t m_pOuter                            = 0X0098; // CBaseFlex*
+            static constexpr std::uintptr_t m_pOuter                            = 0X0098; // CBaseModelEntity*
         };
 
         // Has VTable
@@ -12011,6 +12580,30 @@ namespace offsets {
             static constexpr std::uintptr_t m_pFollowup = 0X0018; // ResponseFollowup*
         };
 
+        // Construct Allowed
+        class SPAWNGROUP_HEADER {
+        public:
+            static constexpr std::uintptr_t m_sGroupName           = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_sEntityLumpName      = 0X0008; // CUtlString
+            static constexpr std::uintptr_t m_vecWorldOffset       = 0X0010; // matrix3x4a_t
+            static constexpr std::uintptr_t m_bClientSpawnGroup    = 0X0040; // bool
+            static constexpr std::uintptr_t m_bSuppressAllEntities = 0X0041; // bool
+        };
+
+        // Has Trivial Destructor
+        struct globalentity_t {
+        public:
+            static constexpr std::uintptr_t name      = 0X0000; // CUtlSymbol
+            static constexpr std::uintptr_t levelName = 0X0002; // CUtlSymbol
+            static constexpr std::uintptr_t state     = 0X0004; // GLOBALESTATE
+            static constexpr std::uintptr_t counter   = 0X0008; // int32
+        };
+
+        struct SceneInterestTags_t {
+        public:
+            static constexpr std::uintptr_t m_Tags = 0X0000; // CUtlVector<CUtlString>
+        };
+
         // Has VTable
         class ConstraintSoundInfo {
         public:
@@ -12043,11 +12636,35 @@ namespace offsets {
             static constexpr std::uintptr_t m_flFarBlurryDistance  = 0X000C; // float32
         };
 
+        // Has VTable
+        // Construct Allowed
+        struct DebugDrawBoneTransforms_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t vecBones = 0X0010; // CUtlVectorFixedGrowable<CTransform,128>
+        };
+
         class CVectorMovingAverage {
         public:
         };
 
+        // Has VTable
+        // Construct Allowed
+        struct AI_MotorGroundAnimgraph_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t state                          = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t b_has_path                     = 0X0010; // bool
+            static constexpr std::uintptr_t f_remaining_ground_path_length = 0X0014; // float32
+            static constexpr std::uintptr_t f_current_speed                = 0X0018; // float32
+            static constexpr std::uintptr_t move_type                      = 0X0020; // CGlobalSymbol
+            static constexpr std::uintptr_t f_move_heading_actual          = 0X0028; // float32
+            static constexpr std::uintptr_t f_move_heading_desired         = 0X002C; // float32
+            static constexpr std::uintptr_t f_current_lean                 = 0X0030; // float32
+            static constexpr std::uintptr_t f_target_lean                  = 0X0034; // float32
+            static constexpr std::uintptr_t vec_events                     = 0X0038; // CUtlVector<AI_MotorGroundAnimgraph_DebugSnapshotData_t::Event_t>
+        };
+
         // Has Trivial Destructor
+        // Construct Allowed
         class CSoundEnvelope {
         public:
             static constexpr std::uintptr_t m_current     = 0X0000; // float32
@@ -12154,6 +12771,17 @@ namespace offsets {
         };
 
         // Has Trivial Destructor
+        class CInfoChoreoAnchorPosition {
+        public:
+            static constexpr std::uintptr_t m_vOrigin     = 0X0000; // Vector
+            static constexpr std::uintptr_t m_qAngles     = 0X000C; // QAngle
+            static constexpr std::uintptr_t m_vExtentsMin = 0X0018; // Vector
+            static constexpr std::uintptr_t m_vExtentsMax = 0X0024; // Vector
+            static constexpr std::uintptr_t m_flRadius    = 0X0030; // float32
+            static constexpr std::uintptr_t m_nShapeType  = 0X0034; // CInfoChoreoLocatorShapeType_t
+        };
+
+        // Has Trivial Destructor
         class VelocitySampler {
         public:
             static constexpr std::uintptr_t m_prevSample       = 0X0000; // Vector
@@ -12161,20 +12789,23 @@ namespace offsets {
             static constexpr std::uintptr_t m_fIdealSampleRate = 0X0010; // float32
         };
 
-        // Has Trivial Destructor
+        // Construct Allowed
         class CTakeDamageResult {
         public:
-            static constexpr std::uintptr_t m_pOriginatingInfo            = 0X0000; // CTakeDamageInfo*
-            static constexpr std::uintptr_t m_nHealthLost                 = 0X0008; // int32
-            static constexpr std::uintptr_t m_nHealthBefore               = 0X000C; // int32
-            static constexpr std::uintptr_t m_nDamageDealt                = 0X0010; // int32
-            static constexpr std::uintptr_t m_flPreModifiedDamage         = 0X0014; // float32
-            static constexpr std::uintptr_t m_nTotalledHealthLost         = 0X0018; // int32
-            static constexpr std::uintptr_t m_nTotalledDamageDealt        = 0X001C; // int32
-            static constexpr std::uintptr_t m_flTotalledPreModifiedDamage = 0X0020; // float32
-            static constexpr std::uintptr_t m_bWasDamageSuppressed        = 0X0024; // bool
-            static constexpr std::uintptr_t m_bSuppressFlinch             = 0X0025; // bool
-            static constexpr std::uintptr_t m_nOverrideFlinchHitGroup     = 0X0028; // HitGroup_t
+            static constexpr std::uintptr_t m_pOriginatingInfo             = 0X0000; // CTakeDamageInfo*
+            static constexpr std::uintptr_t m_DestructibleHitGroupRequests = 0X0008; // CUtlLeanVector<DestructiblePartDamageRequest_t>
+            static constexpr std::uintptr_t m_nHealthLost                  = 0X0018; // int32
+            static constexpr std::uintptr_t m_nHealthBefore                = 0X001C; // int32
+            static constexpr std::uintptr_t m_flDamageDealt                = 0X0020; // float32
+            static constexpr std::uintptr_t m_flPreModifiedDamage          = 0X0024; // float32
+            static constexpr std::uintptr_t m_nTotalledHealthLost          = 0X0028; // int32
+            static constexpr std::uintptr_t m_flTotalledDamageDealt        = 0X002C; // float32
+            static constexpr std::uintptr_t m_flTotalledPreModifiedDamage  = 0X0030; // float32
+            static constexpr std::uintptr_t m_flNewDamageAccumulatorValue  = 0X0034; // float32
+            static constexpr std::uintptr_t m_nDamageFlags                 = 0X0038; // TakeDamageFlags_t
+            static constexpr std::uintptr_t m_bWasDamageSuppressed         = 0X0040; // bool
+            static constexpr std::uintptr_t m_bSuppressFlinch              = 0X0041; // bool
+            static constexpr std::uintptr_t m_nOverrideFlinchHitGroup      = 0X0044; // HitGroup_t
         };
 
         // Has Trivial Destructor
@@ -12194,18 +12825,19 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
         class CCommentarySystem {
         public:
-            static constexpr std::uintptr_t m_bCommentaryConvarsChanging = 0X0011; // bool
-            static constexpr std::uintptr_t m_bCommentaryEnabledMidGame  = 0X0012; // bool
-            static constexpr std::uintptr_t m_flNextTeleportTime         = 0X0014; // GameTime_t
-            static constexpr std::uintptr_t m_iTeleportStage             = 0X0018; // int32
-            static constexpr std::uintptr_t m_bCheatState                = 0X001C; // bool
-            static constexpr std::uintptr_t m_bIsFirstSpawnGroupToLoad   = 0X001D; // bool
-            static constexpr std::uintptr_t m_hCurrentNode               = 0X0038; // CHandle<CPointCommentaryNode>
-            static constexpr std::uintptr_t m_hActiveCommentaryNode      = 0X003C; // CHandle<CPointCommentaryNode>
-            static constexpr std::uintptr_t m_hLastCommentaryNode        = 0X0040; // CHandle<CPointCommentaryNode>
-            static constexpr std::uintptr_t m_vecNodes                   = 0X0048; // CUtlVector<CHandle<CPointCommentaryNode>>
+            static constexpr std::uintptr_t m_bCommentaryEnabledMidGame = 0X0012; // bool
+            static constexpr std::uintptr_t m_flNextTeleportTime        = 0X0014; // GameTime_t
+            static constexpr std::uintptr_t m_iTeleportStage            = 0X0018; // int32
+            static constexpr std::uintptr_t m_bCheatState               = 0X001C; // bool
+            static constexpr std::uintptr_t m_bIsFirstSpawnGroupToLoad  = 0X001D; // bool
+            static constexpr std::uintptr_t m_ModifiedConvars           = 0X0020; // CUtlVector<modifiedconvars_t>
+            static constexpr std::uintptr_t m_hCurrentNode              = 0X0038; // CHandle<CPointCommentaryNode>
+            static constexpr std::uintptr_t m_hActiveCommentaryNode     = 0X003C; // CHandle<CPointCommentaryNode>
+            static constexpr std::uintptr_t m_hLastCommentaryNode       = 0X0040; // CHandle<CPointCommentaryNode>
+            static constexpr std::uintptr_t m_vecNodes                  = 0X0048; // CUtlVector<CHandle<CPointCommentaryNode>>
         };
 
         // Has Trivial Destructor
@@ -12258,6 +12890,16 @@ namespace offsets {
         };
 
         // Has Trivial Destructor
+        // Construct Allowed
+        class CRelativeTransform {
+        public:
+            static constexpr std::uintptr_t m_bTransformIsWorldSpace = 0X0000; // bool
+            static constexpr std::uintptr_t m_transform              = 0X0010; // CTransform
+            static constexpr std::uintptr_t m_transformWS            = 0X0030; // CTransformWS
+            static constexpr std::uintptr_t m_hEntity                = 0X0050; // CHandle<CBaseEntity>
+        };
+
+        // Has Trivial Destructor
         class CRangeInt {
         public:
             static constexpr std::uintptr_t m_pValue = 0X0000; // int32[2]
@@ -12287,11 +12929,25 @@ namespace offsets {
         // Has VTable
         class CGameChoreoServices : public IChoreoServices {
         public:
-            static constexpr std::uintptr_t m_hOwner             = 0X0008; // CHandle<CBaseAnimGraph>
+            static constexpr std::uintptr_t m_hOwner             = 0X0008; // CHandle<CBaseModelEntity>
             static constexpr std::uintptr_t m_hScriptedSequence  = 0X000C; // CHandle<CScriptedSequence>
             static constexpr std::uintptr_t m_scriptState        = 0X0010; // IChoreoServices::ScriptState_t
             static constexpr std::uintptr_t m_choreoState        = 0X0014; // IChoreoServices::ChoreoState_t
             static constexpr std::uintptr_t m_flTimeStartedState = 0X0018; // GameTime_t
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PhysObjectHeader_t {
+        public:
+            static constexpr std::uintptr_t type      = 0X0000; // PhysInterfaceId_t
+            static constexpr std::uintptr_t hEntity   = 0X0004; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t fieldName = 0X0008; // CUtlSymbolLarge
+            static constexpr std::uintptr_t nObjects  = 0X0010; // int32
+            static constexpr std::uintptr_t modelName = 0X0018; // CUtlSymbolLarge
+            static constexpr std::uintptr_t bbox      = 0X0020; // AABB_t
+            static constexpr std::uintptr_t sphere    = 0X0038; // physics_save_sphere_t
+            static constexpr std::uintptr_t iCollide  = 0X003C; // int32
         };
 
         // Has Trivial Destructor
@@ -12300,6 +12956,7 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
         class CShatterGlassShard {
         public:
             static constexpr std::uintptr_t m_hShardHandle                 = 0X0008; // uint32
@@ -12343,7 +13000,6 @@ namespace offsets {
         };
 
         // Has Trivial Destructor
-        // Construct Allowed
         struct CGameScriptedMoveDef_t {
         public:
             static constexpr std::uintptr_t m_vDestOffset        = 0X0000; // Vector
@@ -12418,6 +13074,7 @@ namespace offsets {
         // Has Trivial Destructor
         struct thinkfunc_t {
         public:
+            static constexpr std::uintptr_t m_think          = 0X0000; // BASEPTR
             static constexpr std::uintptr_t m_hFn            = 0X0008; // HSCRIPT
             static constexpr std::uintptr_t m_nContext       = 0X0010; // CUtlStringToken
             static constexpr std::uintptr_t m_nNextThinkTick = 0X0014; // GameTick_t
@@ -12475,14 +13132,15 @@ namespace offsets {
         // Has Trivial Destructor
         struct SoundeventPathCornerPairNetworked_t {
         public:
-            static constexpr std::uintptr_t vP1             = 0X0000; // Vector
-            static constexpr std::uintptr_t vP2             = 0X000C; // Vector
+            static constexpr std::uintptr_t vP1             = 0X0000; // VectorWS
+            static constexpr std::uintptr_t vP2             = 0X000C; // VectorWS
             static constexpr std::uintptr_t flPathLengthSqr = 0X0018; // float32
             static constexpr std::uintptr_t flP1Pct         = 0X001C; // float32
             static constexpr std::uintptr_t flP2Pct         = 0X0020; // float32
         };
 
         // Has VTable
+        // Construct Allowed
         class CSoundPatch {
         public:
             static constexpr std::uintptr_t m_pitch                  = 0X0008; // CSoundEnvelope
@@ -12492,7 +13150,7 @@ namespace offsets {
             static constexpr std::uintptr_t m_iszSoundScriptName     = 0X0048; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_hEnt                   = 0X0050; // CHandle<CBaseEntity>
             static constexpr std::uintptr_t m_soundEntityIndex       = 0X0054; // CEntityIndex
-            static constexpr std::uintptr_t m_soundOrigin            = 0X0058; // Vector
+            static constexpr std::uintptr_t m_soundOrigin            = 0X0058; // VectorWS
             static constexpr std::uintptr_t m_isPlaying              = 0X0064; // int32
             static constexpr std::uintptr_t m_Filter                 = 0X0068; // CCopyRecipientFilter
             static constexpr std::uintptr_t m_flCloseCaptionDuration = 0X00A0; // float32
@@ -12500,20 +13158,52 @@ namespace offsets {
             static constexpr std::uintptr_t m_iszClassName           = 0X00A8; // CUtlSymbolLarge
         };
 
+        class CSceneOpportunity {
+        public:
+            static constexpr std::uintptr_t m_hOwner               = 0X0000; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_uHandle              = 0X0004; // SceneOpportunityHandle_t
+            static constexpr std::uintptr_t m_strInteractVDataName = 0X0008; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_bEnabled             = 0X0010; // bool
+            static constexpr std::uintptr_t m_bActive              = 0X0011; // bool
+            static constexpr std::uintptr_t m_ePriority            = 0X0014; // InteractionPriority_t
+            static constexpr std::uintptr_t m_flRadius             = 0X0018; // float32
+            static constexpr std::uintptr_t m_LocalInterestReqTags = 0X0020; // SceneInterestTags_t
+            static constexpr std::uintptr_t m_LocalInterestOptTags = 0X0038; // SceneInterestTags_t
+            static constexpr std::uintptr_t m_flOwnerFOV           = 0X0050; // float32
+            static constexpr std::uintptr_t m_ActorList            = 0X0058; // CUtlVector<SceneOpportunityActor_t>
+            static constexpr std::uintptr_t m_hLookTarget          = 0X0070; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_flDuration           = 0X0074; // float32
+            static constexpr std::uintptr_t m_tStartTime           = 0X0078; // GameTime_t
+            static constexpr std::uintptr_t m_flCooldown           = 0X007C; // float32
+            static constexpr std::uintptr_t m_tCooldownTime        = 0X0080; // GameTime_t
+            static constexpr std::uintptr_t m_nRepeatCount         = 0X0084; // int32
+            static constexpr std::uintptr_t m_bDisableOnExit       = 0X0088; // bool
+        };
+
         // Has VTable
         // Construct Allowed
         class CCS2ChickenGraphController : public CAnimGraphControllerBase {
         public:
-            static constexpr std::uintptr_t m_action                    = 0X0090; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_actionSubtype             = 0X00A8; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
-            static constexpr std::uintptr_t m_bActionReset              = 0X00C0; // CAnimGraph2ParamAutoResetOptionalRef
-            static constexpr std::uintptr_t m_idleVariation             = 0X00E0; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_runVariation              = 0X00F8; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_panicVariation            = 0X0110; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_squatVariation            = 0X0128; // CAnimGraph2ParamOptionalRef<float32>
-            static constexpr std::uintptr_t m_bInWater                  = 0X0140; // CAnimGraph2ParamOptionalRef<bool>
-            static constexpr std::uintptr_t m_bHasActionCompletedEvent  = 0X0158; // bool
-            static constexpr std::uintptr_t m_bWaitingForCompletedEvent = 0X0159; // bool
+            static constexpr std::uintptr_t m_action                    = 0X0088; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_actionSubtype             = 0X00A0; // CAnimGraph2ParamOptionalRef<CGlobalSymbol>
+            static constexpr std::uintptr_t m_bActionReset              = 0X00B8; // CAnimGraph2ParamAutoResetOptionalRef
+            static constexpr std::uintptr_t m_idleVariation             = 0X00D8; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_runVariation              = 0X00F0; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_panicVariation            = 0X0108; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_squatVariation            = 0X0120; // CAnimGraph2ParamOptionalRef<float32>
+            static constexpr std::uintptr_t m_bInWater                  = 0X0138; // CAnimGraph2ParamOptionalRef<bool>
+            static constexpr std::uintptr_t m_bHasActionCompletedEvent  = 0X0150; // bool
+            static constexpr std::uintptr_t m_bWaitingForCompletedEvent = 0X0151; // bool
+        };
+
+        // Construct Allowed
+        struct levellist_t {
+        public:
+            static constexpr std::uintptr_t m_sMapName          = 0X0000; // CUtlString
+            static constexpr std::uintptr_t m_sLandmarkName     = 0X0008; // CUtlString
+            static constexpr std::uintptr_t m_hEntLandmark      = 0X0010; // CEntityHandle
+            static constexpr std::uintptr_t m_vecLandmarkOrigin = 0X0014; // Vector
+            static constexpr std::uintptr_t m_vecLandmarkAngles = 0X0020; // QAngle
         };
 
         // Has VTable
@@ -12549,6 +13239,7 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
         class CCopyRecipientFilter {
         public:
             static constexpr std::uintptr_t m_Flags                             = 0X0008; // int32
@@ -12558,6 +13249,19 @@ namespace offsets {
 
         class CFloatMovingAverage {
         public:
+        };
+
+        // Has Trivial Destructor
+        struct FuncMoverMovementSummary_t {
+        public:
+            static constexpr std::uintptr_t flStartT        = 0X0000; // float32
+            static constexpr std::uintptr_t flEndT          = 0X0004; // float32
+            static constexpr std::uintptr_t nStartNodeIndex = 0X0008; // int32
+            static constexpr std::uintptr_t nStopNodeIndex  = 0X000C; // int32
+            static constexpr std::uintptr_t nMovementMode   = 0X0010; // int32
+            static constexpr std::uintptr_t nFlags          = 0X0014; // FuncMoverMovementSummaryFlags_t
+            static constexpr std::uintptr_t nTick           = 0X0018; // GameTick_t
+            static constexpr std::uintptr_t hPathMover      = 0X001C; // CHandle<CPathMover>
         };
 
         // Has VTable
@@ -12649,34 +13353,53 @@ namespace offsets {
         public:
             static constexpr std::uintptr_t nSummarisedCount = 0X0000; // int32
             static constexpr std::uintptr_t info             = 0X0008; // CTakeDamageInfo
-            static constexpr std::uintptr_t result           = 0X0128; // CTakeDamageResult
-            static constexpr std::uintptr_t hTarget          = 0X0158; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t result           = 0X0120; // CTakeDamageResult
+            static constexpr std::uintptr_t hTarget          = 0X0170; // CHandle<CBaseEntity>
         };
 
-        // Has Trivial Destructor
+        // Has VTable
+        // Is Absract
+        class INavObstacle {
+        public:
+            static constexpr std::uintptr_t m_nId = 0X0008; // uint64
+        };
+
         class CSceneRequest {
         public:
-            static constexpr std::uintptr_t m_szPayloadTypeName = 0X0000; // CUtlSymbolLarge
-            static constexpr std::uintptr_t m_uHandle           = 0X0008; // SceneRequestHandle_t
-            static constexpr std::uintptr_t m_state             = 0X000C; // ESceneRequestState_t
+            static constexpr std::uintptr_t m_szPayloadVDataName   = 0X0000; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_uHandle              = 0X0008; // SceneRequestHandle_t
+            static constexpr std::uintptr_t m_state                = 0X000C; // ESceneRequestState_t
+            static constexpr std::uintptr_t m_nNPCBehaviorOverride = 0X0010; // ENPCBehaviorOverride_t
+            static constexpr std::uintptr_t m_vecActorMap          = 0X0018; // CUtlVector<SceneRequestTargetMapPair_t>
+            static constexpr std::uintptr_t m_vecAnchorMap         = 0X0030; // CUtlVector<SceneRequestTargetMapPair_t>
+            static constexpr std::uintptr_t m_vecGraphMap          = 0X0048; // CUtlVector<SceneRequestTargetMapPair_t>
+            static constexpr std::uintptr_t m_hOwner               = 0X0060; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_nameMapKV3           = 0X0068; // KeyValues3
         };
 
-        // Has Trivial Destructor
-        struct DestructiblePartDestructionRequest_t {
+        // Construct Allowed
+        struct entitytable_t {
         public:
-            static constexpr std::uintptr_t m_nDestroyFlags       = 0X0000; // EDestructibleParts_DestroyParameterFlags
-            static constexpr std::uintptr_t m_nDamageType         = 0X0004; // DamageTypes_t
-            static constexpr std::uintptr_t m_flPartDamage        = 0X0008; // float32
-            static constexpr std::uintptr_t m_flPartDamageRadius  = 0X000C; // float32
-            static constexpr std::uintptr_t m_vWsPartDamageOrigin = 0X0010; // VectorWS
-            static constexpr std::uintptr_t m_vWsPartDamageForce  = 0X001C; // Vector
+            static constexpr std::uintptr_t id                    = 0X0000; // int32
+            static constexpr std::uintptr_t edictindex            = 0X0004; // CEntityIndex
+            static constexpr std::uintptr_t saveentityindex       = 0X0008; // CEntityIndex
+            static constexpr std::uintptr_t bWasSaved             = 0X0014; // bool
+            static constexpr std::uintptr_t flags                 = 0X0018; // SaveRestoreTableFlags_t
+            static constexpr std::uintptr_t classname             = 0X0020; // CUtlSymbolLarge
+            static constexpr std::uintptr_t globalname            = 0X0028; // CUtlSymbolLarge
+            static constexpr std::uintptr_t entityname            = 0X0030; // CUtlSymbolLarge
+            static constexpr std::uintptr_t landmarkModelSpace    = 0X0038; // Vector
+            static constexpr std::uintptr_t m_pPrecacheEntityKeys = 0X0048; // CEntityKeyValues*
         };
 
-        // Has Trivial Destructor
-        struct DestructibleHitGroupToDestroy_t {
+        struct SceneOpportunityActor_t {
         public:
-            static constexpr std::uintptr_t m_nHitGroup       = 0X0000; // HitGroup_t
-            static constexpr std::uintptr_t m_nMaxDamageLevel = 0X0004; // int32
+            static constexpr std::uintptr_t m_hActor        = 0X0000; // CHandle<CBaseModelEntity>
+            static constexpr std::uintptr_t m_bDynamicActor = 0X0004; // bool
+            static constexpr std::uintptr_t m_bAnchor       = 0X0005; // bool
+            static constexpr std::uintptr_t m_strActorName  = 0X0008; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_strEntityName = 0X0010; // CUtlSymbolLarge
+            static constexpr std::uintptr_t m_InterestTags  = 0X0018; // SceneInterestTags_t
         };
 
         class CRR_Response {
@@ -12702,15 +13425,17 @@ namespace offsets {
         // Construct Allowed
         class CNmAimCSNode__CDefinition : public CNmPassthroughNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_nVerticalAngleNodeIdx        = 0X0018; // int16
-            static constexpr std::uintptr_t m_nHorizontalAngleNodeIdx      = 0X001A; // int16
-            static constexpr std::uintptr_t m_nWeaponCategoryNodeIdx       = 0X001C; // int16
-            static constexpr std::uintptr_t m_nWeaponTypeNodeIdx           = 0X001E; // int16
-            static constexpr std::uintptr_t m_nIsWeaponActionActiveNodeIdx = 0X0020; // int16
-            static constexpr std::uintptr_t m_nWeaponDropNodeIdx           = 0X0022; // int16
-            static constexpr std::uintptr_t m_nEnabledNodeIdx              = 0X0024; // int16
-            static constexpr std::uintptr_t m_flBlendTimeSeconds           = 0X0028; // float32
-            static constexpr std::uintptr_t m_flReduceRangeTimeSeconds     = 0X002C; // float32
+            static constexpr std::uintptr_t m_nVerticalAngleNodeIdx      = 0X0018; // int16
+            static constexpr std::uintptr_t m_nHorizontalAngleNodeIdx    = 0X001A; // int16
+            static constexpr std::uintptr_t m_nWeaponCategoryNodeIdx     = 0X001C; // int16
+            static constexpr std::uintptr_t m_nWeaponTypeNodeIdx         = 0X001E; // int16
+            static constexpr std::uintptr_t m_nWeaponActionNodeIdx       = 0X0020; // int16
+            static constexpr std::uintptr_t m_nWeaponDropNodeIdx         = 0X0022; // int16
+            static constexpr std::uintptr_t m_nIsDefusingNodeIdx         = 0X0024; // int16
+            static constexpr std::uintptr_t m_nCrouchWeightNodeIdx       = 0X0026; // int16
+            static constexpr std::uintptr_t m_flHandIKBlendInTimeSeconds = 0X0028; // float32
+            static constexpr std::uintptr_t m_flActionBlendTimeSeconds   = 0X002C; // float32
+            static constexpr std::uintptr_t m_flPlantingBlendTimeSeconds = 0X0030; // float32
         };
 
         // Has VTable
@@ -12732,30 +13457,31 @@ namespace offsets {
         };
 
         // Has VTable
+        // Construct Allowed
         class CTakeDamageInfo {
         public:
-            static constexpr std::uintptr_t m_vecDamageForce                       = 0X0008; // Vector
-            static constexpr std::uintptr_t m_vecDamagePosition                    = 0X0014; // VectorWS
-            static constexpr std::uintptr_t m_vecReportedPosition                  = 0X0020; // VectorWS
-            static constexpr std::uintptr_t m_vecDamageDirection                   = 0X002C; // Vector
-            static constexpr std::uintptr_t m_hInflictor                           = 0X0038; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hAttacker                            = 0X003C; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_hAbility                             = 0X0040; // CHandle<CBaseEntity>
-            static constexpr std::uintptr_t m_flDamage                             = 0X0044; // float32
-            static constexpr std::uintptr_t m_flTotalledDamage                     = 0X0048; // float32
-            static constexpr std::uintptr_t m_bitsDamageType                       = 0X004C; // DamageTypes_t
-            static constexpr std::uintptr_t m_iDamageCustom                        = 0X0050; // int32
-            static constexpr std::uintptr_t m_iAmmoType                            = 0X0054; // AmmoIndex_t
-            static constexpr std::uintptr_t m_flOriginalDamage                     = 0X0060; // float32
-            static constexpr std::uintptr_t m_bShouldBleed                         = 0X0064; // bool
-            static constexpr std::uintptr_t m_bShouldSpark                         = 0X0065; // bool
-            static constexpr std::uintptr_t m_nDamageFlags                         = 0X0070; // TakeDamageFlags_t
-            static constexpr std::uintptr_t m_iHitGroupId                          = 0X0078; // HitGroup_t
-            static constexpr std::uintptr_t m_nNumObjectsPenetrated                = 0X007C; // int32
-            static constexpr std::uintptr_t m_flFriendlyFireDamageReductionRatio   = 0X0080; // float32
-            static constexpr std::uintptr_t m_bStoppedBullet                       = 0X0084; // bool
-            static constexpr std::uintptr_t m_nDestructibleHitGroupsToForceDestroy = 0X0100; // CUtlVector<DestructibleHitGroupToDestroy_t>
-            static constexpr std::uintptr_t m_bInTakeDamageFlow                    = 0X0118; // bool
+            static constexpr std::uintptr_t m_vecDamageForce                     = 0X0008; // Vector
+            static constexpr std::uintptr_t m_vecDamagePosition                  = 0X0014; // VectorWS
+            static constexpr std::uintptr_t m_vecReportedPosition                = 0X0020; // VectorWS
+            static constexpr std::uintptr_t m_vecDamageDirection                 = 0X002C; // Vector
+            static constexpr std::uintptr_t m_hInflictor                         = 0X0038; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hAttacker                          = 0X003C; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_hAbility                           = 0X0040; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_flDamage                           = 0X0044; // float32
+            static constexpr std::uintptr_t m_flTotalledDamage                   = 0X0048; // float32
+            static constexpr std::uintptr_t m_bitsDamageType                     = 0X004C; // DamageTypes_t
+            static constexpr std::uintptr_t m_iDamageCustom                      = 0X0050; // int32
+            static constexpr std::uintptr_t m_iAmmoType                          = 0X0054; // AmmoIndex_t
+            static constexpr std::uintptr_t m_flOriginalDamage                   = 0X0060; // float32
+            static constexpr std::uintptr_t m_bShouldBleed                       = 0X0064; // bool
+            static constexpr std::uintptr_t m_bShouldSpark                       = 0X0065; // bool
+            static constexpr std::uintptr_t m_nDamageFlags                       = 0X0070; // TakeDamageFlags_t
+            static constexpr std::uintptr_t m_iHitGroupId                        = 0X0078; // HitGroup_t
+            static constexpr std::uintptr_t m_nNumObjectsPenetrated              = 0X007C; // int32
+            static constexpr std::uintptr_t m_flFriendlyFireDamageReductionRatio = 0X0080; // float32
+            static constexpr std::uintptr_t m_bStoppedBullet                     = 0X0084; // bool
+            static constexpr std::uintptr_t m_DestructibleHitGroupRequests       = 0X0100; // CUtlLeanVector<DestructiblePartDamageRequest_t>
+            static constexpr std::uintptr_t m_bInTakeDamageFlow                  = 0X0110; // bool
         };
 
         // Has Trivial Destructor
@@ -12772,6 +13498,7 @@ namespace offsets {
         };
 
         // Has Trivial Destructor
+        // Construct Allowed
         class CRelativeLocation {
         public:
             static constexpr std::uintptr_t m_Type            = 0X0018; // RelativeLocationType_t
@@ -12796,6 +13523,19 @@ namespace offsets {
             static constexpr std::uintptr_t m_iszOpvar    = 0X0018; // CUtlSymbolLarge
             static constexpr std::uintptr_t m_flVal       = 0X0020; // float32
             static constexpr std::uintptr_t m_vPos        = 0X0024; // Vector
+        };
+
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct PrecipitationFilter_t {
+        public:
+            static constexpr std::uintptr_t m_flMaxRadius = 0X0000; // float32
+        };
+
+        class PathMoverEntitySpawn {
+        public:
+            static constexpr std::uintptr_t hMover           = 0X0000; // CHandle<CFuncMover>
+            static constexpr std::uintptr_t vecOtherEntities = 0X0008; // CUtlVector<CHandle<CBaseEntity>>
         };
 
         // Has VTable
@@ -12855,6 +13595,20 @@ namespace offsets {
         public:
         };
 
+        // Construct Allowed
+        struct DestructiblePartDamageRequest_t {
+        public:
+            static constexpr std::uintptr_t m_nHitGroup            = 0X0000; // HitGroup_t
+            static constexpr std::uintptr_t m_nDamageLevel         = 0X0004; // int32
+            static constexpr std::uintptr_t m_nDesiredHealth       = 0X0008; // uint16
+            static constexpr std::uintptr_t m_nDestroyFlags        = 0X000C; // EDestructibleParts_DestroyParameterFlags
+            static constexpr std::uintptr_t m_nDamageType          = 0X0010; // DamageTypes_t
+            static constexpr std::uintptr_t m_flBreakDamage        = 0X0014; // float32
+            static constexpr std::uintptr_t m_flBreakDamageRadius  = 0X0018; // float32
+            static constexpr std::uintptr_t m_vWsBreakDamageOrigin = 0X001C; // VectorWS
+            static constexpr std::uintptr_t m_vWsBreakDamageForce  = 0X0028; // Vector
+        };
+
         // Has VTable
         // Has Trivial Destructor
         class CInButtonState {
@@ -12891,11 +13645,25 @@ namespace offsets {
 
         // Has VTable
         // Construct Allowed
+        struct AI_DefaultNPC_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t {
+        public:
+            static constexpr std::uintptr_t s_npc_current_ability       = 0X0008; // CGlobalSymbol
+            static constexpr std::uintptr_t s_npc_tactic_current        = 0X0010; // CGlobalSymbol
+            static constexpr std::uintptr_t s_npc_tactic_phase          = 0X0018; // CGlobalSymbol
+            static constexpr std::uintptr_t tactic_interrupt_conditions = 0X0020; // CUtlVector<CGlobalSymbol>
+            static constexpr std::uintptr_t s_npc_current_movement      = 0X0038; // CUtlString
+            static constexpr std::uintptr_t path_query_schedule         = 0X0040; // AI_DefaultNPC_DebugSnapshotData_t::PathQuery_t
+            static constexpr std::uintptr_t path_query_tactic           = 0X0068; // AI_DefaultNPC_DebugSnapshotData_t::PathQuery_t
+            static constexpr std::uintptr_t path_queries_speculative    = 0X0090; // CUtlVector<AI_DefaultNPC_DebugSnapshotData_t::PathQuery_t>
+        };
+
+        // Has VTable
+        // Construct Allowed
         class CNmSnapWeaponNode__CDefinition : public CNmPassthroughNode__CDefinition {
         public:
-            static constexpr std::uintptr_t m_nEnabledNodeIdx      = 0X0018; // int16
-            static constexpr std::uintptr_t m_nLockLeftHandNodeIdx = 0X001A; // int16
-            static constexpr std::uintptr_t m_flBlendTimeSeconds   = 0X001C; // float32
+            static constexpr std::uintptr_t m_nFlashedAmountNodeIdx  = 0X0018; // int16
+            static constexpr std::uintptr_t m_nWeaponCategoryNodeIdx = 0X001A; // int16
+            static constexpr std::uintptr_t m_nWeaponTypeNodeIdx     = 0X001C; // int16
         };
 
         // Has Trivial Destructor
@@ -12926,17 +13694,18 @@ namespace offsets {
 
         struct CSAdditionalPerRoundStats_t {
         public:
-            static constexpr std::uintptr_t m_numChickensKilled      = 0X0000; // int32
-            static constexpr std::uintptr_t m_killsWhileBlind        = 0X0004; // int32
-            static constexpr std::uintptr_t m_bombCarrierkills       = 0X0008; // int32
-            static constexpr std::uintptr_t m_flBurnDamageInflicted  = 0X000C; // float32
-            static constexpr std::uintptr_t m_flBlastDamageInflicted = 0X0010; // float32
-            static constexpr std::uintptr_t m_iDinks                 = 0X0014; // int32
-            static constexpr std::uintptr_t m_bFreshStartThisRound   = 0X0018; // bool
-            static constexpr std::uintptr_t m_bBombPlantedAndAlive   = 0X0019; // bool
-            static constexpr std::uintptr_t m_nDefuseStarts          = 0X001C; // int32
-            static constexpr std::uintptr_t m_nHostagePickUps        = 0X0020; // int32
-            static constexpr std::uintptr_t m_numTeammatesFlashed    = 0X0024; // int32
+            static constexpr std::uintptr_t m_numChickensKilled        = 0X0000; // int32
+            static constexpr std::uintptr_t m_killsWhileBlind          = 0X0004; // int32
+            static constexpr std::uintptr_t m_bombCarrierkills         = 0X0008; // int32
+            static constexpr std::uintptr_t m_flBurnDamageInflicted    = 0X000C; // float32
+            static constexpr std::uintptr_t m_flBlastDamageInflicted   = 0X0010; // float32
+            static constexpr std::uintptr_t m_iDinks                   = 0X0014; // int32
+            static constexpr std::uintptr_t m_bFreshStartThisRound     = 0X0018; // bool
+            static constexpr std::uintptr_t m_bBombPlantedAndAlive     = 0X0019; // bool
+            static constexpr std::uintptr_t m_nDefuseStarts            = 0X001C; // int32
+            static constexpr std::uintptr_t m_nHostagePickUps          = 0X0020; // int32
+            static constexpr std::uintptr_t m_numTeammatesFlashed      = 0X0024; // int32
+            static constexpr std::uintptr_t m_strAnnotationsWorkshopId = 0X0028; // CUtlString
         };
 
         // Has VTable
@@ -12958,11 +13727,25 @@ namespace offsets {
             static constexpr std::uintptr_t m_nStageCount   = 0X000C; // int32
         };
 
+        // Construct Allowed
+        struct AI_MotorGroundAnimgraph_DebugSnapshotData_t__Event_t {
+        public:
+            static constexpr std::uintptr_t description = 0X0000; // CUtlString
+            static constexpr std::uintptr_t location    = 0X0008; // VectorWS
+        };
+
         // Has VTable
         class CNavVolumeBreadthFirstSearch : public CNavVolumeCalculatedVector {
         public:
-            static constexpr std::uintptr_t m_vStartPos    = 0X00A8; // Vector
+            static constexpr std::uintptr_t m_vStartPos    = 0X00A8; // VectorWS
             static constexpr std::uintptr_t m_flSearchDist = 0X00B4; // float32
+        };
+
+        // Has Trivial Destructor
+        // Global Type Scope
+        struct SceneOpportunityHandle_t {
+        public:
+            static constexpr std::uintptr_t m_Value = 0X0000; // int32
         };
 
         // Has Trivial Constructor
@@ -12973,24 +13756,66 @@ namespace offsets {
 
         struct CSAdditionalMatchStats_t : public CSAdditionalPerRoundStats_t {
         public:
-            static constexpr std::uintptr_t m_numRoundsSurvivedStreak        = 0X00F0; // int32
-            static constexpr std::uintptr_t m_maxNumRoundsSurvivedStreak     = 0X00F4; // int32
-            static constexpr std::uintptr_t m_numRoundsSurvivedTotal         = 0X00F8; // int32
-            static constexpr std::uintptr_t m_iRoundsWonWithoutPurchase      = 0X00FC; // int32
-            static constexpr std::uintptr_t m_iRoundsWonWithoutPurchaseTotal = 0X0100; // int32
-            static constexpr std::uintptr_t m_numFirstKills                  = 0X0104; // int32
-            static constexpr std::uintptr_t m_numClutchKills                 = 0X0108; // int32
-            static constexpr std::uintptr_t m_numPistolKills                 = 0X010C; // int32
-            static constexpr std::uintptr_t m_numSniperKills                 = 0X0110; // int32
-            static constexpr std::uintptr_t m_iNumSuicides                   = 0X0114; // int32
-            static constexpr std::uintptr_t m_iNumTeamKills                  = 0X0118; // int32
-            static constexpr std::uintptr_t m_flTeamDamage                   = 0X011C; // float32
+            static constexpr std::uintptr_t m_numRoundsSurvivedStreak        = 0X00F8; // int32
+            static constexpr std::uintptr_t m_maxNumRoundsSurvivedStreak     = 0X00FC; // int32
+            static constexpr std::uintptr_t m_numRoundsSurvivedTotal         = 0X0100; // int32
+            static constexpr std::uintptr_t m_iRoundsWonWithoutPurchase      = 0X0104; // int32
+            static constexpr std::uintptr_t m_iRoundsWonWithoutPurchaseTotal = 0X0108; // int32
+            static constexpr std::uintptr_t m_numFirstKills                  = 0X010C; // int32
+            static constexpr std::uintptr_t m_numClutchKills                 = 0X0110; // int32
+            static constexpr std::uintptr_t m_numPistolKills                 = 0X0114; // int32
+            static constexpr std::uintptr_t m_numSniperKills                 = 0X0118; // int32
+            static constexpr std::uintptr_t m_iNumSuicides                   = 0X011C; // int32
+            static constexpr std::uintptr_t m_iNumTeamKills                  = 0X0120; // int32
+            static constexpr std::uintptr_t m_flTeamDamage                   = 0X0124; // float32
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct AI_Navigator_DebugSnapshotData_t__Waypoint_t {
+        public:
+            static constexpr std::uintptr_t position = 0X0000; // VectorWS
+            static constexpr std::uintptr_t nav_type = 0X000C; // uint32
+            static constexpr std::uintptr_t flags    = 0X0010; // uint32
+        };
+
+        class CSceneCriteria {
+        public:
+            static constexpr std::uintptr_t m_hOwner          = 0X0000; // CHandle<CBaseEntity>
+            static constexpr std::uintptr_t m_ePriority       = 0X0004; // InteractionPriority_t
+            static constexpr std::uintptr_t m_InterestReqTags = 0X0008; // SceneInterestTags_t
+            static constexpr std::uintptr_t m_InterestOptTags = 0X0020; // SceneInterestTags_t
         };
 
         // Has VTable
         // Is Absract
         class IRagdoll {
         public:
+        };
+
+        // Has VTable
+        // Has Trivial Destructor
+        class CCSPlayerAnimationState {
+        public:
+            static constexpr std::uintptr_t m_currentMoveType                     = 0X0018; // CCSPlayerAnimationState::MoveType_t
+            static constexpr std::uintptr_t m_groundMoveState                     = 0X0019; // CCSPlayerAnimationState::GroundMoveState_t
+            static constexpr std::uintptr_t m_groundActionDirection               = 0X001A; // CCSPlayerAnimationState::Direction_t
+            static constexpr std::uintptr_t m_airAction                           = 0X001B; // CCSPlayerAnimationState::AirAction_t
+            static constexpr std::uintptr_t m_bWasOnGroundLastUpdate              = 0X001C; // bool
+            static constexpr std::uintptr_t m_bWasStationaryLastUpdate            = 0X001D; // bool
+            static constexpr std::uintptr_t m_actionStartTick                     = 0X0020; // GameTick_t
+            static constexpr std::uintptr_t m_staticAimTimerStartTick             = 0X0024; // GameTick_t
+            static constexpr std::uintptr_t m_stutterStepStartTick                = 0X0028; // GameTick_t
+            static constexpr std::uintptr_t m_plantAndTurnStartTick               = 0X002C; // GameTick_t
+            static constexpr std::uintptr_t m_bIsStutterStep                      = 0X0030; // bool
+            static constexpr std::uintptr_t m_flTurnOnSpotAngle                   = 0X0034; // float32
+            static constexpr std::uintptr_t m_flPreviousAimYaw                    = 0X0038; // float32
+            static constexpr std::uintptr_t m_flPreviousHorizontalSpeed           = 0X003C; // float32
+            static constexpr std::uintptr_t m_flFootIKOffsetLeft                  = 0X0040; // float32
+            static constexpr std::uintptr_t m_flFootIKOffsetRight                 = 0X0044; // float32
+            static constexpr std::uintptr_t m_flWeaponDropPercentageDueToMovement = 0X0048; // float32
+            static constexpr std::uintptr_t m_flWeaponDropSmoothDampVelocity      = 0X004C; // float32
         };
 
         // Has Trivial Destructor

@@ -25,6 +25,25 @@ namespace offsets {
             DYNAMIC_CONTINUOUS_NEVER                            = 0x2
         };
 
+        enum class PhysInterfaceId_t : std::uint32_t {
+            PIID_UNKNOWN                  = 0x0,
+            PIID_IPHYSICSBODY             = 0x1,
+            PIID_IPHYSAGGREGATE           = 0x2,
+            PIID_IPHYSICSJOINT            = 0x3,
+            PIID_IPHYSICSMOTIONCONTROLLER = 0x4,
+            PIID_IPHYSICSPARTICLEROPE     = 0x5,
+            PIID_IPHYSICSRAGDOLLCONTROL   = 0x6,
+            PIID_NUM_TYPES                = 0x7
+        };
+
+        enum class PhysGenericShapeType_t : std::uint8_t {
+            GENERIC_SHAPE_POINT   = 0x0,
+            GENERIC_SHAPE_SPHERE  = 0x1,
+            GENERIC_SHAPE_AABB    = 0x2,
+            GENERIC_SHAPE_CAPSULE = 0x3,
+            GENERIC_SHAPE_HULL    = 0x4
+        };
+
         // Construct Allowed
         struct RnShapeDesc_t {
         public:
@@ -279,6 +298,20 @@ namespace offsets {
             static constexpr std::uintptr_t m_jiggleBone    = 0X0008; // CFeJiggleBone
         };
 
+        // Has VTable
+        // Is Absract
+        class IPhysicsBodyList {
+        public:
+        };
+
+        // Has VTable
+        // Is Absract
+        class IPhysAggregateInstance : public IPhysicsBodyList {
+        public:
+            static constexpr std::uintptr_t m_pSkeleton      = 0X0008; // void*
+            static constexpr std::uintptr_t m_bIsAxisAligned = 0X0010; // bool
+        };
+
         // Has Trivial Constructor
         // Has Trivial Destructor
         // Construct Allowed
@@ -327,6 +360,12 @@ namespace offsets {
             static constexpr std::uintptr_t f4MinDist          = 0X0020; // fltx4
             static constexpr std::uintptr_t f4Weight0          = 0X0030; // fltx4
             static constexpr std::uintptr_t f4RelaxationFactor = 0X0040; // fltx4
+        };
+
+        // Has VTable
+        // Is Absract
+        class IPhysicsParticleRope {
+        public:
         };
 
         // Has Trivial Constructor
@@ -472,6 +511,12 @@ namespace offsets {
             static constexpr std::uintptr_t m_vNormal   = 0X000C; // Vector
         };
 
+        // Has VTable
+        // Is Absract
+        class IPhysicsRagdollControl {
+        public:
+        };
+
         // Construct Allowed
         struct FeSDFRigid_t {
         public:
@@ -570,6 +615,12 @@ namespace offsets {
             static constexpr std::uintptr_t flRelaxationFactor = 0X0008; // float32
         };
 
+        // Has VTable
+        // Is Absract
+        class IPhysicsJoint {
+        public:
+        };
+
         // Has Trivial Constructor
         // Has Trivial Destructor
         // Construct Allowed
@@ -664,6 +715,11 @@ namespace offsets {
             static constexpr std::uintptr_t flGroundFriction = 0X0004; // float32
             static constexpr std::uintptr_t nListBegin       = 0X0008; // uint16
             static constexpr std::uintptr_t nListEnd         = 0X000A; // uint16
+        };
+
+        class CGenericShapeProxy {
+        public:
+            static constexpr std::uintptr_t m_verts = 0X0030; // CUtlLeanVectorFixedGrowable<Vector,8>
         };
 
         // Has Trivial Destructor
@@ -817,6 +873,23 @@ namespace offsets {
             static constexpr std::uintptr_t m_flMaxFraction = 0X001C; // float32
             static constexpr std::uintptr_t m_flScale       = 0X0020; // float32
             static constexpr std::uintptr_t m_pHull         = 0X0028; // RnHull_t*
+        };
+
+        // Has Trivial Constructor
+        // Has Trivial Destructor
+        // Construct Allowed
+        struct vphysics_save_ragdoll_control_t {
+        public:
+            static constexpr std::uintptr_t m_flMinSpringFrequency        = 0X0000; // float32
+            static constexpr std::uintptr_t m_flMaxSpringFrequency        = 0X0004; // float32
+            static constexpr std::uintptr_t m_flMaxStretch                = 0X0008; // float32
+            static constexpr std::uintptr_t m_bSolidCollisionAtZeroWeight = 0X000C; // bool
+            static constexpr std::uintptr_t m_bRequiresDynamicBodies      = 0X000D; // bool
+            static constexpr std::uintptr_t m_bIgnoreTeleport             = 0X000E; // bool
+            static constexpr std::uintptr_t m_vLinearVelocityAccumulator  = 0X0010; // Vector
+            static constexpr std::uintptr_t m_vAngularVelocityAccumulator = 0X001C; // RotationVector
+            static constexpr std::uintptr_t m_vForceAccumulator           = 0X0028; // Vector
+            static constexpr std::uintptr_t m_nBodyCount                  = 0X0034; // int32
         };
 
         // Has Trivial Destructor
@@ -982,6 +1055,12 @@ namespace offsets {
             static constexpr std::uintptr_t m_nEdge = 0X0000; // uint8
         };
 
+        // Has VTable
+        // Is Absract
+        class IPhysicsMotionController {
+        public:
+        };
+
         // Has Trivial Constructor
         // Has Trivial Destructor
         // Construct Allowed
@@ -1103,6 +1182,12 @@ namespace offsets {
             static constexpr std::uintptr_t m_nPriority            = 0X0030; // int32
             static constexpr std::uintptr_t m_nVertexMapHash       = 0X0034; // uint32
             static constexpr std::uintptr_t m_nAntitunnelGroupBits = 0X0038; // uint32
+        };
+
+        // Has VTable
+        // Is Absract
+        class IPhysicsBody {
+        public:
         };
 
         // Has Trivial Destructor

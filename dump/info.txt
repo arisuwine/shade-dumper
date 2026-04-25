@@ -1,165 +1,165 @@
 [General]
     Game: Counter-Strike 2
-    Dump Date: 2026-03-10 20:04:59
-    Generator: Shade Dumper 1.1
+    Dump Date: 2026-04-22 16:07:19
+    Generator: Shade Dumper 1.0
 
 [Modules]
     engine2.dll
-        - Timestamp: 2026-03-06 21:03:33
-        - Classes Dumped: 55
+        - Timestamp: 2026-04-21 23:23:44
+        - Classes Dumped: 56
         - Enumerators Dumped: 2
 
     vconcomm.dll
-        - Timestamp: 2026-03-06 20:48:10
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:19:08
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     filesystem_stdio.dll
-        - Timestamp: 2026-03-06 20:49:28
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:18:55
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     inputsystem.dll
-        - Timestamp: 2026-03-06 20:48:48
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:18:54
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     imemanager.dll
-        - Timestamp: 2026-03-06 20:48:26
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:18:52
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     localize.dll
-        - Timestamp: 2026-03-06 20:48:13
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:18:57
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     rendersystemdx11.dll
-        - Timestamp: 2026-03-06 20:50:27
+        - Timestamp: 2026-04-21 23:19:15
         - Classes Dumped: 8
         - Enumerators Dumped: 8
 
     resourcesystem.dll
-        - Timestamp: 2026-03-06 20:49:43
+        - Timestamp: 2026-04-21 23:18:56
         - Classes Dumped: 58
         - Enumerators Dumped: 2
 
     schemasystem.dll
-        - Timestamp: 2026-03-06 20:49:42
+        - Timestamp: 2026-04-21 23:19:12
         - Classes Dumped: 7
         - Enumerators Dumped: 2
 
     materialsystem2.dll
-        - Timestamp: 2026-03-06 20:49:37
+        - Timestamp: 2026-04-21 23:19:22
         - Classes Dumped: 14
         - Enumerators Dumped: 5
 
     meshsystem.dll
-        - Timestamp: 2026-03-06 20:50:47
+        - Timestamp: 2026-04-21 23:19:09
         - Classes Dumped: 0
         - Enumerators Dumped: 0
 
     worldrenderer.dll
-        - Timestamp: 2026-03-06 20:50:52
+        - Timestamp: 2026-04-21 23:19:22
         - Classes Dumped: 32
         - Enumerators Dumped: 3
 
     pulse_system.dll
-        - Timestamp: 2026-03-06 20:50:16
-        - Classes Dumped: 97
+        - Timestamp: 2026-04-21 23:19:00
+        - Classes Dumped: 99
         - Enumerators Dumped: 5
 
     vscript.dll
-        - Timestamp: 2026-03-06 20:50:11
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:19:15
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     networksystem.dll
-        - Timestamp: 2026-03-06 20:51:08
+        - Timestamp: 2026-04-21 23:19:12
         - Classes Dumped: 1
-        - Enumerators Dumped: 1
+        - Enumerators Dumped: 0
 
     animationsystem.dll
-        - Timestamp: 2026-03-06 20:51:08
-        - Classes Dumped: 662
-        - Enumerators Dumped: 139
+        - Timestamp: 2026-04-21 23:20:43
+        - Classes Dumped: 695
+        - Enumerators Dumped: 148
 
     vphysics2.dll
-        - Timestamp: 2026-03-06 20:51:06
-        - Classes Dumped: 101
-        - Enumerators Dumped: 3
+        - Timestamp: 2026-04-21 23:19:23
+        - Classes Dumped: 110
+        - Enumerators Dumped: 5
 
     soundsystem.dll
-        - Timestamp: 2026-03-06 20:59:54
-        - Classes Dumped: 127
-        - Enumerators Dumped: 19
+        - Timestamp: 2026-04-21 23:21:52
+        - Classes Dumped: 136
+        - Enumerators Dumped: 26
 
     steamaudio.dll
-        - Timestamp: 2026-03-06 20:50:40
-        - Classes Dumped: 16
+        - Timestamp: 2026-04-21 23:20:43
+        - Classes Dumped: 17
         - Enumerators Dumped: 0
 
     scenesystem.dll
-        - Timestamp: 2026-03-06 20:58:54
+        - Timestamp: 2026-04-21 23:22:07
         - Classes Dumped: 9
-        - Enumerators Dumped: 4
+        - Enumerators Dumped: 5
 
     particles.dll
-        - Timestamp: 2026-03-06 20:52:47
-        - Classes Dumped: 498
-        - Enumerators Dumped: 75
+        - Timestamp: 2026-04-21 23:22:02
+        - Classes Dumped: 501
+        - Enumerators Dumped: 76
 
     panoramauiclient.dll
-        - Timestamp: 2026-03-06 21:05:15
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:23:00
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     panorama.dll
-        - Timestamp: 2026-03-06 20:59:26
+        - Timestamp: 2026-04-21 23:22:17
         - Classes Dumped: 0
         - Enumerators Dumped: 2
 
     panorama_text_pango.dll
-        - Timestamp: 2026-03-06 20:48:24
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:19:01
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     v8system.dll
-        - Timestamp: 2026-03-06 20:48:09
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:19:01
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     server.dll
-        - Timestamp: 2026-03-09 20:58:01
-        - Classes Dumped: 890
-        - Enumerators Dumped: 165
+        - Timestamp: 2026-04-22 00:50:52
+        - Classes Dumped: 947
+        - Enumerators Dumped: 179
 
     client.dll
-        - Timestamp: 2026-03-09 20:57:56
-        - Classes Dumped: 535
+        - Timestamp: 2026-04-22 00:50:58
+        - Classes Dumped: 541
         - Enumerators Dumped: 12
 
     host.dll
-        - Timestamp: 2026-03-06 20:50:17
+        - Timestamp: 2026-04-21 23:19:01
         - Classes Dumped: 2
         - Enumerators Dumped: 0
 
     scenefilecache.dll
-        - Timestamp: 2026-03-06 20:50:31
+        - Timestamp: 2026-04-21 23:19:45
         - Classes Dumped: 0
         - Enumerators Dumped: 0
 
     matchmaking.dll
-        - Timestamp: 2026-03-06 20:49:33
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:19:10
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
     navsystem.dll
-        - Timestamp: 2026-03-06 20:57:18
-        - Classes Dumped: 1636
-        - Enumerators Dumped: 421
+        - Timestamp: 2026-04-21 23:19:04
+        - Classes Dumped: 1731
+        - Enumerators Dumped: 454
 
 [Stats]
-    Total Classes Dumped: 21108
-    Total Enumerators Dumped: 5078
-    Execution Time: 5248ms
+    Total Classes Dumped: 22274
+    Total Enumerators Dumped: 5474
+    Execution Time: 135249ms
