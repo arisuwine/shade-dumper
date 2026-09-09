@@ -1,5 +1,7 @@
 # Shade Dumper: Internal CS2 Schema Dumper
 
+DEPRECATED. USE https://github.com/arisuwine/shadegenerator
+
 An internal offset dumper for Counter-Strike 2 on Windows.
 
 For educational purposes only.
